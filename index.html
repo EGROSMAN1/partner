@@ -1,0 +1,4175 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0a1628">
+<title>פרטנר Q1 2026 | דשבורד אנליטי</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg-deep: #050b14;
+  --bg-card: #0d1825;
+  --bg-elev: #142235;
+  --border: rgba(0, 216, 200, 0.12);
+  --border-strong: rgba(0, 216, 200, 0.25);
+  --teal: #00d8c8;
+  --teal-glow: #00f5e2;
+  --teal-dim: #008c80;
+  --bezeq: #4a9eff;
+  --bezeq-dim: #2870c0;
+  --amber: #ffb547;
+  --green: #00e676;
+  --red: #ff5577;
+  --text: #e8f1f8;
+  --text-dim: #8aa0b8;
+  --text-faint: #5a7090;
+  --gradient-teal: linear-gradient(135deg, #00d8c8 0%, #00a89c 100%);
+  --gradient-bezeq: linear-gradient(135deg, #4a9eff 0%, #2870c0 100%);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  background: var(--bg-deep);
+  color: var(--text);
+  font-family: 'Heebo', -apple-system, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(0, 216, 200, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 100%, rgba(74, 158, 255, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app { position: relative; z-index: 1; padding-bottom: 100px; }
+
+/* HEADER */
+.header {
+  padding: 18px 16px 14px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(5, 11, 20, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--gradient-teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  color: #001a18;
+  font-size: 13px;
+  letter-spacing: -0.5px;
+  box-shadow: 0 0 20px rgba(0, 216, 200, 0.35);
+}
+
+.brand-text { display: flex; flex-direction: column; }
+.brand-title { font-size: 14px; font-weight: 700; letter-spacing: -0.2px; }
+.brand-sub { font-size: 10px; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase; font-weight: 500; }
+
+.live-pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  background: rgba(0, 230, 118, 0.1);
+  border: 1px solid rgba(0, 230, 118, 0.3);
+  border-radius: 100px;
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--green);
+  letter-spacing: 1px;
+}
+
+.live-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.7); }
+  50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(0, 230, 118, 0); }
+}
+
+/* TABS */
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-top: 14px;
+  padding: 4px;
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.tab {
+  flex: 1;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim);
+  border-radius: 9px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.tab.active {
+  background: var(--gradient-teal);
+  color: #001a18;
+  box-shadow: 0 4px 18px rgba(0, 216, 200, 0.3);
+}
+
+.tab-icon { font-size: 14px; }
+
+/* PAGE */
+.page { display: none; padding: 16px; animation: fadeIn 0.35s ease; }
+.page.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* SECTIONS */
+.section { margin-bottom: 24px; }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding-right: 4px;
+}
+
+.section-bar {
+  width: 3px;
+  height: 22px;
+  background: var(--gradient-teal);
+  border-radius: 2px;
+  box-shadow: 0 0 8px var(--teal);
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.section-sub {
+  font-size: 11px;
+  color: var(--text-faint);
+  margin-right: auto;
+  font-weight: 500;
+}
+
+/* HERO STATEMENT */
+.hero {
+  background: linear-gradient(135deg, rgba(0, 216, 200, 0.08) 0%, rgba(0, 216, 200, 0.02) 100%);
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(0, 216, 200, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-label {
+  font-size: 10px;
+  color: var(--teal);
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.hero-text {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.55;
+  position: relative;
+  color: var(--text);
+}
+
+.hero-text strong { color: var(--teal-glow); font-weight: 700; }
+
+/* KPI GRID */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.kpi-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+.kpi {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 12px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.kpi:active { border-color: var(--border-strong); }
+
+.kpi-label {
+  font-size: 10px;
+  color: var(--text-faint);
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.kpi-value {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.1;
+}
+
+.kpi-unit { font-size: 11px; color: var(--text-dim); font-weight: 500; margin-right: 2px; }
+
+.kpi-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.kpi-delta.up { color: var(--green); }
+.kpi-delta.down { color: var(--red); }
+.kpi-delta.flat { color: var(--text-dim); }
+
+.kpi-context { font-size: 9px; color: var(--text-faint); margin-top: 2px; font-weight: 500; }
+
+/* CHART CARD */
+.chart-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px 14px 12px;
+  margin-bottom: 14px;
+}
+
+.chart-title {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.chart-sub {
+  font-size: 10px;
+  color: var(--text-faint);
+  margin-bottom: 12px;
+}
+
+.chart-wrap {
+  position: relative;
+  height: 200px;
+  width: 100%;
+}
+
+.chart-wrap.tall { height: 240px; }
+
+/* INSIGHTS LIST */
+.insights {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 4px 0;
+}
+
+.insight {
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  align-items: flex-start;
+}
+
+.insight:last-child { border-bottom: none; }
+
+.insight-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 1px;
+}
+
+.insight-icon.win {
+  background: rgba(0, 230, 118, 0.12);
+  color: var(--green);
+  border: 1px solid rgba(0, 230, 118, 0.25);
+}
+
+.insight-icon.warn {
+  background: rgba(255, 181, 71, 0.12);
+  color: var(--amber);
+  border: 1px solid rgba(255, 181, 71, 0.25);
+}
+
+.insight-icon.future {
+  background: rgba(0, 216, 200, 0.1);
+  color: var(--teal);
+  border: 1px solid rgba(0, 216, 200, 0.25);
+}
+
+.insight-body { flex: 1; min-width: 0; }
+.insight-title { font-size: 13px; font-weight: 700; margin-bottom: 3px; line-height: 1.3; }
+.insight-text { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+.insight-metric { font-family: 'JetBrains Mono', monospace; color: var(--teal-glow); font-weight: 700; }
+.insight-metric.warn { color: var(--amber); }
+
+/* COMPARISON */
+.vs-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin-bottom: 16px;
+}
+
+.vs-side { text-align: center; }
+.vs-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  margin: 0 auto 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: -0.5px;
+}
+
+.vs-logo.partner {
+  background: var(--gradient-teal);
+  color: #001a18;
+  box-shadow: 0 4px 16px rgba(0, 216, 200, 0.35);
+}
+
+.vs-logo.bezeq {
+  background: var(--gradient-bezeq);
+  color: #001120;
+  box-shadow: 0 4px 16px rgba(74, 158, 255, 0.35);
+}
+
+.vs-name { font-size: 12px; font-weight: 700; }
+.vs-tagline { font-size: 9px; color: var(--text-faint); margin-top: 2px; letter-spacing: 0.5px; font-weight: 500; }
+
+.vs-divider {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-faint);
+  letter-spacing: 1px;
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+}
+
+/* COMPARISON TABLE */
+.cmp-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+.cmp-metric-name {
+  text-align: center;
+  font-size: 10px;
+  color: var(--text-dim);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  grid-column: 1 / -1;
+  margin-bottom: 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed rgba(255,255,255,0.06);
+}
+
+.cmp-cell { text-align: center; padding: 4px; }
+.cmp-value { font-size: 17px; font-weight: 800; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.5px; line-height: 1.1; }
+.cmp-value.partner { color: var(--teal-glow); }
+.cmp-value.bezeq { color: var(--bezeq); }
+.cmp-delta { font-size: 10px; font-weight: 600; margin-top: 2px; font-family: 'JetBrains Mono', monospace; }
+.cmp-delta.up { color: var(--green); }
+.cmp-delta.down { color: var(--red); }
+.cmp-delta.flat { color: var(--text-faint); }
+
+.cmp-bar {
+  width: 1px;
+  height: 32px;
+  background: var(--border);
+}
+
+/* DIVISION CARD */
+.div-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.div-card.partner { border-color: rgba(0, 216, 200, 0.2); }
+.div-card.bezeq { border-color: rgba(74, 158, 255, 0.2); }
+
+.div-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+}
+
+.div-card.partner::before { background: var(--gradient-teal); }
+.div-card.bezeq::before { background: var(--gradient-bezeq); }
+
+.div-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.div-badge {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 11px;
+}
+
+.div-badge.partner { background: var(--gradient-teal); color: #001a18; }
+.div-badge.bezeq { background: var(--gradient-bezeq); color: #001120; }
+
+.div-name { font-size: 14px; font-weight: 700; }
+.div-tag { font-size: 10px; color: var(--text-faint); margin-top: 1px; }
+
+.div-points { display: flex; flex-direction: column; gap: 8px; }
+
+.div-point {
+  display: flex;
+  gap: 9px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-dim);
+}
+
+.div-point-marker {
+  flex-shrink: 0;
+  width: 18px;
+  font-size: 11px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.div-point.win .div-point-marker { color: var(--green); }
+.div-point.lose .div-point-marker { color: var(--red); }
+.div-point.neutral .div-point-marker { color: var(--teal); }
+.div-point.new .div-point-marker { color: var(--amber); }
+
+.div-point strong { color: var(--text); font-weight: 600; }
+
+/* MINI STATS ROW */
+.mini-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255,255,255,0.06);
+}
+
+/* === ACCURACY DISCLOSURE (CEO-grade) === */
+.accuracy-disclosure {
+  background: linear-gradient(135deg, rgba(255, 181, 71, 0.06) 0%, rgba(255, 181, 71, 0.02) 100%);
+  border: 1.5px solid rgba(255, 181, 71, 0.35);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 18px;
+}
+
+.acc-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(255, 181, 71, 0.25);
+}
+
+.acc-icon { font-size: 20px; }
+.acc-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--amber);
+  letter-spacing: -0.2px;
+}
+
+.acc-body { font-size: 11.5px; line-height: 1.65; color: var(--text-dim); }
+.acc-body p { margin-bottom: 8px; }
+.acc-body strong { color: var(--text); font-weight: 700; }
+
+.acc-list, .acc-list-num {
+  margin: 6px 0 10px 0;
+  padding-right: 18px;
+}
+
+.acc-list { list-style: none; padding-right: 0; }
+.acc-list li {
+  position: relative;
+  padding-right: 16px;
+  margin-bottom: 6px;
+  font-size: 11px;
+}
+.acc-list li::before {
+  content: '▪';
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: var(--amber);
+  font-weight: 800;
+}
+
+.acc-list-num { padding-right: 20px; }
+.acc-list-num li {
+  margin-bottom: 4px;
+  font-size: 11px;
+}
+
+.acc-co {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 100px;
+  letter-spacing: 0.3px;
+  vertical-align: middle;
+}
+.acc-co.partner {
+  background: rgba(0, 216, 200, 0.15);
+  color: var(--teal-glow);
+  border: 1px solid rgba(0, 216, 200, 0.3);
+}
+.acc-co.bezeq {
+  background: rgba(74, 158, 255, 0.15);
+  color: var(--bezeq);
+  border: 1px solid rgba(74, 158, 255, 0.3);
+}
+
+/* === WINS GRID — PARTNER vs BEZEQ === */
+.wins-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.wins-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  position: relative;
+  overflow: hidden;
+}
+.wins-card.partner {
+  border-right: 4px solid var(--teal);
+}
+.wins-card.bezeq {
+  border-right: 4px solid var(--bezeq);
+}
+
+.wins-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(255,255,255,0.06);
+}
+
+.wins-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+.wins-badge.partner {
+  background: var(--gradient-teal);
+  color: #001a18;
+}
+.wins-badge.bezeq {
+  background: var(--gradient-bezeq);
+  color: #001120;
+}
+
+.wins-title {
+  font-size: 13px;
+  font-weight: 800;
+}
+.wins-count {
+  margin-right: auto;
+  font-size: 10px;
+  color: var(--text-faint);
+  font-weight: 500;
+}
+
+.wins-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.win-item {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 10px;
+  align-items: start;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.win-item:last-child { border-bottom: none; }
+.win-item.pending { opacity: 0.7; }
+.win-item.pending .win-date { color: var(--amber); }
+
+.win-date {
+  font-size: 10px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-dim);
+  padding-top: 1px;
+  text-align: center;
+  background: rgba(255,255,255,0.03);
+  border-radius: 6px;
+  padding: 3px 4px;
+}
+
+.win-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.win-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+.win-detail {
+  font-size: 11px;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+.win-detail strong { color: var(--text); font-weight: 700; }
+
+.wins-insight {
+  background: linear-gradient(135deg, rgba(255, 181, 71, 0.07) 0%, rgba(0, 216, 200, 0.04) 100%);
+  border: 1px solid rgba(255, 181, 71, 0.25);
+  border-radius: 12px;
+  padding: 11px 13px;
+  display: flex;
+  gap: 10px;
+  align-items: start;
+}
+.wins-insight-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.wins-insight-text {
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--text-dim);
+}
+.wins-insight-text strong { color: var(--text); font-weight: 700; }
+
+/* Mobile narrow */
+@media (max-width: 375px) {
+  .wins-card { padding: 11px 12px; }
+  .win-item { grid-template-columns: 60px 1fr; gap: 8px; }
+  .win-name { font-size: 11.5px; }
+  .win-detail { font-size: 10.5px; }
+  .win-date { font-size: 9.5px; }
+  .wins-insight-text { font-size: 11px; }
+}
+
+/* === STRATEGIC GAPS — THE CEO FOCUS === */
+.gaps-intro {
+  background: linear-gradient(135deg, rgba(255, 87, 119, 0.06) 0%, rgba(74, 158, 255, 0.04) 100%);
+  border: 1.5px solid rgba(255, 87, 119, 0.3);
+  border-radius: 16px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+.gaps-intro-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #ff7799;
+  margin-bottom: 6px;
+}
+.gaps-intro-text {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+.gaps-intro-text strong { color: var(--text); }
+
+.gap-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.gap-card.high {
+  border-right: 4px solid var(--red);
+}
+.gap-card.medium {
+  border-right: 4px solid var(--amber);
+}
+.gap-card.low {
+  border-right: 4px solid var(--bezeq);
+}
+.gap-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  gap: 8px;
+}
+.gap-number {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 11px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+.gap-title {
+  font-size: 13px;
+  font-weight: 800;
+  flex: 1;
+  letter-spacing: -0.2px;
+  color: var(--text);
+}
+.gap-priority {
+  font-size: 9px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 100px;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+.gap-priority.high {
+  background: rgba(255, 87, 119, 0.15);
+  color: var(--red);
+  border: 1px solid rgba(255, 87, 119, 0.4);
+}
+.gap-priority.medium {
+  background: rgba(255, 181, 71, 0.15);
+  color: var(--amber);
+  border: 1px solid rgba(255, 181, 71, 0.4);
+}
+.gap-priority.low {
+  background: rgba(74, 158, 255, 0.15);
+  color: var(--bezeq);
+  border: 1px solid rgba(74, 158, 255, 0.4);
+}
+
+.gap-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 10px 0;
+}
+.gap-side {
+  background: rgba(255,255,255,0.02);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+.gap-side-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+}
+.gap-side-label.bezeq { color: var(--bezeq); }
+.gap-side-label.partner { color: var(--teal-glow); }
+.gap-side-content {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.gap-recommend {
+  background: linear-gradient(90deg, rgba(0, 216, 200, 0.05) 0%, transparent 100%);
+  border-right: 2px solid var(--teal);
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-top: 8px;
+  font-size: 11px;
+  line-height: 1.55;
+  color: var(--text-dim);
+}
+.gap-recommend strong { color: var(--teal-glow); }
+
+/* Mobile narrow optimization for new sections */
+@media (max-width: 375px) {
+  .pp-section { padding: 11px 12px; }
+  .pp-list li { font-size: 11px; }
+  .gap-card { padding: 12px; }
+  .gap-title { font-size: 12px; }
+  .gap-comparison { gap: 6px; }
+  .gap-side { padding: 7px 9px; }
+  .gap-side-content { font-size: 10.5px; }
+  .gap-recommend { font-size: 10.5px; padding: 7px 10px; }
+}
+
+/* === EVENT CARDS (Q1 2026 News) === */
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-card.partner { border-right: 3px solid var(--teal); }
+.event-card.bezeq { border-right: 3px solid var(--bezeq); }
+.event-card.mixed { border-right: 3px solid var(--amber); }
+
+.event-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(255,255,255,0.06);
+}
+
+.event-icon {
+  flex-shrink: 0;
+  font-size: 22px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-elev);
+  border-radius: 10px;
+}
+
+.event-title-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.event-co {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 100px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.event-co.partner {
+  background: rgba(0, 216, 200, 0.13);
+  color: var(--teal-glow);
+  border: 1px solid rgba(0, 216, 200, 0.3);
+}
+
+.event-co.bezeq {
+  background: rgba(74, 158, 255, 0.13);
+  color: var(--bezeq);
+  border: 1px solid rgba(74, 158, 255, 0.3);
+}
+
+.event-co.mixed {
+  background: rgba(255, 181, 71, 0.13);
+  color: var(--amber);
+  border: 1px solid rgba(255, 181, 71, 0.3);
+}
+
+.event-title {
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--text);
+  margin-top: 1px;
+}
+
+.event-date {
+  font-size: 10px;
+  color: var(--text-faint);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  margin-top: 1px;
+}
+
+.event-body {
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+
+.event-body strong { color: var(--text); font-weight: 700; }
+
+.event-impact {
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 8px;
+  border-right: 2px solid rgba(0, 216, 200, 0.3);
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.event-impact strong { color: var(--teal-glow); font-weight: 700; }
+
+/* === B2B CALCULATION TABLE === */
+.b2b-calc {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.b2b-calc-row {
+  display: grid;
+  grid-template-columns: 1.7fr 0.7fr 0.7fr 0.55fr;
+  padding: 10px 12px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  align-items: center;
+  font-size: 11px;
+  line-height: 1.35;
+  gap: 5px;
+}
+
+.b2b-calc-row.header {
+  background: var(--bg-elev);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  padding: 8px 12px;
+}
+
+.b2b-calc-row.header > div:not(:first-child) { text-align: center; }
+.b2b-calc-row.header > div:first-child { text-align: right; }
+
+.b2b-calc-row.sub {
+  background: rgba(74, 158, 255, 0.05);
+  font-weight: 700;
+  font-size: 11.5px;
+  border-top: 1px solid rgba(74, 158, 255, 0.15);
+}
+
+.b2b-calc-row.minus {
+  color: var(--text-faint);
+  font-size: 11px;
+  font-style: italic;
+}
+
+.b2b-calc-row.total {
+  background: linear-gradient(90deg, rgba(74, 158, 255, 0.12) 0%, rgba(74, 158, 255, 0.04) 100%);
+  font-weight: 800;
+  font-size: 12.5px;
+  border-top: 2px solid var(--bezeq);
+  padding: 12px;
+}
+
+.b2b-calc-label { color: var(--text); }
+.b2b-calc-val {
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  color: var(--bezeq);
+  line-height: 1.25;
+  word-break: break-word;
+}
+
+.b2b-calc-row.total .b2b-calc-val { font-size: 14px; color: var(--text); }
+.b2b-calc-row.minus .b2b-calc-val { color: var(--text-faint); }
+
+.b2b-calc-delta {
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.b2b-calc-delta.up { color: var(--green); }
+.b2b-calc-delta.down { color: var(--red); }
+
+/* === SOURCES BOX === */
+.sources-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+}
+
+.sources-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(255,255,255,0.06);
+}
+
+.sources-icon { font-size: 16px; }
+.sources-title { font-size: 12px; font-weight: 800; letter-spacing: 0.5px; color: var(--teal); }
+
+.sources-body { display: flex; flex-direction: column; gap: 8px; }
+
+.source-item {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.source-tag {
+  flex-shrink: 0;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 100px;
+  letter-spacing: 0.3px;
+  margin-top: 1px;
+}
+
+.source-tag.partner {
+  background: rgba(0, 216, 200, 0.13);
+  color: var(--teal-glow);
+  border: 1px solid rgba(0, 216, 200, 0.3);
+}
+
+.source-tag.bezeq {
+  background: rgba(74, 158, 255, 0.13);
+  color: var(--bezeq);
+  border: 1px solid rgba(74, 158, 255, 0.3);
+}
+
+.source-tag.mixed {
+  background: rgba(255, 181, 71, 0.1);
+  color: var(--amber);
+  border: 1px solid rgba(255, 181, 71, 0.25);
+}
+
+.source-text { flex: 1; }
+
+.source-note {
+  margin-top: 8px;
+  padding: 8px 10px;
+  background: rgba(255, 181, 71, 0.06);
+  border-right: 2px solid var(--amber);
+  border-radius: 7px;
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.source-note strong { color: var(--amber); }
+
+/* Chart note */
+.chart-note {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(255,255,255,0.05);
+  font-size: 9.5px;
+  color: var(--text-faint);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Footnotes */
+.footnotes {
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: var(--bg-card);
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  font-size: 9.5px;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+
+.footnotes div { margin-bottom: 2px; }
+.footnotes strong { color: var(--teal); font-family: 'JetBrains Mono', monospace; }
+
+/* === B2B DEEP PAGE STYLES === */
+.b2b-intro {
+  background: linear-gradient(135deg, rgba(0,216,200,0.06) 0%, rgba(74,158,255,0.06) 100%);
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 18px;
+}
+
+.b2b-intro-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--teal);
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.b2b-intro-title {
+  font-size: 17px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+
+.b2b-intro-text {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+
+.b2b-intro-text strong { color: var(--text); font-weight: 700; }
+.b2b-intro-text .p { color: var(--teal-glow); font-weight: 700; }
+.b2b-intro-text .b { color: var(--bezeq); font-weight: 700; }
+
+/* STRUCTURAL DIAGRAM */
+.struct-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.struct-col {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 12px;
+  position: relative;
+}
+
+.struct-col.partner { border-color: rgba(0, 216, 200, 0.22); }
+.struct-col.bezeq { border-color: rgba(74, 158, 255, 0.22); }
+
+.struct-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(255,255,255,0.06);
+}
+
+.struct-logo {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 10px;
+  letter-spacing: -0.5px;
+}
+
+.struct-logo.partner { background: var(--gradient-teal); color: #001a18; }
+.struct-logo.bezeq { background: var(--gradient-bezeq); color: #001120; }
+
+.struct-name { font-size: 12px; font-weight: 700; }
+
+.struct-nodes {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.struct-node {
+  background: var(--bg-elev);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
+  border-right: 2px solid;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.struct-node.primary { border-color: var(--teal); }
+.struct-node.primary-b { border-color: var(--bezeq); }
+.struct-node.secondary { border-color: var(--amber); }
+.struct-node.weak { border-color: var(--red); opacity: 0.7; }
+
+.struct-node-tag {
+  font-size: 9px;
+  color: var(--text-faint);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* PORTFOLIO MATRIX */
+.portfolio {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.portfolio-head {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 0.8fr;
+  background: var(--bg-elev);
+  padding: 10px 12px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-dim);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.portfolio-head > div:first-child { text-align: right; }
+
+.portfolio-row {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 0.8fr;
+  padding: 11px 12px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  align-items: center;
+  font-size: 11.5px;
+}
+
+.portfolio-row.cat {
+  background: rgba(0,216,200,0.04);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 1px;
+  padding: 8px 12px;
+  text-transform: uppercase;
+}
+
+.portfolio-service { font-weight: 600; }
+.portfolio-cell { text-align: center; font-weight: 700; font-size: 12px; }
+
+.pill-yes {
+  display: inline-block;
+  padding: 3px 8px;
+  background: rgba(0, 230, 118, 0.13);
+  color: var(--green);
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  border: 1px solid rgba(0, 230, 118, 0.25);
+}
+
+.pill-strong {
+  display: inline-block;
+  padding: 3px 8px;
+  background: rgba(0, 230, 118, 0.22);
+  color: #66ff9b;
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 800;
+  border: 1px solid rgba(0, 230, 118, 0.4);
+}
+
+.pill-weak {
+  display: inline-block;
+  padding: 3px 8px;
+  background: rgba(255, 181, 71, 0.13);
+  color: var(--amber);
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  border: 1px solid rgba(255, 181, 71, 0.25);
+}
+
+.pill-no {
+  display: inline-block;
+  padding: 3px 8px;
+  background: rgba(255, 85, 119, 0.1);
+  color: var(--red);
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  border: 1px solid rgba(255, 85, 119, 0.22);
+}
+
+.pill-future {
+  display: inline-block;
+  padding: 3px 8px;
+  background: rgba(0, 216, 200, 0.13);
+  color: var(--teal-glow);
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  border: 1px solid rgba(0, 216, 200, 0.3);
+}
+
+/* SCORECARD */
+.scorecard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.scorecard-title {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.score-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.score-label { font-size: 11px; color: var(--text-dim); font-weight: 600; }
+.score-bars {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.score-bar-wrap {
+  width: 80px;
+  height: 6px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 100px;
+  overflow: hidden;
+  position: relative;
+}
+
+.score-bar {
+  height: 100%;
+  border-radius: 100px;
+  transition: width 0.6s ease;
+}
+
+.score-bar.partner { background: var(--gradient-teal); box-shadow: 0 0 6px var(--teal); }
+.score-bar.bezeq { background: var(--gradient-bezeq); box-shadow: 0 0 6px var(--bezeq); }
+
+.score-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 800;
+  width: 22px;
+  text-align: center;
+}
+
+.score-num.partner { color: var(--teal-glow); }
+.score-num.bezeq { color: var(--bezeq); }
+
+/* BATTLE CARDS */
+.battle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.battle-side {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: 12px;
+  border: 1px solid var(--border);
+}
+
+.battle-side.partner { border-color: rgba(0, 216, 200, 0.22); }
+.battle-side.bezeq { border-color: rgba(74, 158, 255, 0.22); }
+
+.battle-head {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(255,255,255,0.06);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.battle-head.partner { color: var(--teal-glow); }
+.battle-head.bezeq { color: var(--bezeq); }
+
+.battle-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.battle-item {
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--text-dim);
+  display: flex;
+  gap: 6px;
+}
+
+.battle-item-icon {
+  flex-shrink: 0;
+  font-size: 12px;
+  width: 14px;
+  text-align: center;
+}
+
+.battle-item strong { color: var(--text); }
+
+/* GROWTH TABLE */
+.growth-tbl {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.growth-row {
+  display: grid;
+  grid-template-columns: 1.5fr 0.85fr 0.85fr 0.55fr;
+  padding: 11px 12px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  align-items: center;
+  gap: 6px;
+}
+
+.growth-row:first-child { border-top: none; background: var(--bg-elev); }
+
+.growth-hdr {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--text-dim);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.growth-hdr:first-child { text-align: right; }
+
+.growth-cell {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.3;
+  word-break: break-word;
+  hyphens: auto;
+}
+.growth-cell.partner { color: var(--teal-glow); }
+.growth-cell.bezeq { color: var(--bezeq); }
+.growth-cell.up { color: var(--green); font-size: 11px; }
+.growth-cell.down { color: var(--red); font-size: 11px; }
+.growth-cell.flat { color: var(--text-dim); font-size: 11px; }
+
+.growth-label { font-size: 11.5px; font-weight: 600; color: var(--text); }
+
+.growth-row.winner-p { background: linear-gradient(90deg, rgba(0,216,200,0.05) 0%, transparent 100%); }
+.growth-row.winner-b { background: linear-gradient(90deg, rgba(74,158,255,0.05) 0%, transparent 100%); }
+
+/* FINAL SCORECARD */
+.final-score {
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elev) 100%);
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 14px;
+}
+
+.final-score-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  text-align: center;
+}
+
+.final-score-col {
+  padding: 8px;
+}
+
+.final-score-logo {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  margin: 0 auto 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 12px;
+}
+
+.final-score-logo.partner { background: var(--gradient-teal); color: #001a18; }
+.final-score-logo.bezeq { background: var(--gradient-bezeq); color: #001120; }
+
+.final-score-value {
+  font-size: 36px;
+  font-weight: 900;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -1.5px;
+  line-height: 1;
+}
+
+.final-score-value.partner { color: var(--teal-glow); }
+.final-score-value.bezeq { color: var(--bezeq); }
+
+.final-score-max { font-size: 14px; color: var(--text-faint); font-weight: 600; }
+
+.final-score-lbl {
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 6px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* MINI STATS ROW */
+.mini-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255,255,255,0.06);
+}
+
+.mini-stat { text-align: center; }
+.mini-stat-val {
+  font-size: 14px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -0.3px;
+}
+.mini-stat-val.partner { color: var(--teal-glow); }
+.mini-stat-val.bezeq { color: var(--bezeq); }
+.mini-stat-lbl {
+  font-size: 9px;
+  color: var(--text-faint);
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+/* VERDICT */
+.verdict {
+  background: linear-gradient(135deg, rgba(0, 216, 200, 0.06) 0%, rgba(74, 158, 255, 0.04) 100%);
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 18px;
+}
+
+.verdict-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: 800;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+.verdict-text {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+.verdict-text strong { color: var(--teal-glow); font-weight: 700; }
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 24px 16px 8px;
+  color: var(--text-faint);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.footer-divider {
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: var(--border);
+  vertical-align: middle;
+  margin: 0 8px;
+}
+
+/* TOOLTIP TWEAKS */
+@media (min-width: 480px) {
+  .app { max-width: 480px; margin: 0 auto; }
+}
+
+/* === MOBILE NARROW-SCREEN OPTIMIZATION (≤375px iPhone SE, small Android) === */
+@media (max-width: 375px) {
+  .page { padding: 14px 12px; }
+  .header { padding: 14px 12px 12px; }
+
+  /* Tighter tabs for narrow */
+  .tabs { gap: 4px; padding: 3px; }
+  .tab { font-size: 10.5px; padding: 9px 4px; gap: 4px; }
+  .tab-icon { font-size: 12px; }
+
+  /* Smaller hero text */
+  .hero { padding: 14px; }
+  .hero-text { font-size: 13.5px; }
+
+  /* KPIs */
+  .kpi { padding: 12px 10px; }
+  .kpi-value { font-size: 19px; }
+  .kpi-grid { gap: 8px; }
+  .kpi-grid.cols-3 { gap: 6px; }
+
+  /* Tables — tighter padding, smaller monospace */
+  .growth-row { padding: 9px 8px; gap: 4px; }
+  .growth-cell { font-size: 10.5px; }
+  .growth-label { font-size: 10.5px; }
+  .growth-hdr { font-size: 9.5px; }
+
+  .b2b-calc-row { padding: 9px 8px; font-size: 10.5px; gap: 4px; }
+  .b2b-calc-val { font-size: 11px; }
+
+  .portfolio-row { padding: 9px 8px; font-size: 10.5px; gap: 4px; }
+
+  .cmp-row { padding: 10px; gap: 6px; }
+  .cmp-value { font-size: 15px; }
+  .cmp-metric-name { font-size: 9.5px; }
+
+  /* Chart cards */
+  .chart-card { padding: 14px 12px 10px; }
+  .chart-wrap { height: 180px; }
+  .chart-wrap.tall { height: 210px; }
+  .chart-note { font-size: 10.5px; }
+
+  /* Event cards */
+  .event-card { padding: 12px; }
+  .event-title { font-size: 12px; }
+  .event-body { font-size: 11px; }
+  .event-impact { font-size: 10px; }
+
+  /* Disclosure */
+  .accuracy-disclosure { padding: 14px; }
+  .acc-body { font-size: 11px; }
+  .acc-list li, .acc-list-num li { font-size: 10.5px; }
+
+  /* Section titles */
+  .section-title { font-size: 15px; }
+  .section-sub { font-size: 10.5px; }
+
+  /* Verdict */
+  .verdict { padding: 14px; }
+  .verdict-text { font-size: 12px; }
+
+  /* Insights */
+  .insight { padding: 12px 14px; gap: 10px; }
+  .insight-title { font-size: 12px; }
+  .insight-text { font-size: 11.5px; }
+}
+
+/* === EVEN NARROWER (≤340px - rare but exists) === */
+@media (max-width: 340px) {
+  .tab { font-size: 9.5px; padding: 8px 3px; }
+  .tab-icon { display: none; } /* drop emoji to save space */
+  .growth-cell, .growth-label, .b2b-calc-row, .portfolio-row { font-size: 10px; }
+}
+
+/* TAP TO REVEAL */
+.detail-toggle {
+  font-size: 10px;
+  color: var(--teal);
+  font-weight: 600;
+  margin-top: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.detail-content {
+  font-size: 11px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-top: 6px;
+  padding: 8px 10px;
+  background: rgba(0, 216, 200, 0.04);
+  border-radius: 8px;
+  border-right: 2px solid var(--teal-dim);
+  display: none;
+}
+
+.detail-content.open { display: block; }
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-row">
+    <div class="brand">
+      <div class="brand-logo">5G</div>
+      <div class="brand-text">
+        <div class="brand-title">פרטנר • דשבורד אנליטי</div>
+        <div class="brand-sub">Q1 2026 • <span style="text-transform:none;color:var(--teal-glow);">by אלירן גרוסמן</span></div>
+      </div>
+    </div>
+    <div class="live-pill">
+      <div class="live-dot"></div>
+      <span>BD INSIGHTS</span>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab(0)">
+      <span class="tab-icon">📊</span>
+      <span>פרטנר</span>
+    </button>
+    <button class="tab" onclick="switchTab(1)">
+      <span class="tab-icon">⚔️</span>
+      <span>בזק vs פרטנר</span>
+    </button>
+    <button class="tab" onclick="switchTab(2)">
+      <span class="tab-icon">🎯</span>
+      <span>חטיבה עסקית</span>
+    </button>
+  </div>
+</header>
+
+<!-- ============================================== -->
+<!-- PAGE 1: PARTNER Q1 2026 PERFORMANCE -->
+<!-- ============================================== -->
+<div class="page active" id="page-1">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label">⚡ THE BOTTOM LINE</div>
+    <div class="hero-text">
+      פרטנר סוגרת רבעון <strong>איכותי</strong> למרות ירידה בהכנסות: רווח נקי <strong>+16%</strong>,
+      EBITDA <strong>+7%</strong>, ושיא היסטורי במנויי הסיבים — אבל "שאגת הארי" פגעה בנדידה.
+    </div>
+  </div>
+
+  <!-- KPI GRID -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">המספרים שאתה צריך לדעת</div>
+      <div class="section-sub">Q1'26 vs Q1'25</div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-label">סך הכנסות</div>
+        <div class="kpi-value">770<span class="kpi-unit">M ₪</span></div>
+        <div class="kpi-delta down">▼ 5%</div>
+        <div class="kpi-context">בנטרול קש"ג: +1%</div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-label">EBITDA מתואם</div>
+        <div class="kpi-value">306<span class="kpi-unit">M ₪</span></div>
+        <div class="kpi-delta up">▲ 7%</div>
+        <div class="kpi-context">שיעור רווחיות 40%</div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-label">רווח נקי</div>
+        <div class="kpi-value">74<span class="kpi-unit">M ₪</span></div>
+        <div class="kpi-delta up">▲ 16%</div>
+        <div class="kpi-context">לעומת 64M ברבעון מקביל</div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-label">תזרים חופשי</div>
+        <div class="kpi-value">134<span class="kpi-unit">M ₪</span></div>
+        <div class="kpi-delta up">▲ 29%</div>
+        <div class="kpi-context">כולל החזר מס 86M</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVENUE TREND CHART -->
+  <div class="section">
+    <div class="chart-card">
+      <div class="chart-title">מגמת הכנסות 5 רבעונים</div>
+      <div class="chart-sub">סלולר • נייח • סך הכל (במיליוני ₪)</div>
+      <div class="chart-wrap"><canvas id="chartRevenue"></canvas></div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">EBITDA מתואם לפי מגזר</div>
+      <div class="chart-sub">העלייה ב-EBITDA קוזזה ע"י "שאגת הארי"</div>
+      <div class="chart-wrap"><canvas id="chartEbitda"></canvas></div>
+    </div>
+  </div>
+
+  <!-- OPERATIONAL KPIs -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">מצבת לקוחות וביצועים תפעוליים</div>
+    </div>
+
+    <div class="kpi-grid cols-3">
+      <div class="kpi">
+        <div class="kpi-label">סלולר</div>
+        <div class="kpi-value" style="font-size:18px;">2,696<span class="kpi-unit">K</span></div>
+        <div class="kpi-delta up" style="font-size:10px;">▲ 64K YoY</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">דור 5</div>
+        <div class="kpi-value" style="font-size:18px;">928<span class="kpi-unit">K</span></div>
+        <div class="kpi-delta up" style="font-size:10px;">משלמים</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">סיבים</div>
+        <div class="kpi-value" style="font-size:18px;">475<span class="kpi-unit">K</span></div>
+        <div class="kpi-delta up" style="font-size:10px;">▲ 29K YoY</div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-label">ARPU סלולר</div>
+        <div class="kpi-value" style="font-size:18px;">41<span class="kpi-unit">₪</span></div>
+        <div class="kpi-delta down" style="font-size:10px;">▼ 1₪</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">ARPU אינטרנט</div>
+        <div class="kpi-value" style="font-size:18px;">95<span class="kpi-unit">₪</span></div>
+        <div class="kpi-delta up" style="font-size:10px;">▲ 3₪</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">נטישה</div>
+        <div class="kpi-value" style="font-size:18px;">4.9<span class="kpi-unit">%</span></div>
+        <div class="kpi-delta flat" style="font-size:10px;">יציב</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WINS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">איפה הצלחנו</div>
+      <div class="section-sub">המנועים שעבדו</div>
+    </div>
+
+    <div class="insights">
+      <div class="insight">
+        <div class="insight-icon win">✓</div>
+        <div class="insight-body">
+          <div class="insight-title">צמיחה חזקה באינטרנט ובסיבים</div>
+          <div class="insight-text">
+            תוספת של <span class="insight-metric">+29K</span> מנויי סיבים שנה-על-שנה,
+            ARPU אינטרנט עלה ל-95₪ — מעבר לתשתית סיבים וחבילות מהירות גבוהה הוא המנוע המרכזי.
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon win">✓</div>
+        <div class="insight-body">
+          <div class="insight-title">החטיבה העסקית — שירותי דאטה לעסקים</div>
+          <div class="insight-text">
+            ההכנסות במגזר הנייח (בנטרול קש"ג) צמחו ב-<span class="insight-metric">1%</span> בעיקר
+            הודות לעלייה בהכנסות מ<strong>דאטה לעסקים</strong> ופעילות עת"ת. רווח תפעולי מגזר נייח עלה ב-<span class="insight-metric">17%</span>.
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon win">✓</div>
+        <div class="insight-body">
+          <div class="insight-title">צמיחה חזקה בחבילות סלולר</div>
+          <div class="insight-text">
+            תוספת של <span class="insight-metric">+72K</span> מנויי פוסטפייד שנה-על-שנה,
+            ו-<span class="insight-metric">928K</span> מנויי דור 5 משלמים.
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon win">✓</div>
+        <div class="insight-body">
+          <div class="insight-title">שיפור משמעותי ברווחיות התפעולית</div>
+          <div class="insight-text">
+            שיעור EBITDA עלה ל-<span class="insight-metric">40%</span> (מ-37% ברבעון מקביל),
+            בזכות קיטון בהוצאות שכר ונלוות וצמיחה בהכנסות איכותיות.
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon win">✓</div>
+        <div class="insight-body">
+          <div class="insight-title">דירוג אשראי שודרג ל-ilAA-</div>
+          <div class="insight-text">
+            מעלות אישררה דירוג <span class="insight-metric">ilAA-</span> באופק יציב — גבוה מדירוג ההנפקה.
+            יחס חוב/EBITDA: <span class="insight-metric">0.4</span> בלבד (התניה: עד 5).
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEMS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">איפה הבעיות</div>
+      <div class="section-sub">נקודות תורפה</div>
+    </div>
+
+    <div class="insights">
+      <div class="insight">
+        <div class="insight-icon warn">!</div>
+        <div class="insight-body">
+          <div class="insight-title">"שאגת הארי" פגעה קשות בנדידה</div>
+          <div class="insight-text">
+            הפגיעה ברווח לפני מס משירותי נדידה מוערכת ב-<span class="insight-metric warn">~7M ₪</span>
+            ברבעון. ביטולי טיסות בנתב"ג השפיעו ישירות. ARPU סלולר ירד ל-41₪.
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon warn">!</div>
+        <div class="insight-body">
+          <div class="insight-title">הכנסות סלולר במגמת שחיקה</div>
+          <div class="insight-text">
+            סך הכנסות מגזר סלולר ירדו ב-<span class="insight-metric warn">8%</span> ל-461M ₪.
+            ההשפעה המצרפית של הפחתת קש"ג, ירידה בנדידה, וירידה בציוד.
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon warn">!</div>
+        <div class="insight-body">
+          <div class="insight-title">גירעון בהון החוזר</div>
+          <div class="insight-text">
+            לראשונה מזמן — גירעון של <span class="insight-metric warn">125M ₪</span> בהון החוזר המאוחד
+            (לעומת עודף 129M ברבעון מקביל), בעקבות חלוקת דיבידנד 465M.
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon warn">!</div>
+        <div class="insight-body">
+          <div class="insight-title">מחלוקת מס מול רשות המסים</div>
+          <div class="insight-text">
+            שומות מס בסך <span class="insight-metric warn">185M ₪</span> בגין 2020-2023.
+            פרטנר הגישה השגה, אך התוצאה הסופית לא ידועה.
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon warn">!</div>
+        <div class="insight-body">
+          <div class="insight-title">חוב פיננסי נטו עלה</div>
+          <div class="insight-text">
+            מ-394M ₪ לכ-<span class="insight-metric warn">453M ₪</span> שנה-על-שנה —
+            תוצאה ישירה של החלוקה האגרסיבית.
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon warn">!</div>
+        <div class="insight-body">
+          <div class="insight-title">מנויי פריפייד בירידה</div>
+          <div class="insight-text">
+            ירידה של <span class="insight-metric warn">-8K</span> מנויי פריפייד שנה-על-שנה.
+            השוק הזה ממשיך להצטמצם.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FUTURE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">קדימה • העתיד</div>
+      <div class="section-sub">2026 וצפי</div>
+    </div>
+
+    <div class="insights">
+      <div class="insight">
+        <div class="insight-icon future">→</div>
+        <div class="insight-body">
+          <div class="insight-title">בחינת חלוקה שלא מתוך רווחים</div>
+          <div class="insight-text">
+            הדירקטוריון בוחן הגשת בקשה לביהמ"ש לחלוקת דיבידנד נוסף של עד
+            <span class="insight-metric">500M ₪</span> שלא מתוך רווחים. עוד לא הוחלט.
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon future">→</div>
+        <div class="insight-body">
+          <div class="insight-title">סגירת רשת דור 2 הושלמה</div>
+          <div class="insight-text">
+            החל מ-30.4.2026 פרטנר חדלה ממתן שירותי קול בדור 2 (נשמרת תמיכה ל-M2M וחירום).
+            השחרור משחרר משאבי רשת לדור 5.
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon future">→</div>
+        <div class="insight-body">
+          <div class="insight-title">הקצאת תדרים 1800MHz הוארכה</div>
+          <div class="insight-text">
+            עד 31.12.2026. משרד התקשורת מתכנן הליך תחרותי לתדרים — סיכון/הזדמנות בהמשך השנה.
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon future">→</div>
+        <div class="insight-body">
+          <div class="insight-title">הסכם Netflix הוארך עד 2028</div>
+          <div class="insight-text">
+            גישה ישירה דרך ממשק החברה — חיזוק הצעת הטלוויזיה במגזר הצרכני.
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon future">→</div>
+        <div class="insight-body">
+          <div class="insight-title">פעימה נוספת בהסכם IRU עם בזק</div>
+          <div class="insight-text">
+            42K קווים נוספים מומשו, יתרת קרן <span class="insight-metric">434M ₪</span>.
+            ממשיכה הפריסה האגרסיבית של תשתית סיבים.
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon future">→</div>
+        <div class="insight-body">
+          <div class="insight-title">רשתות פרטיות 5G — שוק חדש</div>
+          <div class="insight-text">
+            התקנות אושרו (פבר' 2026). הזדמנות אסטרטגית להציע פתרונות B2B מתקדמים לתעשייה ולוגיסטיקה.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end page 1 -->
+
+
+<!-- ============================================== -->
+<!-- PAGE 2: PARTNER VS BEZEQ BUSINESS DIVISION -->
+<!-- ============================================== -->
+<div class="page" id="page-2">
+
+  <!-- VS HEADER -->
+  <div class="vs-header">
+    <div class="vs-side">
+      <div class="vs-logo partner">PRT</div>
+      <div class="vs-name">פרטנר</div>
+      <div class="vs-tagline">חטיבה עסקית</div>
+    </div>
+    <div class="vs-divider">VS</div>
+    <div class="vs-side">
+      <div class="vs-logo bezeq">BZQ</div>
+      <div class="vs-name">בזק</div>
+      <div class="vs-tagline">פעילות עסקית</div>
+    </div>
+  </div>
+
+  <div class="hero" style="border-color: rgba(74, 158, 255, 0.2); background: linear-gradient(135deg, rgba(74,158,255,0.06) 0%, rgba(0,216,200,0.04) 100%);">
+    <div class="hero-label" style="color: var(--bezeq);">⚔ הקרב על השוק העסקי</div>
+    <div class="hero-text">
+      <strong>בזק בינלאומי TECH</strong> רשמה <strong style="color:var(--bezeq);">+10%</strong> בהכנסות מעסקים על
+      בסיס ענן ואינטגרציה. <strong>פרטנר</strong> צמחה ב-<strong>+1%</strong> בנייח (כולל דאטה לעסקים) —
+      בזק מובילה בקצב אבל פרטנר רווחית יותר ביחס.
+    </div>
+  </div>
+
+  <!-- COMPARISON METRICS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">השוואה ראש בראש</div>
+      <div class="section-sub">Q1 2026</div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">סך הכנסות הקבוצה</div>
+      <div class="cmp-cell">
+        <div class="cmp-value partner">770M</div>
+        <div class="cmp-delta down">▼ 5%</div>
+      </div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell">
+        <div class="cmp-value bezeq">2,169M</div>
+        <div class="cmp-delta down">▼ 3%</div>
+      </div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">EBITDA מתואם</div>
+      <div class="cmp-cell">
+        <div class="cmp-value partner">306M</div>
+        <div class="cmp-delta up">▲ 7%</div>
+      </div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell">
+        <div class="cmp-value bezeq">928M</div>
+        <div class="cmp-delta up">▲ 1.2%</div>
+      </div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">שיעור EBITDA</div>
+      <div class="cmp-cell">
+        <div class="cmp-value partner">40%</div>
+        <div class="cmp-delta up">▲ 5pp</div>
+      </div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell">
+        <div class="cmp-value bezeq">43%</div>
+        <div class="cmp-delta up">▲ 2pp</div>
+      </div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">רווח נקי</div>
+      <div class="cmp-cell">
+        <div class="cmp-value partner">74M</div>
+        <div class="cmp-delta up">▲ 16%</div>
+      </div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell">
+        <div class="cmp-value bezeq">300M*</div>
+        <div class="cmp-delta up">▲ 4.2%</div>
+      </div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">תזרים חופשי</div>
+      <div class="cmp-cell">
+        <div class="cmp-value partner">134M</div>
+        <div class="cmp-delta up">▲ 29%</div>
+      </div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell">
+        <div class="cmp-value bezeq">455M</div>
+        <div class="cmp-delta up">▲ 74%</div>
+      </div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">מנויי סיבים</div>
+      <div class="cmp-cell">
+        <div class="cmp-value partner">475K</div>
+        <div class="cmp-delta up">▲ 29K</div>
+      </div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell">
+        <div class="cmp-value bezeq">1,040K</div>
+        <div class="cmp-delta up">▲ 36K/Q</div>
+      </div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">ARPU אינטרנט</div>
+      <div class="cmp-cell">
+        <div class="cmp-value partner">95₪</div>
+        <div class="cmp-delta up">▲ 3₪</div>
+      </div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell">
+        <div class="cmp-value bezeq">139₪</div>
+        <div class="cmp-delta up">▲ 4%</div>
+      </div>
+    </div>
+
+    <div style="font-size:9px;color:var(--text-faint);text-align:center;margin-top:8px;padding:8px;background:var(--bg-card);border-radius:8px;border:1px solid var(--border);">
+      * רווח נקי השוואתי. רווח נקי GAAP של בזק: 211M (-30%) בעיקר בגלל הסכם קיבוצי בפלאפון
+    </div>
+  </div>
+
+  <!-- BUSINESS REVENUE COMPARISON CHART -->
+  <div class="section">
+    <div class="chart-card">
+      <div class="chart-title">קצב צמיחה בחטיבה העסקית</div>
+      <div class="chart-sub">Q1'26 YoY — איפה כל אחד צומח</div>
+      <div class="chart-wrap tall"><canvas id="chartBizGrowth"></canvas></div>
+    </div>
+  </div>
+
+  <!-- BEZEQ DEEP DIVE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar" style="background: var(--gradient-bezeq); box-shadow: 0 0 8px var(--bezeq);"></div>
+      <div class="section-title">בזק • מה קורה אצלם</div>
+      <div class="section-sub">מבט עסקי</div>
+    </div>
+
+    <div class="div-card bezeq">
+      <div class="div-head">
+        <div class="div-badge bezeq">B</div>
+        <div>
+          <div class="div-name">בזק בינלאומי TECH</div>
+          <div class="div-tag">הזרוע העסקית של הקבוצה • אינטגרציה • ענן • סייבר</div>
+        </div>
+      </div>
+
+      <div class="div-points">
+        <div class="div-point win">
+          <div class="div-point-marker">+</div>
+          <div><strong>צמיחה 10%</strong> בהכנסות מעסקים — מנוע מרכזי של הקבוצה. גידול בולט בשירותי אינטגרציה ובענן.</div>
+        </div>
+        <div class="div-point win">
+          <div class="div-point-marker">+</div>
+          <div><strong>סייבר ודאטה סנטר</strong> — 13 מתקנים בעולם, 5 בישראל לפי TIER3. שירותי DDoS, SOC, וירטואליזציה.</div>
+        </div>
+        <div class="div-point new">
+          <div class="div-point-marker">★</div>
+          <div><strong>כבל תת-ימי חדש לאירופה</strong> — מהלך אסטרטגי שיהפוך את ישראל לצומת דיגיטלית גלובלית.</div>
+        </div>
+        <div class="div-point lose">
+          <div class="div-point-marker">−</div>
+          <div>ירידה ב<strong>אינטרנט פרטי</strong>, תקשורת נתונים ו<strong>טלפוניה בינלאומית</strong> — שחיקה במגזרי הליבה הישנים.</div>
+        </div>
+      </div>
+
+      <div class="mini-stats">
+        <div class="mini-stat">
+          <div class="mini-stat-val bezeq">289M</div>
+          <div class="mini-stat-lbl">הכנסות Q1</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-val bezeq">15M</div>
+          <div class="mini-stat-lbl">רווח נקי</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-val bezeq">+10%</div>
+          <div class="mini-stat-lbl">צמיחה עסקית</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="div-card bezeq">
+      <div class="div-head">
+        <div class="div-badge bezeq">N</div>
+        <div>
+          <div class="div-name">בזק קווי • שוק עסקי</div>
+          <div class="div-tag">תשתית סיבים לעסקים • קווי תקשורת</div>
+        </div>
+      </div>
+
+      <div class="div-points">
+        <div class="div-point win">
+          <div class="div-point-marker">+</div>
+          <div><strong>1.04M מנויי סיבים</strong> (קמעונאי + סיטונאי) — חוצה מיליון לקוחות. פריסה לכ-<strong>3M משקי בית</strong>.</div>
+        </div>
+        <div class="div-point win">
+          <div class="div-point-marker">+</div>
+          <div>ARPU אינטרנט עלה ל-<strong>139₪</strong> (+4%) — חבילות מהירות גבוהה ועסקיות.</div>
+        </div>
+        <div class="div-point win">
+          <div class="div-point-marker">+</div>
+          <div>תזרים חופשי כמעט הוכפל ל-<strong>404M ₪</strong> ברבעון.</div>
+        </div>
+        <div class="div-point lose">
+          <div class="div-point-marker">−</div>
+          <div>שחיקה בטלפוניה מסורתית — <strong>1.31M קווים פעילים</strong>, ARPL רק 29₪.</div>
+        </div>
+        <div class="div-point new">
+          <div class="div-point-marker">★</div>
+          <div>יעד 2029: <strong>1.5M מנויי סיבים</strong>, 43% חדירה — תוכנית אגרסיבית.</div>
+        </div>
+      </div>
+
+      <div class="mini-stats">
+        <div class="mini-stat">
+          <div class="mini-stat-val bezeq">1,110M</div>
+          <div class="mini-stat-lbl">הכנסות Q1</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-val bezeq">3M</div>
+          <div class="mini-stat-lbl">משקי בית סיבים</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-val bezeq">404M</div>
+          <div class="mini-stat-lbl">FCF</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTNER BUSINESS DEEP DIVE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">פרטנר • החטיבה העסקית</div>
+      <div class="section-sub">איפה אנחנו</div>
+    </div>
+
+    <div class="div-card partner">
+      <div class="div-head">
+        <div class="div-badge partner">5G</div>
+        <div>
+          <div class="div-name">מגזר נייח • דאטה לעסקים</div>
+          <div class="div-tag">אינטרנט עסקי • דאטה • Hubbing • עת"ת</div>
+        </div>
+      </div>
+
+      <div class="div-points">
+        <div class="div-point win">
+          <div class="div-point-marker">+</div>
+          <div><strong>צמיחה בדאטה לעסקים</strong> — המנוע המרכזי של עליית EBITDA נייח ל-123M (+8%).</div>
+        </div>
+        <div class="div-point win">
+          <div class="div-point-marker">+</div>
+          <div>רווח תפעולי נייח עלה ב-<strong>17%</strong> ל-21M — סימן לבריאות תפעולית.</div>
+        </div>
+        <div class="div-point win">
+          <div class="div-point-marker">+</div>
+          <div>פעילות <strong>עבודות תמורת תשלום (עת"ת)</strong> בצמיחה — שירותי תשתית לעסקים.</div>
+        </div>
+        <div class="div-point lose">
+          <div class="div-point-marker">−</div>
+          <div>ירידה בשירותי <strong>Hubbing</strong> (תיווך תעבורה בינלאומית) — תחום פחות אטרקטיבי.</div>
+        </div>
+        <div class="div-point new">
+          <div class="div-point-marker">★</div>
+          <div><strong>רשתות 5G פרטיות</strong> — שוק חדש לאחר אישור התקנות (פבר' 2026). פוטנציאל לתעשייה, נמלים, מתחמי לוגיסטיקה.</div>
+        </div>
+      </div>
+
+      <div class="mini-stats">
+        <div class="mini-stat">
+          <div class="mini-stat-val partner">329M</div>
+          <div class="mini-stat-lbl">הכנסות נייח</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-val partner">123M</div>
+          <div class="mini-stat-lbl">EBITDA נייח</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-val partner">+1%</div>
+          <div class="mini-stat-lbl">שירותים ex-קש"ג</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="div-card partner">
+      <div class="div-head">
+        <div class="div-badge partner">📡</div>
+        <div>
+          <div class="div-name">מגזר סלולר • B2B</div>
+          <div class="div-tag">חבילות עסקיות • דור 5</div>
+        </div>
+      </div>
+
+      <div class="div-points">
+        <div class="div-point win">
+          <div class="div-point-marker">+</div>
+          <div><strong>928K מנויי דור 5</strong> משלמים — בסיס איתן להצעות עסקיות מתקדמות.</div>
+        </div>
+        <div class="div-point win">
+          <div class="div-point-marker">+</div>
+          <div>צמיחה ב<strong>הכנסות מחבילות סלולר</strong> פיצתה חלקית את הירידה בנדידה.</div>
+        </div>
+        <div class="div-point lose">
+          <div class="div-point-marker">−</div>
+          <div>"שאגת הארי" פגעה ב<strong>נדידה עסקית</strong> (אנשי מפתח, מנהלים בנסיעות).</div>
+        </div>
+        <div class="div-point lose">
+          <div class="div-point-marker">−</div>
+          <div>הפחתת קש"ג גרעה כ-39M ₪ מהכנסות סלולר — מסתיים, השפעה ברורה.</div>
+        </div>
+      </div>
+
+      <div class="mini-stats">
+        <div class="mini-stat">
+          <div class="mini-stat-val partner">461M</div>
+          <div class="mini-stat-lbl">הכנסות סלולר</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-val partner">183M</div>
+          <div class="mini-stat-lbl">EBITDA סלולר</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-val partner">40%</div>
+          <div class="mini-stat-lbl">שיעור EBITDA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEAD TO HEAD ANALYSIS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">תובנות אסטרטגיות לחטיבה העסקית</div>
+    </div>
+
+    <div class="insights">
+      <div class="insight">
+        <div class="insight-icon warn">!</div>
+        <div class="insight-body">
+          <div class="insight-title">בזק קדימה במנועי צמיחה עסקית חדשים</div>
+          <div class="insight-text">
+            ענן + סייבר + אינטגרציה + דאטה סנטר = <span class="insight-metric">10% צמיחה</span>.
+            לפרטנר אין נכס דומה ברמת בזק בינלאומי. <strong>זה הפער הגדול ביותר.</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon win">✓</div>
+        <div class="insight-body">
+          <div class="insight-title">פרטנר רווחית יותר ביחס</div>
+          <div class="insight-text">
+            EBITDA Margin <span class="insight-metric">40%</span> בפרטנר vs ~43% בבזק קבוצתי,
+            אבל פרטנר שיפרה +5pp ובזק רק +2pp. <strong>קצב השיפור גבוה יותר.</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon win">✓</div>
+        <div class="insight-body">
+          <div class="insight-title">הסכם תוכן Netflix + יחסי גומלין עם bezeq+yes</div>
+          <div class="insight-text">
+            פרטנר ממנפת תכנים של yes/בזק להצעת שירות שלה. <span class="insight-metric">207K מנויי TV</span>
+            צמיחה של 7K — בסיס קטן אבל יציב.
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon future">→</div>
+        <div class="insight-body">
+          <div class="insight-title">ההזדמנות: רשתות 5G פרטיות לעסקים</div>
+          <div class="insight-text">
+            תקנות "רצועת החדשנות" אושרו (פבר' 2026). פרטנר יכולה לקפוץ קדימה בשוק שעדיין לא נכבש —
+            תעשייה, נמלים, אוניברסיטאות, מתחמי לוגיסטיקה.
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon future">→</div>
+        <div class="insight-body">
+          <div class="insight-title">הפער בסיבים — דרמטי אבל מצטמצם</div>
+          <div class="insight-text">
+            בזק: <span class="insight-metric">1,040K</span> מנויי סיבים. פרטנר:
+            <span class="insight-metric">475K</span>. פרטנר נשענת על תשתית בזק (IRU 162K קווים)
+            וגם תשתית עצמית — אסטרטגיה היברידית.
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon warn">!</div>
+        <div class="insight-body">
+          <div class="insight-title">סיכון רגולטורי משותף</div>
+          <div class="insight-text">
+            שתי החברות חשופות: מכרז תדרים 1800MHz צפוי, החלטות על שיתוף תדרים עם מפעילים פלסטינים,
+            ושינויי רגולציה במגזר העסקי.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="verdict">
+    <div class="verdict-label">🎯 השורה התחתונה ל-BD</div>
+    <div class="verdict-text">
+      פרטנר <strong>סוגרת רבעון איכותי</strong> עם רווחיות גבוהה ויכולת יצירת מזומנים — אבל
+      <strong>בזק מובילה ביצירת מנועים עסקיים חדשים</strong> (ענן, אינטגרציה, סייבר, כבלים תת-ימיים).
+      <br><br>
+      העתיד של החטיבה העסקית בפרטנר נשען על שני קלפים: <strong>5G פרטיות לתעשייה</strong>
+      ו<strong>צמיחה אורגנית בדאטה לעסקים</strong>. הפער מול בזק לא ייסגר ב-Hubbing ובאינטרנט בלבד.
+    </div>
+  </div>
+
+</div><!-- end page 2 -->
+
+
+<!-- ============================================== -->
+<!-- PAGE 3: B2B DEEP DIVE — BUSINESS DIVISION ONLY -->
+<!-- ============================================== -->
+<div class="page" id="page-3">
+
+  <!-- INTRO -->
+  <div class="b2b-intro">
+    <div class="b2b-intro-label">🎯 B2B vs B2B • Q1 2026</div>
+    <div class="b2b-intro-title">השוואת חטיבה עסקית — פרטנר מול בזק</div>
+    <div class="b2b-intro-text">
+      <span class="b">בזק</span> מפרסמת B2B כפעילות ייעודית עם <strong>סך הכנסות ניתן לחישוב (747M)</strong>.
+      <span class="p">פרטנר</span> <strong>לא מפרסמת B2B כמגזר נפרד</strong> — ה-B2B שלה משולב במגזרים הקיימים.
+      להלן כל המספרים שניתנים להשוואה ראש-בראש על-פי הדוחות בלבד.
+    </div>
+  </div>
+
+  <!-- CRITICAL ACCURACY DISCLOSURE - FOR CEO -->
+  <div class="accuracy-disclosure">
+    <div class="acc-head">
+      <span class="acc-icon">⚠️</span>
+      <span class="acc-title">הערה לקורא — אי-סימטריה בדיווח הציבורי</span>
+    </div>
+    <div class="acc-body">
+      <p><strong>הנושא:</strong> שני המתחרים מדווחים את ה-B2B שלהם בצורה שונה לחלוטין:</p>
+      <ul class="acc-list">
+        <li><span class="acc-co bezeq">בזק</span> מפרסמת רכיבי B2B נפרדים: <strong>תמסורת+דאטה (390M)</strong>, <strong>ענן+דיגיטל (94M)</strong> בבזק קווי, ו<strong>פעילות עסקית של בזק בינלאומי (263M)</strong>. סה"כ ניתן לחישוב: <strong>747M ב-Q1'26</strong>.</li>
+        <li><span class="acc-co partner">פרטנר</span> <strong>לא מפרסמת B2B כמגזר נפרד</strong>. הכל מערבב בתוך "מגזר נייח" (329M כולל בייתי) ו"מגזר סלולר" (461M כולל פרטי).</li>
+      </ul>
+      <p><strong>המשמעות:</strong> השוואה כמותית מדויקת B2B-vs-B2B <strong>אינה אפשרית</strong> מהדוחות הציבוריים. מה שניתן לעשות:</p>
+      <ol class="acc-list-num">
+        <li>להציג מספרי B2B של בזק (מוכחים מהדוח)</li>
+        <li>להציג מה פרטנר <strong>אכן</strong> מפרסמת על מגזרים שמכילים B2B</li>
+        <li>להבחין באופן מפורש בין נתון מאומת לבין הערכה</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- DATA SOURCES -->
+  <div class="sources-box">
+    <div class="sources-head">
+      <span class="sources-icon">📚</span>
+      <span class="sources-title">מקורות הנתונים</span>
+    </div>
+    <div class="sources-body">
+      <div class="source-item">
+        <span class="source-tag partner">פרטנר</span>
+        <span class="source-text">דוח רבעוני Q1 2026 + תקשורת תאגידית, מסיבות עיתונאים, פורומים עסקיים, אתר פרטנר עסקים</span>
+      </div>
+      <div class="source-item">
+        <span class="source-tag bezeq">בזק</span>
+        <span class="source-text">דוח רבעוני בזק Q1 2026 (אסמכתא 2026-01-044041) — סעיפים 1.2.2 ב' (פילוח שירותי קווי), 1.5.4.1 (בזק קווי), 1.5.4.3 (בזק בינלאומי). 74 עמ' שנותחו.</span>
+      </div>
+      <div class="source-note">
+        ✅ כל המספרים של בזק על דף זה מאומתים מהדוח הרבעוני המלא.
+        ⚠️ עבור פרטנר — מסומן בכל מקום שהמספר הוא הערכה ולא מהדוח.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================== -->
+  <!-- B2B WINS: PARTNER vs BEZEQ -->
+  <!-- ===================================== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">זכיות מכרזים B2B — השוואה</div>
+      <div class="section-sub">מי זכה במכרזי הענק</div>
+    </div>
+
+    <div class="wins-grid">
+      <!-- Partner Wins -->
+      <div class="wins-card partner">
+        <div class="wins-head partner">
+          <span class="wins-badge partner">PRT</span>
+          <span class="wins-title">פרטנר</span>
+          <span class="wins-count">4 זכיות בולטות</span>
+        </div>
+        <div class="wins-list">
+          <div class="win-item">
+            <div class="win-date">1/2026</div>
+            <div class="win-body">
+              <div class="win-name">חשכ"ל — סלולר עובדי מדינה</div>
+              <div class="win-detail">220K משלמים • <strong>40%</strong> מהמכרז (פלאפון 60%)</div>
+            </div>
+          </div>
+          <div class="win-item">
+            <div class="win-date">2024-25</div>
+            <div class="win-body">
+              <div class="win-name">תקשורת קווית למשרדי הממשלה</div>
+              <div class="win-detail">4 שנים + 6 אופציה • עשרות מיליוני ₪</div>
+            </div>
+          </div>
+          <div class="win-item">
+            <div class="win-date">2024</div>
+            <div class="win-body">
+              <div class="win-name">לאומית שירותי בריאות</div>
+              <div class="win-detail">מכרז תקשורת כולל</div>
+            </div>
+          </div>
+          <div class="win-item pending">
+            <div class="win-date">בתהליך</div>
+            <div class="win-body">
+              <div class="win-name">רכישת פעילות B2B של HOT</div>
+              <div class="win-detail">סלולר + אינטרנט עסקי • לא סגור</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bezeq Wins -->
+      <div class="wins-card bezeq">
+        <div class="wins-head bezeq">
+          <span class="wins-badge bezeq">BZQ</span>
+          <span class="wins-title">בזק</span>
+          <span class="wins-count">פרויקטים אסטרטגיים</span>
+        </div>
+        <div class="wins-list">
+          <div class="win-item">
+            <div class="win-date">פעיל</div>
+            <div class="win-body">
+              <div class="win-name">פרויקט נימבוס — ענן ממשלתי</div>
+              <div class="win-detail">אירוח באתר בני ציון 10.5MW • <strong>פערים #1, #9</strong></div>
+            </div>
+          </div>
+          <div class="win-item">
+            <div class="win-date">1/2026</div>
+            <div class="win-body">
+              <div class="win-name">חשכ"ל — סלולר עובדי מדינה</div>
+              <div class="win-detail">220K משלמים • <strong>60%</strong> מהמכרז (פלאפון)</div>
+            </div>
+          </div>
+          <div class="win-item">
+            <div class="win-date">3/2026</div>
+            <div class="win-body">
+              <div class="win-name">MOU כבל תת-ימי חדש לאירופה</div>
+              <div class="win-detail">250M ₪ • שותפים בינ"ל</div>
+            </div>
+          </div>
+          <div class="win-item">
+            <div class="win-date">Q1/2026</div>
+            <div class="win-body">
+              <div class="win-name">הסכם IRU עם פרטנר — סיב BSA</div>
+              <div class="win-detail">פרטנר נהפכת ללקוחה ארוכת-טווח</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wins-insight">
+      <span class="wins-insight-icon">💡</span>
+      <div class="wins-insight-text">
+        <strong>תובנה:</strong> פרטנר זוכה במכרזי <strong>שירותי תקשורת</strong> (סלולר, קווי), אך בזק זוכה
+        בפרויקטים <strong>תשתיתיים אסטרטגיים</strong> (ענן ממשלתי, כבל ימי). זה הפער המרכזי.
+      </div>
+    </div>
+  </div>
+
+  <!-- BEZEQ B2B REVENUE CALCULATION - NEW -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">חישוב הכנסות B2B של בזק</div>
+      <div class="section-sub">פירוק מהדוח הרבעוני</div>
+    </div>
+
+    <div class="b2b-calc">
+      <div class="b2b-calc-row header">
+        <div>רכיב</div>
+        <div>Q1'26</div>
+        <div>Q1'25</div>
+        <div>שינוי</div>
+      </div>
+
+      <div class="b2b-calc-row">
+        <div class="b2b-calc-label">בזק קווי: תמסורת + תקשורת נתונים</div>
+        <div class="b2b-calc-val">390M</div>
+        <div class="b2b-calc-val">381M</div>
+        <div class="b2b-calc-delta up">+2.4%</div>
+      </div>
+
+      <div class="b2b-calc-row">
+        <div class="b2b-calc-label">בזק קווי: שירותי ענן ודיגיטל</div>
+        <div class="b2b-calc-val">94M</div>
+        <div class="b2b-calc-val">87M</div>
+        <div class="b2b-calc-delta up">+8.0%</div>
+      </div>
+
+      <div class="b2b-calc-row sub">
+        <div class="b2b-calc-label">תת-סה"כ בזק קווי B2B</div>
+        <div class="b2b-calc-val">484M</div>
+        <div class="b2b-calc-val">468M</div>
+        <div class="b2b-calc-delta up">+3.4%</div>
+      </div>
+
+      <div class="b2b-calc-row">
+        <div class="b2b-calc-label">בזק בינלאומי TECH: סה"כ הכנסות</div>
+        <div class="b2b-calc-val">289M</div>
+        <div class="b2b-calc-val">273M</div>
+        <div class="b2b-calc-delta up">+5.9%</div>
+      </div>
+
+      <div class="b2b-calc-row minus">
+        <div class="b2b-calc-label">פחות: לקוחות פרטיים (ISP)</div>
+        <div class="b2b-calc-val">(26M)</div>
+        <div class="b2b-calc-val">(34M)</div>
+        <div class="b2b-calc-delta down">-23.5%</div>
+      </div>
+
+      <div class="b2b-calc-row sub">
+        <div class="b2b-calc-label">תת-סה"כ בזק בינלאומי עסקי</div>
+        <div class="b2b-calc-val">263M</div>
+        <div class="b2b-calc-val">239M</div>
+        <div class="b2b-calc-delta up">+10.0%</div>
+      </div>
+
+      <div class="b2b-calc-row total">
+        <div class="b2b-calc-label">סה"כ B2B בזק</div>
+        <div class="b2b-calc-val">747M</div>
+        <div class="b2b-calc-val">707M</div>
+        <div class="b2b-calc-delta up">+5.7%</div>
+      </div>
+    </div>
+
+    <div style="font-size:10px; color:var(--text-faint); padding:10px 4px; line-height:1.6;">
+      📌 <strong>הערות חישוב:</strong>
+      <br>• בזק קווי: סכום שירותי תמסורת+תקשורת נתונים (B2B מובהק) + שירותי ענן ודיגיטל. מקור: דוח Q1'26 פרק ב' סעיף 1.2.2 ב' (תקשורת פנים ארצית נייחת)
+      <br>• בזק בינלאומי: סך הכנסות בניכוי הכנסות מלקוחות פרטיים (ISP). מקור: סעיף 1.5.4.3 בדוח
+      <br>• <strong>למה זה +10%</strong> — מני ברוך אמר "צמיחה של 10% בהכנסות מהפעילות העסקית" — וזה אכן 263 vs 239 = +10.0%
+    </div>
+  </div>
+
+  <!-- STRUCTURE COMPARISON -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">המבנה האסטרטגי</div>
+      <div class="section-sub">איך כל אחד בנוי</div>
+    </div>
+
+    <div class="struct-grid">
+      <div class="struct-col partner">
+        <div class="struct-head">
+          <div class="struct-logo partner">PRT</div>
+          <div class="struct-name">פרטנר B2B</div>
+        </div>
+        <div class="struct-nodes">
+          <div class="struct-node primary">
+            <span>מגזר נייח</span>
+            <span class="struct-node-tag">אינטרנט • דאטה • Hubbing • עת"ת</span>
+          </div>
+          <div class="struct-node primary">
+            <span>סלולר עסקי</span>
+            <span class="struct-node-tag">חבילות B2B • דור 5</span>
+          </div>
+          <div class="struct-node secondary">
+            <span>שירותי ענן</span>
+            <span class="struct-node-tag">דרך שותפים • לא ליבה</span>
+          </div>
+          <div class="struct-node weak">
+            <span>Data Center</span>
+            <span class="struct-node-tag">אין נכס מהותי</span>
+          </div>
+          <div class="struct-node weak">
+            <span>סייבר / SOC</span>
+            <span class="struct-node-tag">הצעה חלשה</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="struct-col bezeq">
+        <div class="struct-head">
+          <div class="struct-logo bezeq">BZQ</div>
+          <div class="struct-name">בזק B2B</div>
+        </div>
+        <div class="struct-nodes">
+          <div class="struct-node primary-b">
+            <span>בזק בינלאומי TECH</span>
+            <span class="struct-node-tag">מותג B2B עצמאי</span>
+          </div>
+          <div class="struct-node primary-b">
+            <span>בזק קווי עסקי</span>
+            <span class="struct-node-tag">Biznet • Bizfiber • Metro</span>
+          </div>
+          <div class="struct-node primary-b">
+            <span>שירותי ענן</span>
+            <span class="struct-node-tag">פעילות מרכזית • +10%</span>
+          </div>
+          <div class="struct-node primary-b">
+            <span>Data Center</span>
+            <span class="struct-node-tag">13 בעולם • 5 בישראל • TIER3</span>
+          </div>
+          <div class="struct-node primary-b">
+            <span>סייבר / SOC / DDoS</span>
+            <span class="struct-node-tag">תיק שירותים מלא</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRENDS SECTION - NEW -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">מגמות B2B מאומתות • 5 רבעונים</div>
+      <div class="section-sub">בזק בלבד — פרטנר לא מפרסמת</div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">בזק בינלאומי — הכנסות מפעילות עסקית</div>
+      <div class="chart-sub">5 רבעונים, במיליוני ₪ • לא כולל לקוחות פרטיים</div>
+      <div class="chart-wrap"><canvas id="chartBezeqIntlBiz"></canvas></div>
+      <div class="chart-note">
+        📄 מקור: דוח בזק Q1 2026, סעיף 1.5.4.3 (חישוב: סך - לקוחות פרטיים)<br>
+        Q1'25: 239M → Q1'26: <strong>263M</strong> = <strong>+10.0% YoY</strong> (מנוע צמיחה מרכזי).<br>
+        ⚠️ פרטנר אין נתון מקביל בדוח — אין למה להשוות.
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">בזק קווי — שירותים עסקיים (B2B)</div>
+      <div class="chart-sub">תמסורת+דאטה + ענן+דיגיטל • Q1'25 vs Q1'26</div>
+      <div class="chart-wrap"><canvas id="chartBezeqKaviB2B"></canvas></div>
+      <div class="chart-note">
+        📄 מקור: דוח בזק Q1 2026, סעיף 1.2.2 ב' (פילוח שירותי בזק קווי לרבעון). זמינים רק 2 נקודות.<br>
+        תמסורת+דאטה 381→390M (+2.4%) • ענן+דיגיטל 87→94M (+8.0%)<br>
+        ⚠️ פרטנר לא מפרסמת פילוח מקביל — לא נוצרת השוואת מגמה.
+      </div>
+    </div>
+
+    <div class="chart-card" style="border: 1.5px dashed rgba(255, 181, 71, 0.3);">
+      <div class="chart-title" style="color: var(--amber);">⚠️ מדוע אין גרפי "פרטנר B2B"?</div>
+      <div class="chart-sub">השקיפות חשובה למנכ"ל</div>
+      <div style="padding: 12px 14px 14px; font-size: 12px; line-height: 1.7; color: var(--text-dim);">
+        פרטנר <strong style="color:var(--text);">לא מפרסמת ב-Q1 2026 (ולא ברבעונים קודמים)</strong> פילוח נפרד של:
+        <ul style="padding-right:18px;margin:6px 0;">
+          <li>הכנסות B2B נטו</li>
+          <li>הכנסות תקשורת נתונים לעסקים</li>
+          <li>הכנסות Hubbing (תיווך תעבורה)</li>
+          <li>מנויי סלולר עסקיים נפרדים</li>
+          <li>EBITDA או רווחיות של חטיבת B2B</li>
+        </ul>
+        מגזר נייח (329M) ומגזר סלולר (461M) הם <strong>מגזרים מאוחדים</strong> שכוללים גם פרטי וגם עסקי.
+        <br><br>
+        <strong style="color:var(--amber);">לכן: לא ניתן להציג מגמת 5 רבעונים אמינה ל-B2B של פרטנר ולא ננסה.</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY METRICS TABLE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">מטריקות B2B — מה ניתן להשוות</div>
+      <div class="section-sub">Q1 2026 • מאומת מדוחות</div>
+    </div>
+
+    <div class="growth-tbl">
+      <div class="growth-row">
+        <div class="growth-hdr">פרמטר</div>
+        <div class="growth-hdr">פרטנר</div>
+        <div class="growth-hdr">בזק</div>
+        <div class="growth-hdr">הערה</div>
+      </div>
+
+      <div class="growth-row winner-b">
+        <div class="growth-label">הכנסות B2B Q1'26</div>
+        <div class="growth-cell partner">לא מדווח¹</div>
+        <div class="growth-cell bezeq">747M²</div>
+        <div class="growth-cell up">מאומת בזק</div>
+      </div>
+
+      <div class="growth-row winner-b">
+        <div class="growth-label">צמיחת הכנסות B2B YoY</div>
+        <div class="growth-cell partner">לא מדווח¹</div>
+        <div class="growth-cell bezeq">+5.7%²</div>
+        <div class="growth-cell up">מאומת בזק</div>
+      </div>
+
+      <div class="growth-row winner-b">
+        <div class="growth-label">תמסורת + תקשורת נתונים</div>
+        <div class="growth-cell partner">לא מדווח</div>
+        <div class="growth-cell bezeq">390M<br><span style="font-size:9.5px;color:var(--green);font-weight:600">+2.4%</span></div>
+        <div class="growth-cell up">מאומת בזק</div>
+      </div>
+
+      <div class="growth-row winner-b">
+        <div class="growth-label">שירותי ענן ודיגיטל</div>
+        <div class="growth-cell partner">לא מדווח</div>
+        <div class="growth-cell bezeq">94M<br><span style="font-size:9.5px;color:var(--green);font-weight:600">+8.0%</span></div>
+        <div class="growth-cell up">מאומת בזק</div>
+      </div>
+
+      <div class="growth-row winner-b">
+        <div class="growth-label">בזק בינלאומי — פעילות עסקית</div>
+        <div class="growth-cell partner">—</div>
+        <div class="growth-cell bezeq">263M<br><span style="font-size:9.5px;color:var(--green);font-weight:600">+10.0%</span></div>
+        <div class="growth-cell up">מאומת בזק</div>
+      </div>
+
+      <div class="growth-row winner-b">
+        <div class="growth-label">בזק בינלאומי — סך</div>
+        <div class="growth-cell partner">—</div>
+        <div class="growth-cell bezeq">289M<br><span style="font-size:9.5px;color:var(--green);font-weight:600">+5.9%</span></div>
+        <div class="growth-cell up">מאומת בזק</div>
+      </div>
+
+      <div class="growth-row">
+        <div class="growth-label">מותג B2B עצמאי</div>
+        <div class="growth-cell partner">אין</div>
+        <div class="growth-cell bezeq">בזק בינלאומי TECH</div>
+        <div class="growth-cell up">בזק</div>
+      </div>
+
+      <div class="growth-row">
+        <div class="growth-label">תשתית סיבים עצמית B2B</div>
+        <div class="growth-cell partner">דרך IRU מבזק³</div>
+        <div class="growth-cell bezeq">תשתית עצמית מלאה</div>
+        <div class="growth-cell up">בזק</div>
+      </div>
+
+      <div class="growth-row">
+        <div class="growth-label">דאטה סנטרים</div>
+        <div class="growth-cell partner">לא מדווח</div>
+        <div class="growth-cell bezeq">13⁴</div>
+        <div class="growth-cell up">בזק</div>
+      </div>
+
+      <div class="growth-row">
+        <div class="growth-label">מנויי 5G (פוטנציאל B2B)</div>
+        <div class="growth-cell partner">928K משלמים</div>
+        <div class="growth-cell bezeq">1,425K פוסטפייד⁵</div>
+        <div class="growth-cell up">בזק</div>
+      </div>
+    </div>
+
+    <div class="footnotes">
+      <div><strong>¹</strong> <span style="color:var(--amber);">פרטנר לא מפרסמת פילוח B2B נפרד בדוחות הציבוריים.</span> מגזר נייח שלה (329M) כולל גם לקוחות פרטיים.</div>
+      <div><strong>²</strong> חישוב מהדוח: בזק קווי תמסורת+דאטה (390M) + ענן+דיגיטל (94M) + בזק בינלאומי עסקי (263M) = 747M.  השוואת בסיס: 381+87+239 = 707M.  צמיחה: +5.7%.</div>
+      <div><strong>³</strong> בזק קווי דיווחה ב-Q1'26 על הסכם IRU ארוך-טווח בשירות BSA סיב עם פרטנר (מקור: דוח בזק, סעיף 1.2.1).</div>
+      <div><strong>⁴</strong> דאטה סנטרים של בזק בינלאומי — מקור: אתר התאגיד וחומרי משקיעים.</div>
+      <div><strong>⁵</strong> בזק לא מפרסמת חלוקה ל-B2B/B2C במנויי 5G. 1,425K = סך פוסטפייד דור 5 (פרטי+עסקי).</div>
+    </div>
+  </div>
+
+  <!-- PORTFOLIO MATRIX -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">מטריצת תיק שירותים B2B</div>
+      <div class="section-sub">מה כל אחד מציע בפועל</div>
+    </div>
+
+    <div class="portfolio">
+      <div class="portfolio-head">
+        <div>שירות</div>
+        <div>פרטנר</div>
+        <div>בזק בינלאומי + קווי</div>
+      </div>
+
+      <div class="portfolio-row cat">🔌 קישוריות B2B</div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">אינטרנט עסקי</div>
+        <div class="portfolio-cell"><span class="pill-yes">חזק</span></div>
+        <div class="portfolio-cell"><span class="pill-strong">דומיננטי</span></div>
+      </div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">תמסורת + דאטה B2B</div>
+        <div class="portfolio-cell"><span class="pill-weak">לא מדווח</span></div>
+        <div class="portfolio-cell"><span class="pill-strong">390M, +2.4%</span></div>
+      </div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">סיבים לעסקים</div>
+        <div class="portfolio-cell"><span class="pill-weak">דרך IRU מבזק</span></div>
+        <div class="portfolio-cell"><span class="pill-strong">תשתית עצמית</span></div>
+      </div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">קווי תקשורת בינל'</div>
+        <div class="portfolio-cell"><span class="pill-weak">Hubbing יורד</span></div>
+        <div class="portfolio-cell"><span class="pill-strong">כבל ימי + 3 תוואים</span></div>
+      </div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">Dark Fiber בינל'</div>
+        <div class="portfolio-cell"><span class="pill-future">חטיבה גלובלית 4/25</span></div>
+        <div class="portfolio-cell"><span class="pill-strong">תשתית מובילה</span></div>
+      </div>
+
+      <div class="portfolio-row cat">📡 סלולר עסקי</div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">דור 5 משלמים</div>
+        <div class="portfolio-cell"><span class="pill-strong">928K</span></div>
+        <div class="portfolio-cell"><span class="pill-strong">1,425K פוסטפייד</span></div>
+      </div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">לקוחות ממשלתיים סלולר</div>
+        <div class="portfolio-cell"><span class="pill-yes">40% מ-220K עובדי מדינה</span></div>
+        <div class="portfolio-cell"><span class="pill-strong">60% (פלאפון)</span></div>
+      </div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">רשתות 5G פרטיות</div>
+        <div class="portfolio-cell"><span class="pill-future">פוטנציאל</span></div>
+        <div class="portfolio-cell"><span class="pill-future">פוטנציאל</span></div>
+      </div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">IoT / M2M</div>
+        <div class="portfolio-cell"><span class="pill-future">חטיבה גלובלית חדשה</span></div>
+        <div class="portfolio-cell"><span class="pill-yes">קיים</span></div>
+      </div>
+
+      <div class="portfolio-row cat">☁️ ענן ו-IT</div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">שירותי ענן (IaaS/SaaS)</div>
+        <div class="portfolio-cell"><span class="pill-yes">דרך Reline (3/25)</span></div>
+        <div class="portfolio-cell"><span class="pill-strong">94M, +8.0%</span></div>
+      </div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">Data Center / Colo</div>
+        <div class="portfolio-cell"><span class="pill-weak">1 מתקן קטן</span></div>
+        <div class="portfolio-cell"><span class="pill-strong">13 מתקנים, 10.5MW</span></div>
+      </div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">Hyperscaler Direct (AWS/Azure/GCP)</div>
+        <div class="portfolio-cell"><span class="pill-no">לא קיים</span></div>
+        <div class="portfolio-cell"><span class="pill-strong">HyperConnect ל-4</span></div>
+      </div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">Microsoft 365</div>
+        <div class="portfolio-cell"><span class="pill-yes">קיים</span></div>
+        <div class="portfolio-cell"><span class="pill-yes">קיים</span></div>
+      </div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">DRaaS / גיבוי</div>
+        <div class="portfolio-cell"><span class="pill-yes">דרך Reline</span></div>
+        <div class="portfolio-cell"><span class="pill-strong">מתקן תת-קרקעי</span></div>
+      </div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">פלטפורמת מרקטפלייס</div>
+        <div class="portfolio-cell"><span class="pill-no">אין</span></div>
+        <div class="portfolio-cell"><span class="pill-strong">IT Factory — 300 שירותים</span></div>
+      </div>
+
+      <div class="portfolio-row cat">🛡️ סייבר</div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">DDoS Protection</div>
+        <div class="portfolio-cell"><span class="pill-yes">F5 inline, 24/7</span></div>
+        <div class="portfolio-cell"><span class="pill-strong">מוצר ליבה</span></div>
+      </div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">SOC / SIEM Managed</div>
+        <div class="portfolio-cell"><span class="pill-weak">חלקי (שותפים)</span></div>
+        <div class="portfolio-cell"><span class="pill-strong">SOC עצמי + Trend Micro</span></div>
+      </div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">שותפויות סייבר</div>
+        <div class="portfolio-cell"><span class="pill-yes">Check Point, Fortinet, F5</span></div>
+        <div class="portfolio-cell"><span class="pill-yes">Trend Micro JV, Check Point</span></div>
+      </div>
+
+      <div class="portfolio-row cat">🔧 אינטגרציה</div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">SDWAN</div>
+        <div class="portfolio-cell"><span class="pill-yes">Fortinet</span></div>
+        <div class="portfolio-cell"><span class="pill-yes">קיים</span></div>
+      </div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">Juniper Certification</div>
+        <div class="portfolio-cell"><span class="pill-strong">Elite Plus</span></div>
+        <div class="portfolio-cell"><span class="pill-yes">קיים</span></div>
+      </div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">System Integration כללי</div>
+        <div class="portfolio-cell"><span class="pill-yes">חטיבה פעילה</span></div>
+        <div class="portfolio-cell"><span class="pill-strong">מנוע צמיחה</span></div>
+      </div>
+
+      <div class="portfolio-row cat">📺 תוכן / שירותים</div>
+      <div class="portfolio-row">
+        <div class="portfolio-service">PBX / טלפוניה ענן</div>
+        <div class="portfolio-cell"><span class="pill-yes">קיים</span></div>
+        <div class="portfolio-cell"><span class="pill-yes">Cisco JV</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCORECARD -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">דירוג עוצמה בכל קטגוריה</div>
+      <div class="section-sub">סקאלה 1-10</div>
+    </div>
+
+    <div class="scorecard">
+      <div class="scorecard-title">🏗️ תשתיות B2B</div>
+      <div class="score-row">
+        <div class="score-label">תשתית סיבים</div>
+        <div class="score-bars">
+          <div class="score-num partner">7</div>
+          <div class="score-bar-wrap"><div class="score-bar partner" style="width:70%"></div></div>
+          <div class="score-bar-wrap"><div class="score-bar bezeq" style="width:95%"></div></div>
+          <div class="score-num bezeq">9.5</div>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">רשת סלולר</div>
+        <div class="score-bars">
+          <div class="score-num partner">8.5</div>
+          <div class="score-bar-wrap"><div class="score-bar partner" style="width:85%"></div></div>
+          <div class="score-bar-wrap"><div class="score-bar bezeq" style="width:85%"></div></div>
+          <div class="score-num bezeq">8.5</div>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Data Center</div>
+        <div class="score-bars">
+          <div class="score-num partner">2</div>
+          <div class="score-bar-wrap"><div class="score-bar partner" style="width:20%"></div></div>
+          <div class="score-bar-wrap"><div class="score-bar bezeq" style="width:90%"></div></div>
+          <div class="score-num bezeq">9</div>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">קישוריות בינ"ל</div>
+        <div class="score-bars">
+          <div class="score-num partner">5</div>
+          <div class="score-bar-wrap"><div class="score-bar partner" style="width:50%"></div></div>
+          <div class="score-bar-wrap"><div class="score-bar bezeq" style="width:90%"></div></div>
+          <div class="score-num bezeq">9</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scorecard">
+      <div class="scorecard-title">💼 פתרונות B2B</div>
+      <div class="score-row">
+        <div class="score-label">שירותי ענן</div>
+        <div class="score-bars">
+          <div class="score-num partner">5</div>
+          <div class="score-bar-wrap"><div class="score-bar partner" style="width:50%"></div></div>
+          <div class="score-bar-wrap"><div class="score-bar bezeq" style="width:85%"></div></div>
+          <div class="score-num bezeq">8.5</div>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">סייבר / SOC</div>
+        <div class="score-bars">
+          <div class="score-num partner">5.5</div>
+          <div class="score-bar-wrap"><div class="score-bar partner" style="width:55%"></div></div>
+          <div class="score-bar-wrap"><div class="score-bar bezeq" style="width:85%"></div></div>
+          <div class="score-num bezeq">8.5</div>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">אינטגרציה / Managed</div>
+        <div class="score-bars">
+          <div class="score-num partner">7</div>
+          <div class="score-bar-wrap"><div class="score-bar partner" style="width:70%"></div></div>
+          <div class="score-bar-wrap"><div class="score-bar bezeq" style="width:85%"></div></div>
+          <div class="score-num bezeq">8.5</div>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">5G פרטיות (פוטנציאל)</div>
+        <div class="score-bars">
+          <div class="score-num partner">8</div>
+          <div class="score-bar-wrap"><div class="score-bar partner" style="width:80%"></div></div>
+          <div class="score-bar-wrap"><div class="score-bar bezeq" style="width:65%"></div></div>
+          <div class="score-num bezeq">6.5</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scorecard">
+      <div class="scorecard-title">📈 ביצועים פיננסיים</div>
+      <div class="score-row">
+        <div class="score-label">קצב צמיחה B2B</div>
+        <div class="score-bars">
+          <div class="score-num partner">5</div>
+          <div class="score-bar-wrap"><div class="score-bar partner" style="width:50%"></div></div>
+          <div class="score-bar-wrap"><div class="score-bar bezeq" style="width:85%"></div></div>
+          <div class="score-num bezeq">8.5</div>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">רווחיות תפעולית</div>
+        <div class="score-bars">
+          <div class="score-num partner">8</div>
+          <div class="score-bar-wrap"><div class="score-bar partner" style="width:80%"></div></div>
+          <div class="score-bar-wrap"><div class="score-bar bezeq" style="width:75%"></div></div>
+          <div class="score-num bezeq">7.5</div>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">יעילות תפעולית</div>
+        <div class="score-bars">
+          <div class="score-num partner">8.5</div>
+          <div class="score-bar-wrap"><div class="score-bar partner" style="width:85%"></div></div>
+          <div class="score-bar-wrap"><div class="score-bar bezeq" style="width:70%"></div></div>
+          <div class="score-num bezeq">7</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B2B GROWTH CHART -->
+  <div class="section">
+    <div class="chart-card">
+      <div class="chart-title">קצב צמיחה לפי מרכיבי B2B</div>
+      <div class="chart-sub">Q1'26 YoY • % שינוי</div>
+      <div class="chart-wrap tall"><canvas id="chartB2B"></canvas></div>
+    </div>
+  </div>
+
+  <!-- ===================================== -->
+  <!-- STRATEGIC GAPS — THE CEO FOCUS SECTION -->
+  <!-- ===================================== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">פערים אסטרטגיים B2B</div>
+      <div class="section-sub">מה לבזק יש שאין לפרטנר</div>
+    </div>
+
+    <div class="gaps-intro">
+      <div class="gaps-intro-title">🎯 הסיווג הסטרטגי</div>
+      <div class="gaps-intro-text">
+        10 פערים מאומתים שבהם בזק מובילה והם <strong>הזדמנויות מיקוד</strong> לפרטנר.
+        כל פער כולל את המצב בכל חברה והמלצה אסטרטגית.
+        <br>
+        <span style="color:var(--red);">🔴 גבוה</span> = הזדמנות מיידית / השפעה כספית מהירה.
+        <span style="color:var(--amber);">🟡 בינוני</span> = פער טכני שניתן לסגור.
+        <span style="color:var(--bezeq);">🔵 נמוך</span> = פער מבני / השקעה הונית כבדה.
+      </div>
+    </div>
+
+    <!-- GAP 1: Data Centers — HIGHEST PRIORITY -->
+    <div class="gap-card high">
+      <div class="gap-head">
+        <div class="gap-number">1</div>
+        <div class="gap-title">תשתית Data Center</div>
+        <div class="gap-priority high">גבוה</div>
+      </div>
+      <div class="gap-comparison">
+        <div class="gap-side">
+          <div class="gap-side-label bezeq">בזק יש</div>
+          <div class="gap-side-content">13 אתרים בישראל ובעולם • מתקן בני ציון 10.5 MW (15,000 מ"ר) • מתקן תת-קרקעי ל-DR • מארח את פרויקט נימבוס</div>
+        </div>
+        <div class="gap-side">
+          <div class="gap-side-label partner">פרטנר אין</div>
+          <div class="gap-side-content">מתקן אחד בלבד, היקף קטן • לא ב"רשימת ספקי ה-DC המובילים בישראל" של Mordor</div>
+        </div>
+      </div>
+      <div class="gap-recommend">
+        <strong>המלצה:</strong> שיתוף פעולה עם MedOne / Bynet / Compass Datacenters כצד שלישי במקום לבנות עצמית.
+        או לנצל ש-Microsoft Azure ו-Oracle בנו אזורים בישראל ולמכור Direct Connect דרכן (ראה פער #3).
+      </div>
+    </div>
+
+    <!-- GAP 2: Submarine Cable -->
+    <div class="gap-card low">
+      <div class="gap-head">
+        <div class="gap-number">2</div>
+        <div class="gap-title">כבל תת-ימי בבעלות</div>
+        <div class="gap-priority low">נמוך</div>
+      </div>
+      <div class="gap-comparison">
+        <div class="gap-side">
+          <div class="gap-side-label bezeq">בזק יש</div>
+          <div class="gap-side-content">בעלות מלאה על כבל תת-ימי מאז 2011 • 3 תוואים נפרדים לחו"ל • MOU חדש לכבל נוסף לאירופה (250M ₪, מרץ 2026)</div>
+        </div>
+        <div class="gap-side">
+          <div class="gap-side-label partner">פרטנר אין</div>
+          <div class="gap-side-content">תלוי בתשתיות צד שלישי • חטיבה גלובלית חדשה (4/2025) פותחת dark-fiber בלבד</div>
+        </div>
+      </div>
+      <div class="gap-recommend">
+        <strong>המלצה:</strong> לא לנסות לבנות. <strong>קניית קיבולת בלבד</strong> מבזק/Cellcom/יצרני כבלים בינ"ל.
+        להתמקד בערך מוסף על הקיבולת ולא בתשתית עצמה.
+      </div>
+    </div>
+
+    <!-- GAP 3: Hyperscaler Direct Connect -->
+    <div class="gap-card high">
+      <div class="gap-head">
+        <div class="gap-number">3</div>
+        <div class="gap-title">חיבור ישיר לעננים גלובליים</div>
+        <div class="gap-priority high">גבוה</div>
+      </div>
+      <div class="gap-comparison">
+        <div class="gap-side">
+          <div class="gap-side-label bezeq">בזק יש</div>
+          <div class="gap-side-content">שירות <strong>HyperConnect</strong> מקושר ל-4 ענקיות הענן: AWS, Microsoft Azure, GCP, Oracle • חיבור בלחיצת כפתור</div>
+        </div>
+        <div class="gap-side">
+          <div class="gap-side-label partner">פרטנר אין</div>
+          <div class="gap-side-content">אין מוצר מקביל. חיבור ל-hyperscalers דורש פתרונות ad-hoc</div>
+        </div>
+      </div>
+      <div class="gap-recommend">
+        <strong>המלצה:</strong> שותפויות ישירות עם AWS/Azure/GCP — כל אחד מהם רוצה ערוצים נוספים בישראל.
+        מוצר "Partner Cloud Connect" יכול להיות מנוע צמיחה מהיר עם CAPEX נמוך.
+      </div>
+    </div>
+
+    <!-- GAP 4: B2B Brand -->
+    <div class="gap-card medium">
+      <div class="gap-head">
+        <div class="gap-number">4</div>
+        <div class="gap-title">מותג B2B עצמאי</div>
+        <div class="gap-priority medium">בינוני</div>
+      </div>
+      <div class="gap-comparison">
+        <div class="gap-side">
+          <div class="gap-side-label bezeq">בזק יש</div>
+          <div class="gap-side-content"><strong>בזק בינלאומי TECH</strong> — מותג ICT/B2B עצמאי, הפרדה מהמותג הצרכני</div>
+        </div>
+        <div class="gap-side">
+          <div class="gap-side-label partner">פרטנר אין</div>
+          <div class="gap-side-content">"פרטנר עסקים" קיים אבל לא מותג נפרד — נתפס כהמשך לפרטנר הצרכנית</div>
+        </div>
+      </div>
+      <div class="gap-recommend">
+        <strong>המלצה:</strong> בניית סאב-ברנד עצמאי <strong>Partner Business / Enterprise</strong> עם אתר, דיגיטל ושיווק נפרדים.
+        עלות שיווקית בלבד, השפעה תפיסתית גדולה.
+      </div>
+    </div>
+
+    <!-- GAP 5: Cloud Marketplace -->
+    <div class="gap-card medium">
+      <div class="gap-head">
+        <div class="gap-number">5</div>
+        <div class="gap-title">פלטפורמת מרקטפלייס לענן</div>
+        <div class="gap-priority medium">בינוני</div>
+      </div>
+      <div class="gap-comparison">
+        <div class="gap-side">
+          <div class="gap-side-label bezeq">בזק יש</div>
+          <div class="gap-side-content"><strong>IT Factory</strong> — זירת מסחר עם 300 שירותי Cloud ו-Hosting • מודל B2B2B • אוטומציה לשותפים</div>
+        </div>
+        <div class="gap-side">
+          <div class="gap-side-label partner">פרטנר אין</div>
+          <div class="gap-side-content">שיתוף בלעדי עם Reline (3/2025) — מוקדם להעריך • לא מרקטפלייס פתוח</div>
+        </div>
+      </div>
+      <div class="gap-recommend">
+        <strong>המלצה:</strong> פלטפורמה דיגיטלית B2B2B שמאפשרת לשותפים (משווקים, אינטגרטורים) להציע שירותי IT למנויי פרטנר.
+        ניתן לבנות בעלות תוכנה בלבד, גוזרת קופון מתשתית קיימת.
+      </div>
+    </div>
+
+    <!-- GAP 6: SOC Managed Security -->
+    <div class="gap-card medium">
+      <div class="gap-head">
+        <div class="gap-number">6</div>
+        <div class="gap-title">SOC מנוהל בעצמי + SIEM</div>
+        <div class="gap-priority medium">בינוני</div>
+      </div>
+      <div class="gap-comparison">
+        <div class="gap-side">
+          <div class="gap-side-label bezeq">בזק יש</div>
+          <div class="gap-side-content">SOC עצמי 24/7 • Joint Venture עם Trend Micro • שירותי ניטור, ניהול והגנה מתקפות סייבר ברמת ספק</div>
+        </div>
+        <div class="gap-side">
+          <div class="gap-side-label partner">פרטנר אין</div>
+          <div class="gap-side-content">DDoS חזק (F5) ושותפויות עם CheckPoint/Fortinet • אך אין SOC managed כשירות עצמאי</div>
+        </div>
+      </div>
+      <div class="gap-recommend">
+        <strong>המלצה:</strong> SOC-as-a-Service באמצעות שותפות עם חברת סייבר ישראלית (Cybereason, SentinelOne).
+        או רכישת חברת MSSP קטנה. שוק צומח מהיר במגזר B2B.
+      </div>
+    </div>
+
+    <!-- GAP 7: Wholesale Fiber -->
+    <div class="gap-card low">
+      <div class="gap-head">
+        <div class="gap-number">7</div>
+        <div class="gap-title">סיב סיטונאי למפעילים</div>
+        <div class="gap-priority low">נמוך</div>
+      </div>
+      <div class="gap-comparison">
+        <div class="gap-side">
+          <div class="gap-side-label bezeq">בזק יש</div>
+          <div class="gap-side-content">מוכרת BSA לכל המתחרים, כולל פרטנר • הכנסה מהסכם IRU ארוך-טווח חדש עם פרטנר (Q1 2026)</div>
+        </div>
+        <div class="gap-side">
+          <div class="gap-side-label partner">פרטנר אין</div>
+          <div class="gap-side-content"><strong>קונה</strong> מבזק (חוזה IRU). תלות אסטרטגית מובנית במתחרה הגדולה</div>
+        </div>
+      </div>
+      <div class="gap-recommend">
+        <strong>המלצה:</strong> פער מבני קשה לסגירה. הפוקוס צריך להיות על <strong>אופטימיזציה של חוזה ה-IRU</strong> ולא על בניית רשת כפולה.
+        החיסכון ה-CAPEX מאפשר השקעה בפערים אחרים בעדיפות גבוהה.
+      </div>
+    </div>
+
+    <!-- GAP 8: International POPs -->
+    <div class="gap-card medium">
+      <div class="gap-head">
+        <div class="gap-number">8</div>
+        <div class="gap-title">נקודות נוכחות (POPs) בחו"ל</div>
+        <div class="gap-priority medium">בינוני</div>
+      </div>
+      <div class="gap-comparison">
+        <div class="gap-side">
+          <div class="gap-side-label bezeq">בזק יש</div>
+          <div class="gap-side-content">7+ POPs בעולם המקושרים לכבל ימי ולרשת תקשורת בינ"ל</div>
+        </div>
+        <div class="gap-side">
+          <div class="gap-side-label partner">פרטנר אין</div>
+          <div class="gap-side-content">נוכחות בינ"ל מוגבלת • החטיבה הגלובלית החדשה (4/2025) רק התחילה</div>
+        </div>
+      </div>
+      <div class="gap-recommend">
+        <strong>המלצה:</strong> השקעה ממוקדת ב-2-3 POPs באירופה (פרנקפורט, אמסטרדם, לונדון).
+        חיבור ל-Internet Exchanges מקומיים יוזיל עלויות לתעבורה ויאפשר מכירת קיבולת ל-CDNs.
+      </div>
+    </div>
+
+    <!-- GAP 9: Government Hosting -->
+    <div class="gap-card high">
+      <div class="gap-head">
+        <div class="gap-number">9</div>
+        <div class="gap-title">אירוח ענן ממשלתי / סוברני</div>
+        <div class="gap-priority high">גבוה</div>
+      </div>
+      <div class="gap-comparison">
+        <div class="gap-side">
+          <div class="gap-side-label bezeq">בזק יש</div>
+          <div class="gap-side-content">אתר בני ציון מארח את <strong>פרויקט נימבוס</strong> (ענן ממשלתי) • זוכה במכרזי חשכ"ל לאירוח</div>
+        </div>
+        <div class="gap-side">
+          <div class="gap-side-label partner">פרטנר אין</div>
+          <div class="gap-side-content">זכתה במכרז חשכ"ל לסלולר (40%) ולתקשורת קווית, <strong>אך לא לאירוח ממשלתי / ענן סוברני</strong></div>
+        </div>
+      </div>
+      <div class="gap-recommend">
+        <strong>המלצה:</strong> בניית הצעה לתחרות במכרזי משרד הביטחון / חשכ"ל לעננים סוברניים.
+        ביחד עם שותף DC ישראלי + סייבר ישראלי. השוק זה גדל פי 3-5 ב-5 שנים הקרובות.
+      </div>
+    </div>
+
+    <!-- GAP 10: Cloud Revenue Visibility -->
+    <div class="gap-card medium">
+      <div class="gap-head">
+        <div class="gap-number">10</div>
+        <div class="gap-title">דיווח נפרד של מגזר B2B</div>
+        <div class="gap-priority medium">בינוני</div>
+      </div>
+      <div class="gap-comparison">
+        <div class="gap-side">
+          <div class="gap-side-label bezeq">בזק יש</div>
+          <div class="gap-side-content">מפרסמת רכיבי B2B נפרדים: תמסורת+דאטה (390M), ענן+דיגיטל (94M), בזק בינ"ל עסקי (263M)</div>
+        </div>
+        <div class="gap-side">
+          <div class="gap-side-label partner">פרטנר אין</div>
+          <div class="gap-side-content">לא מפרסמת פילוח B2B בדוחות הציבוריים. הכל משולב ב"מגזר נייח" ו"מגזר סלולר"</div>
+        </div>
+      </div>
+      <div class="gap-recommend">
+        <strong>המלצה (פנימית למנכ"ל):</strong> שקילת חשיפת מגזר עסקי נפרד בדוחות. <strong>ערך משקיעים גדול</strong> כשנראה את הצמיחה ב-B2B נפרד מהבייתי.
+        זה משדר גם למתחרים וגם למשקיעים שיש פוקוס.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q1 2026 NEW EVENTS - NEW SECTION -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">חדשות Q1 2026 רלוונטיות לחטיבה העסקית</div>
+      <div class="section-sub">אירועים אסטרטגיים</div>
+    </div>
+
+    <div class="event-card bezeq">
+      <div class="event-head">
+        <span class="event-icon">🚢</span>
+        <div class="event-title-wrap">
+          <div class="event-co bezeq">בזק</div>
+          <div class="event-title">חתימת מזכר הבנות על כבל תת-ימי חדש לאירופה</div>
+          <div class="event-date">24.3.2026</div>
+        </div>
+      </div>
+      <div class="event-body">
+        בזק ובזק בינלאומי חתמו עם חברת תקשורת בינלאומית על MOU להקמת מערכת כבלים תת-ימיים
+        ליצירת <strong>פרוזדור תקשורת בין מזרח למערב דרך ישראל</strong>. השקעה צפויה: <strong>~250M ₪</strong> על-פני 3 שנים.
+        מהווה נדבך אסטרטגי לחיזוק מעמד בזק כצומת תקשורת גלובלית. צפוי להניב תשואה חיובית משמעותית.
+        כולל גם כוונה להקמת כבל תת-ימי נוסף בעתיד.
+      </div>
+      <div class="event-impact">
+        <strong>השלכה ל-B2B:</strong> מנוע צמיחה אסטרטגי חדש לבזק בינלאומי TECH. פרטנר אין לה נכס תשתית בינלאומית עצמי דומה.
+      </div>
+    </div>
+
+    <div class="event-card mixed">
+      <div class="event-head">
+        <span class="event-icon">🤝</span>
+        <div class="event-title-wrap">
+          <div class="event-co mixed">בזק × פרטנר</div>
+          <div class="event-title">הסכם IRU ארוך-טווח בשירות BSA סיב</div>
+          <div class="event-date">Q1 2026 (גידול בהכנסות)</div>
+        </div>
+      </div>
+      <div class="event-body">
+        בזק קווי דיווחה על גידול בהכנסות מראש לזמן ארוך במגזר תקשורת פנים ארצית נייחת,
+        בעיקר בשל <strong>הסכם ארוך טווח לאספקת זכות שימוש בלתי הדירה (IRU)</strong>
+        בשירות BSA סיב (שוק סיטונאי) עם <strong>חברת פרטנר תקשורת בע"מ</strong>.
+      </div>
+      <div class="event-impact">
+        <strong>השלכה ל-B2B:</strong> פרטנר רוכשת תשתית סיבים מבזק לטווח ארוך. מאיץ את ה-ARPU של בזק קווי מלקוחות עסקיים סיטונאיים.
+        עבור פרטנר — חיסכון ב-CAPEX מול תלות גוברת בבזק.
+      </div>
+    </div>
+
+    <div class="event-card bezeq">
+      <div class="event-head">
+        <span class="event-icon">📶</span>
+        <div class="event-title-wrap">
+          <div class="event-co bezeq">פלאפון</div>
+          <div class="event-title">האצת 5G MAX — יעד 300K עד סוף שנה</div>
+          <div class="event-date">Q1 2026</div>
+        </div>
+      </div>
+      <div class="event-body">
+        חבילות 5G MAX (עם תיעדוף גלישה) המשיכו להתרחב. מ-<strong>35K ב-Q1'25 ל-184K כיום</strong> (מאי 2026).
+        פלאפון מציבה יעד מפורש: <strong>300K מנויי 5G MAX עד סוף 2026</strong>. דור 5 פוסטפייד הגיע ל-1.45M (61% מהפוסטפייד).
+      </div>
+      <div class="event-impact">
+        <strong>השלכה ל-B2B:</strong> Premium tier בסלולר העסקי — חבילות ללקוחות שדורשים QoS גבוה.
+        פרטנר אין מותג מקביל לדור 5 פרימיום (928K סך משלמי דור 5 ללא חלוקה ל-MAX).
+      </div>
+    </div>
+
+    <div class="event-card bezeq">
+      <div class="event-head">
+        <span class="event-icon">🤝</span>
+        <div class="event-title-wrap">
+          <div class="event-co bezeq">פלאפון</div>
+          <div class="event-title">חתימת הסכם קיבוצי חדש</div>
+          <div class="event-date">Q1 2026</div>
+        </div>
+      </div>
+      <div class="event-body">
+        פלאפון חתמה על הסכם קיבוצי חדש המאפשר שיפור מבנה עלויות לטווח ארוך, אך גרר
+        <strong>הוצאות חד-פעמיות של ~112M ₪</strong> בגין פרישה מוקדמת. תוצאה: הפסד תפעולי של 52M (לעומת רווח 44M Q1'25),
+        ו-<strong>הפסד נקי GAAP של 44M ₪</strong> במגזר.
+      </div>
+      <div class="event-impact">
+        <strong>השלכה ל-B2B:</strong> טווח ארוך — מבנה עלויות יעיל יותר בפלאפון, יאפשר תמחור תחרותי יותר בעסקי.
+        טווח קצר — לחץ על הרווחיות הקבוצתית.
+      </div>
+    </div>
+
+    <div class="event-card bezeq">
+      <div class="event-head">
+        <span class="event-icon">🏆</span>
+        <div class="event-title-wrap">
+          <div class="event-co bezeq">בזק קבוצה</div>
+          <div class="event-title">דירוגי אשראי אושררו ביציבות</div>
+          <div class="event-date">5.5 ו-11.5.2026</div>
+        </div>
+      </div>
+      <div class="event-body">
+        מעלות אישררה דירוג <strong>ilAA יציב</strong> לבזק, פלאפון ו-yes.
+        מידרוג אישררה <strong>Aa2.il יציב</strong> לאגרות החוב. שתי הסוכנויות עם תחזית יציבה.
+      </div>
+      <div class="event-impact">
+        <strong>השלכה ל-B2B:</strong> דירוגים גבוהים = יכולת לגייס חוב זול = מימון השקעות תשתית (כבל ימי, סיבים).
+        יתרון מבני מול פרטנר בעלויות מימון.
+      </div>
+    </div>
+
+    <div class="event-card partner">
+      <div class="event-head">
+        <span class="event-icon">💰</span>
+        <div class="event-title-wrap">
+          <div class="event-co partner">פרטנר</div>
+          <div class="event-title">החזר מס 86M ₪ — אך מחלוקת מתמשכת</div>
+          <div class="event-date">מרץ 2026</div>
+        </div>
+      </div>
+      <div class="event-body">
+        פרטנר קיבלה <strong>החזר מס של 86M ₪</strong> במרץ 2026 — מתוך מחלוקת ארוכת-טווח עם רשות המסים על שומה של
+        <strong>185M ₪ לשנים 2020-2023</strong> (מתוכם 45M כבר שולמו). שוטף השפיע על FCF (+29%).
+      </div>
+      <div class="event-impact">
+        <strong>השלכה ל-B2B:</strong> זרימת מזומנים חזקה מאפשרת השקעות. אך המחלוקת המסים לא נסגרה — סיכון בעתיד.
+      </div>
+    </div>
+
+    <div class="event-card partner">
+      <div class="event-head">
+        <span class="event-icon">💸</span>
+        <div class="event-title-wrap">
+          <div class="event-co partner">פרטנר</div>
+          <div class="event-title">חלוקת דיבידנד 465M ₪ + גרעון בהון חוזר לראשונה</div>
+          <div class="event-date">מרץ 2026</div>
+        </div>
+      </div>
+      <div class="event-body">
+        פרטנר חילקה דיבידנד של <strong>465M ₪</strong>. כתוצאה — <strong>גרעון בהון חוזר של 125M ₪ לראשונה</strong>.
+        בזק חילקה במקביל 549M ₪ (לקראת תשלום ב-14.5.2026).
+      </div>
+      <div class="event-impact">
+        <strong>השלכה ל-B2B:</strong> פרטנר מחלקת לבעלי מניות במקום להשקיע בתשתית. עלולה לעכב פיתוח של חטיבה עסקית עצמאית.
+      </div>
+    </div>
+
+    <div class="event-card bezeq">
+      <div class="event-head">
+        <span class="event-icon">📡</span>
+        <div class="event-title-wrap">
+          <div class="event-co bezeq">פלאפון</div>
+          <div class="event-title">השבת תדרים — שינוי מצאי תדרים</div>
+          <div class="event-date">31.1.2026 + 30.4.2026</div>
+        </div>
+      </div>
+      <div class="event-body">
+        פלאפון השיבה למאגר התדרים הלאומי את התדרים הנותרים בתחום 850 MHz (החל מ-30.4.2026 רשת פלאפון פועלת ללא תדר 850).
+        תחום 1800 MHz הוארך עד 31.12.2026. אי-וודאות לגבי הקצאת 800 MHz.
+      </div>
+      <div class="event-impact">
+        <strong>השלכה ל-B2B:</strong> איכות כיסוי באזורים מסוימים יכולה להיפגע — קריטי לרשתות 5G פרטיות לתעשייה.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FINAL SUMMARY FOR CEO -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <div class="section-title">המלצות פעולה למנכ"ל</div>
+      <div class="section-sub">תוצאות הניתוח</div>
+    </div>
+
+    <div class="verdict">
+      <div class="verdict-label">🎯 3 מהלכים שיש לשקול בעדיפות גבוהה</div>
+      <div class="verdict-text">
+        <strong>1. מוצר "Partner Cloud Connect" — Hyperscaler Direct</strong> (פער #3)<br>
+        בזק מוכרת HyperConnect ל-AWS/Azure/GCP/Oracle. פרטנר יכולה ליצור מוצר מקביל
+        <strong>בעלות נמוכה</strong> דרך שותפויות ישירות עם הענקים — כל ענן רוצה ספק נוסף בישראל.
+        זה שוק שצומח דו-ספרתית, וחטיבת הענן של בזק גדלה +8% (94M רבעוני).
+        <br><br>
+
+        <strong>2. סאב-ברנד B2B נפרד — "Partner Enterprise"</strong> (פער #4)<br>
+        בזק בנתה <strong>בזק בינלאומי TECH</strong> כמותג ICT עצמאי. פרטנר עסקים נתפסת
+        כהמשך לפרטנר הצרכנית. <strong>זו השקעה שיווקית בלבד</strong> עם תועלת תפיסתית גדולה —
+        במיוחד מול חברות אנטרפרייז שרוצות ספק "רציני".
+        <br><br>
+
+        <strong>3. תחרות במכרזי ענן ממשלתי / סוברני</strong> (פער #9)<br>
+        פרטנר זכתה בסלולר ובתקשורת לממשלה, <strong>אך לא באירוח הענן</strong>.
+        בזק מארחת את פרויקט נימבוס. השוק הזה צפוי לגדול פי 3-5 ב-5 שנים. כניסה דרך
+        שותפות עם DC ישראלי + חברת סייבר ישראלית.
+      </div>
+    </div>
+
+    <div class="verdict" style="margin-top: 14px; border-color: rgba(255, 181, 71, 0.3); background: linear-gradient(135deg, rgba(255, 181, 71, 0.05) 0%, rgba(0,216,200,0.03) 100%);">
+      <div class="verdict-label" style="color: var(--amber);">📋 ממצאים מרכזיים בסיכום</div>
+      <div class="verdict-text">
+        <strong>על בזק:</strong> סך B2B מאומת = <strong>747M ₪</strong> Q1'26, צמיחה <strong>+5.7%</strong> כשהקבוצה ירדה -3%.
+        מנוע הצמיחה: בזק בינלאומי עסקי <strong>+10%</strong>. תשתית בלתי-ניתנת לשחזור: 13 DC, כבל ימי, HyperConnect.
+        <br><br>
+
+        <strong>על פרטנר:</strong> חטיבת לקוחות עסקיים <strong>פעילה</strong> (אבי דבורה ועוד 5 בכירים), עם
+        תיק שירותים בסייבר, ענן (Reline), אינטגרציה (Juniper Elite Plus) וזכיות מרשימות במכרזים ממשלתיים.
+        <strong>חטיבה גלובלית חדשה הושקה 4/2025</strong> ל-IoT, dark-fiber, רומינג בינ"ל.
+        <br><br>
+
+        <strong>החולשה האסטרטגית:</strong> תלות גוברת בתשתית בזק (IRU סיב Q1'26), אין דאטה סנטר בקנה מידה,
+        אין מוצר ענן/hyperscaler ישיר. <strong>הזדמנויות פוקוס:</strong> 10 פערים שהוצגו — 3 בעדיפות גבוהה.
+      </div>
+    </div>
+
+    <div class="accuracy-disclosure" style="margin-top: 14px;">
+      <div class="acc-head">
+        <span class="acc-icon">✓</span>
+        <span class="acc-title">הצהרת דיוק הנתונים</span>
+      </div>
+      <div class="acc-body">
+        <p><strong>מאומת 100%:</strong> כל המספרים של בזק (747M, 390M, 94M, 263M, 13 DC, MOU כבל ימי, IRU) — מהדוח הרבעוני המלא Q1 2026 (74 עמ', אסמכתא 2026-01-044041).</p>
+        <p><strong>מאומת 100%:</strong> כל המספרים של פרטנר ברמת המגזר (329M, 461M, 123M, 928K, מכרז 220K עובדי מדינה 40%) — מהדוח Q1 2026 + הכרזות תאגידיות.</p>
+        <p><strong>מאומת ממקורות משניים:</strong> שמות בכירי החטיבה העסקית, שותפויות F5/CheckPoint/Fortinet/Reline/Juniper, השקת החטיבה הגלובלית (4/2025 לפי Mordor Intelligence).</p>
+        <p style="color: var(--amber);"><strong>⚠️ לא ניתן לחישוב מהדיווחים הציבוריים:</strong> פילוח B2B נפרד של פרטנר, EBITDA של B2B, ARPU עסקי, מספר לקוחות B2B. אלה דורשים מידע פנימי.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end page 3 -->
+
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>אלירן גרוסמן</span>
+  <span class="footer-divider"></span>
+  <span>BD Analytics</span>
+  <span class="footer-divider"></span>
+  <span>Q1'26 Review</span>
+</div>
+
+</div><!-- app -->
+
+<script>
+// TAB SWITCHING
+function switchTab(idx) {
+  document.querySelectorAll('.tab').forEach((t, i) => {
+    t.classList.toggle('active', i === idx);
+  });
+  document.querySelectorAll('.page').forEach((p, i) => {
+    p.classList.toggle('active', i === idx);
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // re-render charts if switching to a tab with new charts
+  setTimeout(() => {
+    Object.values(window._charts || {}).forEach(c => c.resize());
+  }, 50);
+}
+
+// CHART DEFAULTS
+Chart.defaults.font.family = "'Heebo', sans-serif";
+Chart.defaults.color = '#8aa0b8';
+Chart.defaults.borderColor = 'rgba(255,255,255,0.05)';
+
+const tealGradient = (ctx) => {
+  const g = ctx.chart.ctx.createLinearGradient(0, 0, 0, 200);
+  g.addColorStop(0, 'rgba(0, 216, 200, 0.4)');
+  g.addColorStop(1, 'rgba(0, 216, 200, 0.01)');
+  return g;
+};
+
+const bezeqGradient = (ctx) => {
+  const g = ctx.chart.ctx.createLinearGradient(0, 0, 0, 200);
+  g.addColorStop(0, 'rgba(74, 158, 255, 0.4)');
+  g.addColorStop(1, 'rgba(74, 158, 255, 0.01)');
+  return g;
+};
+
+window._charts = {};
+
+// REVENUE TREND
+window._charts.revenue = new Chart(document.getElementById('chartRevenue'), {
+  type: 'line',
+  data: {
+    labels: ["Q1'25", "Q2'25", "Q3'25", "Q4'25", "Q1'26"],
+    datasets: [
+      {
+        label: 'סלולר',
+        data: [503, 492, 473, 503, 461],
+        borderColor: '#00d8c8',
+        backgroundColor: tealGradient,
+        borderWidth: 2.5,
+        tension: 0.35,
+        fill: false,
+        pointRadius: 3,
+        pointBackgroundColor: '#00d8c8',
+        pointBorderWidth: 0
+      },
+      {
+        label: 'נייח',
+        data: [329, 331, 331, 322, 329],
+        borderColor: '#4a9eff',
+        backgroundColor: 'rgba(74, 158, 255, 0.05)',
+        borderWidth: 2.5,
+        tension: 0.35,
+        fill: false,
+        pointRadius: 3,
+        pointBackgroundColor: '#4a9eff',
+        pointBorderWidth: 0
+      },
+      {
+        label: 'מאוחד',
+        data: [810, 802, 784, 804, 770],
+        borderColor: '#ffb547',
+        backgroundColor: 'rgba(255, 181, 71, 0.08)',
+        borderWidth: 2.5,
+        tension: 0.35,
+        fill: true,
+        pointRadius: 3,
+        pointBackgroundColor: '#ffb547',
+        pointBorderWidth: 0
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: { boxWidth: 8, boxHeight: 8, padding: 10, font: { size: 10, weight: '600' } }
+      },
+      tooltip: {
+        backgroundColor: '#0d1825',
+        borderColor: 'rgba(0, 216, 200, 0.3)',
+        borderWidth: 1,
+        titleFont: { size: 11 },
+        bodyFont: { size: 11 },
+        padding: 10
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { font: { size: 10 }, callback: v => v + 'M' } }
+    }
+  }
+});
+
+// EBITDA BY SEGMENT
+window._charts.ebitda = new Chart(document.getElementById('chartEbitda'), {
+  type: 'bar',
+  data: {
+    labels: ["Q1'25", "Q2'25", "Q3'25", "Q4'25", "Q1'26"],
+    datasets: [
+      {
+        label: 'סלולר',
+        data: [172, 177, 178, 189, 183],
+        backgroundColor: 'rgba(0, 216, 200, 0.85)',
+        borderRadius: 6,
+        borderSkipped: false
+      },
+      {
+        label: 'נייח',
+        data: [114, 126, 153, 115, 123],
+        backgroundColor: 'rgba(74, 158, 255, 0.75)',
+        borderRadius: 6,
+        borderSkipped: false
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: { boxWidth: 8, boxHeight: 8, padding: 10, font: { size: 10, weight: '600' } }
+      },
+      tooltip: {
+        backgroundColor: '#0d1825',
+        borderColor: 'rgba(0, 216, 200, 0.3)',
+        borderWidth: 1
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, stacked: true, ticks: { font: { size: 10 } } },
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, stacked: true, ticks: { font: { size: 10 }, callback: v => v + 'M' } }
+    }
+  }
+});
+
+// BUSINESS GROWTH COMPARISON
+window._charts.bizGrowth = new Chart(document.getElementById('chartBizGrowth'), {
+  type: 'bar',
+  data: {
+    labels: ['הכנסות עסקים', 'EBITDA', 'מנויי סיבים', 'ARPU אינטרנט', 'תזרים חופשי'],
+    datasets: [
+      {
+        label: 'פרטנר',
+        data: [1, 7, 6.5, 3.3, 29],
+        backgroundColor: '#00d8c8',
+        borderRadius: 6,
+        borderSkipped: false
+      },
+      {
+        label: 'בזק',
+        data: [10, 1.2, 3.6, 4, 74],
+        backgroundColor: '#4a9eff',
+        borderRadius: 6,
+        borderSkipped: false
+      }
+    ]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: { boxWidth: 8, boxHeight: 8, padding: 12, font: { size: 11, weight: '600' } }
+      },
+      tooltip: {
+        backgroundColor: '#0d1825',
+        borderColor: 'rgba(0, 216, 200, 0.3)',
+        borderWidth: 1,
+        callbacks: {
+          label: ctx => ctx.dataset.label + ': ' + ctx.parsed.x + '%'
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { color: 'rgba(255,255,255,0.04)' },
+        ticks: { font: { size: 10 }, callback: v => v + '%' }
+      },
+      y: { grid: { display: false }, ticks: { font: { size: 10, weight: '600' } } }
+    }
+  }
+});
+
+// === TREND CHARTS FOR PAGE 3 — B2B ONLY (VERIFIED FROM BEZEQ Q1 2026 REPORT) ===
+
+// BEZEQ INTERNATIONAL — BUSINESS ACTIVITY REVENUE (5 quarters, VERIFIED from section 1.5.4.3)
+// Total revenue: 273, 263, 281, 263, 289 | Private customers: 34, 32, 30, 26, 26
+// Business activity = Total - Private = 239, 231, 251, 237, 263 (CEO confirmed +10% YoY)
+window._charts.bezeqIntlBiz = new Chart(document.getElementById('chartBezeqIntlBiz'), {
+  type: 'line',
+  data: {
+    labels: ["Q1'25", "Q2'25", "Q3'25", "Q4'25", "Q1'26"],
+    datasets: [
+      {
+        label: 'בזק בינלאומי — פעילות עסקית',
+        data: [239, 231, 251, 237, 263],
+        borderColor: '#4a9eff',
+        backgroundColor: 'rgba(74, 158, 255, 0.15)',
+        borderWidth: 3,
+        tension: 0.3,
+        fill: true,
+        pointRadius: 5,
+        pointBackgroundColor: '#4a9eff',
+        pointBorderColor: '#fff',
+        pointBorderWidth: 1.5
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: { boxWidth: 8, boxHeight: 8, padding: 10, font: { size: 10, weight: '600' } }
+      },
+      tooltip: {
+        backgroundColor: '#0d1825',
+        borderColor: 'rgba(74, 158, 255, 0.3)',
+        borderWidth: 1,
+        callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + 'M ₪' }
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+      y: {
+        grid: { color: 'rgba(255,255,255,0.04)' },
+        ticks: { font: { size: 10 }, callback: v => v + 'M' },
+        suggestedMin: 200,
+        suggestedMax: 280
+      }
+    }
+  }
+});
+
+// BEZEQ KAVI B2B SERVICES (only Q1'25 vs Q1'26 from section 1.2.2 ב')
+window._charts.bezeqKaviB2B = new Chart(document.getElementById('chartBezeqKaviB2B'), {
+  type: 'bar',
+  data: {
+    labels: ["תמסורת + תקשורת נתונים", "שירותי ענן ודיגיטל"],
+    datasets: [
+      {
+        label: "Q1'25",
+        data: [381, 87],
+        backgroundColor: 'rgba(74, 158, 255, 0.35)',
+        borderRadius: 5,
+        borderSkipped: false
+      },
+      {
+        label: "Q1'26",
+        data: [390, 94],
+        backgroundColor: 'rgba(74, 158, 255, 0.95)',
+        borderRadius: 5,
+        borderSkipped: false
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: { boxWidth: 8, boxHeight: 8, padding: 10, font: { size: 10, weight: '600' } }
+      },
+      tooltip: {
+        backgroundColor: '#0d1825',
+        borderColor: 'rgba(74, 158, 255, 0.3)',
+        borderWidth: 1,
+        callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + 'M ₪' }
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 10, weight: '600' } } },
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { font: { size: 10 }, callback: v => v + 'M' } }
+    }
+  }
+});
+
+// B2B GROWTH BREAKDOWN
+window._charts.b2b = new Chart(document.getElementById('chartB2B'), {
+  type: 'bar',
+  data: {
+    labels: ['ענן ושירותים מנוהלים', 'סייבר ו-SOC', 'אינטגרציה', 'סיבים עסקיים', 'דאטה לעסקים', 'תקשורת בינ"ל / Hubbing', 'EBITDA נייח'],
+    datasets: [
+      {
+        label: 'פרטנר',
+        data: [0, 0, 2, 6.5, 5, -8, 8],
+        backgroundColor: '#00d8c8',
+        borderRadius: 5,
+        borderSkipped: false,
+        barPercentage: 0.7
+      },
+      {
+        label: 'בזק',
+        data: [10, 10, 10, 18, 4, 5, 1],
+        backgroundColor: '#4a9eff',
+        borderRadius: 5,
+        borderSkipped: false,
+        barPercentage: 0.7
+      }
+    ]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: { boxWidth: 8, boxHeight: 8, padding: 12, font: { size: 11, weight: '600' } }
+      },
+      tooltip: {
+        backgroundColor: '#0d1825',
+        borderColor: 'rgba(0, 216, 200, 0.3)',
+        borderWidth: 1,
+        callbacks: {
+          label: ctx => ctx.dataset.label + ': ' + (ctx.parsed.x > 0 ? '+' : '') + ctx.parsed.x + '%'
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { color: 'rgba(255,255,255,0.04)', drawTicks: false },
+        ticks: { font: { size: 10 }, callback: v => (v > 0 ? '+' : '') + v + '%' }
+      },
+      y: { grid: { display: false }, ticks: { font: { size: 9.5, weight: '600' }, autoSkip: false } }
+    }
+  }
+});
+
+// DETAIL TOGGLE
+document.querySelectorAll('.detail-toggle').forEach(el => {
+  el.addEventListener('click', e => {
+    const content = el.nextElementSibling;
+    if (content && content.classList.contains('detail-content')) {
+      content.classList.toggle('open');
+      el.textContent = content.classList.contains('open') ? 'הסתר פרטים ▲' : 'הצג פרטים ▼';
+    }
+  });
+});
+</script>
+</body>
+</html>
