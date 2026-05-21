@@ -511,6 +511,82 @@ body::before {
   background: var(--border);
 }
 
+/* ===== CENTRAL COMPARISON (service-by-service) ===== */
+.cmp-legend {
+  display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+  font-size: 10px; color: var(--text-dim); margin: 4px 0 14px;
+}
+.cmp-legend .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; vertical-align: middle; margin-left: 4px; }
+.cmp-legend .dot.partner { background: var(--teal-glow); box-shadow: 0 0 6px var(--teal); }
+.cmp-legend .dot.cellcom { background: var(--cellcom); box-shadow: 0 0 6px var(--cellcom); }
+.cmp-legend .lead-chip { background: var(--amber); color: #1a1200; font-weight: 800; padding: 1px 6px; border-radius: 6px; font-size: 9px; }
+
+.cmp-group-head { display: flex; align-items: center; gap: 8px; margin: 20px 0 8px; padding: 0 2px; }
+.cmp-group-head .bar { width: 3px; height: 15px; border-radius: 2px; background: var(--gradient-cellcom); }
+.cmp-group-head .lbl { font-size: 12.5px; font-weight: 800; color: var(--text); letter-spacing: 0.2px; }
+.cmp-group-head .sub { font-size: 9px; color: var(--text-faint); margin-right: auto; font-family: 'JetBrains Mono', monospace; }
+
+.cmp-cell.lead .cmp-value { text-shadow: 0 0 14px currentColor; }
+.cmp-lead-tag {
+  display: inline-block; margin-top: 3px; font-size: 8px; font-weight: 800;
+  color: #1a1200; background: var(--amber); padding: 1px 7px; border-radius: 6px; letter-spacing: 0.3px;
+}
+
+.cmp-verdict {
+  margin-top: 16px; padding: 14px 16px; background: var(--bg-card);
+  border: 1px solid var(--border-strong); border-radius: 12px;
+  font-size: 11px; line-height: 1.7; color: var(--text-dim);
+}
+.cmp-verdict strong.p { color: var(--teal-glow); }
+.cmp-verdict strong.c { color: var(--cellcom); }
+.cmp-verdict .v-row { margin-bottom: 6px; }
+
+/* ===== DUAL KPI (company vs company) ===== */
+.dual-kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.dual-kpi { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 12px 8px; }
+.dual-kpi-label { text-align: center; font-size: 11px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px; }
+.dual-kpi-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 4px; }
+.dk-side { text-align: center; }
+.dk-co { font-size: 9px; font-weight: 800; letter-spacing: 0.4px; margin-bottom: 3px; }
+.dk-co.partner { color: var(--teal-glow); }
+.dk-co.cellcom { color: var(--cellcom); }
+.dk-val { font-size: 16px; font-weight: 800; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.5px; line-height: 1.1; }
+.dk-val.partner { color: var(--teal-glow); }
+.dk-val.cellcom { color: var(--cellcom); }
+.dk-delta { font-size: 9px; font-weight: 700; margin-top: 2px; font-family: 'JetBrains Mono', monospace; }
+.dk-delta.up { color: var(--green); }
+.dk-delta.down { color: var(--red); }
+.dk-delta.flat { color: var(--text-faint); }
+.dk-sep { width: 1px; height: 38px; background: var(--border); }
+@media (max-width: 380px) {
+  .dual-kpi-grid { grid-template-columns: 1fr; }
+  .dk-val { font-size: 17px; }
+}
+
+/* ===== COMPANY-VS-COMPANY STRENGTHS / PROBLEMS ===== */
+.vs-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.vs-col { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 13px 11px; }
+.vs-col.partner { border-color: rgba(0, 216, 200, 0.22); }
+.vs-col.cellcom { border-color: rgba(199, 125, 255, 0.22); }
+.vs-col-head { display: flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 800; margin-bottom: 11px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+.vs-col.partner .vs-col-head { color: var(--teal-glow); }
+.vs-col.cellcom .vs-col-head { color: var(--cellcom); }
+.vs-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.vs-dot.partner { background: var(--teal-glow); box-shadow: 0 0 6px var(--teal); }
+.vs-dot.cellcom { background: var(--cellcom); box-shadow: 0 0 6px var(--cellcom); }
+.vs-item { display: flex; gap: 7px; margin-bottom: 10px; font-size: 10.5px; line-height: 1.5; color: var(--text-dim); }
+.vs-item:last-child { margin-bottom: 0; }
+.vs-item .mk { flex-shrink: 0; width: 16px; height: 16px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; margin-top: 1px; }
+.vs-item .mk.win { background: rgba(0, 230, 118, 0.15); color: var(--green); }
+.vs-item .mk.warn { background: rgba(255, 85, 119, 0.13); color: var(--red); }
+.vs-item strong { color: var(--text); }
+.vs-item .num { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+.vs-col.partner .vs-item .num { color: var(--teal-glow); }
+.vs-col.cellcom .vs-item .num { color: var(--cellcom); }
+@media (max-width: 400px) {
+  .vs-cards { grid-template-columns: 1fr; }
+}
+
 /* DIVISION CARD */
 .div-card {
   background: var(--bg-card);
@@ -3204,114 +3280,8 @@ body::before {
 <!-- ============================================== -->
 <div class="page" id="page-4">
 
-  <!-- HERO -->
-  <div class="hero" style="border-color: rgba(199,125,255,0.25); background: linear-gradient(135deg, rgba(199,125,255,0.08) 0%, rgba(199,125,255,0.02) 100%);">
-    <div class="hero-label" style="color: var(--cellcom);">📡 סלקום מול פרטנר — Q1 2026</div>
-    <div class="hero-text">
-      סלקום סוגרת רבעון <strong style="color:var(--cellcom);">רווחי</strong> למרות ירידה בהכנסות: רווח נקי
-      <strong style="color:var(--cellcom);">+20%</strong>, מחיקת חוב של <strong style="color:var(--cellcom);">607M</strong>
-      בעקבות מכירת IBC, ושיא במנויי סיבים — אבל "שאגת הארי" וקיצוץ קש"ג שחקו את ההכנסות.
-    </div>
-  </div>
-
-  <!-- KPI GRID -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-bar" style="background: var(--gradient-cellcom); box-shadow: 0 0 8px var(--cellcom);"></div>
-      <div class="section-title">המספרים של סלקום</div>
-      <div class="section-sub">Q1'26 vs Q1'25</div>
-    </div>
-
-    <div class="kpi-grid">
-      <div class="kpi">
-        <div class="kpi-label">סך הכנסות</div>
-        <div class="kpi-value">1,013<span class="kpi-unit">M ₪</span></div>
-        <div class="kpi-delta down">▼ 8.9%</div>
-        <div class="kpi-context">בנטרול קש"ג: ▼ 4.9%</div>
-      </div>
-
-      <div class="kpi">
-        <div class="kpi-label">EBITDA מתואם</div>
-        <div class="kpi-value">345<span class="kpi-unit">M ₪</span></div>
-        <div class="kpi-delta down">▼ 1.1%</div>
-        <div class="kpi-context">שיעור רווחיות 34%</div>
-      </div>
-
-      <div class="kpi">
-        <div class="kpi-label">רווח נקי</div>
-        <div class="kpi-value">72<span class="kpi-unit">M ₪</span></div>
-        <div class="kpi-delta up">▲ 20%</div>
-        <div class="kpi-context">לעומת 60M ברבעון מקביל</div>
-      </div>
-
-      <div class="kpi">
-        <div class="kpi-label">תזרים חופשי</div>
-        <div class="kpi-value">115<span class="kpi-unit">M ₪</span></div>
-        <div class="kpi-delta up">▲ 22%</div>
-        <div class="kpi-context">לעומת 94M ברבעון מקביל</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TREND CHARTS -->
-  <div class="section">
-    <div class="chart-card">
-      <div class="chart-title">מגמת הכנסות 5 רבעונים</div>
-      <div class="chart-sub">סלולר • נייח • מאוחד (במיליוני ₪)</div>
-      <div class="chart-wrap"><canvas id="chartCellcomRevenue"></canvas></div>
-    </div>
-
-    <div class="chart-card">
-      <div class="chart-title">EBITDA מתואם לפי מגזר</div>
-      <div class="chart-sub">הנייד צומח, הנייח נשחק (במיליוני ₪)</div>
-      <div class="chart-wrap"><canvas id="chartCellcomEbitda"></canvas></div>
-    </div>
-  </div>
-
-  <!-- OPERATIONAL KPIs -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-bar" style="background: var(--gradient-cellcom); box-shadow: 0 0 8px var(--cellcom);"></div>
-      <div class="section-title">מצבת לקוחות וביצועים</div>
-    </div>
-
-    <div class="kpi-grid cols-3">
-      <div class="kpi">
-        <div class="kpi-label">סלולר</div>
-        <div class="kpi-value" style="font-size:18px;">3,679<span class="kpi-unit">K</span></div>
-        <div class="kpi-delta up" style="font-size:10px;">▲ 2.1% YoY</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-label">אינטרנט</div>
-        <div class="kpi-value" style="font-size:18px;">389<span class="kpi-unit">K</span></div>
-        <div class="kpi-delta up" style="font-size:10px;">▲ 2.1% YoY</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-label">סיבים</div>
-        <div class="kpi-value" style="font-size:18px;">357<span class="kpi-unit">K</span></div>
-        <div class="kpi-delta up" style="font-size:10px;">▲ 6.9% YoY</div>
-      </div>
-
-      <div class="kpi">
-        <div class="kpi-label">ARPU סלולר</div>
-        <div class="kpi-value" style="font-size:18px;">43.7<span class="kpi-unit">₪</span></div>
-        <div class="kpi-delta flat" style="font-size:10px;">ללא קש"ג: 37</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-label">ARPU אינטרנט</div>
-        <div class="kpi-value" style="font-size:18px;">99.6<span class="kpi-unit">₪</span></div>
-        <div class="kpi-delta up" style="font-size:10px;">▲ YoY</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-label">נטישה</div>
-        <div class="kpi-value" style="font-size:18px;">7.6<span class="kpi-unit">%</span></div>
-        <div class="kpi-delta flat" style="font-size:10px;">גבוה מפרטנר</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PEER COMPARISON: PARTNER VS CELLCOM -->
-  <div class="section">
+  <!-- VS HEADER — top of page -->
+  <div class="section" style="margin-top:6px;margin-bottom:14px;">
     <div class="vs-header">
       <div class="vs-side">
         <div class="vs-logo partner">PRT</div>
@@ -3325,12 +3295,129 @@ body::before {
         <div class="vs-tagline">קבוצה מאוחדת</div>
       </div>
     </div>
+  </div>
 
+  <!-- HERO -->
+  <div class="hero" style="border-color: rgba(199,125,255,0.25); background: linear-gradient(135deg, rgba(199,125,255,0.08) 0%, rgba(0,216,200,0.04) 100%);">
+    <div class="hero-label" style="color: var(--cellcom);">📊 השוואה מלאה — פרטנר מול סלקום • Q1 2026</div>
+    <div class="hero-text">
+      <strong style="color:var(--teal-glow);">פרטנר</strong> רווחית ויעילה יותר (EBITDA 40% מול 34%, מינוף 0.4 מול 0.73);
+      <strong style="color:var(--cellcom);">סלקום</strong> גדולה יותר בהכנסות (1,013M מול 770M) ובמצבת הסלולר.
+      שתיהן נפגעו מ"שאגת הארי" ומקיצוץ קש"ג. כל המדדים והגרפים למטה — חברה מול חברה.
+    </div>
+  </div>
+
+  <!-- DUAL KPI GRID -->
+  <div class="section">
     <div class="section-header">
       <div class="section-bar" style="background: var(--gradient-cellcom); box-shadow: 0 0 8px var(--cellcom);"></div>
-      <div class="section-title">פרטנר מול סלקום</div>
-      <div class="section-sub">העימות האמיתי • Q1'26</div>
+      <div class="section-title">מספרי מפתח — פרטנר מול סלקום</div>
+      <div class="section-sub">Q1'26 • החצים מול Q1'25</div>
     </div>
+
+    <div class="dual-kpi-grid">
+      <div class="dual-kpi">
+        <div class="dual-kpi-label">סך הכנסות</div>
+        <div class="dual-kpi-row">
+          <div class="dk-side">
+            <div class="dk-co partner">פרטנר</div>
+            <div class="dk-val partner">770M</div>
+            <div class="dk-delta down">▼ 5%</div>
+          </div>
+          <div class="dk-sep"></div>
+          <div class="dk-side">
+            <div class="dk-co cellcom">סלקום</div>
+            <div class="dk-val cellcom">1,013M</div>
+            <div class="dk-delta down">▼ 8.9%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dual-kpi">
+        <div class="dual-kpi-label">EBITDA מתואם</div>
+        <div class="dual-kpi-row">
+          <div class="dk-side">
+            <div class="dk-co partner">פרטנר</div>
+            <div class="dk-val partner">306M</div>
+            <div class="dk-delta up">▲ 7%</div>
+          </div>
+          <div class="dk-sep"></div>
+          <div class="dk-side">
+            <div class="dk-co cellcom">סלקום</div>
+            <div class="dk-val cellcom">345M</div>
+            <div class="dk-delta down">▼ 1.1%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dual-kpi">
+        <div class="dual-kpi-label">רווח נקי</div>
+        <div class="dual-kpi-row">
+          <div class="dk-side">
+            <div class="dk-co partner">פרטנר</div>
+            <div class="dk-val partner">74M</div>
+            <div class="dk-delta up">▲ 16%</div>
+          </div>
+          <div class="dk-sep"></div>
+          <div class="dk-side">
+            <div class="dk-co cellcom">סלקום</div>
+            <div class="dk-val cellcom">72M</div>
+            <div class="dk-delta up">▲ 20%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dual-kpi">
+        <div class="dual-kpi-label">תזרים מזומנים חופשי</div>
+        <div class="dual-kpi-row">
+          <div class="dk-side">
+            <div class="dk-co partner">פרטנר</div>
+            <div class="dk-val partner">134M</div>
+            <div class="dk-delta up">▲ 29%</div>
+          </div>
+          <div class="dk-sep"></div>
+          <div class="dk-side">
+            <div class="dk-co cellcom">סלקום</div>
+            <div class="dk-val cellcom">115M</div>
+            <div class="dk-delta up">▲ 22%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEAD-TO-HEAD TREND CHARTS -->
+  <div class="section">
+    <div class="chart-card">
+      <div class="chart-title">מגמת הכנסות מאוחדות — פרטנר מול סלקום</div>
+      <div class="chart-sub">5 רבעונים • <span style="color:var(--teal-glow);font-weight:700;">פרטנר</span> מול <span style="color:var(--cellcom);font-weight:700;">סלקום</span> (במיליוני ₪)</div>
+      <div class="chart-wrap"><canvas id="chartCellcomRevenue"></canvas></div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">מגמת EBITDA מתואם — פרטנר מול סלקום</div>
+      <div class="chart-sub">5 רבעונים • <span style="color:var(--teal-glow);font-weight:700;">פרטנר</span> מול <span style="color:var(--cellcom);font-weight:700;">סלקום</span> (במיליוני ₪)</div>
+      <div class="chart-wrap"><canvas id="chartCellcomEbitda"></canvas></div>
+    </div>
+  </div>
+
+  <!-- CENTRAL COMPARISON: PARTNER VS CELLCOM -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar" style="background: var(--gradient-cellcom); box-shadow: 0 0 8px var(--cellcom);"></div>
+      <div class="section-title">השוואה מרכזית — שירות מול שירות</div>
+      <div class="section-sub">כל המדדים • Q1'26 • פרטנר מול סלקום</div>
+    </div>
+
+    <div class="cmp-legend">
+      <span><span class="dot partner"></span> פרטנר</span>
+      <span><span class="dot cellcom"></span> סלקום</span>
+      <span><span class="lead-chip">✦ מוביל</span> יתרון תחרותי במדד</span>
+    </div>
+    <div style="text-align:center;font-size:9.5px;color:var(--text-faint);margin:-8px 0 14px;line-height:1.5;">▲ ▼ כל החצים מציגים שינוי מול הרבעון המקביל אשתקד (Q1'25)</div>
+
+    <!-- ===== GROUP: FINANCIALS ===== -->
+    <div class="cmp-group-head"><span class="bar"></span><span class="lbl">📊 פיננסי קבוצתי</span><span class="sub">במיליוני ₪</span></div>
 
     <div class="cmp-row">
       <div class="cmp-metric-name">סך הכנסות</div>
@@ -3359,15 +3446,29 @@ body::before {
     </div>
 
     <div class="cmp-row">
-      <div class="cmp-metric-name">שיעור EBITDA</div>
-      <div class="cmp-cell">
+      <div class="cmp-metric-name">שיעור רווחיות EBITDA</div>
+      <div class="cmp-cell lead">
         <div class="cmp-value partner">40%</div>
         <div class="cmp-delta up">▲ 5pp</div>
+        <div class="cmp-lead-tag">✦ מוביל</div>
       </div>
       <div class="cmp-bar"></div>
       <div class="cmp-cell">
         <div class="cmp-value cellcom">34%</div>
         <div class="cmp-delta flat">יציב</div>
+      </div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">רווח תפעולי</div>
+      <div class="cmp-cell">
+        <div class="cmp-value partner">107M</div>
+        <div class="cmp-delta up">▲ 14%</div>
+      </div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell">
+        <div class="cmp-value cellcom">118M</div>
+        <div class="cmp-delta up">▲ 7.3%</div>
       </div>
     </div>
 
@@ -3385,10 +3486,11 @@ body::before {
     </div>
 
     <div class="cmp-row">
-      <div class="cmp-metric-name">תזרים חופשי</div>
-      <div class="cmp-cell">
+      <div class="cmp-metric-name">תזרים מזומנים חופשי</div>
+      <div class="cmp-cell lead">
         <div class="cmp-value partner">134M</div>
         <div class="cmp-delta up">▲ 29%</div>
+        <div class="cmp-lead-tag">✦ מוביל</div>
       </div>
       <div class="cmp-bar"></div>
       <div class="cmp-cell">
@@ -3398,10 +3500,126 @@ body::before {
     </div>
 
     <div class="cmp-row">
-      <div class="cmp-metric-name">מנויי סיבים</div>
+      <div class="cmp-metric-name">חוב פיננסי נטו / EBITDA</div>
+      <div class="cmp-cell lead">
+        <div class="cmp-value partner">0.4</div>
+        <div class="cmp-delta flat">חוב נטו 453M</div>
+        <div class="cmp-lead-tag">✦ מוביל</div>
+      </div>
+      <div class="cmp-bar"></div>
       <div class="cmp-cell">
+        <div class="cmp-value cellcom">0.73</div>
+        <div class="cmp-delta flat">חוב נטו 1,018M</div>
+      </div>
+    </div>
+
+    <!-- ===== GROUP: CELLULAR ===== -->
+    <div class="cmp-group-head"><span class="bar"></span><span class="lbl">📱 מגזר סלולר</span><span class="sub">סוף רבעון</span></div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">מצבת מנויי סלולר</div>
+      <div class="cmp-cell">
+        <div class="cmp-value partner">2,696K</div>
+        <div class="cmp-delta up">▲ 64K</div>
+      </div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell lead">
+        <div class="cmp-value cellcom">3,679K</div>
+        <div class="cmp-delta up">▲ ~76K</div>
+        <div class="cmp-lead-tag">✦ מוביל</div>
+      </div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">מנויי דור 5 (5G) משלמים</div>
+      <div class="cmp-cell lead">
+        <div class="cmp-value partner">928K</div>
+        <div class="cmp-delta flat">מדווח</div>
+        <div class="cmp-lead-tag">✦ שקיפות</div>
+      </div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell">
+        <div class="cmp-value cellcom" style="font-size:12px;color:var(--text-faint);">לא דווח בנפרד</div>
+      </div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">ARPU סלולר (ללא קש"ג)</div>
+      <div class="cmp-cell lead">
+        <div class="cmp-value partner">41₪</div>
+        <div class="cmp-delta down">▼ 1₪</div>
+        <div class="cmp-lead-tag">✦ מוביל</div>
+      </div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell">
+        <div class="cmp-value cellcom">37.2₪</div>
+        <div class="cmp-delta down">▼ 0.6₪</div>
+      </div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">שיעור נטישה סלולר</div>
+      <div class="cmp-cell lead">
+        <div class="cmp-value partner">4.9%</div>
+        <div class="cmp-delta flat">יציב</div>
+        <div class="cmp-lead-tag">✦ מוביל</div>
+      </div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell">
+        <div class="cmp-value cellcom">7.6%</div>
+        <div class="cmp-delta down">גבוה פי ~1.5</div>
+      </div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">הכנסות שירות סלולר (ללא קש"ג)</div>
+      <div class="cmp-cell">
+        <div class="cmp-value partner">334M</div>
+        <div class="cmp-delta flat">יציב</div>
+      </div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell">
+        <div class="cmp-value cellcom">411M</div>
+        <div class="cmp-delta up">▲ 2M</div>
+      </div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">הכנסות ציוד קצה (סלולר)</div>
+      <div class="cmp-cell">
+        <div class="cmp-value partner">127M</div>
+        <div class="cmp-delta down">▼ 2%</div>
+      </div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell">
+        <div class="cmp-value cellcom">254M</div>
+        <div class="cmp-delta down">▼ 17.3%</div>
+      </div>
+    </div>
+
+    <!-- ===== GROUP: FIXED / INTERNET ===== -->
+    <div class="cmp-group-head"><span class="bar"></span><span class="lbl">🌐 נייח ואינטרנט</span><span class="sub">סוף רבעון</span></div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">מצבת מנויי אינטרנט</div>
+      <div class="cmp-cell lead">
+        <div class="cmp-value partner">497K</div>
+        <div class="cmp-delta up">▲ 17K</div>
+        <div class="cmp-lead-tag">✦ מוביל</div>
+      </div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell">
+        <div class="cmp-value cellcom">389K</div>
+        <div class="cmp-delta up">▲ ~8K</div>
+      </div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">מצבת מנויי סיבים</div>
+      <div class="cmp-cell lead">
         <div class="cmp-value partner">475K</div>
         <div class="cmp-delta up">▲ 29K</div>
+        <div class="cmp-lead-tag">✦ מוביל</div>
       </div>
       <div class="cmp-bar"></div>
       <div class="cmp-cell">
@@ -3417,14 +3635,55 @@ body::before {
         <div class="cmp-delta up">▲ 3₪</div>
       </div>
       <div class="cmp-bar"></div>
-      <div class="cmp-cell">
+      <div class="cmp-cell lead">
         <div class="cmp-value cellcom">99.6₪</div>
-        <div class="cmp-delta up">▲ YoY</div>
+        <div class="cmp-delta up">▲ ~7₪</div>
+        <div class="cmp-lead-tag">✦ מוביל</div>
       </div>
     </div>
 
-    <div style="font-size:9px;color:var(--text-faint);text-align:center;margin-top:8px;padding:8px;background:var(--bg-card);border-radius:8px;border:1px solid var(--border);">
-      פרטנר רווחית יותר ביחס (40% מול 34% EBITDA). סלקום גדולה יותר בהכנסות ובמצבת הסלולר, אך עם נטישה גבוהה יותר.
+    <div class="cmp-row">
+      <div class="cmp-metric-name">הכנסות מגזר נייח</div>
+      <div class="cmp-cell">
+        <div class="cmp-value partner">329M</div>
+        <div class="cmp-delta flat">יציב</div>
+      </div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell">
+        <div class="cmp-value cellcom">332M</div>
+        <div class="cmp-delta down">▼ 6M</div>
+      </div>
+    </div>
+
+    <!-- ===== GROUP: TV ===== -->
+    <div class="cmp-group-head"><span class="bar"></span><span class="lbl">📺 טלוויזיה</span><span class="sub">סוף רבעון</span></div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">מצבת מנויי טלוויזיה</div>
+      <div class="cmp-cell">
+        <div class="cmp-value partner">207K</div>
+        <div class="cmp-delta up">▲ 7K</div>
+      </div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell lead">
+        <div class="cmp-value cellcom">275K</div>
+        <div class="cmp-delta flat">יציב</div>
+        <div class="cmp-lead-tag">✦ מוביל</div>
+      </div>
+    </div>
+
+    <!-- ===== VERDICT ===== -->
+    <div class="cmp-verdict">
+      <div class="v-row"><strong class="p">פרטנר מובילה</strong> ברווחיות (EBITDA 40% מול 34%), במינוף הנמוך (0.4 מול 0.73), ב-ARPU סלולר (41₪ מול 37.2₪), בנטישה הנמוכה (4.9% מול 7.6%) ובמצבת הסיבים והאינטרנט.</div>
+      <div class="v-row"><strong class="c">סלקום מובילה</strong> בגודל — הכנסות (1,013M), מצבת סלולר (3.68M) וטלוויזיה (275K) — וב-ARPU אינטרנט (99.6₪), אך עם נטישה גבוהה ומינוף כפול.</div>
+      <div class="v-row" style="color:var(--text-faint);font-size:10px;margin-top:8px;">השורה התחתונה: סלקום גדולה יותר, פרטנר רווחית ויעילה יותר ביחס לגודלה.</div>
+    </div>
+
+    <div style="margin-top:10px;padding:12px 14px;background:rgba(255,181,71,0.06);border:1px solid rgba(255,181,71,0.2);border-radius:10px;font-size:10px;line-height:1.6;color:var(--text-dim);">
+      <strong style="color:var(--amber);">⚠ מה לא נכלל בהשוואה (מגבלות גילוי):</strong>
+      פילוח <strong>פוסטפייד/פריפייד</strong> ומצבת <strong>5G</strong> של סלקום אינם מדווחים בנפרד;
+      <strong>חשמל</strong> (פרטנר חשמל מול סלקום אנרג'י) ו<strong>נדידה</strong> אינם מפולחים כשירות נפרד בדוחות —
+      ידוע רק שמבצע "שאגת הארי" פגע ברווח לפני מס בכ-7M (פרטנר) מול כ-10M (סלקום). ARPU טלוויזיה אינו מפורסם ע"י אף חברה.
     </div>
   </div>
 
@@ -3437,146 +3696,66 @@ body::before {
     </div>
   </div>
 
-  <!-- WINS -->
+  <!-- STRENGTHS — COMPANY VS COMPANY -->
   <div class="section">
     <div class="section-header">
       <div class="section-bar" style="background: var(--gradient-cellcom); box-shadow: 0 0 8px var(--cellcom);"></div>
-      <div class="section-title">איפה סלקום חזקה</div>
-      <div class="section-sub">המנועים שעבדו</div>
+      <div class="section-title">איפה כל חברה חזקה</div>
+      <div class="section-sub">חוזקות • פרטנר מול סלקום</div>
     </div>
 
-    <div class="insights">
-      <div class="insight">
-        <div class="insight-icon win">✓</div>
-        <div class="insight-body">
-          <div class="insight-title">רווח נקי קפץ +20%</div>
-          <div class="insight-text">
-            רווח נקי של <span class="insight-metric">72M ₪</span> לעומת 60M ברבעון מקביל,
-            בעיקר הודות לקיטון בהוצאות מימון ושיפור ברווח הגולמי (36.8% מ-31.4%).
-          </div>
-        </div>
+    <div class="vs-cards">
+      <div class="vs-col partner">
+        <div class="vs-col-head"><span class="vs-dot partner"></span> פרטנר — חזקה ב…</div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>רווחיות מובילה</strong> — שיעור EBITDA <span class="num">40%</span> מול 34%, הגבוה מבין השתיים.</div></div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>מינוף נמוך</strong> — חוב נטו/EBITDA <span class="num">0.4</span> בלבד (מול 0.73).</div></div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>נאמנות לקוחות</strong> — נטישה <span class="num">4.9%</span>, נמוכה משמעותית מסלקום.</div></div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>צמיחת אינטרנט</strong> — סיבים <span class="num">+29K</span> ל-475K, ARPU אינטרנט +3₪ ל-95₪.</div></div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>תזרים חזק</strong> — FCF <span class="num">+29%</span> ל-134M (כולל החזר מס 86M).</div></div>
       </div>
 
-      <div class="insight">
-        <div class="insight-icon win">✓</div>
-        <div class="insight-body">
-          <div class="insight-title">מחיקת חוב אגרסיבית</div>
-          <div class="insight-text">
-            חוב פיננסי נטו ירד ב-<span class="insight-metric">607M ₪</span> ל-1,018M —
-            בעיקר מהתמורה על מכירת ההחזקות ב-IBC ומפירעון אג"ח. יחס חוב/EBITDA: 0.73 בלבד.
-          </div>
-        </div>
-      </div>
-
-      <div class="insight">
-        <div class="insight-icon win">✓</div>
-        <div class="insight-body">
-          <div class="insight-title">סיבים — 92% מתשתית האינטרנט</div>
-          <div class="insight-text">
-            <span class="insight-metric">357K</span> מנויי סיבים (+6.9% YoY), שהם 92% ממצבת מנויי
-            תשתית האינטרנט. ARPU אינטרנט עלה ל-99.6₪.
-          </div>
-        </div>
-      </div>
-
-      <div class="insight">
-        <div class="insight-icon win">✓</div>
-        <div class="insight-body">
-          <div class="insight-title">EBITDA נייד צומח</div>
-          <div class="insight-text">
-            EBITDA מגזר נייד עלה ב-<span class="insight-metric">1.8%</span> ל-228M ₪,
-            מצמיחה בהכנסות סלולר ורווחיות ציוד קצה.
-          </div>
-        </div>
-      </div>
-
-      <div class="insight">
-        <div class="insight-icon win">✓</div>
-        <div class="insight-body">
-          <div class="insight-title">דירוג שודרג ל-ilAA-</div>
-          <div class="insight-text">
-            מעלות עדכנה את תחזית הדירוג מ-ilA+ ל-<span class="insight-metric">ilAA-</span> באופק יציב (אוגוסט 2025) —
-            זהה לדירוג של פרטנר.
-          </div>
-        </div>
+      <div class="vs-col cellcom">
+        <div class="vs-col-head"><span class="vs-dot cellcom"></span> סלקום — חזקה ב…</div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>גודל וקנה מידה</strong> — מצבת סלולר <span class="num">3,679K</span> מול 2,696K, הגדולה בשוק.</div></div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>מחיקת חוב</strong> — חוב נטו ירד <span class="num">607M</span> ל-1,018M (מכירת IBC).</div></div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>ARPU אינטרנט גבוה</strong> — <span class="num">99.6₪</span> מול 95₪ של פרטנר.</div></div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>קפיצת רווח</strong> — רווח נקי <span class="num">+20%</span> ל-72M; תזרים שיא 5 שנים 115M.</div></div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>בשלות סיבים</strong> — 357K סיבים = <span class="num">92%</span> מבסיס האינטרנט.</div></div>
       </div>
     </div>
   </div>
 
-  <!-- PROBLEMS -->
+  <!-- PROBLEMS — COMPANY VS COMPANY -->
   <div class="section">
     <div class="section-header">
       <div class="section-bar" style="background: var(--gradient-cellcom); box-shadow: 0 0 8px var(--cellcom);"></div>
-      <div class="section-title">איפה הבעיות</div>
-      <div class="section-sub">נקודות תורפה</div>
+      <div class="section-title">איפה הבעיות של כל חברה</div>
+      <div class="section-sub">נקודות תורפה • פרטנר מול סלקום</div>
     </div>
 
-    <div class="insights">
-      <div class="insight">
-        <div class="insight-icon warn">!</div>
-        <div class="insight-body">
-          <div class="insight-title">"שאגת הארי" פגעה בנדידה</div>
-          <div class="insight-text">
-            פגיעה כוללת ברווח לפני מס של <span class="insight-metric warn">~10M ₪</span> ברבעון,
-            עיקרה משירותי נדידה ומכירות ציוד קצה בעקבות סגירת השמיים.
-          </div>
-        </div>
+    <div class="vs-cards">
+      <div class="vs-col partner">
+        <div class="vs-col-head"><span class="vs-dot partner"></span> פרטנר — נקודות תורפה</div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>"שאגת הארי"</strong> פגע ~<span class="num">7M</span> ברווח לפני מס (נדידה).</div></div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>שחיקת סלולר</strong> — הכנסות מגזר סלולר <span class="num">▼8%</span> ל-461M (קש"ג + נדידה).</div></div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>ARPU סלולר יורד</strong> — ל-<span class="num">41₪</span>.</div></div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>גירעון הון חוזר</strong> ~<span class="num">125M</span> אחרי דיבידנד 465M; חוב נטו עלה ל-453M.</div></div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>שומות מס במחלוקת</strong> ~<span class="num">185M</span> (שולמו 45M על החשבון).</div></div>
       </div>
 
-      <div class="insight">
-        <div class="insight-icon warn">!</div>
-        <div class="insight-body">
-          <div class="insight-title">הכנסות מגזר נייד נשחקות</div>
-          <div class="insight-text">
-            סך הכנסות מגזר סלולר ירד ב-<span class="insight-metric warn">12.7%</span> ל-665M ₪ —
-            שילוב של קיצוץ קש"ג, ירידה בנדידה וירידה של 17% בהכנסות ציוד קצה.
-          </div>
-        </div>
+      <div class="vs-col cellcom">
+        <div class="vs-col-head"><span class="vs-dot cellcom"></span> סלקום — נקודות תורפה</div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>"שאגת הארי"</strong> פגע ~<span class="num">10M</span> ברווח לפני מס — חזק יותר מפרטנר.</div></div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>שחיקת סלולר חדה</strong> — הכנסות מגזר סלולר <span class="num">▼12.7%</span> ל-665M (ציוד ▼17%).</div></div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>נטישה גבוהה</strong> — <span class="num">7.6%</span>, כמעט כפול מפרטנר.</div></div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>גירעון הון חוזר</strong> <span class="num">745M</span> — גדול בהרבה מפרטנר.</div></div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>תביעת נגד IBC</strong> עד ~<span class="num">895M</span>; EBITDA נייח ▼6.4% ל-117M.</div></div>
       </div>
+    </div>
 
-      <div class="insight">
-        <div class="insight-icon warn">!</div>
-        <div class="insight-body">
-          <div class="insight-title">EBITDA נייח בירידה</div>
-          <div class="insight-text">
-            EBITDA מגזר נייח ירד ב-<span class="insight-metric warn">6.4%</span> ל-117M ₪,
-            בעיקר בגלל הכנסות חד-פעמיות שהיו ברבעון המקביל אשתקד.
-          </div>
-        </div>
-      </div>
-
-      <div class="insight">
-        <div class="insight-icon warn">!</div>
-        <div class="insight-body">
-          <div class="insight-title">נטישת סלולר גבוהה — 7.6%</div>
-          <div class="insight-text">
-            שיעור נטישה של <span class="insight-metric warn">7.6%</span> לרבעון — גבוה משמעותית
-            מפרטנר (4.9%), מצביע על תחרות אגרסיבית על בסיס הלקוחות.
-          </div>
-        </div>
-      </div>
-
-      <div class="insight">
-        <div class="insight-icon warn">!</div>
-        <div class="insight-body">
-          <div class="insight-title">תביעת נגד של IBC — עד 895M ₪</div>
-          <div class="insight-text">
-            IBC הגישה כתב תביעה שכנגד מתוקן בסך <span class="insight-metric warn">16.5M ₪</span> וטוענת
-            להפרה צפויה של עד ~895M ₪ עד תום הסכם ה-IRU. סלקום אינה יכולה להעריך תוצאות בשלב זה.
-          </div>
-        </div>
-      </div>
-
-      <div class="insight">
-        <div class="insight-icon warn">!</div>
-        <div class="insight-body">
-          <div class="insight-title">גירעון בהון החוזר</div>
-          <div class="insight-text">
-            גירעון של <span class="insight-metric warn">745M ₪</span> בהון החוזר המאוחד (1,078M סולו) —
-            תוצאת העברת חוב מזמן ארוך לקצר ותשלום דיבידנד 200M.
-          </div>
-        </div>
-      </div>
+    <div class="cmp-verdict" style="margin-top:14px;">
+      <div class="v-row"><strong class="p">הכרעה — חוזקות:</strong> פרטנר מנצחת באיכות (רווחיות, מינוף, נטישה); סלקום מנצחת בכמות (גודל, מחיקת חוב, ARPU אינטרנט).</div>
+      <div class="v-row"><strong class="c">הכרעה — סיכונים:</strong> שתיהן עם גירעון הון חוזר ופגיעת "שאגת הארי", אך אצל סלקום הסיכונים גדולים יותר — נטישה כפולה, גירעון פי ~6, ותביעת IBC של עד 895M.</div>
     </div>
   </div>
 
@@ -4431,28 +4610,20 @@ window._charts.cellcomRevenue = new Chart(document.getElementById('chartCellcomR
     labels: ["Q1'25", "Q2'25", "Q3'25", "Q4'25", "Q1'26"],
     datasets: [
       {
-        label: 'סלולר',
-        data: [762, 704, 685, 717, 665],
-        borderColor: '#c77dff',
-        backgroundColor: cellcomGradient,
-        borderWidth: 2.5, tension: 0.35, fill: false,
-        pointRadius: 3, pointBackgroundColor: '#c77dff', pointBorderWidth: 0
-      },
-      {
-        label: 'נייח',
-        data: [385, 379, 382, 375, 383],
-        borderColor: '#4a9eff',
-        backgroundColor: 'rgba(74, 158, 255, 0.05)',
-        borderWidth: 2.5, tension: 0.35, fill: false,
-        pointRadius: 3, pointBackgroundColor: '#4a9eff', pointBorderWidth: 0
-      },
-      {
-        label: 'מאוחד',
-        data: [1112, 1047, 1033, 1052, 1013],
-        borderColor: '#ffb547',
-        backgroundColor: 'rgba(255, 181, 71, 0.08)',
+        label: 'פרטנר',
+        data: [810, 802, 784, 804, 770],
+        borderColor: '#00d8c8',
+        backgroundColor: 'rgba(0, 216, 200, 0.08)',
         borderWidth: 2.5, tension: 0.35, fill: true,
-        pointRadius: 3, pointBackgroundColor: '#ffb547', pointBorderWidth: 0
+        pointRadius: 3, pointBackgroundColor: '#00d8c8', pointBorderWidth: 0
+      },
+      {
+        label: 'סלקום',
+        data: [1112, 1047, 1033, 1052, 1013],
+        borderColor: '#c77dff',
+        backgroundColor: 'rgba(199, 125, 255, 0.08)',
+        borderWidth: 2.5, tension: 0.35, fill: true,
+        pointRadius: 3, pointBackgroundColor: '#c77dff', pointBorderWidth: 0
       }
     ]
   },
@@ -4471,21 +4642,25 @@ window._charts.cellcomRevenue = new Chart(document.getElementById('chartCellcomR
 
 // CELLCOM EBITDA BY SEGMENT (stacked)
 window._charts.cellcomEbitda = new Chart(document.getElementById('chartCellcomEbitda'), {
-  type: 'bar',
+  type: 'line',
   data: {
     labels: ["Q1'25", "Q2'25", "Q3'25", "Q4'25", "Q1'26"],
     datasets: [
       {
-        label: 'סלולר',
-        data: [224, 229, 248, 210, 228],
-        backgroundColor: 'rgba(199, 125, 255, 0.85)',
-        borderRadius: 6, borderSkipped: false
+        label: 'פרטנר',
+        data: [286, 303, 331, 304, 306],
+        borderColor: '#00d8c8',
+        backgroundColor: 'rgba(0, 216, 200, 0.08)',
+        borderWidth: 2.5, tension: 0.35, fill: true,
+        pointRadius: 3, pointBackgroundColor: '#00d8c8', pointBorderWidth: 0
       },
       {
-        label: 'נייח',
-        data: [125, 122, 121, 126, 117],
-        backgroundColor: 'rgba(74, 158, 255, 0.75)',
-        borderRadius: 6, borderSkipped: false
+        label: 'סלקום',
+        data: [349, 351, 369, 336, 345],
+        borderColor: '#c77dff',
+        backgroundColor: 'rgba(199, 125, 255, 0.08)',
+        borderWidth: 2.5, tension: 0.35, fill: true,
+        pointRadius: 3, pointBackgroundColor: '#c77dff', pointBorderWidth: 0
       }
     ]
   },
@@ -4493,11 +4668,11 @@ window._charts.cellcomEbitda = new Chart(document.getElementById('chartCellcomEb
     responsive: true, maintainAspectRatio: false,
     plugins: {
       legend: { position: 'bottom', labels: { boxWidth: 8, boxHeight: 8, padding: 10, font: { size: 10, weight: '600' } } },
-      tooltip: { backgroundColor: '#0d1825', borderColor: 'rgba(199, 125, 255, 0.3)', borderWidth: 1 }
+      tooltip: { backgroundColor: '#0d1825', borderColor: 'rgba(199, 125, 255, 0.3)', borderWidth: 1, callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + 'M ₪' } }
     },
     scales: {
-      x: { grid: { display: false }, stacked: true, ticks: { font: { size: 10 } } },
-      y: { grid: { color: 'rgba(255,255,255,0.04)' }, stacked: true, ticks: { font: { size: 10 }, callback: v => v + 'M' } }
+      x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { font: { size: 10 }, callback: v => v + 'M' } }
     }
   }
 });
