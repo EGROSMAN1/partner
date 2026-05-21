@@ -587,6 +587,15 @@ body::before {
   .vs-cards { grid-template-columns: 1fr; }
 }
 
+/* ===== BEZEQ COLOR VARIANTS (Partner vs Bezeq page) ===== */
+.cmp-legend .dot.bezeq { background: var(--bezeq); box-shadow: 0 0 6px var(--bezeq); }
+.dk-co.bezeq { color: var(--bezeq); }
+.dk-val.bezeq { color: var(--bezeq); }
+.vs-col.bezeq { border-color: rgba(74, 158, 255, 0.22); }
+.vs-col.bezeq .vs-col-head { color: var(--bezeq); }
+.vs-dot.bezeq { background: var(--bezeq); box-shadow: 0 0 6px var(--bezeq); }
+.vs-col.bezeq .vs-item .num { color: var(--bezeq); }
+
 /* DIVISION CARD */
 .div-card {
   background: var(--bg-card);
@@ -2298,431 +2307,318 @@ body::before {
 <!-- ============================================== -->
 <div class="page" id="page-2">
 
-  <!-- VS HEADER -->
-  <div class="vs-header">
-    <div class="vs-side">
-      <div class="vs-logo partner">PRT</div>
-      <div class="vs-name">פרטנר</div>
-      <div class="vs-tagline">חטיבה עסקית</div>
-    </div>
-    <div class="vs-divider">VS</div>
-    <div class="vs-side">
-      <div class="vs-logo bezeq">BZQ</div>
-      <div class="vs-name">בזק</div>
-      <div class="vs-tagline">פעילות עסקית</div>
+  <!-- VS HEADER — top of page -->
+  <div class="section" style="margin-top:6px;margin-bottom:14px;">
+    <div class="vs-header">
+      <div class="vs-side">
+        <div class="vs-logo partner">PRT</div>
+        <div class="vs-name">פרטנר</div>
+        <div class="vs-tagline">קבוצה מאוחדת</div>
+      </div>
+      <div class="vs-divider">VS</div>
+      <div class="vs-side">
+        <div class="vs-logo bezeq">BZQ</div>
+        <div class="vs-name">בזק</div>
+        <div class="vs-tagline">קבוצה מאוחדת</div>
+      </div>
     </div>
   </div>
 
-  <div class="hero" style="border-color: rgba(74, 158, 255, 0.2); background: linear-gradient(135deg, rgba(74,158,255,0.06) 0%, rgba(0,216,200,0.04) 100%);">
-    <div class="hero-label" style="color: var(--bezeq);">⚔ הקרב על השוק העסקי</div>
+  <!-- HERO -->
+  <div class="hero" style="border-color: rgba(74,158,255,0.25); background: linear-gradient(135deg, rgba(74,158,255,0.08) 0%, rgba(0,216,200,0.04) 100%);">
+    <div class="hero-label" style="color: var(--bezeq);">📊 השוואה מלאה — פרטנר מול בזק • Q1 2026</div>
     <div class="hero-text">
-      <strong>בזק בינלאומי TECH</strong> רשמה <strong style="color:var(--bezeq);">+10%</strong> בהכנסות מעסקים על
-      בסיס ענן ואינטגרציה. <strong>פרטנר</strong> צמחה ב-<strong>+1%</strong> בנייח (כולל דאטה לעסקים) —
-      בזק מובילה בקצב אבל פרטנר רווחית יותר ביחס.
+      <strong style="color:var(--bezeq);">בזק</strong> ענק תשתית — הכנסות 2,030M (פי ~2.6), EBITDA 928M, מנהיגת סיבים (1,029K) ו-yes רווחית.
+      <strong style="color:var(--teal-glow);">פרטנר</strong> ממוקדת וממונפת נמוך, סלולר רווחי וצמיחת רווח +16%.
+      אבל פלאפון של בזק עברה להפסד והרווח הקבוצתי ירד 28%. כל המדדים למטה — חברה מול חברה.
     </div>
   </div>
 
-  <!-- COMPARISON METRICS -->
+  <!-- DUAL KPI GRID -->
   <div class="section">
     <div class="section-header">
-      <div class="section-bar"></div>
-      <div class="section-title">השוואה ראש בראש</div>
-      <div class="section-sub">Q1 2026</div>
+      <div class="section-bar" style="background: var(--gradient-bezeq); box-shadow: 0 0 8px var(--bezeq);"></div>
+      <div class="section-title">מספרי מפתח — פרטנר מול בזק</div>
+      <div class="section-sub">Q1'26 • קבוצה מאוחדת • החצים מול Q1'25</div>
     </div>
 
+    <div class="dual-kpi-grid">
+      <div class="dual-kpi">
+        <div class="dual-kpi-label">סך הכנסות</div>
+        <div class="dual-kpi-row">
+          <div class="dk-side">
+            <div class="dk-co partner">פרטנר</div>
+            <div class="dk-val partner">770M</div>
+            <div class="dk-delta down">▼ 5%</div>
+          </div>
+          <div class="dk-sep"></div>
+          <div class="dk-side">
+            <div class="dk-co bezeq">בזק</div>
+            <div class="dk-val bezeq">2,030M</div>
+            <div class="dk-delta up">▲ 2.6%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dual-kpi">
+        <div class="dual-kpi-label">EBITDA מתואם</div>
+        <div class="dual-kpi-row">
+          <div class="dk-side">
+            <div class="dk-co partner">פרטנר</div>
+            <div class="dk-val partner">306M</div>
+            <div class="dk-delta up">▲ 7%</div>
+          </div>
+          <div class="dk-sep"></div>
+          <div class="dk-side">
+            <div class="dk-co bezeq">בזק</div>
+            <div class="dk-val bezeq">928M</div>
+            <div class="dk-delta up">▲ 1.2%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dual-kpi">
+        <div class="dual-kpi-label">רווח נקי</div>
+        <div class="dual-kpi-row">
+          <div class="dk-side">
+            <div class="dk-co partner">פרטנר</div>
+            <div class="dk-val partner">74M</div>
+            <div class="dk-delta up">▲ 16%</div>
+          </div>
+          <div class="dk-sep"></div>
+          <div class="dk-side">
+            <div class="dk-co bezeq">בזק</div>
+            <div class="dk-val bezeq">211M</div>
+            <div class="dk-delta down">▼ 28%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dual-kpi">
+        <div class="dual-kpi-label">תזרים מזומנים חופשי</div>
+        <div class="dual-kpi-row">
+          <div class="dk-side">
+            <div class="dk-co partner">פרטנר</div>
+            <div class="dk-val partner">134M</div>
+            <div class="dk-delta up">▲ 29%</div>
+          </div>
+          <div class="dk-sep"></div>
+          <div class="dk-side">
+            <div class="dk-co bezeq">בזק</div>
+            <div class="dk-val bezeq">455M</div>
+            <div class="dk-delta up">▲ 74%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:9px;color:var(--text-faint);margin-top:8px;">* רווח נקי בזק GAAP 211M כולל ~92M הוצאת פרישה חד-פעמית; הרווח ההשוואתי ~300M (▲4.2%).</div>
+  </div>
+
+  <!-- HEAD-TO-HEAD CHARTS -->
+  <div class="section">
+    <div class="chart-card">
+      <div class="chart-title">מגמת EBITDA נייח — פרטנר מול בזק קווי</div>
+      <div class="chart-sub">5 רבעונים • <span style="color:var(--teal-glow);font-weight:700;">פרטנר נייח</span> מול <span style="color:var(--bezeq);font-weight:700;">בזק קווי</span> (במיליוני ₪)</div>
+      <div class="chart-wrap"><canvas id="chartPrtVsBzqEbitda"></canvas></div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">פרטנר מול בזק — מספרי מפתח קבוצתיים</div>
+      <div class="chart-sub">Q1'26 • במיליוני ₪</div>
+      <div class="chart-wrap"><canvas id="chartPrtVsBzqKey"></canvas></div>
+    </div>
+  </div>
+
+  <!-- CENTRAL COMPARISON -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-bar" style="background: var(--gradient-bezeq); box-shadow: 0 0 8px var(--bezeq);"></div>
+      <div class="section-title">השוואה מרכזית — שירות מול שירות</div>
+      <div class="section-sub">כל המדדים • Q1'26 • פרטנר מול בזק</div>
+    </div>
+
+    <div class="cmp-legend">
+      <span><span class="dot partner"></span> פרטנר</span>
+      <span><span class="dot bezeq"></span> בזק</span>
+      <span><span class="lead-chip">✦ מוביל</span> יתרון תחרותי במדד</span>
+    </div>
+    <div style="text-align:center;font-size:9.5px;color:var(--text-faint);margin:-8px 0 14px;line-height:1.5;">▲ ▼ כל החצים מציגים שינוי מול הרבעון המקביל אשתקד (Q1'25)</div>
+
+    <!-- GROUP: FINANCIALS -->
+    <div class="cmp-group-head"><span class="bar" style="background:var(--gradient-bezeq);"></span><span class="lbl">📊 פיננסי קבוצתי</span><span class="sub">במיליוני ₪</span></div>
+
     <div class="cmp-row">
-      <div class="cmp-metric-name">סך הכנסות הקבוצה</div>
-      <div class="cmp-cell">
-        <div class="cmp-value partner">770M</div>
-        <div class="cmp-delta down">▼ 5%</div>
-      </div>
+      <div class="cmp-metric-name">סך הכנסות (ליבה)</div>
+      <div class="cmp-cell"><div class="cmp-value partner">770M</div><div class="cmp-delta down">▼ 5%</div></div>
       <div class="cmp-bar"></div>
-      <div class="cmp-cell">
-        <div class="cmp-value bezeq">2,169M</div>
-        <div class="cmp-delta down">▼ 3%</div>
-      </div>
+      <div class="cmp-cell"><div class="cmp-value bezeq">2,030M</div><div class="cmp-delta up">▲ 2.6%</div></div>
     </div>
 
     <div class="cmp-row">
       <div class="cmp-metric-name">EBITDA מתואם</div>
-      <div class="cmp-cell">
-        <div class="cmp-value partner">306M</div>
-        <div class="cmp-delta up">▲ 7%</div>
-      </div>
+      <div class="cmp-cell"><div class="cmp-value partner">306M</div><div class="cmp-delta up">▲ 7%</div></div>
       <div class="cmp-bar"></div>
-      <div class="cmp-cell">
-        <div class="cmp-value bezeq">928M</div>
-        <div class="cmp-delta up">▲ 1.2%</div>
-      </div>
+      <div class="cmp-cell"><div class="cmp-value bezeq">928M</div><div class="cmp-delta up">▲ 1.2%</div></div>
     </div>
 
     <div class="cmp-row">
-      <div class="cmp-metric-name">שיעור EBITDA</div>
-      <div class="cmp-cell">
-        <div class="cmp-value partner">40%</div>
-        <div class="cmp-delta up">▲ 5pp</div>
-      </div>
+      <div class="cmp-metric-name">שיעור רווחיות EBITDA</div>
+      <div class="cmp-cell"><div class="cmp-value partner">40%</div><div class="cmp-delta up">▲ 5pp</div></div>
       <div class="cmp-bar"></div>
-      <div class="cmp-cell">
-        <div class="cmp-value bezeq">43%</div>
-        <div class="cmp-delta up">▲ 2pp</div>
-      </div>
+      <div class="cmp-cell lead"><div class="cmp-value bezeq">~46%</div><div class="cmp-delta up">▲</div><div class="cmp-lead-tag">✦ מוביל</div></div>
     </div>
 
     <div class="cmp-row">
       <div class="cmp-metric-name">רווח נקי</div>
-      <div class="cmp-cell">
-        <div class="cmp-value partner">74M</div>
-        <div class="cmp-delta up">▲ 16%</div>
-      </div>
+      <div class="cmp-cell lead"><div class="cmp-value partner">74M</div><div class="cmp-delta up">▲ 16%</div><div class="cmp-lead-tag">✦ צומח</div></div>
       <div class="cmp-bar"></div>
-      <div class="cmp-cell">
-        <div class="cmp-value bezeq">300M*</div>
-        <div class="cmp-delta up">▲ 4.2%</div>
-      </div>
+      <div class="cmp-cell"><div class="cmp-value bezeq">211M</div><div class="cmp-delta down">▼ 28%</div></div>
     </div>
 
     <div class="cmp-row">
-      <div class="cmp-metric-name">תזרים חופשי</div>
-      <div class="cmp-cell">
-        <div class="cmp-value partner">134M</div>
-        <div class="cmp-delta up">▲ 29%</div>
-      </div>
+      <div class="cmp-metric-name">תזרים מזומנים חופשי</div>
+      <div class="cmp-cell"><div class="cmp-value partner">134M</div><div class="cmp-delta up">▲ 29%</div></div>
       <div class="cmp-bar"></div>
-      <div class="cmp-cell">
-        <div class="cmp-value bezeq">455M</div>
-        <div class="cmp-delta up">▲ 74%</div>
-      </div>
+      <div class="cmp-cell lead"><div class="cmp-value bezeq">455M</div><div class="cmp-delta up">▲ 74%</div><div class="cmp-lead-tag">✦ מוביל</div></div>
     </div>
 
+    <!-- GROUP: FIXED / INTERNET -->
+    <div class="cmp-group-head"><span class="bar" style="background:var(--gradient-bezeq);"></span><span class="lbl">🌐 נייח ואינטרנט</span><span class="sub">סוף רבעון</span></div>
+
     <div class="cmp-row">
-      <div class="cmp-metric-name">מנויי סיבים</div>
-      <div class="cmp-cell">
-        <div class="cmp-value partner">475K</div>
-        <div class="cmp-delta up">▲ 29K</div>
-      </div>
+      <div class="cmp-metric-name">מצבת מנויי סיבים</div>
+      <div class="cmp-cell"><div class="cmp-value partner">475K</div><div class="cmp-delta up">▲ 29K</div></div>
       <div class="cmp-bar"></div>
-      <div class="cmp-cell">
-        <div class="cmp-value bezeq">1,040K</div>
-        <div class="cmp-delta up">▲ 36K/Q</div>
-      </div>
+      <div class="cmp-cell lead"><div class="cmp-value bezeq">1,029K</div><div class="cmp-delta up">▲ 166K</div><div class="cmp-lead-tag">✦ מוביל</div></div>
     </div>
 
     <div class="cmp-row">
       <div class="cmp-metric-name">ARPU אינטרנט</div>
-      <div class="cmp-cell">
-        <div class="cmp-value partner">95₪</div>
-        <div class="cmp-delta up">▲ 3₪</div>
-      </div>
+      <div class="cmp-cell"><div class="cmp-value partner">95₪</div><div class="cmp-delta up">▲ 3₪</div></div>
       <div class="cmp-bar"></div>
-      <div class="cmp-cell">
-        <div class="cmp-value bezeq">139₪</div>
-        <div class="cmp-delta up">▲ 4%</div>
-      </div>
+      <div class="cmp-cell lead"><div class="cmp-value bezeq">139₪</div><div class="cmp-delta up">▲ 4%</div><div class="cmp-lead-tag">✦ מוביל</div></div>
     </div>
 
-    <div style="font-size:9px;color:var(--text-faint);text-align:center;margin-top:8px;padding:8px;background:var(--bg-card);border-radius:8px;border:1px solid var(--border);">
-      * רווח נקי השוואתי. רווח נקי GAAP של בזק: 211M (-30%) בעיקר בגלל הסכם קיבוצי בפלאפון
+    <div class="cmp-row">
+      <div class="cmp-metric-name">הכנסות נייח / קווי</div>
+      <div class="cmp-cell"><div class="cmp-value partner">329M</div><div class="cmp-delta flat">יציב</div></div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell"><div class="cmp-value bezeq">1,110M</div><div class="cmp-delta up">▲ 0.8%</div></div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">פריסת סיבים (משקי בית)</div>
+      <div class="cmp-cell"><div class="cmp-value partner" style="font-size:12px;color:var(--text-faint);">נשענת על IRU בזק</div></div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell lead"><div class="cmp-value bezeq">~3M</div><div class="cmp-delta up">תשתית עצמית</div><div class="cmp-lead-tag">✦ מוביל</div></div>
+    </div>
+
+    <!-- GROUP: CELLULAR -->
+    <div class="cmp-group-head"><span class="bar" style="background:var(--gradient-bezeq);"></span><span class="lbl">📱 סלולר (פרטנר מול פלאפון)</span><span class="sub">Q1'26</span></div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">רווחיות סלולר</div>
+      <div class="cmp-cell lead"><div class="cmp-value partner">EBITDA 183M</div><div class="cmp-delta up">רווחי</div><div class="cmp-lead-tag">✦ מוביל</div></div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell"><div class="cmp-value bezeq" style="font-size:14px;">הפסד נקי 44M-</div><div class="cmp-delta down">פלאפון</div></div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">דור 5 (5G)</div>
+      <div class="cmp-cell"><div class="cmp-value partner">928K</div><div class="cmp-delta flat">משלמים</div></div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell"><div class="cmp-value bezeq">75%</div><div class="cmp-delta up">מהפרטיים</div></div>
+    </div>
+
+    <!-- GROUP: TV -->
+    <div class="cmp-group-head"><span class="bar" style="background:var(--gradient-bezeq);"></span><span class="lbl">📺 טלוויזיה (פרטנר מול yes)</span><span class="sub">סוף רבעון</span></div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">מצבת מנויי טלוויזיה</div>
+      <div class="cmp-cell"><div class="cmp-value partner">207K</div><div class="cmp-delta up">▲ 7K</div></div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell lead"><div class="cmp-value bezeq">565K</div><div class="cmp-delta flat">יציב • yes</div><div class="cmp-lead-tag">✦ מוביל</div></div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-metric-name">ARPU טלוויזיה</div>
+      <div class="cmp-cell"><div class="cmp-value partner" style="font-size:12px;color:var(--text-faint);">לא מפורסם</div></div>
+      <div class="cmp-bar"></div>
+      <div class="cmp-cell lead"><div class="cmp-value bezeq">202₪</div><div class="cmp-delta up">▲ מ-189₪</div><div class="cmp-lead-tag">✦ מוביל</div></div>
+    </div>
+
+    <div class="cmp-verdict">
+      <div class="v-row"><strong class="p">פרטנר מובילה</strong> במינוף הנמוך, ברווחיות הסלולר (EBITDA 183M מול פלאפון בהפסד) ובקצב צמיחת הרווח (+16% מול ▼28%).</div>
+      <div class="v-row"><strong style="color:var(--bezeq);">בזק מובילה</strong> בגודל (פי ~2.6 הכנסות), ברווחיות מוחלטת (EBITDA 928M, ~46%), במנהיגות סיבים (1,029K, ~3M משקי בית) וב-yes רווחית (565K, ARPU 202₪).</div>
+      <div class="v-row" style="color:var(--text-faint);font-size:10px;margin-top:8px;">השורה התחתונה: בזק ענק תשתית רב-זרועי; פרטנר ממוקדת, יעילה בהון וצומחת ברווח — אבל קטנה בהרבה ועם מצבת סיבים שלישית מזו של בזק.</div>
+    </div>
+
+    <div style="margin-top:10px;padding:12px 14px;background:rgba(74,158,255,0.06);border:1px solid rgba(74,158,255,0.2);border-radius:10px;font-size:10px;line-height:1.6;color:var(--text-dim);">
+      <strong style="color:var(--bezeq);">⚠ מבנה שונה — שים לב:</strong>
+      בזק היא קבוצה רב-זרועית (<strong>בזק קווי + פלאפון + yes + בזק בינלאומי</strong>). הסלולר של בזק = <strong>פלאפון</strong>, ולכן ARPU/מצבת סלולר אינם בני-השוואה 1:1 לפרטנר. הכנסות בזק = "הכנסות ליבה" 2,030M. רווח נקי 211M (GAAP) כולל ~92M פרישה חד-פעמית; השוואתי ~300M. יחס חוב/EBITDA של בזק לא הוצג כאן.
     </div>
   </div>
 
-  <!-- BUSINESS REVENUE COMPARISON CHART -->
-  <div class="section">
-    <div class="chart-card">
-      <div class="chart-title">קצב צמיחה בחטיבה העסקית</div>
-      <div class="chart-sub">Q1'26 YoY — איפה כל אחד צומח</div>
-      <div class="chart-wrap tall"><canvas id="chartBizGrowth"></canvas></div>
-    </div>
-  </div>
-
-  <!-- BEZEQ DEEP DIVE -->
+  <!-- STRENGTHS — COMPANY VS COMPANY -->
   <div class="section">
     <div class="section-header">
       <div class="section-bar" style="background: var(--gradient-bezeq); box-shadow: 0 0 8px var(--bezeq);"></div>
-      <div class="section-title">בזק • מה קורה אצלם</div>
-      <div class="section-sub">מבט עסקי</div>
+      <div class="section-title">איפה כל חברה חזקה</div>
+      <div class="section-sub">חוזקות • פרטנר מול בזק</div>
     </div>
 
-    <div class="div-card bezeq">
-      <div class="div-head">
-        <div class="div-badge bezeq">B</div>
-        <div>
-          <div class="div-name">בזק בינלאומי TECH</div>
-          <div class="div-tag">הזרוע העסקית של הקבוצה • אינטגרציה • ענן • סייבר</div>
-        </div>
+    <div class="vs-cards">
+      <div class="vs-col partner">
+        <div class="vs-col-head"><span class="vs-dot partner"></span> פרטנר — חזקה ב…</div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>מינוף נמוך</strong> — חוב נטו/EBITDA <span class="num">0.4</span>, נמוך משמעותית מבזק.</div></div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>סלולר רווחי</strong> — EBITDA <span class="num">183M</span> מול פלאפון בהפסד נקי 44M-.</div></div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>צמיחת רווח</strong> — רווח נקי <span class="num">+16%</span> מול ירידה 28% בבזק (GAAP).</div></div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>זריזות וגודל מנוהל</strong> — חברה ממוקדת, תזרים <span class="num">+29%</span>.</div></div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>קצב שיפור רווחיות</strong> — שיעור EBITDA <span class="num">+5pp</span> מול +2pp בבזק.</div></div>
       </div>
 
-      <div class="div-points">
-        <div class="div-point win">
-          <div class="div-point-marker">+</div>
-          <div><strong>צמיחה 10%</strong> בהכנסות מעסקים — מנוע מרכזי של הקבוצה. גידול בולט בשירותי אינטגרציה ובענן.</div>
-        </div>
-        <div class="div-point win">
-          <div class="div-point-marker">+</div>
-          <div><strong>סייבר ודאטה סנטר</strong> — 13 מתקנים בעולם, 5 בישראל לפי TIER3. שירותי DDoS, SOC, וירטואליזציה.</div>
-        </div>
-        <div class="div-point new">
-          <div class="div-point-marker">★</div>
-          <div><strong>כבל תת-ימי חדש לאירופה</strong> — מהלך אסטרטגי שיהפוך את ישראל לצומת דיגיטלית גלובלית.</div>
-        </div>
-        <div class="div-point lose">
-          <div class="div-point-marker">−</div>
-          <div>ירידה ב<strong>אינטרנט פרטי</strong>, תקשורת נתונים ו<strong>טלפוניה בינלאומית</strong> — שחיקה במגזרי הליבה הישנים.</div>
-        </div>
-      </div>
-
-      <div class="mini-stats">
-        <div class="mini-stat">
-          <div class="mini-stat-val bezeq">289M</div>
-          <div class="mini-stat-lbl">הכנסות Q1</div>
-        </div>
-        <div class="mini-stat">
-          <div class="mini-stat-val bezeq">15M</div>
-          <div class="mini-stat-lbl">רווח נקי</div>
-        </div>
-        <div class="mini-stat">
-          <div class="mini-stat-val bezeq">+10%</div>
-          <div class="mini-stat-lbl">צמיחה עסקית</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="div-card bezeq">
-      <div class="div-head">
-        <div class="div-badge bezeq">N</div>
-        <div>
-          <div class="div-name">בזק קווי • שוק עסקי</div>
-          <div class="div-tag">תשתית סיבים לעסקים • קווי תקשורת</div>
-        </div>
-      </div>
-
-      <div class="div-points">
-        <div class="div-point win">
-          <div class="div-point-marker">+</div>
-          <div><strong>1.04M מנויי סיבים</strong> (קמעונאי + סיטונאי) — חוצה מיליון לקוחות. פריסה לכ-<strong>3M משקי בית</strong>.</div>
-        </div>
-        <div class="div-point win">
-          <div class="div-point-marker">+</div>
-          <div>ARPU אינטרנט עלה ל-<strong>139₪</strong> (+4%) — חבילות מהירות גבוהה ועסקיות.</div>
-        </div>
-        <div class="div-point win">
-          <div class="div-point-marker">+</div>
-          <div>תזרים חופשי כמעט הוכפל ל-<strong>404M ₪</strong> ברבעון.</div>
-        </div>
-        <div class="div-point lose">
-          <div class="div-point-marker">−</div>
-          <div>שחיקה בטלפוניה מסורתית — <strong>1.31M קווים פעילים</strong>, ARPL רק 29₪.</div>
-        </div>
-        <div class="div-point new">
-          <div class="div-point-marker">★</div>
-          <div>יעד 2029: <strong>1.5M מנויי סיבים</strong>, 43% חדירה — תוכנית אגרסיבית.</div>
-        </div>
-      </div>
-
-      <div class="mini-stats">
-        <div class="mini-stat">
-          <div class="mini-stat-val bezeq">1,110M</div>
-          <div class="mini-stat-lbl">הכנסות Q1</div>
-        </div>
-        <div class="mini-stat">
-          <div class="mini-stat-val bezeq">3M</div>
-          <div class="mini-stat-lbl">משקי בית סיבים</div>
-        </div>
-        <div class="mini-stat">
-          <div class="mini-stat-val bezeq">404M</div>
-          <div class="mini-stat-lbl">FCF</div>
-        </div>
+      <div class="vs-col bezeq">
+        <div class="vs-col-head"><span class="vs-dot bezeq"></span> בזק — חזקה ב…</div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>גודל עצום</strong> — הכנסות <span class="num">2,030M</span> (פי ~2.6), EBITDA 928M (פי ~3).</div></div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>רווחיות גבוהה</strong> — שיעור EBITDA <span class="num">~46%</span> מול 40%.</div></div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>מנהיגות סיבים</strong> — <span class="num">1,029K</span> מנויים, ~3M משקי בית פרוסים.</div></div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>תזרים מזנק</strong> — FCF <span class="num">+74%</span> ל-455M.</div></div>
+        <div class="vs-item"><span class="mk win">✓</span><div><strong>yes רווחית</strong> — ARPU <span class="num">202₪</span>, 565K מנויים, בינלאומי עסקי +10%.</div></div>
       </div>
     </div>
   </div>
 
-  <!-- PARTNER BUSINESS DEEP DIVE -->
+  <!-- PROBLEMS — COMPANY VS COMPANY -->
   <div class="section">
     <div class="section-header">
-      <div class="section-bar"></div>
-      <div class="section-title">פרטנר • החטיבה העסקית</div>
-      <div class="section-sub">איפה אנחנו</div>
+      <div class="section-bar" style="background: var(--gradient-bezeq); box-shadow: 0 0 8px var(--bezeq);"></div>
+      <div class="section-title">איפה הבעיות של כל חברה</div>
+      <div class="section-sub">נקודות תורפה • פרטנר מול בזק</div>
     </div>
 
-    <div class="div-card partner">
-      <div class="div-head">
-        <div class="div-badge partner">5G</div>
-        <div>
-          <div class="div-name">מגזר נייח • דאטה לעסקים</div>
-          <div class="div-tag">אינטרנט עסקי • דאטה • Hubbing • עת"ת</div>
-        </div>
+    <div class="vs-cards">
+      <div class="vs-col partner">
+        <div class="vs-col-head"><span class="vs-dot partner"></span> פרטנר — נקודות תורפה</div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>"שאגת הארי"</strong> פגע ~<span class="num">7M</span> ברווח לפני מס (נדידה).</div></div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>שחיקת סלולר</strong> — הכנסות מגזר סלולר <span class="num">▼8%</span> ל-461M, ARPU 41₪.</div></div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>מצבת סיבים קטנה</strong> — <span class="num">475K</span> מול 1,029K של בזק.</div></div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>גירעון הון חוזר</strong> ~<span class="num">125M</span>; חוב נטו עלה ל-453M.</div></div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>אין נכס בסדר גודל</strong> של בזק בינלאומי (ענן/אינטגרציה).</div></div>
       </div>
 
-      <div class="div-points">
-        <div class="div-point win">
-          <div class="div-point-marker">+</div>
-          <div><strong>צמיחה בדאטה לעסקים</strong> — המנוע המרכזי של עליית EBITDA נייח ל-123M (+8%).</div>
-        </div>
-        <div class="div-point win">
-          <div class="div-point-marker">+</div>
-          <div>רווח תפעולי נייח עלה ב-<strong>17%</strong> ל-21M — סימן לבריאות תפעולית.</div>
-        </div>
-        <div class="div-point win">
-          <div class="div-point-marker">+</div>
-          <div>פעילות <strong>עבודות תמורת תשלום (עת"ת)</strong> בצמיחה — שירותי תשתית לעסקים.</div>
-        </div>
-        <div class="div-point lose">
-          <div class="div-point-marker">−</div>
-          <div>ירידה בשירותי <strong>Hubbing</strong> (תיווך תעבורה בינלאומית) — תחום פחות אטרקטיבי.</div>
-        </div>
-        <div class="div-point new">
-          <div class="div-point-marker">★</div>
-          <div><strong>רשתות 5G פרטיות</strong> — שוק חדש לאחר אישור התקנות (פבר' 2026). פוטנציאל לתעשייה, נמלים, מתחמי לוגיסטיקה.</div>
-        </div>
-      </div>
-
-      <div class="mini-stats">
-        <div class="mini-stat">
-          <div class="mini-stat-val partner">329M</div>
-          <div class="mini-stat-lbl">הכנסות נייח</div>
-        </div>
-        <div class="mini-stat">
-          <div class="mini-stat-val partner">123M</div>
-          <div class="mini-stat-lbl">EBITDA נייח</div>
-        </div>
-        <div class="mini-stat">
-          <div class="mini-stat-val partner">+1%</div>
-          <div class="mini-stat-lbl">שירותים ex-קש"ג</div>
-        </div>
+      <div class="vs-col bezeq">
+        <div class="vs-col-head"><span class="vs-dot bezeq"></span> בזק — נקודות תורפה</div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>פלאפון בהפסד</strong> — תפעולי 52M-, נקי <span class="num">44M-</span> (הסכם קיבוצי ~86M).</div></div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>רווח GAAP צנח</strong> — <span class="num">▼28%</span> (303M→211M).</div></div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>טלפוניה קבועה מדממת</strong> — <span class="num">1,366K→1,312K</span> קווים.</div></div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>מינוף גבוה</strong> משמעותית מפרטנר.</div></div>
+        <div class="vs-item"><span class="mk warn">!</span><div><strong>שחיקה בליבה הישנה</strong> — אינטרנט פרטי, תקשורת נתונים וטלפוניה בינלאומית.</div></div>
       </div>
     </div>
 
-    <div class="div-card partner">
-      <div class="div-head">
-        <div class="div-badge partner">📡</div>
-        <div>
-          <div class="div-name">מגזר סלולר • B2B</div>
-          <div class="div-tag">חבילות עסקיות • דור 5</div>
-        </div>
-      </div>
-
-      <div class="div-points">
-        <div class="div-point win">
-          <div class="div-point-marker">+</div>
-          <div><strong>928K מנויי דור 5</strong> משלמים — בסיס איתן להצעות עסקיות מתקדמות.</div>
-        </div>
-        <div class="div-point win">
-          <div class="div-point-marker">+</div>
-          <div>צמיחה ב<strong>הכנסות מחבילות סלולר</strong> פיצתה חלקית את הירידה בנדידה.</div>
-        </div>
-        <div class="div-point lose">
-          <div class="div-point-marker">−</div>
-          <div>"שאגת הארי" פגעה ב<strong>נדידה עסקית</strong> (אנשי מפתח, מנהלים בנסיעות).</div>
-        </div>
-        <div class="div-point lose">
-          <div class="div-point-marker">−</div>
-          <div>הפחתת קש"ג גרעה כ-39M ₪ מהכנסות סלולר — מסתיים, השפעה ברורה.</div>
-        </div>
-      </div>
-
-      <div class="mini-stats">
-        <div class="mini-stat">
-          <div class="mini-stat-val partner">461M</div>
-          <div class="mini-stat-lbl">הכנסות סלולר</div>
-        </div>
-        <div class="mini-stat">
-          <div class="mini-stat-val partner">183M</div>
-          <div class="mini-stat-lbl">EBITDA סלולר</div>
-        </div>
-        <div class="mini-stat">
-          <div class="mini-stat-val partner">40%</div>
-          <div class="mini-stat-lbl">שיעור EBITDA</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- HEAD TO HEAD ANALYSIS -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-bar"></div>
-      <div class="section-title">תובנות אסטרטגיות לחטיבה העסקית</div>
-    </div>
-
-    <div class="insights">
-      <div class="insight">
-        <div class="insight-icon warn">!</div>
-        <div class="insight-body">
-          <div class="insight-title">בזק קדימה במנועי צמיחה עסקית חדשים</div>
-          <div class="insight-text">
-            ענן + סייבר + אינטגרציה + דאטה סנטר = <span class="insight-metric">10% צמיחה</span>.
-            לפרטנר אין נכס דומה ברמת בזק בינלאומי. <strong>זה הפער הגדול ביותר.</strong>
-          </div>
-        </div>
-      </div>
-
-      <div class="insight">
-        <div class="insight-icon win">✓</div>
-        <div class="insight-body">
-          <div class="insight-title">פרטנר רווחית יותר ביחס</div>
-          <div class="insight-text">
-            EBITDA Margin <span class="insight-metric">40%</span> בפרטנר vs ~43% בבזק קבוצתי,
-            אבל פרטנר שיפרה +5pp ובזק רק +2pp. <strong>קצב השיפור גבוה יותר.</strong>
-          </div>
-        </div>
-      </div>
-
-      <div class="insight">
-        <div class="insight-icon win">✓</div>
-        <div class="insight-body">
-          <div class="insight-title">הסכם תוכן Netflix + יחסי גומלין עם bezeq+yes</div>
-          <div class="insight-text">
-            פרטנר ממנפת תכנים של yes/בזק להצעת שירות שלה. <span class="insight-metric">207K מנויי TV</span>
-            צמיחה של 7K — בסיס קטן אבל יציב.
-          </div>
-        </div>
-      </div>
-
-      <div class="insight">
-        <div class="insight-icon future">→</div>
-        <div class="insight-body">
-          <div class="insight-title">ההזדמנות: רשתות 5G פרטיות לעסקים</div>
-          <div class="insight-text">
-            תקנות "רצועת החדשנות" אושרו (פבר' 2026). פרטנר יכולה לקפוץ קדימה בשוק שעדיין לא נכבש —
-            תעשייה, נמלים, אוניברסיטאות, מתחמי לוגיסטיקה.
-          </div>
-        </div>
-      </div>
-
-      <div class="insight">
-        <div class="insight-icon future">→</div>
-        <div class="insight-body">
-          <div class="insight-title">הפער בסיבים — דרמטי אבל מצטמצם</div>
-          <div class="insight-text">
-            בזק: <span class="insight-metric">1,040K</span> מנויי סיבים. פרטנר:
-            <span class="insight-metric">475K</span>. פרטנר נשענת על תשתית בזק (IRU 162K קווים)
-            וגם תשתית עצמית — אסטרטגיה היברידית.
-          </div>
-        </div>
-      </div>
-
-      <div class="insight">
-        <div class="insight-icon warn">!</div>
-        <div class="insight-body">
-          <div class="insight-title">סיכון רגולטורי משותף</div>
-          <div class="insight-text">
-            שתי החברות חשופות: מכרז תדרים 1800MHz צפוי, החלטות על שיתוף תדרים עם מפעילים פלסטינים,
-            ושינויי רגולציה במגזר העסקי.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- VERDICT -->
-  <div class="verdict">
-    <div class="verdict-label">🎯 השורה התחתונה ל-BD</div>
-    <div class="verdict-text">
-      פרטנר <strong>סוגרת רבעון איכותי</strong> עם רווחיות גבוהה ויכולת יצירת מזומנים — אבל
-      <strong>בזק מובילה ביצירת מנועים עסקיים חדשים</strong> (ענן, אינטגרציה, סייבר, כבלים תת-ימיים).
-      <br><br>
-      העתיד של החטיבה העסקית בפרטנר נשען על שני קלפים: <strong>5G פרטיות לתעשייה</strong>
-      ו<strong>צמיחה אורגנית בדאטה לעסקים</strong>. הפער מול בזק לא ייסגר ב-Hubbing ובאינטרנט בלבד.
+    <div class="cmp-verdict" style="margin-top:14px;">
+      <div class="v-row"><strong class="p">הכרעה — חוזקות:</strong> בזק מנצחת בגודל, סיבים, רווחיות מוחלטת ו-yes; פרטנר מנצחת במינוף, ברווחיות הסלולר ובקצב צמיחת הרווח.</div>
+      <div class="v-row"><strong style="color:var(--bezeq);">הכרעה — סיכונים:</strong> פלאפון בהפסד והרווח הקבוצתי של בזק ירד 28% (חד-פעמי); פרטנר חשופה בעיקר בגודל ובמצבת סיבים קטנה.</div>
     </div>
   </div>
 
@@ -4473,51 +4369,75 @@ window._charts.ebitda = new Chart(document.getElementById('chartEbitda'), {
 });
 
 // BUSINESS GROWTH COMPARISON
-window._charts.bizGrowth = new Chart(document.getElementById('chartBizGrowth'), {
-  type: 'bar',
+// PARTNER vs BEZEQ — FIXED EBITDA 5-QUARTER TREND
+window._charts.prtVsBzqEbitda = new Chart(document.getElementById('chartPrtVsBzqEbitda'), {
+  type: 'line',
   data: {
-    labels: ['הכנסות עסקים', 'EBITDA', 'מנויי סיבים', 'ARPU אינטרנט', 'תזרים חופשי'],
+    labels: ["Q1'25", "Q2'25", "Q3'25", "Q4'25", "Q1'26"],
     datasets: [
       {
-        label: 'פרטנר',
-        data: [1, 7, 6.5, 3.3, 29],
-        backgroundColor: '#00d8c8',
-        borderRadius: 6,
-        borderSkipped: false
+        label: 'פרטנר נייח',
+        data: [114, 126, 153, 115, 123],
+        borderColor: '#00d8c8',
+        backgroundColor: 'rgba(0, 216, 200, 0.08)',
+        borderWidth: 2.5, tension: 0.35, fill: true,
+        pointRadius: 3, pointBackgroundColor: '#00d8c8', pointBorderWidth: 0
       },
       {
-        label: 'בזק',
-        data: [10, 1.2, 3.6, 4, 74],
-        backgroundColor: '#4a9eff',
-        borderRadius: 6,
-        borderSkipped: false
+        label: 'בזק קווי',
+        data: [642, 647, 597, 416, 629],
+        borderColor: '#4a9eff',
+        backgroundColor: 'rgba(74, 158, 255, 0.08)',
+        borderWidth: 2.5, tension: 0.35, fill: true,
+        pointRadius: 3, pointBackgroundColor: '#4a9eff', pointBorderWidth: 0
       }
     ]
   },
   options: {
-    indexAxis: 'y',
-    responsive: true,
-    maintainAspectRatio: false,
+    responsive: true, maintainAspectRatio: false,
     plugins: {
-      legend: {
-        position: 'bottom',
-        labels: { boxWidth: 8, boxHeight: 8, padding: 12, font: { size: 11, weight: '600' } }
+      legend: { position: 'bottom', labels: { boxWidth: 8, boxHeight: 8, padding: 10, font: { size: 10, weight: '600' } } },
+      tooltip: { backgroundColor: '#0d1825', borderColor: 'rgba(74, 158, 255, 0.3)', borderWidth: 1, callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + 'M ₪' } }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { font: { size: 10 }, callback: v => v + 'M' } }
+    }
+  }
+});
+
+// PARTNER vs BEZEQ — GROUP KEY METRICS (Q1'26)
+window._charts.prtVsBzqKey = new Chart(document.getElementById('chartPrtVsBzqKey'), {
+  type: 'bar',
+  data: {
+    labels: ['סך הכנסות', 'EBITDA', 'רווח נקי', 'תזרים חופשי'],
+    datasets: [
+      {
+        label: 'פרטנר',
+        data: [770, 306, 74, 134],
+        backgroundColor: '#00d8c8',
+        borderRadius: 6, borderSkipped: false, barPercentage: 0.75
       },
+      {
+        label: 'בזק',
+        data: [2030, 928, 211, 455],
+        backgroundColor: '#4a9eff',
+        borderRadius: 6, borderSkipped: false, barPercentage: 0.75
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { boxWidth: 8, boxHeight: 8, padding: 12, font: { size: 11, weight: '600' } } },
       tooltip: {
-        backgroundColor: '#0d1825',
-        borderColor: 'rgba(0, 216, 200, 0.3)',
-        borderWidth: 1,
-        callbacks: {
-          label: ctx => ctx.dataset.label + ': ' + ctx.parsed.x + '%'
-        }
+        backgroundColor: '#0d1825', borderColor: 'rgba(74, 158, 255, 0.3)', borderWidth: 1,
+        callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + 'M ₪' }
       }
     },
     scales: {
-      x: {
-        grid: { color: 'rgba(255,255,255,0.04)' },
-        ticks: { font: { size: 10 }, callback: v => v + '%' }
-      },
-      y: { grid: { display: false }, ticks: { font: { size: 10, weight: '600' } } }
+      x: { grid: { display: false }, ticks: { font: { size: 10, weight: '600' } } },
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { font: { size: 10 }, callback: v => v + 'M' } }
     }
   }
 });
