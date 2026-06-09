@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#06080F">
+<title>תיק השקעות · בינה מלאכותית, ביטחון וחלל</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Assistant:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#06080F;
+    --text:#EAF2FB;
+    --text-dim:#9AAAC0;
+    --text-faint:#5E6E84;
+    --gold:#F0B429;
+    --cyan:#38BDF8;
+    --violet:#A78BFA;
+    --green:#34D399;
+    --amber:#FBBF24;
+    --orange:#FB923C;
+    --red:#F87171;
+    --glass-bd:rgba(255,255,255,0.10);
+    --tile:rgba(255,255,255,0.045);
+    --tile-bd:rgba(255,255,255,0.08);
+    --radius:22px;
+    --radius-sm:14px;
+    --maxw:1140px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:0;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Assistant',-apple-system,system-ui,sans-serif;
+    line-height:1.65;-webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* fixed parallax dot-grid (stays put while content scrolls) */
+  .px-grid{position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background-image:radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1.4px);
+    background-size:34px 34px;background-position:center;opacity:.55}
+
+  /* scroll progress bar */
+  .progress{position:fixed;top:0;inset-inline:0;height:3px;z-index:70;transform-origin:right;
+    background:linear-gradient(90deg,var(--gold),var(--cyan));width:0%}
+
+  /* ============ SHEETS ============ */
+  .sheet{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    padding:clamp(86px,13vh,150px) 0;overflow:hidden}
+  .sheet::before{content:"";position:absolute;inset:0;z-index:-1;
+    background:
+      radial-gradient(1000px 680px at 80% 6%, var(--g1), transparent 62%),
+      radial-gradient(920px 640px at 6% 98%, var(--g2), transparent 60%),
+      linear-gradient(180deg, rgba(9,13,22,0.35), rgba(6,8,15,0.92));
+    background-attachment:fixed,fixed,fixed;background-size:cover;background-position:center}
+
+  /* themes */
+  .sheet-overview{--g1:rgba(56,189,248,0.15);--g2:rgba(240,180,41,0.12);--accent:#F0B429;--accent2:#38BDF8}
+  .theme-meta{--g1:rgba(56,189,248,0.22);--g2:rgba(52,211,153,0.16);--accent:#38BDF8;--accent2:#34D399}
+  .theme-botz{--g1:rgba(56,189,248,0.20);--g2:rgba(59,130,246,0.18);--accent:#38BDF8;--accent2:#3B82F6}
+  .theme-nlr {--g1:rgba(52,211,153,0.22);--g2:rgba(16,185,129,0.16);--accent:#34D399;--accent2:#10B981}
+  .theme-ufo {--g1:rgba(129,140,248,0.22);--g2:rgba(99,102,241,0.16);--accent:#818CF8;--accent2:#6366F1}
+  .theme-ktos{--g1:rgba(148,163,184,0.20);--g2:rgba(139,92,246,0.16);--accent:#A78BFA;--accent2:#94A3B8}
+  .theme-ppa {--g1:rgba(100,116,139,0.20);--g2:rgba(167,139,250,0.16);--accent:#A78BFA;--accent2:#64748B}
+  .theme-xar {--g1:rgba(148,163,184,0.20);--g2:rgba(196,181,253,0.16);--accent:#C4B5FD;--accent2:#94A3B8}
+  .theme-gold{--g1:rgba(240,180,41,0.24);--g2:rgba(183,121,31,0.18);--accent:#F0B429;--accent2:#FBBF24}
+
+  .watermark{position:absolute;z-index:0;top:50%;inset-inline-start:-3%;transform:translateY(-50%);
+    font-family:'Rubik',sans-serif;font-weight:900;font-size:clamp(7rem,26vw,20rem);line-height:.8;
+    color:var(--accent);opacity:.055;letter-spacing:-.04em;pointer-events:none;white-space:nowrap;will-change:transform}
+
+  .sheet-inner{position:relative;z-index:2;width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  /* section header */
+  .sh-eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);
+    padding:6px 14px;border:1px solid var(--glass-bd);border-radius:100px;background:rgba(255,255,255,.04);margin-bottom:18px}
+  .sh-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+  .sh-title{font-family:'Rubik',sans-serif;font-weight:800;font-size:clamp(2.3rem,7vw,4.8rem);
+    line-height:1.03;letter-spacing:-.02em;color:#EAF2FB}
+  @supports ((-webkit-background-clip:text) or (background-clip:text)){
+    .sh-title{background:linear-gradient(120deg,#FFFFFF 8%, var(--accent) 95%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  }
+  .sh-sub{color:var(--text-dim);font-size:clamp(1rem,2.3vw,1.28rem);max-width:720px;margin-top:16px;line-height:1.6}
+  .meta-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+  .mpill{display:inline-flex;align-items:baseline;gap:7px;background:rgba(255,255,255,.05);border:1px solid var(--glass-bd);
+    border-radius:100px;padding:7px 15px;font-size:.9rem;color:var(--text-dim)}
+  .mpill b{font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:700}
+
+  /* glass cards */
+  .glass{background:rgba(255,255,255,0.045);
+    backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);
+    border:1px solid var(--glass-bd);border-radius:var(--radius);padding:26px;box-shadow:0 12px 50px rgba(0,0,0,0.42)}
+  @supports not ((-webkit-backdrop-filter:blur(2px)) or (backdrop-filter:blur(2px))){
+    .glass{background:rgba(15,21,33,0.9)}
+  }
+  .card-h{font-family:'Rubik',sans-serif;font-weight:700;font-size:1.12rem;margin-bottom:18px;display:flex;align-items:center;gap:11px}
+  .card-h::before{content:"";width:4px;height:18px;border-radius:3px;background:var(--accent);flex:0 0 auto}
+  .card-sub{color:var(--text-dim);font-size:.9rem;margin:-8px 0 16px}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+  .span2{grid-column:1 / -1}
+
+  /* inner tiles */
+  .tile{background:var(--tile);border:1px solid var(--tile-bd);border-radius:var(--radius-sm);padding:16px}
+
+  /* returns value row */
+  .rvals{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+  .rvals .rv{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(1.35rem,4.4vw,1.85rem);line-height:1}
+  .rvals .rl{color:var(--text-dim);font-size:.78rem;margin-top:7px;line-height:1.3}
+  .pos{color:var(--green)} .neg{color:var(--red)}
+
+  .chart-box{position:relative;height:230px}
+  .chart-box.tall{height:300px}
+  .chart-cap{color:var(--text-faint);font-size:.78rem;text-align:center;margin-top:12px}
+
+  /* fundamentals stat row */
+  .stat-row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:18px}
+  .stat .sv{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.4rem;line-height:1.05}
+  .stat .sv.up{color:var(--green)} .stat .sv.gold{color:var(--gold)} .stat .sv.cy{color:var(--cyan)}
+  .stat .sl{color:var(--text-dim);font-size:.8rem;margin-top:5px}
+  .prose{color:var(--text-dim);font-size:.97rem;line-height:1.75}
+  .prose + .prose{margin-top:14px}
+  .prose b{color:var(--text);font-weight:600}
+
+  /* callout */
+  .callout{border:1px solid var(--glass-bd);border-radius:var(--radius-sm);padding:18px 20px;
+    background:linear-gradient(180deg, rgba(240,180,41,0.10), rgba(255,255,255,0.02))}
+  .callout .ct{display:flex;align-items:center;gap:8px;font-family:'Rubik',sans-serif;font-weight:600;color:var(--accent);font-size:.95rem;margin-bottom:8px}
+  .callout p{color:var(--text);font-size:.95rem;line-height:1.7}
+
+  /* bull vs bear */
+  .bullbear{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .bb h4{font-family:'Rubik',sans-serif;font-weight:700;font-size:1rem;margin-bottom:13px;display:flex;align-items:center;gap:8px}
+  .bb h4::before{content:"";width:9px;height:9px;border-radius:3px;flex:0 0 auto}
+  .bb.bull h4{color:var(--green)} .bb.bull h4::before{background:var(--green)}
+  .bb.bear h4{color:var(--red)} .bb.bear h4::before{background:var(--red)}
+  .bb ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+  .bb li{color:var(--text-dim);font-size:.92rem;line-height:1.55;padding-inline-start:17px;position:relative}
+  .bb li::before{content:"";position:absolute;inset-inline-start:0;top:8px;width:6px;height:6px;border-radius:50%}
+  .bb.bull li::before{background:var(--green)} .bb.bear li::before{background:var(--red)}
+  .bb li b{color:var(--text);font-weight:700}
+
+  /* metrics list */
+  .metrics{display:flex;flex-direction:column;gap:10px}
+  .metric{display:flex;align-items:center;justify-content:space-between;gap:14px;
+    padding:13px 15px;background:var(--tile);border:1px solid var(--tile-bd);border-radius:var(--radius-sm)}
+  .metric .ml{color:var(--text-dim);font-size:.92rem}
+  .metric .mv{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.05rem}
+  .holdings-note{margin-top:14px;color:var(--text-dim);font-size:.92rem;line-height:1.6}
+  .holdings-note b{color:var(--text);font-weight:600}
+
+  /* risk badge */
+  .risk{display:inline-flex;align-items:center;gap:6px;font-size:.86rem;font-weight:600;padding:4px 12px;border-radius:100px;white-space:nowrap}
+  .risk::before{content:"";width:7px;height:7px;border-radius:50%}
+  .risk.low{color:var(--green);background:rgba(52,211,153,.14)} .risk.low::before{background:var(--green)}
+  .risk.med{color:var(--amber);background:rgba(251,191,36,.14)} .risk.med::before{background:var(--amber)}
+  .risk.mh{color:var(--orange);background:rgba(251,146,60,.15)} .risk.mh::before{background:var(--orange)}
+  .risk.high{color:var(--red);background:rgba(248,113,113,.14)} .risk.high::before{background:var(--red)}
+
+  /* ===== OVERVIEW pieces ===== */
+  .alloc-wrap{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:24px;align-items:center}
+  .donut-box{position:relative;width:100%;max-width:260px;aspect-ratio:1/1;margin:0 auto}
+  .donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;text-align:center}
+  .donut-center .big{font-family:'Rubik',sans-serif;font-weight:800;font-size:2rem}
+  .donut-center .sm{color:var(--text-dim);font-size:.8rem;margin-top:3px}
+  .legend{display:flex;flex-direction:column;gap:2px}
+  .legend-row{display:grid;grid-template-columns:13px 1fr auto;align-items:center;gap:11px;padding:8px 4px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .legend-row:last-child{border-bottom:none}
+  .legend-row .sw{width:11px;height:11px;border-radius:3px}
+  .legend-row .nm b{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.82rem}
+  .legend-row .nm span{color:var(--text-dim);font-size:.82rem;margin-inline-start:6px}
+  .legend-row .w{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1rem}
+
+  .kpi-label{color:var(--text-dim);font-size:.85rem;font-weight:600;font-family:'Rubik',sans-serif;margin-bottom:10px}
+  .kpi-label.second{margin-top:16px}
+  .kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .kpi{background:var(--tile);border:1px solid var(--tile-bd);border-radius:var(--radius-sm);padding:15px;text-align:center;min-width:0}
+  .kpi.gold{border-color:rgba(240,180,41,.3);background:linear-gradient(180deg,rgba(240,180,41,.14),transparent)}
+  .kpi .kl{color:var(--text-dim);font-size:.76rem;margin-bottom:6px}
+  .kpi .kv{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.4rem;line-height:1}
+  .kpi-row.sm .kpi{padding:11px} .kpi-row.sm .kv{font-size:1.12rem}
+
+  .cat-bar{display:flex;height:16px;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.1);margin-bottom:12px}
+  .cat-legend{display:flex;flex-wrap:wrap;gap:12px 18px}
+  .cat-legend .ci{display:flex;align-items:center;gap:8px;font-size:.9rem}
+  .cat-legend .ci .csw{width:10px;height:10px;border-radius:3px}
+  .cat-legend .ci b{font-family:'JetBrains Mono',monospace}
+
+  /* comparative table */
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+    border-radius:var(--radius-sm);border:1px solid var(--tile-bd)}
+  table{width:100%;border-collapse:collapse;font-size:.93rem;min-width:520px}
+  thead th{text-align:right;padding:13px 16px;background:rgba(255,255,255,.04);color:var(--text-dim);font-weight:600;font-size:.82rem;
+    border-bottom:1px solid rgba(255,255,255,.1);white-space:nowrap}
+  tbody td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:middle}
+  tbody tr:last-child td{border-bottom:none}
+  td .tick{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.86rem}
+  td .tname{color:var(--text-dim);font-size:.82rem;display:block}
+  td .wval{font-family:'JetBrains Mono',monospace;font-weight:700}
+  td .rc{font-family:'JetBrains Mono',monospace;font-weight:700;white-space:nowrap}
+  .scroll-hint{display:none;color:var(--text-faint);font-size:.76rem;margin-top:10px;text-align:center}
+
+  /* ===== FLOATING DOT NAV (desktop) ===== */
+  .dotnav{position:fixed;top:50%;inset-inline-start:18px;transform:translateY(-50%);z-index:60;
+    display:flex;flex-direction:column;gap:14px}
+  .dotnav .dot{display:flex;align-items:center;gap:11px;text-decoration:none;cursor:pointer}
+  .dotnav .dot-mark{width:11px;height:11px;border-radius:50%;border:1.5px solid rgba(255,255,255,.4);
+    background:transparent;transition:all .25s ease;flex:0 0 auto}
+  .dotnav .dot-label{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text-dim);
+    opacity:0;transform:translateX(8px);transition:all .25s ease;white-space:nowrap;pointer-events:none}
+  .dotnav .dot:hover .dot-label{opacity:1;transform:none}
+  .dotnav .dot:hover .dot-mark{border-color:var(--cyan)}
+  .dotnav .dot.active .dot-mark{background:var(--gold);border-color:var(--gold);box-shadow:0 0 14px var(--gold);transform:scale(1.25)}
+  .dotnav .dot.active .dot-label{opacity:1;transform:none;color:var(--text)}
+
+  /* ===== TOP NAV (mobile) ===== */
+  .topnav{position:sticky;top:0;z-index:60;display:none;background:rgba(6,8,15,0.82);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .topnav .tn-inner{display:flex;align-items:center;gap:10px;padding:9px 12px}
+  .topnav .tn-brand{font-family:'Rubik',sans-serif;font-weight:800;font-size:.86rem;color:var(--gold);white-space:nowrap;flex:0 0 auto}
+  .topnav .tn-list{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .topnav .tn-list::-webkit-scrollbar{display:none}
+  .topnav .pill{flex:0 0 auto;text-decoration:none;font-family:'Assistant',sans-serif;font-weight:600;font-size:.84rem;
+    color:var(--text-dim);padding:9px 13px;border-radius:100px;border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.03);white-space:nowrap;min-height:40px;display:flex;align-items:center}
+  .topnav .pill.active{color:#06080F;background:var(--gold);border-color:var(--gold);font-weight:700}
+
+  footer{padding:48px 24px 60px;border-top:1px solid rgba(255,255,255,.07);color:var(--text-faint);font-size:.82rem;line-height:1.65}
+  footer .legal{max-width:840px;margin:0 auto}
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width:900px){
+    /* parallax fixed → scroll on touch to prevent iOS tearing */
+    .sheet::before{background-attachment:scroll,scroll,scroll}
+    .dotnav{display:none}
+    .topnav{display:block}
+    html{scroll-padding-top:60px}
+    .grid2{grid-template-columns:1fr}
+    .alloc-wrap{grid-template-columns:1fr;gap:20px}
+    .bullbear{grid-template-columns:1fr}
+    .watermark{opacity:.045;font-size:clamp(6rem,40vw,12rem)}
+  }
+  @media (max-width:600px){
+    .sheet{padding:64px 0;min-height:auto}
+    .sheet-inner{padding:0 16px}
+    .glass{padding:18px;border-radius:18px}
+    .grid2{gap:14px;margin-top:20px}
+    .sh-sub{font-size:.96rem}
+    .stat-row{gap:10px}
+    .stat .sv{font-size:1.25rem}
+    .kpi-row{gap:8px} .kpi{padding:12px 7px} .kpi .kv{font-size:1.12rem} .kpi .kl{font-size:.72rem}
+    .kpi-row.sm .kv{font-size:.95rem}
+    .rvals{gap:8px} .rvals .rl{font-size:.74rem}
+    .chart-box{height:210px} .chart-box.tall{height:240px}
+    table{min-width:520px;font-size:.9rem} thead th{padding:11px 13px;font-size:.79rem} tbody td{padding:11px 13px}
+    .scroll-hint{display:block}
+    .metric{padding:12px 13px}
+    footer{padding:36px 16px 48px}
+  }
+  @media (max-width:380px){
+    .kpi .kv{font-size:1rem} .kpi-row.sm .kv{font-size:.88rem}
+    .rvals .rv{font-size:1.2rem}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .watermark{transform:translateY(-50%)!important}
+  }
+</style>
+</head>
+<body>
+
+<div class="px-grid" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- floating dot navigation (desktop) -->
+<nav class="dotnav" id="dotnav" aria-label="ניווט מהיר בין הנכסים"></nav>
+
+<!-- top navigation (mobile) -->
+<header class="topnav">
+  <div class="tn-inner">
+    <span class="tn-brand">תיק AI · ביטחון</span>
+    <div class="tn-list" id="topnav-list"></div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===================== OVERVIEW SHEET ===================== -->
+  <section class="sheet sheet-overview" id="overview">
+    <div class="watermark">PORTFOLIO</div>
+    <div class="sheet-inner">
+      <span class="sh-eyebrow"><span class="dot"></span>הקצאת נכסים · תיק נושאי · יוני 2026</span>
+      <h1 class="sh-title">תיק בינה מלאכותית,<br>ביטחון וחלל</h1>
+      <p class="sh-sub">תיק נושאי המשלב מנועי צמיחה אגרסיביים בטכנולוגיה ורובוטיקה, חשיפה רחבה לתעשייה הביטחונית המערבית, וגידור תנודתיות באמצעות זהב פיזי. גללו מטה למסע ויזואלי דרך כל אחת מ‑8 האחזקות.</p>
+
+      <div class="grid2">
+        <!-- allocation -->
+        <div class="glass span2">
+          <div class="card-h">הקצאת התיק</div>
+          <div class="card-sub">חלוקת התיק המומלצת לפי 8 אחזקות · משקל כולל 100%</div>
+          <div class="alloc-wrap">
+            <div class="donut-box">
+              <canvas id="donut" data-chart="donut" aria-label="גרף עוגה של הקצאת הנכסים"></canvas>
+              <div class="donut-center"><div class="big">8</div><div class="sm">אחזקות</div></div>
+            </div>
+            <div class="legend" id="ov-legend"></div>
+          </div>
+        </div>
+
+        <!-- performance KPI -->
+        <div class="glass span2">
+          <div class="card-h">ביצועי התיק · ממוצע</div>
+          <div class="card-sub">תשואות היסטוריות נכון ליוני 2026 · <span style="color:var(--green)">ירוק = חיובי</span>, <span style="color:var(--red)">אדום = שלילי</span></div>
+          <div class="kpi-label">תשואת התיק · ממוצע כל ההחזקות (ללא שקלול לפי משקל)</div>
+          <div class="kpi-row" id="ov-kpi-portfolio"></div>
+          <div class="kpi-label second">מניות פרטניות (META · KTOS) · ממוצע</div>
+          <div class="kpi-row sm" id="ov-kpi-stocks"></div>
+        </div>
+
+        <!-- comparative table -->
+        <div class="glass span2">
+          <div class="card-h">טבלת תשואות השוואתית</div>
+          <div class="card-sub">תשואה ומשקל לכל אחזקה לאורך שלוש תקופות</div>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>נכס</th><th>משקל</th><th>מתחילת השנה</th><th>12 חודשים</th><th>5 שנים</th></tr></thead>
+              <tbody id="ov-returns-body"></tbody>
+            </table>
+          </div>
+          <div class="scroll-hint">↔ ניתן לגלול את הטבלה לצדדים לצפייה בכל העמודות</div>
+        </div>
+
+        <!-- strategy -->
+        <div class="glass span2">
+          <div class="card-h">הגיון אסטרטגי לחלוקה</div>
+          <div class="card-sub">שילוב מנועי צמיחה, הגנה גיאופוליטית רחבה וגידור תנודתיות</div>
+          <div class="cat-bar">
+            <div style="width:50%;background:var(--cyan)"></div>
+            <div style="width:35%;background:var(--violet)"></div>
+            <div style="width:15%;background:var(--gold)"></div>
+          </div>
+          <div class="cat-legend">
+            <div class="ci"><span class="csw" style="background:var(--cyan)"></span>מנועי צמיחה <b>50%</b></div>
+            <div class="ci"><span class="csw" style="background:var(--violet)"></span>תעשייה ביטחונית <b>35%</b></div>
+            <div class="ci"><span class="csw" style="background:var(--gold)"></span>גידור זהב <b>15%</b></div>
+          </div>
+          <div class="grid2" style="margin-top:18px">
+            <div class="tile"><b style="font-family:'Rubik';color:var(--cyan)">מנועי צמיחה · 50%</b><p class="prose" style="margin-top:6px">טכנולוגיה (META), רובוטיקה ואוטומציה (BOTZ), חלל מסחרי (UFO) ואנרגיה גרעינית לתשתיות AI (NLR). הלב הצומח של התיק, הנהנה ישירות ממהפכת הבינה המלאכותית.</p></div>
+            <div class="tile"><b style="font-family:'Rubik';color:var(--violet)">תעשייה ביטחונית · 35%</b><p class="prose" style="margin-top:6px">חשיפה משולבת לכטב"מים אוטונומיים (KTOS) ולענקיות התעופה והביטחון (PPA, XAR). שכבת הגנה גיאופוליטית רחבה הנתמכת בצבר הזמנות ממשלתי חסר תקדים.</p></div>
+            <div class="tile span2"><b style="font-family:'Rubik';color:var(--gold)">גידור זהב · 15%</b><p class="prose" style="margin-top:6px">זהב פיזי (IGLN/SGLN) כעוגן הגנה ונזילות. נכס מפלט שאינו קורלטיבי למניות, המגן מפני אינפלציה דביקה וזעזועים גיאופוליטיים ומפחית את תנודתיות התיק.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== META ===================== -->
+  <section class="sheet theme-meta" id="meta">
+    <div class="watermark">META</div>
+    <div class="sheet-inner">
+      <span class="sh-eyebrow"><span class="dot"></span>מנוע צמיחה · 01</span>
+      <h2 class="sh-title">Meta Platforms</h2>
+      <p class="sh-sub">פרסום דיגיטלי · בינה מלאכותית · רשתות חברתיות</p>
+      <div class="meta-pills">
+        <span class="mpill">משקל בתיק <b>20%</b></span>
+        <span class="mpill">סיכון <span class="risk mh">בינוני-גבוה</span></span>
+      </div>
+
+      <div class="grid2">
+        <div class="glass">
+          <div class="card-h">תשואות היסטוריות</div>
+          <div class="rvals">
+            <div><div class="rv neg">-10.1%</div><div class="rl">מתחילת השנה (2026)</div></div>
+            <div><div class="rv neg">-13.1%</div><div class="rl">12 חודשים</div></div>
+            <div><div class="rv pos">+80.9%</div><div class="rl">5 שנים (מצטבר)</div></div>
+          </div>
+          <div class="chart-box"><canvas id="ret_meta" data-chart="ret_meta" aria-label="גרף תשואות META"></canvas></div>
+        </div>
+
+        <div class="glass">
+          <div class="card-h">ניתוח פנדמנטלי · מגמת הכנסות</div>
+          <div class="stat-row">
+            <div class="tile stat"><div class="sv">$116.6B</div><div class="sl">הכנסות 2022</div></div>
+            <div class="tile stat"><div class="sv up">$200B+</div><div class="sl">הכנסות 2025</div></div>
+            <div class="tile stat"><div class="sv gold">~22%</div><div class="sl">צמיחה שנתית</div></div>
+            <div class="tile stat"><div class="sv up">$83B+</div><div class="sl">רווח תפעולי 2025</div></div>
+          </div>
+          <div class="chart-box"><canvas id="metaRev" data-chart="metaRev" aria-label="הכנסות META"></canvas></div>
+          <div class="chart-cap">הכנסות שנתיות (מיליארד $) · 2022–2025</div>
+        </div>
+
+        <div class="glass span2">
+          <div class="card-h">סקירת מגמה</div>
+          <p class="prose">ההכנסות השנתיות רשמו זינוק פנומנלי: מ‑<b>116.6 מיליארד דולר</b> ב‑2022, ל‑134.9 מיליארד ב‑2023, ל‑164.5 מיליארד ב‑2024, וחצו את רף ה‑<b>200 מיליארד דולר</b> בסוף 2025 — צמיחה שנתית מרשימה של כ‑22%. הרווח התפעולי חצה את ה‑83 מיליארד דולר, ותזרים המזומנים החופשי (FCF) עומד על עשרות מיליארדי דולרים בשנה, המאפשר השקעות הון אגרסיביות במקביל לרכישות עצמיות.</p>
+        </div>
+
+        <div class="glass span2">
+          <div class="card-h">תזת ההשקעה · בעד מול נגד</div>
+          <div class="bullbear">
+            <div class="tile bb bull"><h4>בעד · למה כדאי להשקיע</h4><ul>
+              <li><b>אפקט רשת מונופוליסטי</b> — מעל 3.58 מיליארד משתמשים פעילים ביום (DAP) ברחבי פייסבוק, אינסטגרם ווואטסאפ.</li>
+              <li><b>מובילות ומסחור AI</b> — היחידה שמתרגמת השקעות AI לשורת הרווח באופן מיידי, דרך שיפור של 12%–18% ביעילות מודעות הפרסום ובחשיפה ל‑Reels.</li>
+              <li><b>מודל Llama</b> — פיתוח מודלי קוד פתוח ההופך אותה לסטנדרט התעשייתי ומקטין את תלותה באקו‑סיסטם של אפל או גוגל.</li>
+              <li><b>הזדמנויות צמיחה</b> — מוניטיזציה של עוזרי AI בוואטסאפ וכלים מבוססי בינה מלאכותית לעסקים קטנים.</li>
+            </ul></div>
+            <div class="tile bb bear"><h4>נגד · סיכונים מרכזיים</h4><ul>
+              <li><b>הוצאות הון (CapEx) מפלצתיות</b> — מעל 72 מיליארד דולר ב‑2025 לבניית חוות שרתים ורכישת מעבדי גרפיקה (GPU). האטה בקצב הגידול בפרסום תעיק קשות על שולי הרווח.</li>
+              <li><b>סיכוני רגולציה</b> — קנסות והגבלים עסקיים חמורים בארה"ב ובאירופה סביב הגנת הפרטיות ופגיעה בתחרות.</li>
+            </ul></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BOTZ ===================== -->
+  <section class="sheet theme-botz" id="botz">
+    <div class="watermark">BOTZ</div>
+    <div class="sheet-inner">
+      <span class="sh-eyebrow"><span class="dot"></span>מנוע צמיחה · 02</span>
+      <h2 class="sh-title">Global X Robotics &amp; AI</h2>
+      <p class="sh-sub">רובוטיקה פיזית · אוטומציה · בינה מלאכותית יישומית</p>
+      <div class="meta-pills">
+        <span class="mpill">משקל בתיק <b>15%</b></span>
+        <span class="mpill">סיכון <span class="risk high">גבוהה</span></span>
+        <span class="mpill">דמי ניהול <b>0.68%</b></span>
+      </div>
+
+      <div class="grid2">
+        <div class="glass">
+          <div class="card-h">תשואות היסטוריות</div>
+          <div class="rvals">
+            <div><div class="rv pos">+6.5%</div><div class="rl">מתחילת השנה (2026)</div></div>
+            <div><div class="rv pos">+18.2%</div><div class="rl">12 חודשים</div></div>
+            <div><div class="rv pos">+45%</div><div class="rl">5 שנים (מצטבר)</div></div>
+          </div>
+          <div class="chart-box"><canvas id="ret_botz" data-chart="ret_botz" aria-label="גרף תשואות BOTZ"></canvas></div>
+        </div>
+        <div class="glass">
+          <div class="card-h">נתוני הקרן והחזקות</div>
+          <div class="metrics">
+            <div class="metric"><span class="ml">משקל בתיק</span><span class="mv" style="color:var(--cyan)">15%</span></div>
+            <div class="metric"><span class="ml">דמי ניהול שנתיים</span><span class="mv">0.68%</span></div>
+            <div class="metric"><span class="ml">נכסים מנוהלים (AUM)</span><span class="mv">$3.5B</span></div>
+            <div class="metric"><span class="ml">מכפיל רווח ממוצע</span><span class="mv">30–34</span></div>
+          </div>
+          <p class="holdings-note">קרן מרוכזת המעניקה חשיפה לרובוטיקה פיזית ואוטומציה. החזקות ליבה: <b>NVIDIA</b> (תשתית השבבים), לצד ענקיות אוטומציה תעשייתית ורובוטיקה רפואית — <b>Keyence, ABB, Fanuc</b> ו‑<b>Intuitive Surgical</b>.</p>
+        </div>
+
+        <div class="glass span2">
+          <div class="card-h">תזת ההשקעה · בעד מול נגד</div>
+          <div class="bullbear">
+            <div class="tile bb bull"><h4>בעד · למה כדאי להשקיע</h4><ul>
+              <li><b>מעבר לכלכלה פיזית</b> — ה‑AI יוצא מהתוכנה לעולם האמיתי: חשיפה לחברות המפתחות רובוטים רפואיים, אוטומציה של מחסנים (טרנד חזק עקב מחסור בידיים עובדות) ומפעלים חכמים.</li>
+              <li><b>גיוון גיאוגרפי</b> — חשיפה משמעותית לחברות הנדסה ואוטומציה יפניות ואירופיות מובילות שאין להן תחליף.</li>
+            </ul></div>
+            <div class="tile bb bear"><h4>נגד · סיכונים מרכזיים</h4><ul>
+              <li><b>מכפיל רווח גבוה ותנודתיות</b> — מכפיל הרווח הממוצע של הקרן גבוה (סביב 30–34), מה שהופך אותה לרגישה מאוד להעלאות ריבית או להאטה זמנית בהשקעות ההון של מפעלים.</li>
+            </ul></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== NLR ===================== -->
+  <section class="sheet theme-nlr" id="nlr">
+    <div class="watermark">NLR</div>
+    <div class="sheet-inner">
+      <span class="sh-eyebrow"><span class="dot"></span>מנוע צמיחה · 03</span>
+      <h2 class="sh-title">VanEck Uranium + Nuclear</h2>
+      <p class="sh-sub">אנרגיה גרעינית · אורניום · תשתיות חשמל ל‑AI</p>
+      <div class="meta-pills">
+        <span class="mpill">משקל בתיק <b>10%</b></span>
+        <span class="mpill">סיכון <span class="risk mh">בינוני-גבוה</span></span>
+        <span class="mpill">דמי ניהול <b>0.61%</b></span>
+      </div>
+
+      <div class="grid2">
+        <div class="glass">
+          <div class="card-h">תשואות היסטוריות</div>
+          <div class="rvals">
+            <div><div class="rv pos">+14.3%</div><div class="rl">מתחילת השנה (2026)</div></div>
+            <div><div class="rv pos">+38.6%</div><div class="rl">12 חודשים</div></div>
+            <div><div class="rv pos">+112%</div><div class="rl">5 שנים (מצטבר)</div></div>
+          </div>
+          <div class="chart-box"><canvas id="ret_nlr" data-chart="ret_nlr" aria-label="גרף תשואות NLR"></canvas></div>
+        </div>
+        <div class="glass">
+          <div class="card-h">נתוני הקרן והחזקות</div>
+          <div class="metrics">
+            <div class="metric"><span class="ml">משקל בתיק</span><span class="mv" style="color:var(--green)">10%</span></div>
+            <div class="metric"><span class="ml">דמי ניהול שנתיים</span><span class="mv">0.61%</span></div>
+            <div class="metric"><span class="ml">תשואת דיבידנד</span><span class="mv">2.41%</span></div>
+            <div class="metric"><span class="ml">רמת סיכון</span><span class="mv"><span class="risk mh">בינוני-גבוה</span></span></div>
+          </div>
+          <p class="holdings-note">קרן ייחודית שחוותה פריצה אדירה, המחזיקה את ענקיות כריית האורניום והפקת האנרגיה הגרעינית. החזקות מובילות: <b>Cameco</b> ו‑<b>Constellation Energy</b>.</p>
+        </div>
+
+        <div class="glass span2">
+          <div class="card-h">תזת ההשקעה · בעד מול נגד</div>
+          <div class="bullbear">
+            <div class="tile bb bull"><h4>בעד · למה כדאי להשקיע</h4><ul>
+              <li><b>"הדלק של ה‑AI"</b> — מרכזי נתונים צורכים כמויות חשמל אסטרונומיות. חברות כמו מיקרוסופט ואמזון חותמות חוזים ישירים מול תחנות כוח גרעיניות — האנרגיה הירוקה היחידה שמספקת זרם קבוע ורציף (Base‑load) 24/7.</li>
+              <li><b>קונצנזוס ממשלתי גלובלי</b> — ארה"ב, אירופה וסין חזרו לתמוך באופן פעיל בהרחבת כורים גרעיניים ובבניית כורים קטנים (SMR).</li>
+            </ul></div>
+            <div class="tile bb bear"><h4>נגד · סיכונים מרכזיים</h4><ul>
+              <li><b>סיכון תפעולי ותדמיתי קיצוני</b> — אירוע בטיחותי או תאונה בכור גרעיני בכל מקום בעולם יביאו מיידית לקריסה מנייתית ולקפיאה רגולטורית של הסקטור כולו.</li>
+              <li><b>מחזורי בנייה ארוכים</b> — בניית תשתיות גרעיניות לוקחת שנים רבות ותלויה באינספור אישורים ממשלתיים.</li>
+            </ul></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== UFO ===================== -->
+  <section class="sheet theme-ufo" id="ufo">
+    <div class="watermark">UFO</div>
+    <div class="sheet-inner">
+      <span class="sh-eyebrow"><span class="dot"></span>מנוע צמיחה · 04</span>
+      <h2 class="sh-title">Procure Space ETF</h2>
+      <p class="sh-sub">לוויינים · תקשורת · מסחור החלל</p>
+      <div class="meta-pills">
+        <span class="mpill">משקל בתיק <b>5%</b></span>
+        <span class="mpill">סיכון <span class="risk high">גבוהה</span></span>
+        <span class="mpill">דמי ניהול <b>0.75%</b></span>
+      </div>
+
+      <div class="grid2">
+        <div class="glass">
+          <div class="card-h">תשואות היסטוריות</div>
+          <div class="rvals">
+            <div><div class="rv neg">-2.1%</div><div class="rl">מתחילת השנה (2026)</div></div>
+            <div><div class="rv pos">+4.8%</div><div class="rl">12 חודשים</div></div>
+            <div><div class="rv neg">-12%</div><div class="rl">5 שנים (מצטבר)</div></div>
+          </div>
+          <div class="chart-box"><canvas id="ret_ufo" data-chart="ret_ufo" aria-label="גרף תשואות UFO"></canvas></div>
+        </div>
+        <div class="glass">
+          <div class="card-h">נתוני הקרן</div>
+          <div class="metrics">
+            <div class="metric"><span class="ml">משקל בתיק</span><span class="mv" style="color:var(--violet)">5%</span></div>
+            <div class="metric"><span class="ml">דמי ניהול שנתיים</span><span class="mv">0.75%</span></div>
+            <div class="metric"><span class="ml">רמת סיכון</span><span class="mv"><span class="risk high">גבוהה</span></span></div>
+          </div>
+        </div>
+        <div class="glass span2">
+          <div class="card-h">אודות הקרן ותפקידה בתיק</div>
+          <p class="prose">חשיפה אגרסיבית ועתירת סיכון לתקשורת לוויינים ולמסחור החלל. דמי הניהול יקרים יחסית (<b>0.75%</b>). בשל התנודתיות הגבוהה ושלבי הצמיחה הראשוניים של חלק מהחברות, הקרן מתאימה כפוזיציה קטנה בלבד (<b>5%</b>) ולטווח ארוך מאוד.</p>
+          <div class="callout" style="margin-top:18px">
+            <div class="ct">ביצועי השנה האחרונה</div>
+            <p>הציגה תנודתיות, נתמכת בעיקר על ידי חוזים ממשלתיים ומסחריים למערכות תקשורת ולווייני תצפית קטנים.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== KTOS ===================== -->
+  <section class="sheet theme-ktos" id="ktos">
+    <div class="watermark">KTOS</div>
+    <div class="sheet-inner">
+      <span class="sh-eyebrow"><span class="dot"></span>תעשייה ביטחונית · 05</span>
+      <h2 class="sh-title">Kratos Defense</h2>
+      <p class="sh-sub">כטב"מים אוטונומיים · מערכות לחימה · מטרות מתקדמות</p>
+      <div class="meta-pills">
+        <span class="mpill">משקל בתיק <b>10%</b></span>
+        <span class="mpill">סיכון <span class="risk high">גבוהה</span></span>
+      </div>
+
+      <div class="grid2">
+        <div class="glass">
+          <div class="card-h">תשואות היסטוריות</div>
+          <div class="rvals">
+            <div><div class="rv neg">-19%</div><div class="rl">מתחילת השנה (2026)</div></div>
+            <div><div class="rv pos">+42.2%</div><div class="rl">12 חודשים</div></div>
+            <div><div class="rv pos">+130%</div><div class="rl">5 שנים (מצטבר)</div></div>
+          </div>
+          <div class="chart-box"><canvas id="ret_ktos" data-chart="ret_ktos" aria-label="גרף תשואות KTOS"></canvas></div>
+        </div>
+
+        <div class="glass">
+          <div class="card-h">ניתוח פנדמנטלי · מגמת הכנסות</div>
+          <div class="stat-row">
+            <div class="tile stat"><div class="sv">$1.03B</div><div class="sl">הכנסות 2023</div></div>
+            <div class="tile stat"><div class="sv up">$1.35B</div><div class="sl">הכנסות 2025</div></div>
+            <div class="tile stat"><div class="sv gold">18.5%</div><div class="sl">צמיחה שנתית</div></div>
+            <div class="tile stat"><div class="sv cy">$2.01B</div><div class="sl">צבר הזמנות (Backlog)</div></div>
+          </div>
+          <div class="chart-box"><canvas id="ktosRev" data-chart="ktosRev" aria-label="הכנסות KTOS"></canvas></div>
+          <div class="chart-cap">הכנסות שנתיות (מיליארד $) · 2023–2025</div>
+        </div>
+
+        <div class="glass span2">
+          <div class="card-h">סקירת מגמה</div>
+          <p class="prose">קראטוס מציגה צמיחה עקבית המונעת מביקושים ביטחוניים: הכנסותיה עלו מ‑<b>1.03 מיליארד דולר</b> ב‑2023, ל‑1.13 מיליארד ב‑2024, ול‑<b>1.35 מיליארד דולר</b> בסוף 2025 — צמיחה של 18.5%. החברה מחזיקה בצבר הזמנות (Backlog) מובטח וקשיח של כ‑<b>2.01 מיליארד דולר</b>, וכ‑37% ממנו מתורגם ישירות להכנסות מובטחות כבר בשנה הקרובה.</p>
+        </div>
+
+        <div class="glass span2">
+          <div class="card-h">תזת ההשקעה · בעד מול נגד</div>
+          <div class="bullbear">
+            <div class="tile bb bull"><h4>בעד · למה כדאי להשקיע</h4><ul>
+              <li><b>פוזיציה ייחודית בכטב"מים</b> — חלוצה בפיתוח כטב"מי תקיפה חמקניים ומתכלים (כמו ה‑XQ‑58A Valkyrie) המיועדים ללחימה משולבת לצד מטוסי קרב מאוישים.</li>
+              <li><b>מענה לתקציבי הגנה מודרניים</b> — המערכות זולות משמעותית ממטוסי קרב מסורתיים, ומתאימות בדיוק למגמות הרכש של הפנטגון ונאט"ו (אימוץ דוקטרינת CCA והרחבת חוזי חיל האוויר).</li>
+              <li><b>נראות תזרימית</b> — כ‑37% מצבר ההזמנות הנוכחי מתורגם ישירות להכנסות מובטחות כבר בשנה הקרובה.</li>
+            </ul></div>
+            <div class="tile bb bear"><h4>נגד · סיכונים מרכזיים</h4><ul>
+              <li><b>שולי רווח נמוכים ותמחור יקר</b> — בשל עלויות מו"פ כבדות, שולי הרווח נמוכים משמעותית מהענקיות הביטחוניות (מכפיל ה‑P/E ומכפיל המכירות גבוהים יחסית מול בואינג, לוקהיד מרטין ונורת'רופ גראמן).</li>
+              <li><b>תלות חוזית ממשלתית</b> — עיכובים באישור תקציב המדינה בארה"ב או דחיית פרויקטים של הפנטגון עלולים לפגוע בה באופן מיידי.</li>
+            </ul></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PPA ===================== -->
+  <section class="sheet theme-ppa" id="ppa">
+    <div class="watermark">PPA</div>
+    <div class="sheet-inner">
+      <span class="sh-eyebrow"><span class="dot"></span>תעשייה ביטחונית · 06</span>
+      <h2 class="sh-title">Invesco Aerospace &amp; Defense</h2>
+      <p class="sh-sub">ענקיות תעופה וביטחון · שקלול לפי שווי שוק</p>
+      <div class="meta-pills">
+        <span class="mpill">משקל בתיק <b>15%</b></span>
+        <span class="mpill">סיכון <span class="risk med">בינונית</span></span>
+        <span class="mpill">דמי ניהול <b>0.58%</b></span>
+      </div>
+
+      <div class="grid2">
+        <div class="glass">
+          <div class="card-h">תשואות היסטוריות</div>
+          <div class="rvals">
+            <div><div class="rv pos">+11.2%</div><div class="rl">מתחילת השנה (2026)</div></div>
+            <div><div class="rv pos">+29.5%</div><div class="rl">12 חודשים</div></div>
+            <div><div class="rv pos">+94%</div><div class="rl">5 שנים (מצטבר)</div></div>
+          </div>
+          <div class="chart-box"><canvas id="ret_ppa" data-chart="ret_ppa" aria-label="גרף תשואות PPA"></canvas></div>
+        </div>
+        <div class="glass">
+          <div class="card-h">נתוני הקרן</div>
+          <div class="metrics">
+            <div class="metric"><span class="ml">משקל בתיק</span><span class="mv" style="color:var(--violet)">15%</span></div>
+            <div class="metric"><span class="ml">דמי ניהול שנתיים</span><span class="mv">0.58%</span></div>
+            <div class="metric"><span class="ml">שיטת שקלול</span><span class="mv">שווי שוק</span></div>
+            <div class="metric"><span class="ml">רמת סיכון</span><span class="mv"><span class="risk med">בינונית</span></span></div>
+          </div>
+        </div>
+        <div class="glass span2">
+          <div class="card-h">אודות הקרן ותפקידה בתיק</div>
+          <p class="prose">נהנית מתקציבי הגנה שוברי שיאים בעולם עקב המצב הגיאופוליטי. מעניקה יציבות פנומנלית דרך ענקיות מסורתיות — <b>לוקהיד מרטין</b> (צבר הזמנות של כ‑186 מיליארד דולר) ו‑<b>נורת'רופ גראמן</b> (צבר הזמנות של כ‑95 מיליארד דולר) — הנהנות מצבר הזמנות ממשלתי חסר תקדים לשנים קדימה. עוגן היציבות של רכיב הביטחון בתיק.</p>
+          <div class="callout" style="margin-top:18px">
+            <div class="ct">ביצועי השנה האחרונה</div>
+            <p>ביצועים יציבים וחזקים במיוחד כתוצאה ישירה מהחלטת מדינות נאט"ו וארה"ב להגדיל משמעותית את תקציבי הרכש הביטחוניים.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== XAR ===================== -->
+  <section class="sheet theme-xar" id="xar">
+    <div class="watermark">XAR</div>
+    <div class="sheet-inner">
+      <span class="sh-eyebrow"><span class="dot"></span>תעשייה ביטחונית · 07</span>
+      <h2 class="sh-title">SPDR S&amp;P Aerospace &amp; Defense</h2>
+      <p class="sh-sub">תעופה וביטחון · שקלול במשקל שווה</p>
+      <div class="meta-pills">
+        <span class="mpill">משקל בתיק <b>10%</b></span>
+        <span class="mpill">סיכון <span class="risk mh">בינוני-גבוה</span></span>
+        <span class="mpill">דמי ניהול <b>0.35%</b></span>
+      </div>
+
+      <div class="grid2">
+        <div class="glass">
+          <div class="card-h">תשואות היסטוריות</div>
+          <div class="rvals">
+            <div><div class="rv pos">+8.9%</div><div class="rl">מתחילת השנה (2026)</div></div>
+            <div><div class="rv pos">+24.1%</div><div class="rl">12 חודשים</div></div>
+            <div><div class="rv pos">+78%</div><div class="rl">5 שנים (מצטבר)</div></div>
+          </div>
+          <div class="chart-box"><canvas id="ret_xar" data-chart="ret_xar" aria-label="גרף תשואות XAR"></canvas></div>
+        </div>
+        <div class="glass">
+          <div class="card-h">נתוני הקרן</div>
+          <div class="metrics">
+            <div class="metric"><span class="ml">משקל בתיק</span><span class="mv" style="color:#C4B5FD">10%</span></div>
+            <div class="metric"><span class="ml">דמי ניהול שנתיים</span><span class="mv">0.35%</span></div>
+            <div class="metric"><span class="ml">שיטת שקלול</span><span class="mv">משקל שווה</span></div>
+            <div class="metric"><span class="ml">רמת סיכון</span><span class="mv"><span class="risk mh">בינוני-גבוה</span></span></div>
+          </div>
+        </div>
+        <div class="glass span2">
+          <div class="card-h">אודות הקרן ותפקידה בתיק</div>
+          <p class="prose">מבוססת משקל שווה (Equal Weight) ולכן מגינה מפני תלות יתר בחברות בודדות וממקסמת חברות ביטחוניות קטנות וגמישות בעלות פוטנציאל צמיחה מהיר. משלימה את PPA ויוצרת איתה חשיפה מאוזנת לכל קשת התעשייה הביטחונית.</p>
+          <div class="callout" style="margin-top:18px">
+            <div class="ct">ביצועי השנה האחרונה</div>
+            <p>ביצועים יציבים וחזקים בזכות גידול תקציבי הרכש הביטחוניים של נאט"ו וארה"ב, עם רגישות גבוהה יותר לחברות הצמיחה הקטנות.</p>
+          </div>
+        </div>
+
+        <div class="glass span2">
+          <div class="card-h">PPA מול XAR · ההבדל המהותי</div>
+          <p class="prose">שתי הקרנות חשופות לתעופה וביטחון בארה"ב, אך בשיטות שקלול שונות. PPA מבוססת שווי שוק ולכן מוטה לענקיות המסורתיות (יציבות וצבר הזמנות עצום), בעוד XAR מבוססת משקל שווה ולכן מגינה מתלות יתר בחברות בודדות וממקסמת חברות ביטחוניות קטנות וגמישות (פוטנציאל צמיחה גבוה יותר אך תנודתיות גבוהה יותר). דמי הניהול של XAR נמוכים יותר — 0.35% מול 0.58%. השילוב ביניהן יוצר חשיפה מאוזנת לכל קשת התעשייה הביטחונית.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GOLD ===================== -->
+  <section class="sheet theme-gold" id="gold">
+    <div class="watermark">GOLD</div>
+    <div class="sheet-inner">
+      <span class="sh-eyebrow"><span class="dot"></span>גידור · 08</span>
+      <h2 class="sh-title">iShares Physical Gold</h2>
+      <p class="sh-sub">זהב פיזי (IGLN / SGLN) · עוגן הגנה ונזילות</p>
+      <div class="meta-pills">
+        <span class="mpill">משקל בתיק <b>15%</b></span>
+        <span class="mpill">סיכון <span class="risk low">נמוך-בינוני</span></span>
+        <span class="mpill">דמי ניהול <b>0.12%</b></span>
+      </div>
+
+      <div class="grid2">
+        <div class="glass">
+          <div class="card-h">תשואות היסטוריות</div>
+          <div class="rvals">
+            <div><div class="rv pos">+12.8%</div><div class="rl">מתחילת השנה (2026)</div></div>
+            <div><div class="rv pos">+22.4%</div><div class="rl">12 חודשים</div></div>
+            <div><div class="rv pos">+62%</div><div class="rl">5 שנים (מצטבר)</div></div>
+          </div>
+          <div class="chart-box"><canvas id="ret_gold" data-chart="ret_gold" aria-label="גרף תשואות זהב"></canvas></div>
+        </div>
+        <div class="glass">
+          <div class="card-h">נתוני התעודה</div>
+          <div class="metrics">
+            <div class="metric"><span class="ml">משקל בתיק</span><span class="mv" style="color:var(--gold)">15%</span></div>
+            <div class="metric"><span class="ml">דמי ניהול שנתיים</span><span class="mv">0.12%</span></div>
+            <div class="metric"><span class="ml">סוג</span><span class="mv">זהב פיזי (ETC)</span></div>
+            <div class="metric"><span class="ml">רמת סיכון</span><span class="mv"><span class="risk low">נמוך-בינוני</span></span></div>
+          </div>
+        </div>
+        <div class="glass span2">
+          <div class="card-h">אודות התעודה ותפקידה בתיק</div>
+          <p class="prose">תעודה זולה במיוחד (<b>0.12%</b>) המגובה פיזית בזהב המאוחסן בכספות מאובטחות. מנוע ההשקעה בה נובע מ<b>רכישות מסיביות של בנקים מרכזיים</b> ומחיפוש הגנה מוחלטת מפני אינפלציה ואי‑יציבות פיננסית עולמית. תפקידה בתיק: עוגן הגנה ונזילות ומפלט בטוח שאינו קורלטיבי למניות, המפחית את תנודתיות התיק הכוללת בעת זעזועים.</p>
+          <div class="callout" style="margin-top:18px">
+            <div class="ct">ביצועי השנה האחרונה</div>
+            <p>ביצועים מעולים, המונעים מרכישות שיא של בנקים מרכזיים, חשש מאינפלציה דביקה ועליית המתח הגיאופוליטי בעולם.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="legal">
+      המידע בדשבורד זה מבוסס על נתוני הייעוץ והניתוח שסופקו, ונועד למטרות מעקב והמחשה בלבד. אין לראות בתוכן ייעוץ השקעות, שיווק השקעות או תחליף לייעוץ אישי המתחשב בנתוניו של כל משקיע. נתונים פיננסיים מסוימים הם הערכות. ביצועי עבר אינם מעידים בהכרח על תשואה עתידית.
+    </div>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- DATA (single source of truth) ---------- */
+  const holdings = [
+    {t:'META', name:'Meta Platforms',               w:20, color:'#38BDF8', r:{ytd:-10.1,y1:-13.1,y5:80.9}},
+    {t:'BOTZ', name:'Global X Robotics & AI ETF',   w:15, color:'#3B82F6', r:{ytd:6.5, y1:18.2,y5:45}},
+    {t:'NLR',  name:'VanEck Uranium + Nuclear',     w:10, color:'#34D399', r:{ytd:14.3,y1:38.6,y5:112}},
+    {t:'UFO',  name:'Procure Space ETF',            w:5,  color:'#818CF8', r:{ytd:-2.1,y1:4.8, y5:-12}},
+    {t:'KTOS', name:'Kratos Defense & Security',    w:10, color:'#8B5CF6', r:{ytd:-19, y1:42.2,y5:130}},
+    {t:'PPA',  name:'Invesco Aerospace & Defense',  w:15, color:'#A78BFA', r:{ytd:11.2,y1:29.5,y5:94}},
+    {t:'XAR',  name:'SPDR S&P Aerospace & Defense', w:10, color:'#C4B5FD', r:{ytd:8.9, y1:24.1,y5:78}},
+    {t:'Gold', name:'iShares Physical Gold ETC',    w:15, color:'#F0B429', r:{ytd:12.8,y1:22.4,y5:62}}
+  ];
+  const STOCK_TICKERS = ['META','KTOS'];
+  const SECTIONS = [
+    {id:'overview', label:'סקירה', short:'סקירה'},
+    {id:'meta', label:'Meta', short:'META'},
+    {id:'botz', label:'BOTZ', short:'BOTZ'},
+    {id:'nlr',  label:'NLR',  short:'NLR'},
+    {id:'ufo',  label:'UFO',  short:'UFO'},
+    {id:'ktos', label:'Kratos', short:'KTOS'},
+    {id:'ppa',  label:'PPA',  short:'PPA'},
+    {id:'xar',  label:'XAR',  short:'XAR'},
+    {id:'gold', label:'זהב',  short:'זהב'}
+  ];
+
+  /* ---------- helpers ---------- */
+  const fmtPct = v => (v>=0?'+':'') + v + '%';
+  const fmtAvg = v => { const r=Math.round(v*10)/10; return (r>=0?'+':'')+r+'%'; };
+  const avg = (period, filterFn) => { const a=filterFn?holdings.filter(filterFn):holdings; return a.reduce((s,h)=>s+h.r[period],0)/a.length; };
+  const isStock = h => STOCK_TICKERS.includes(h.t);
+
+  /* ---------- Chart.js base ---------- */
+  if(window.Chart){ Chart.defaults.font.family="'Assistant', sans-serif"; Chart.defaults.color='#9AAAC0'; Chart.defaults.font.size=13; }
+  const GRID='rgba(255,255,255,0.07)';
+  const TOOLTIP={ backgroundColor:'#0C121D', borderColor:'rgba(255,255,255,.14)', borderWidth:1,
+    titleColor:'#EAF2FB', bodyColor:'#EAF2FB', padding:11, cornerRadius:10,
+    titleFont:{family:"'Rubik'",weight:'600'}, bodyFont:{family:"'JetBrains Mono'"},
+    rtl:true, textDirection:'rtl', displayColors:true, boxPadding:5 };
+  const charts={};
+
+  /* ---------- chart builders ---------- */
+  function buildDonut(canvas){
+    charts.donut=new Chart(canvas,{ type:'doughnut',
+      data:{ labels:holdings.map(h=>h.t),
+        datasets:[{ data:holdings.map(h=>h.w), backgroundColor:holdings.map(h=>h.color),
+          borderColor:'#0B111C', borderWidth:3, hoverOffset:8, hoverBorderColor:'#0B111C' }] },
+      options:{ responsive:true, maintainAspectRatio:false, cutout:'68%',
+        plugins:{ legend:{display:false}, tooltip:{ ...TOOLTIP, callbacks:{
+          label:c=>'  '+holdings[c.dataIndex].t+' · '+holdings[c.dataIndex].name+': '+holdings[c.dataIndex].w+'%' }}},
+        animation:{ animateRotate:true, duration:1000 } } });
+  }
+  function buildRev(canvas, labels, vals, color, unit){
+    const bgc = vals.map((v,i)=> i===vals.length-1 ? color : color+'66');
+    charts[canvas.id]=new Chart(canvas,{ type:'bar',
+      data:{ labels, datasets:[{ data:vals, backgroundColor:bgc, borderColor:color,
+        borderWidth:1.5, borderRadius:9, maxBarThickness:62 }] },
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false}, tooltip:{ ...TOOLTIP, callbacks:{ label:c=>'  '+c.parsed.y.toLocaleString('en-US')+' '+(unit||'') }}},
+        scales:{ x:{ grid:{display:false}, ticks:{font:{family:"'JetBrains Mono'",weight:'500'}} },
+          y:{ grid:{color:GRID}, beginAtZero:true, ticks:{font:{family:"'JetBrains Mono'"}} } },
+        animation:{ duration:950, easing:'easeOutQuart' } } });
+  }
+  const RET={ ret_meta:'META', ret_botz:'BOTZ', ret_nlr:'NLR', ret_ufo:'UFO', ret_ktos:'KTOS', ret_ppa:'PPA', ret_xar:'XAR', ret_gold:'Gold' };
+  function buildReturnsBar(canvas, ticker){
+    const h=holdings.find(x=>x.t===ticker);
+    const vals=[h.r.ytd,h.r.y1,h.r.y5];
+    const bgc=vals.map(v=> v>=0?'rgba(52,211,153,.85)':'rgba(248,113,113,.85)');
+    const bdc=vals.map(v=> v>=0?'#34D399':'#F87171');
+    charts[canvas.id]=new Chart(canvas,{ type:'bar',
+      data:{ labels:['מתחילת השנה','12 חודשים','5 שנים'],
+        datasets:[{ data:vals, backgroundColor:bgc, borderColor:bdc, borderWidth:1.5, borderRadius:8, maxBarThickness:34 }] },
+      options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false}, tooltip:{ ...TOOLTIP, callbacks:{ label:c=>'  תשואה: '+fmtPct(c.parsed.x) }}},
+        scales:{ x:{ grid:{color:GRID}, ticks:{font:{family:"'JetBrains Mono'"}, callback:v=>v+'%'} },
+          y:{ position:'right', grid:{display:false}, ticks:{ color:'#C9D6E6', font:{family:"'Assistant'",weight:'600',size:13} } } },
+        animation:{ duration:950, easing:'easeOutQuart' } } });
+  }
+  function buildChart(c){
+    const k=c.dataset.chart;
+    if(k==='donut') buildDonut(c);
+    else if(k==='metaRev') buildRev(c, ['2022','2023','2024','2025'], [116.6,134.9,164.5,200], '#38BDF8', 'מיליארד $');
+    else if(k==='ktosRev') buildRev(c, ['2023','2024','2025'], [1.03,1.13,1.35], '#A78BFA', 'מיליארד $');
+    else if(RET[k]) buildReturnsBar(c, RET[k]);
+  }
+
+  /* ---------- overview static fills (legend, KPI, table) ---------- */
+  function fillOverview(){
+    document.getElementById('ov-legend').innerHTML = holdings.map(h=>`<div class="legend-row">
+        <span class="sw" style="background:${h.color}"></span>
+        <span class="nm"><b>${h.t}</b><span>${h.name}</span></span>
+        <span class="w" style="color:${h.color}">${h.w}%</span>
+      </div>`).join('');
+
+    const periods=[['ytd','מתחילת השנה'],['y1','12 חודשים'],['y5','5 שנים']];
+    const kc=(cls,l,v)=>`<div class="kpi ${cls}"><div class="kl">${l}</div><div class="kv ${v>=0?'pos':'neg'}">${fmtAvg(v)}</div></div>`;
+    document.getElementById('ov-kpi-portfolio').innerHTML = periods.map(([k,l])=>kc('gold',l,avg(k))).join('');
+    document.getElementById('ov-kpi-stocks').innerHTML    = periods.map(([k,l])=>kc('',l,avg(k,isStock))).join('');
+
+    const cell=v=>`<td><span class="rc ${v>=0?'pos':'neg'}">${fmtPct(v)}</span></td>`;
+    document.getElementById('ov-returns-body').innerHTML = holdings.map(h=>`<tr>
+        <td><span class="tick" style="color:${h.color}">${h.t}</span><span class="tname">${h.name}</span></td>
+        <td><span class="wval">${h.w}%</span></td>${cell(h.r.ytd)}${cell(h.r.y1)}${cell(h.r.y5)}
+      </tr>`).join('');
+  }
+
+  /* ---------- build navigation ---------- */
+  const dotnav=document.getElementById('dotnav');
+  const topList=document.getElementById('topnav-list');
+  const navMap={};
+  SECTIONS.forEach(s=>{
+    navMap[s.id]=[];
+    const d=document.createElement('a');
+    d.href='#'+s.id; d.className='dot'; d.dataset.target=s.id;
+    d.innerHTML=`<span class="dot-mark"></span><span class="dot-label">${s.label}</span>`;
+    dotnav.appendChild(d); navMap[s.id].push(d);
+    const p=document.createElement('a');
+    p.href='#'+s.id; p.className='pill'; p.dataset.target=s.id; p.textContent=s.short;
+    topList.appendChild(p); navMap[s.id].push(p);
+  });
+  let activeId=null;
+  function setActive(id){
+    if(id===activeId) return; activeId=id;
+    Object.keys(navMap).forEach(k=>navMap[k].forEach(el=>el.classList.toggle('active', k===id)));
+    const pill=topList.querySelector('.pill.active');
+    if(pill && pill.scrollIntoView) pill.scrollIntoView({inline:'center', block:'nearest', behavior:'smooth'});
+  }
+
+  /* ---------- observers ---------- */
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const chartObs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const c=e.target;
+        if(!c.dataset.built){ c.dataset.built='1'; buildChart(c); }
+        chartObs.unobserve(c);
+      }
+    });
+  },{ threshold:0.2, rootMargin:'0px 0px -8% 0px' });
+  document.querySelectorAll('canvas[data-chart]').forEach(c=>chartObs.observe(c));
+
+  const sectionObs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) setActive(e.target.id); });
+  },{ rootMargin:'-45% 0px -45% 0px', threshold:0 });
+  document.querySelectorAll('.sheet').forEach(s=>sectionObs.observe(s));
+
+  /* ---------- scroll effects: progress + watermark parallax ---------- */
+  const progress=document.getElementById('progress');
+  const mqDesk=window.matchMedia('(min-width:901px)');
+  const sheets=[...document.querySelectorAll('.sheet')];
+  function onScroll(){
+    const doc=document.documentElement;
+    const max=doc.scrollHeight-doc.clientHeight;
+    progress.style.width = (max>0 ? (doc.scrollTop/max*100) : 0) + '%';
+    if(mqDesk.matches && !reduce){
+      const vh=window.innerHeight;
+      sheets.forEach(s=>{
+        const r=s.getBoundingClientRect();
+        if(r.bottom<0 || r.top>vh) return;
+        const off=((r.top+r.height/2)-vh/2)/vh;
+        const wm=s.querySelector('.watermark');
+        if(wm) wm.style.transform='translateY(calc(-50% + '+(-off*55).toFixed(1)+'px))';
+      });
+    }
+  }
+  let ticking=false;
+  window.addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(()=>{ onScroll(); ticking=false; }); } },{passive:true});
+  window.addEventListener('resize', onScroll);
+
+  /* ---------- init ---------- */
+  fillOverview();
+  onScroll();
+  if(location.hash){ const t=document.querySelector(location.hash); if(t) setActive(t.id); }
+  else setActive('overview');
+})();
+</script>
+</body>
+</html>
