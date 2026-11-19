@@ -4,165 +4,1237 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>פרטנר, בזק וסלקום Q3 2026</title>
-<meta name="description" content="פרטנר, בזק וסלקום: הכנסות, הוצאות ורווח, רבעון 3 2026 מול רבעון 3 2025.">
+<meta name="description" content="ניתוח דוחות הרבעון השלישי של 2026: פרטנר, בזק וסלקום, והשוואה של פרטנר מול כל אחת מהן בתחומים המקבילים בלבד.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* Layout idea: a quiet financial ledger. One reading column on phone, two on desktop.
+   Greyscale throughout: Partner is the dark mark, Bezeq the light one.
+   The only colours are green for a rise and red for a fall. */
 :root{
   --bg:#F3F5F6; --surface:#FFFFFF; --sunken:#EAEEF0;
   --ink:#0F1B22; --ink-2:#44545E; --ink-3:#6C7B85; --line:#DAE1E5;
-  --up:#16794A; --bad:#B93227;
+  --partner:#1B272E;
+  --bezeq:#B6C0C7;
+  --up:#16794A;
+  --bad:#B93227;
+  --display:'Frank Ruhl Libre','Times New Roman',serif;
+  --body:'Heebo',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+  --radius:14px;
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#0B1216; --surface:#131C22; --sunken:#0F171C;
     --ink:#E9EFF2; --ink-2:#B3C0C8; --ink-3:#8696A0; --line:#25323A;
-    --up:#4CC38A; --bad:#F0796D;
+    --partner:#E3EAEE;
+    --bezeq:#5C6A73;
+    --up:#4CC38A;
+    --bad:#F0796D;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --bg:#0B1216; --surface:#131C22; --sunken:#0F171C;
   --ink:#E9EFF2; --ink-2:#B3C0C8; --ink-3:#8696A0; --line:#25323A;
-  --up:#4CC38A; --bad:#F0796D;
+  --partner:#E3EAEE;
+  --bezeq:#5C6A73;
+  --up:#4CC38A;
+  --bad:#F0796D;
   color-scheme:dark;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--ink);font-family:'Heebo',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
-.wrap{max-width:720px;margin:0 auto;padding:20px 16px 48px}
-header{margin-bottom:18px}
-h1{font-size:1.5rem;font-weight:700;line-height:1.25}
-.sub{color:var(--ink-3);font-size:.9rem;margin-top:4px}
-.key{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:10px;font-size:.8rem;color:var(--ink-3)}
-.key b{color:var(--ink);font-weight:700}
-section{margin-top:22px}
-h2{font-size:1.05rem;font-weight:700;margin-bottom:8px}
-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-col.m{width:28%} col.c{width:24%}
-th,td{padding:9px 5px;vertical-align:top;text-align:start;border-top:1px solid var(--line)}
-thead th{border-top:0;background:var(--sunken);font-size:.8rem;font-weight:700;color:var(--ink-2);padding:8px 6px}
-tbody th{font-weight:500;font-size:min(.86rem,3.9vw);color:var(--ink-2);padding-inline-start:10px;overflow-wrap:anywhere}
-thead td{border-top:0;background:var(--sunken)}
-td{direction:ltr;text-align:right;font-variant-numeric:tabular-nums}
-td span{unicode-bidi:isolate}
-td .v{display:block;font-size:min(.98rem,4.3vw);font-weight:700;color:var(--ink);white-space:nowrap}
-td .p{display:block;font-size:min(.76rem,3.4vw);color:var(--ink-3);white-space:nowrap}
-td .d{display:block;font-size:min(.76rem,3.4vw);font-weight:700;color:var(--ink-3);white-space:nowrap}
-td .d.good{color:var(--up)} td .d.bad{color:var(--bad)}
-td.na{color:var(--ink-3);font-size:.9rem}
-tr.total th{color:var(--ink);font-weight:700}
-.n{font-size:.76rem;color:var(--ink-3);margin-top:6px}
-footer{margin-top:26px;font-size:.76rem;color:var(--ink-3);display:flex;flex-direction:column;gap:4px}
-@media(min-width:600px){
-  col.m{width:34%} col.c{width:22%}
-  th,td{padding:10px 12px}
-  tbody th{padding-inline-start:14px}
-  td .v{font-size:min(1.05rem,2.6vw)}
-  td .p,td .d{font-size:min(.8rem,2vw)}
-  tbody th{font-size:min(.9rem,2.3vw)}
-}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.num,.ltr{direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums;white-space:nowrap}
+h1,h2,h3{text-wrap:balance;line-height:1.25}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;flex-direction:column;gap:10px;padding-top:12px;padding-bottom:10px}
+.mast{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.mast b{font-family:var(--display);font-weight:700;font-size:1.15rem}
+.mast span{font-size:.8rem;color:var(--ink-3)}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:var(--sunken);padding:4px;border-radius:12px}
+.tab{border:0;background:transparent;padding:9px 6px;border-radius:9px;font-weight:600;font-size:.88rem;color:var(--ink-2);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;min-height:38px;white-space:nowrap}
+@media(min-width:860px){.tabs{grid-template-columns:repeat(6,1fr)}}
+@media(min-width:520px){.tab{font-size:.95rem}}
+.tab i{display:none}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+
+/* ---------- page furniture ---------- */
+.view{display:none;padding:22px 0 56px}
+.view.on{display:block}
+.stack{display:flex;flex-direction:column;gap:26px}
+.lede{display:flex;flex-direction:column;gap:10px;border-inline-start:3px solid var(--co);padding-inline-start:14px}
+.lede .eyebrow{font-size:.8rem;font-weight:600;color:var(--ink-3)}
+.lede h1{font-family:var(--display);font-weight:700;font-size:clamp(1.55rem,5.6vw,2.3rem)}
+.lede p{color:var(--ink-2);max-width:65ch}
+.v-partner{--co:var(--ink)}
+.v-bezeq{--co:var(--ink)}
+.v-compare,.v-cellcom{--co:var(--ink)}
+.v-business{--co:var(--ink)}
+section>h2{font-family:var(--display);font-weight:700;font-size:1.3rem;margin-bottom:4px}
+section>.sub{color:var(--ink-3);font-size:.9rem;margin-bottom:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+
+/* KPI tiles */
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media(min-width:760px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px;display:flex;flex-direction:column;gap:5px}
+.kpi .k{font-size:.82rem;color:var(--ink-3);font-weight:500}
+.kpi .v{font-family:var(--display);font-weight:700;font-size:1.7rem;line-height:1.1}
+.kpi .v small{font-family:var(--body);font-size:.8rem;font-weight:500;color:var(--ink-3);margin-inline-start:4px}
+.kpi .c{font-size:.8rem;color:var(--ink-2);line-height:1.45}
+.kpi .yy{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:.82rem;color:var(--ink-3)}
+.kpi .yy b{color:var(--ink-2);font-weight:600}
+.basis{font-size:.86rem;color:var(--ink-3)}
+.basis b{color:var(--ink-2);font-weight:600}
+.chip{font-size:.82rem;font-weight:600;color:var(--ink-2);width:fit-content}
+.chip.up,.val.up{color:var(--up)}
+.chip.down,.val.down{color:var(--bad)}
+
+/* reading note */
+.note{border-inline-start:2px solid var(--line);padding-inline-start:14px;display:flex;flex-direction:column;gap:6px}
+.note h3{font-size:1rem}
+.note p{font-size:.93rem;color:var(--ink-2);max-width:70ch}
+
+/* charts */
+.charts{display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+.chart{min-width:0}
+@media(min-width:860px){.charts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.chart h3{font-size:1rem}
+.chart .cs{font-size:.82rem;color:var(--ink-3);margin-bottom:10px}
+.chart .box{position:relative;height:250px;width:100%;min-width:0}
+.chart p.take{font-size:.86rem;color:var(--ink-2);margin-top:10px}
+.fallback{width:100%;border-collapse:collapse;font-size:.82rem}
+.fallback th,.fallback td{padding:4px 6px;border-bottom:1px solid var(--line);text-align:start}
+
+/* segment cards */
+.segs{display:grid;gap:12px}
+@media(min-width:860px){.segs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.seg{display:flex;flex-direction:column;gap:12px}
+.seg header{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.seg h3{font-size:1.08rem}
+.seg header span{font-size:.8rem;color:var(--ink-3)}
+.rows{display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:minmax(0,1fr) 54px 54px 74px;gap:8px;align-items:center;padding:7px 0;border-top:1px solid var(--line);font-size:.92rem}
+.row:first-child{border-top:0}
+.row .rl{color:var(--ink-2)}
+.row .rv{font-weight:700;text-align:end}
+.row .rp{color:var(--ink-3);text-align:end}
+.row .chip{justify-self:end}
+.row.hd{font-size:.74rem;font-weight:600;color:var(--ink-3);border-top:0;padding-bottom:4px}
+.row.hd span{text-align:end}
+.row.hd span:first-child{text-align:start}
+.row.hd + .row{border-top:2px solid var(--line)}
+.rows.three .row{grid-template-columns:minmax(0,1fr) auto auto}
+.seg p.take{font-size:.9rem;color:var(--ink-2);border-top:1px solid var(--line);padding-top:12px}
+.share{height:8px;border-radius:99px;background:var(--sunken);overflow:hidden}
+.share i{display:block;height:100%;background:var(--co);border-radius:99px}
+
+/* insight lists */
+.two{display:grid;gap:12px}
+@media(min-width:860px){.two{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.list{display:flex;flex-direction:column;gap:10px}
+.list h3{font-size:1.02rem;display:flex;align-items:center;gap:8px}
+.list h3 i{display:none}
+.item{border-inline-start:2px solid var(--line);padding-inline-start:12px}
+.item b{display:block;font-size:.96rem}
+.item span{font-size:.9rem;color:var(--ink-2)}
+
+/* timeline */
+.tl{display:flex;flex-direction:column}
+.ev{display:grid;grid-template-columns:86px minmax(0,1fr);gap:12px;padding:9px 0;border-top:1px solid var(--line);font-size:.92rem}
+.ev:first-child{border-top:0}
+.ev time{font-weight:600;color:var(--ink)}
+.ev span{color:var(--ink-2)}
+.ev b{color:var(--ink)}
+
+/* glossary + sources */
+details{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:4px 16px}
+summary{cursor:pointer;font-weight:600;padding:10px 0;min-height:44px;display:flex;align-items:center}
+details dl{display:grid;gap:10px;padding:4px 0 14px}
+details dt{font-weight:600;font-size:.94rem}
+details dd{font-size:.9rem;color:var(--ink-2)}
+.src{font-size:.82rem;color:var(--ink-3);border-top:1px solid var(--line);padding-top:14px;max-width:80ch}
+
+/* ---------- compare ---------- */
+.score{display:grid;gap:10px}
+@media(min-width:760px){.score{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sc{display:flex;flex-direction:column;gap:8px}
+.sc .t{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.sc .t b{font-size:1rem}
+.sc .t span{font-size:.8rem;color:var(--ink-3)}
+.sc .bar{display:flex;height:12px;border-radius:99px;overflow:hidden;gap:2px;background:var(--surface)}
+.sc .bar i{display:block;height:100%}
+.sc .bar .p{background:var(--partner)} .sc .bar .b{background:var(--bezeq)}
+.sc .n{display:flex;justify-content:space-between;font-size:.86rem;font-weight:600}
+.sc .n .b{color:var(--ink-3)}
+.sc p{font-size:.88rem;color:var(--ink-2)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.86rem;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:3px}
+.duels{display:flex;flex-direction:column;gap:8px}
+.duel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;border-inline-start:3px solid var(--line)}
+.duel.wp{border-inline-start-color:var(--partner)} .duel.wb{border-inline-start-color:var(--bezeq)}
+.duel .h{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.duel .h b{font-size:.96rem}
+.tag{font-size:.78rem;font-weight:600;color:var(--ink-3)}
+.tag.p,.tag.b{color:var(--ink)}
+.duel .g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.side{display:flex;flex-direction:column;gap:4px}
+.side .who{font-size:.76rem;color:var(--ink-3)}
+.side .val{font-family:var(--display);font-weight:700;font-size:1.25rem;line-height:1.15}
+.side .tr{height:8px;background:var(--sunken);border-radius:99px;overflow:hidden}
+.side .tr i{display:block;height:100%;border-radius:99px}
+.side.p .tr i{background:var(--partner)} .side.b .tr i{background:var(--bezeq)}
+.side .d{font-size:.78rem;color:var(--ink-2)}
+.side .d b{color:var(--ink);font-weight:600}
+.duel .fn{font-size:.82rem;color:var(--ink-2)}
+.link{display:grid;gap:12px}
+@media(min-width:760px){.link{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.link .kpi .v{font-size:1.45rem}
+.nope{display:flex;flex-direction:column}
+.nope div{padding:10px 0;border-top:1px solid var(--line);font-size:.92rem}
+.nope div:first-child{border-top:0}
+.nope b{display:block}
+.nope span{color:var(--ink-2)}
+/* ---------- business ---------- */
+.meet{display:grid;gap:12px}
+@media(min-width:760px){.meet{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.meet .kpi{border-top:3px solid var(--line)}
+.meet .kpi.p{border-top-color:var(--partner)} .meet .kpi.b{border-top-color:var(--bezeq)}
+.split{display:flex;height:34px;border-radius:10px;overflow:hidden;gap:2px;font-size:.86rem;font-weight:600;color:var(--ink)}
+.split span{display:flex;align-items:center;justify-content:center;white-space:nowrap;min-width:0}
+@media(max-width:400px){.split{font-size:.74rem}}
+.split .b{background:var(--bezeq);width:70%} .split .p{background:var(--partner);width:30%;color:var(--surface)}
+.cohead{display:flex;align-items:center;gap:10px}
+.cohead i{width:14px;height:14px;border-radius:4px;flex:none}
+.facts{display:grid;gap:10px}
+@media(min-width:860px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fact{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px;display:flex;flex-direction:column;gap:6px}
+.fact .ft{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.fact b{font-size:1rem}
+.fact .fv{font-family:var(--display);font-weight:700;font-size:1.3rem}
+.fact p{font-size:.9rem;color:var(--ink-2)}
+.mx{display:flex;flex-direction:column}
+.mxr{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:.88rem;align-items:start}
+.mxr:first-child{border-top:0;font-weight:600;font-size:.8rem;color:var(--ink-3)}
+.mxr b{font-weight:600}
+.mxr span{color:var(--ink-2)}
+.mxr .hp,.mxr .hb{color:var(--ink)}
+.oobox{background:var(--surface);border:1px solid var(--line);border-inline-start:3px solid var(--ink);border-radius:var(--radius);padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.oobox h2{font-family:var(--display);font-size:1.15rem;font-weight:700}
+.oobox p,.oobox li{font-size:.92rem;color:var(--ink-2)}
+.oobox li b{color:var(--ink)}
+.oobox ul{padding-inline-start:18px;display:flex;flex-direction:column;gap:6px}
+.ootag{font-size:.74rem;font-weight:600;color:var(--ink-2);border:1px solid var(--line);border-radius:99px;padding:0 7px;white-space:nowrap;font-family:var(--body)}
+p.oo,span.oo{font-size:.84rem;color:var(--ink-2);border-inline-start:2px solid var(--ink-3);padding-inline-start:10px;line-height:1.5}
+p.oo b,span.oo b{color:var(--ink);font-weight:600}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <h1>פרטנר · בזק · סלקום</h1>
-    <p class="sub">רבעון 3 2026 מול רבעון 3 2025 · מיליוני ש"ח</p>
-    <div class="key"><span>בכל תא: <b>2026</b></span><span>2025</span><span>שינוי</span></div>
-  </header>
-  <main id="app"></main>
-  <footer>
-    <span>* ברבעון המקביל יש אירוע חד-פעמי. בזק: ביטול ירידת ערך ב-yes (כ-102 ב-EBITDA, כ-215 ברווח הנקי). פרטנר: ביטול הפרשה למע"מ, נטפליקס (כ-38).</span>
-    <span>מקור: הדוחות הרבעוניים לתקופה שהסתיימה ב-30.9.2026. שיעורים ושינויים חושבו מהנתונים המדווחים. החוב נטו של בזק חושב מהמאזן.</span>
-  </footer>
+
+<div class="top">
+  <div class="wrap">
+    <div class="mast"><b>רבעון שלישי 2026</b><span>ניתוח: אלירן גרוסמן</span></div>
+    <div class="tabs" role="tablist" aria-label="בחירת תצוגה">
+      <button class="tab" role="tab" id="tab-partner" data-v="partner" aria-controls="partner" aria-selected="true"><i></i>פרטנר</button>
+      <button class="tab" role="tab" id="tab-bezeq" data-v="bezeq" aria-controls="bezeq" aria-selected="false"><i></i>בזק</button>
+      <button class="tab" role="tab" id="tab-cellcom" data-v="cellcom" aria-controls="cellcom" aria-selected="false"><i></i>סלקום</button>
+      <button class="tab" role="tab" id="tab-compare" data-v="compare" aria-controls="compare" aria-selected="false"><i></i>פרטנר מול בזק</button>
+      <button class="tab" role="tab" id="tab-compare-cellcom" data-v="compare-cellcom" aria-controls="compare-cellcom" aria-selected="false"><i></i>פרטנר מול סלקום</button>
+      <button class="tab" role="tab" id="tab-business" data-v="business" aria-controls="business" aria-selected="false"><i></i>עסקי</button>
+    </div>
+  </div>
 </div>
+
+<main class="wrap">
+
+<!-- ======================= PARTNER ======================= -->
+<div class="view v-partner on" id="partner" role="tabpanel" aria-labelledby="tab-partner">
+<div class="stack">
+  <div class="lede">
+    <span class="eyebrow">פרטנר תקשורת · יולי עד ספטמבר 2026 מול התקופה המקבילה ב-2025</span>
+    <h1>הרבעון החזק של השנה, ומאזן שמשתנה מהיסוד</h1>
+    <p>ההכנסות עלו ב-<span class="num">6%</span> ל-<span class="num">829</span> מיליון ש"ח והרווח הנקי ב-<span class="num">12%</span>. הסלולר הוביל, עם קפיצה של <span class="num">55%</span> ברווח התפעולי. במקביל פרטנר פרעה את כל אגרות החוב שלה, קיבלה אישור בית משפט לחלק <span class="num">500</span> מיליון ש"ח שלא מתוך רווחים, ונערכת לגייס חוב חדש.</p>
+  </div>
+
+  <p class="basis">ההשוואה בעמוד: <b>רבעון 3 של 2026</b> מול <b>רבעון 3 של 2025</b> (יולי עד ספטמבר). ליד כל נתון מופיע גם הערך של הרבעון המקביל.</p>
+
+  <section>
+    <h2>המספרים המרכזיים</h2>
+    <p class="sub">מיליוני ש"ח. המספר הגדול הוא רבעון 3 של 2026, ומתחתיו הרבעון המקביל והשינוי.</p>
+    <div class="kpis" id="p-kpis"></div>
+  </section>
+
+  <div class="note">
+    <h3>איך לקרוא נכון את ה-EBITDA</h3>
+    <p>הרבעון המקביל כלל השפעה חיובית חד-פעמית של כ-<span class="num">38</span> מיליון ש"ח מביטול הפרשה למע"מ בגין לקוחות נטפליקס. זו הקטנת הוצאה ולא הכנסה. לכן העלייה המדווחת של <span class="num">6%</span> מציגה תמונה חלקית. בנטרול אותו סכום ה-EBITDA המתואם עלה ב-<span class="num">57</span> מיליון ש"ח, כלומר כ-<span class="num">19%</span>. מאותה סיבה ה-EBITDA של המגזר הנייח ירד ב-<span class="num">16%</span> בדיווח, ועלה בכ-<span class="num">11%</span> בנטרול.</p>
+  </div>
+
+  <section>
+    <h2>מגמה לאורך חמישה רבעונים</h2>
+    <p class="sub">על כל עמודה מופיע הערך שלה. שני הרבעונים שמשווים מודגשים, והרבעונים שביניהם בהירים יותר.</p>
+    <div class="charts">
+      <div class="card chart"><h3>הכנסות ו-EBITDA מתואם</h3><p class="cs">מיליוני ש"ח</p><div class="box"><canvas id="cP1"></canvas></div><p class="take">שיא של חמישה רבעונים גם בהכנסות וגם ב-EBITDA. הקש"ג כבר לא משפיע על ההשוואה: שני הרבעונים נקיים ממנו.</p></div>
+      <div class="card chart"><h3>מנויי סיבים לפי תשתית</h3><p class="cs">אלפי מנויים בסוף רבעון</p><div class="box"><canvas id="cP2"></canvas></div><p class="take">התשתית העצמית עומדת על <span class="num">283–286</span> אלף כבר חמישה רבעונים. כמעט כל הגידול מגיע מתשתית של צד ג'.</p></div>
+      <div class="card chart"><h3>תזרים מזומנים חופשי מתואם</h3><p class="cs">מיליוני ש"ח, לפני ריבית</p><div class="box"><canvas id="cP3"></canvas></div><p class="take">הירידה ל-<span class="num">43</span> נובעת מהצטיידות במלאי מכשירים למכרז החשב הכללי ולקראת השקות, ומתשלומים לספקים בגינם.</p></div>
+      <div class="card chart"><h3>חוב פיננסי נטו</h3><p class="cs">מיליוני ש"ח בסוף רבעון</p><div class="box"><canvas id="cP4"></canvas></div><p class="take">הקפיצה ברבעון הראשון היא הדיבידנד של <span class="num">465</span> מיליון ש"ח. היחס ל-EBITDA נשאר נמוך, כ-<span class="num">0.3</span>.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>שני המגזרים</h2>
+    <p class="sub">מיליוני ש"ח ואלפי מנויים. בכל שורה: רבעון 3 של 2026, רבעון 3 של 2025, והשינוי ביניהם.</p>
+    <div class="segs" id="p-segs"></div>
+  </section>
+
+  <section>
+    <h2>מה עבד ומה דורש מעקב</h2>
+    <p class="sub">הפרשנות היא שלי. העובדות והמספרים מהדוח.</p>
+    <div class="two">
+      <div class="card list good" id="p-good"><h3><i></i>מה עבד</h3></div>
+      <div class="card list bad" id="p-bad"><h3><i></i>מה דורש מעקב</h3></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>מבנה ההון: ציר הזמן</h2>
+    <p class="sub">האירוע המשמעותי ביותר סביב הדוח הזה.</p>
+    <div class="card tl" id="p-tl"></div>
+  </section>
+
+  <section>
+    <h2>התחייבות ה-IRU לבזק</h2>
+    <p class="sub">יתרת קרן של <span class="num">364</span> מיליון ש"ח על <span class="num">162</span> אלף קווים, ליום 30.9.2026. ריבית משוקללת <span class="num">4.85%</span>.</p>
+    <div class="card"><div class="rows three" id="p-iru"></div></div>
+  </section>
+
+  <details>
+    <summary>מילון קצר</summary>
+    <dl>
+      <div><dt>EBITDA מתואם</dt><dd>רווח לפני מימון, מסים, פחת והפחתות, בנטרול תגמול מבוסס מניות ורווחי הון. אינו מדד חשבונאי, וההגדרה שונה מעט מחברה לחברה.</dd></div>
+      <div><dt>קש"ג</dt><dd>דמי קישור גומלין בין מפעילים. המתווה להפחתתם הסתיים ב-15.6.2025, ולכן ברבעון השלישי של שתי השנים אין קש"ג וההשוואה נקייה.</dd></div>
+      <div><dt>ARPU</dt><dd>הכנסה חודשית ממוצעת למנוי.</dd></div>
+      <div><dt>שיעור נטישה</dt><dd>המנויים שנגרעו ברבעון, חלקי מצבת המנויים הממוצעת.</dd></div>
+      <div><dt>IRU</dt><dd>זכות שימוש בלתי הדירה. פרטנר רוכשת מבזק זכות שימוש ארוכת טווח בקווי סיבים במקום לפרוס אותם בעצמה.</dd></div>
+      <div><dt>תזרים חופשי מתואם</dt><dd>תזרים מפעילות שוטפת, פחות השקעות ברכוש קבוע ובנכסים בלתי מוחשיים, ופחות תשלומי חכירות.</dd></div>
+    </dl>
+  </details>
+
+  <p class="src">מקור: דוח רבעוני של חברת פרטנר תקשורת בע"מ לתקופה שהסתיימה ב-30.9.2026, נחתם ב-9.11.2026. שיעורי שינוי שאינם מופיעים בדוח חושבו מהערכים המדווחים. קטעי "מה עבד ומה דורש מעקב" הם פרשנות ואינם גילוי של החברה.</p>
+</div>
+</div>
+
+<!-- ======================= BEZEQ ======================= -->
+<div class="view v-bezeq" id="bezeq" role="tabpanel" aria-labelledby="tab-bezeq">
+<div class="stack">
+  <div class="lede">
+    <span class="eyebrow">קבוצת בזק · יולי עד ספטמבר 2026 מול התקופה המקבילה ב-2025</span>
+    <h1>הרווח המדווח ירד, העסק עצמו השתפר</h1>
+    <p>הרווח הנקי ירד ב-<span class="num">22%</span> ל-<span class="num">348</span> מיליון ש"ח, אבל רק מפני שלפני שנה נרשם ביטול הפסד מירידת ערך ב-yes. בנטרול, הרווח הנקי עלה ב-<span class="num">44%</span> וה-EBITDA ב-<span class="num">8%</span>. הקו הנייח הוא מנוע הרווח, פלאפון כמעט לא צומחת, והקבוצה מחזירה מזומן לבעלי המניות בקצב גבוה.</p>
+  </div>
+
+  <p class="basis">ההשוואה בעמוד: <b>רבעון 3 של 2026</b> מול <b>רבעון 3 של 2025</b> (יולי עד ספטמבר). ליד כל נתון מופיע גם הערך של הרבעון המקביל.</p>
+
+  <section>
+    <h2>המספרים המרכזיים</h2>
+    <p class="sub">מיליוני ש"ח. המספר הגדול הוא רבעון 3 של 2026, ומתחתיו הרבעון המקביל והשינוי.</p>
+    <div class="kpis" id="b-kpis"></div>
+  </section>
+
+  <div class="note">
+    <h3>שלוש גרסאות לכל מדד רווח</h3>
+    <p>בזק מדווחת כל מדד בשלוש רמות. <b>מדווח</b> הוא המספר החשבונאי. <b>מתואם</b> מנטרל הוצאות תפעוליות אחרות ותגמול הוני. <b>השוואתי</b> מנטרל בנוסף את ההשפעה של ירידות ערך וביטולן. ברבעון המקביל ביטול ירידת הערך ב-yes ניפח את הרווח הנקי בכ-<span class="num">215</span> מיליון ש"ח ואת ה-EBITDA המתואם בכ-<span class="num">102</span> מיליון ש"ח. לכן המדד ההשוואתי הוא הבסיס הנכון לקריאת המגמה.</p>
+  </div>
+
+  <section>
+    <h2>מגמה לאורך שבעה רבעונים</h2>
+    <p class="sub">על כל עמודה מופיע הערך שלה. שני הרבעונים שמשווים מודגשים, ושאר הרבעונים בהירים יותר.</p>
+    <div class="charts">
+      <div class="card chart"><h3>הכנסות ו-EBITDA השוואתי</h3><p class="cs">מיליוני ש"ח</p><div class="box"><canvas id="cB1"></canvas></div><p class="take">ההכנסות כמעט שטוחות, וה-EBITDA ההשוואתי חצה לראשונה בתקופה את רף המיליארד.</p></div>
+      <div class="card chart"><h3>רווח נקי השוואתי</h3><p class="cs">מיליוני ש"ח</p><div class="box"><canvas id="cB2"></canvas></div><p class="take">עלייה רצופה מתחילת 2026. בזק העלתה באוגוסט את תחזית הרווח לשנה כולה.</p></div>
+      <div class="card chart"><h3>קווי אינטרנט: קמעונאות מול סיטונות</h3><p class="cs">אלפי קווים בסוף רבעון</p><div class="box"><canvas id="cB3"></canvas></div><p class="take">הקמעונאות איבדה <span class="num">48</span> אלף קווים בשנה, והסיטונות הוסיפה <span class="num">54</span> אלף. בזק מוכרת פחות ללקוח הסופי ויותר למתחרות.</p></div>
+      <div class="card chart"><h3>מנויים מחוברים לרשת הסיבים</h3><p class="cs">אלפי מנויים בסוף רבעון</p><div class="box"><canvas id="cB4"></canvas></div><p class="take"><span class="num">1,095</span> אלף מנויים על רשת שזמינה ל-<span class="num">3,074</span> אלף משקי בית. הסיטונות צומחת מהר יותר מהקמעונאות.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>ארבעת המגזרים</h2>
+    <p class="sub">מיליוני ש"ח ואלפי מנויים. בכל שורה: רבעון 3 של 2026, רבעון 3 של 2025, והשינוי ביניהם.</p>
+    <div class="segs" id="b-segs"></div>
+  </section>
+
+  <section>
+    <h2>מה עבד ומה דורש מעקב</h2>
+    <p class="sub">הפרשנות היא שלי. העובדות והמספרים מהדוח.</p>
+    <div class="two">
+      <div class="card list good" id="b-good"><h3><i></i>מה עבד</h3></div>
+      <div class="card list bad" id="b-bad"><h3><i></i>מה דורש מעקב</h3></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>הון, חלוקות ומהלכי צמיחה</h2>
+    <p class="sub">אירועים מרכזיים ב-2026 ועד פרסום הדוח.</p>
+    <div class="card tl" id="b-tl"></div>
+  </section>
+
+  <details>
+    <summary>מילון קצר</summary>
+    <dl>
+      <div><dt>הכנסות ליבה</dt><dd>הכנסות הקבוצה בנטרול טלפוניה קווית, קש"ג בסלולר, לקוחות פרטיים בבזק בינלאומי ובזק און ליין. המדד מפריד בין הפעילות השוטפת לפעילות ה-Legacy.</dd></div>
+      <div><dt>EBITDA השוואתי</dt><dd>EBITDA מתואם בנטרול ההשפעה הכוללת של ירידות ועליות ערך.</dd></div>
+      <div><dt>קמעונאות וסיטונות</dt><dd>קמעונאות: קווי אינטרנט שבזק מוכרת ישירות ללקוח. סיטונות: קווים שבזק מספקת לספקי תקשורת אחרים, כמו פרטנר, והם מוכרים אותם ללקוח הסופי.</dd></div>
+      <div><dt>ARPL</dt><dd>הכנסה חודשית ממוצעת לקו טלפון.</dd></div>
+      <div><dt>תזרים חופשי</dt><dd>תזרים מפעילות שוטפת, פחות רכישת רכוש קבוע ונכסים בלתי מוחשיים נטו, ופחות תשלומי חכירות.</dd></div>
+    </dl>
+  </details>
+
+  <p class="src">מקור: דוח רבעוני של בזק החברה הישראלית לתקשורת בע"מ לתקופה שהסתיימה ב-30.9.2026, נחתם ב-10.11.2026. החוב הפיננסי נטו ויחס החוב ל-EBITDA אינם מדווחים בדוח וחושבו מסעיפי המאזן: אגרות חוב והלוואות, פחות מזומנים והשקעות שוטפות. שיעורי שינוי שאינם מופיעים בדוח חושבו מהערכים המדווחים.</p>
+</div>
+</div>
+
+<!-- ======================= CELLCOM ======================= -->
+<div class="view v-cellcom" id="cellcom" role="tabpanel" aria-labelledby="tab-cellcom">
+<div class="stack">
+  <div class="lede">
+    <span class="eyebrow">סלקום ישראל · יולי עד ספטמבר 2026 מול התקופה המקבילה ב-2025</span>
+    <h1>ההכנסות לא זזו, הרווח קפץ בשליש</h1>
+    <p>ההכנסות ירדו ב-<span class="num">0.5%</span> ל-<span class="num">1,028</span> מיליון ש"ח, אבל הרווח הנקי עלה ב-<span class="num">35.5%</span> ל-<span class="num">103</span> מיליון ש"ח. הסלולר נושא את השיפור, והמגזר הנייח מתכווץ בהכנסות. במקביל סלקום הורידה את החוב נטו בכמעט <span class="num">500</span> מיליון ש"ח בתוך שנה.</p>
+  </div>
+
+  <p class="basis">ההשוואה בעמוד: <b>רבעון 3 של 2026</b> מול <b>רבעון 3 של 2025</b> (יולי עד ספטמבר). ליד כל נתון מופיע גם הערך של הרבעון המקביל.</p>
+
+  <section>
+    <h2>המספרים המרכזיים</h2>
+    <p class="sub">מיליוני ש"ח. המספר הגדול הוא רבעון 3 של 2026, ומתחתיו הרבעון המקביל והשינוי.</p>
+    <div class="kpis" id="c-kpis"></div>
+  </section>
+
+  <div class="note">
+    <h3>שני דברים שצריך לדעת לפני שקוראים</h3>
+    <p><b>ציוד קצה הוא רבע מההכנסות.</b> סלקום מוכרת מכשירים ב-<span class="num">275</span> מיליון ש"ח ברבעון, בעיקר דרך דינמיקה. זה מנפח את ההכנסות ומוריד את שיעורי הרווחיות ביחס לחברה שמוכרת פחות ציוד. <b>הקש"ג סווג מחדש.</b> מהרבעון השלישי של 2025 שיחות בינלאומיות נכנסות נרשמות בהכנסות משירותי המגזר הנייד, ומהרבעון השני של 2026 גם הקש"ג על הודעות SMS. לכן הנתון המגזרי, <span class="num">454</span> מול <span class="num">444</span>, הוא הבסיס הנכון להשוואה. בסיכום ההנהלה סלקום משווה את <span class="num">454</span> ל-<span class="num">442</span>, בנטרול הקש"ג ברבעון המקביל, ומציגה צמיחה של <span class="num">2.7%</span>. ההפרש, כ-<span class="num">2</span> מיליון ש"ח, הוא הכנסות קש"ג שעוד נרשמו אז בשורה אחרת.</p>
+  </div>
+
+  <section>
+    <h2>מגמה לאורך חמישה רבעונים</h2>
+    <p class="sub">על כל עמודה מופיע הערך שלה. שני הרבעונים שמשווים מודגשים, והרבעונים שביניהם בהירים יותר.</p>
+    <div class="charts">
+      <div class="card chart"><h3>הכנסות ו-EBITDA מתואם</h3><p class="cs">מיליוני ש"ח</p><div class="box"><canvas id="cC1"></canvas></div><p class="take">ההכנסות נעות סביב אותה רמה, וה-EBITDA עולה שלושה רבעונים ברצף עד <span class="num">399</span>.</p></div>
+      <div class="card chart"><h3>תזרים מזומנים פנוי</h3><p class="cs">מיליוני ש"ח</p><div class="box"><canvas id="cC2"></canvas></div><p class="take"><span class="num">140</span> מיליון ש"ח, הגבוה בתשעת הרבעונים שבדוח. השיפור בא מירידה בהשקעות, <span class="num">114</span> מול <span class="num">144</span>. התזרים מפעילות שוטפת כמעט לא השתנה: <span class="num">313</span> מול <span class="num">315</span>.</p></div>
+      <div class="card chart"><h3>חוב פיננסי נטו</h3><p class="cs">מיליוני ש"ח בסוף רבעון</p><div class="box"><canvas id="cC3"></canvas></div><p class="take">ירידה של <span class="num">494</span> מיליון ש"ח בשנה, מפירעון אגרות חוב ומהתזרים הפנוי. היחס ל-EBITDA: <span class="num">0.67</span>.</p></div>
+      <div class="card chart"><h3>מנויי אינטרנט: סיבים ואחר</h3><p class="cs">אלפי מנויים בסוף רבעון</p><div class="box"><canvas id="cC4"></canvas></div><p class="take"><span class="num">93%</span> ממנויי האינטרנט כבר על סיבים. המנויים שאינם על סיבים ירדו מ-<span class="num">38</span> ל-<span class="num">27</span> אלף.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>שלושת המגזרים</h2>
+    <p class="sub">מיליוני ש"ח ואלפי מנויים. בכל שורה: רבעון 3 של 2026, רבעון 3 של 2025, והשינוי ביניהם.</p>
+    <div class="segs" id="c-segs"></div>
+  </section>
+
+  <section>
+    <h2>מה עבד ומה דורש מעקב</h2>
+    <p class="sub">הפרשנות היא שלי. העובדות והמספרים מהדוח.</p>
+    <div class="two">
+      <div class="card list good" id="c-good"><h3><i></i>מה עבד</h3></div>
+      <div class="card list bad" id="c-bad"><h3><i></i>מה דורש מעקב</h3></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>אירועים מרכזיים</h2>
+    <p class="sub">ב-2026 ועד פרסום הדוח.</p>
+    <div class="card tl" id="c-tl"></div>
+  </section>
+
+  <details>
+    <summary>מילון קצר</summary>
+    <dl>
+      <div><dt>Adjusted EBITDA</dt><dd>רווח נקי לפני מימון, מסים, פחת והפחתות, הוצאות אחרות שאינן מהפעילות השוטפת, רווחי חברות כלולות ותשלום מבוסס מניות. ההגדרה שונה מעט מחברה לחברה.</dd></div>
+      <div><dt>תזרים מזומנים פנוי</dt><dd>תזרים מפעילות שוטפת, פחות השקעות ברכוש קבוע ואחר, ופחות תשלומי חכירות.</dd></div>
+      <div><dt>מגזר החשמל</dt><dd>סלקום אנרג'י, שותפות שסלקום מחזיקה בה <span class="num">50%</span>. מוצגת לפי חלקה של סלקום ומטופלת בשיטת השווי המאזני, ולכן אינה נכללת בהכנסות המאוחדות.</dd></div>
+      <div><dt>IRU</dt><dd>זכות שימוש בלתי הדירה בתשתית. סלקום מספקת אינטרנט על הסיבים של IBC ועל התשתית של בזק בשוק הסיטונאי.</dd></div>
+    </dl>
+  </details>
+
+  <p class="src">מקור: דוח רבעוני של סלקום ישראל בע"מ לתקופה שהסתיימה ב-30.9.2026, נחתם ב-17.11.2026. שיעורי רווחיות ושיעורי שינוי שאינם מופיעים בדוח חושבו מהערכים המדווחים. קטעי "מה עבד ומה דורש מעקב" הם פרשנות ואינם גילוי של החברה.</p>
+</div>
+</div>
+
+<!-- ======================= PARTNER vs CELLCOM ======================= -->
+<div class="view v-compare" id="compare-cellcom" role="tabpanel" aria-labelledby="tab-compare-cellcom">
+<div class="stack">
+  <div class="lede">
+    <span class="eyebrow">פרטנר מול סלקום · רבעון 3 של 2026 · שירות מול שירות</span>
+    <h1>סלקום גדולה ומשתפרת מהר, פרטנר רווחית וצומחת יותר</h1>
+    <p>סלקום גדולה מפרטנר בהכנסות, במנויי הסלולר וברווח בשקלים, והרווח הנקי שלה עלה ב-<span class="num">35.5%</span>. פרטנר מובילה ברוב מדדי האיכות: שיעורי רווחיות גבוהים יותר, נטישה נמוכה יותר, ARPU גבוה יותר וצמיחה בשני המגזרים. בנייח שתי החברות כמעט זהות בגודל, ורק פרטנר צומחת.</p>
+  </div>
+
+  <p class="basis">ההשוואה בעמוד: <b>רבעון 3 של 2026</b> מול <b>רבעון 3 של 2025</b> (יולי עד ספטמבר). החברה העדיפה נקבעת לפי 2026, ומתחת לכל נתון מופיע הערך של הרבעון המקביל. <span class="ootag">*</span> כולל אירוע חד-פעמי ברבעון המקביל.</p>
+
+  <div class="legend">
+    <span><i style="background:var(--partner)"></i>פרטנר</span>
+    <span><i style="background:var(--bezeq)"></i>סלקום</span>
+    <span><span class="tag">עדיפה</span> מדד איכות, נספר בלוח התוצאות</span>
+    <span><span class="tag">גדולה יותר</span> מדד היקף, לא נספר</span>
+  </div>
+
+  <section>
+    <h2>לוח התוצאות</h2>
+    <p class="sub">כמה מדדי איכות כל חברה מובילה בכל תחום. מדדי היקף אינם נספרים.</p>
+    <div class="score" id="score-c"></div>
+  </section>
+
+  <div id="domains-c" class="stack"></div>
+
+  <section>
+    <h2>מה שלא נכנס ללוח התוצאות</h2>
+    <p class="sub">שלוש נקודות שמשלימות את התמונה לטובת סלקום. הפרשנות היא שלי.</p>
+    <div class="card nope">
+      <div><b>הכיוון של סלקום חד יותר</b><span>הרווח הנקי עלה ב-<span class="num">35.5%</span> מול <span class="num">12%</span> בפרטנר, התזרים הפנוי עלה ב-<span class="num">26%</span> בזמן שבפרטנר ירד ב-<span class="num">66%</span>, והנטישה בסלולר ירדה בזמן שבפרטנר עלתה.</span></div>
+      <div><b>המאזנים נעים בכיוונים הפוכים</b><span>סלקום הורידה את החוב נטו מ-<span class="num">1,464</span> ל-<span class="num">970</span> מיליון ש"ח. אצל פרטנר הוא עלה מ-<span class="num">160</span> ל-<span class="num">327</span>, לפני חלוקה של <span class="num">500</span> מיליון ש"ח שאושרה.</span></div>
+      <div><b>משקל הציוד מטה את שיעורי הרווחיות</b><span>ציוד קצה הוא <span class="num">27%</span> מהכנסות סלקום ו-<span class="num">16%</span> מהכנסות פרטנר. ביחס להכנסות משירותים בלבד, ה-EBITDA בסלולר הוא <span class="num">59.9%</span> בסלקום ו-<span class="num">58.3%</span> בפרטנר.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>מה לא השווינו, ולמה</h2>
+    <p class="sub">תחומים שבהם אחת החברות אינה מדווחת, או שהמספרים אינם מודדים את אותו דבר.</p>
+    <div class="card nope">
+      <div><b>מנויי דור 5</b><span>פרטנר מדווחת <span class="num">1,185</span> אלף מנויים משלמים. סלקום אינה מדווחת.</span></div>
+      <div><b>פוסטפייד ופריפייד</b><span>פרטנר מפצלת את המצבת. סלקום מדווחת מספר אחד.</span></div>
+      <div><b>תשתית סיבים עצמית</b><span>לפרטנר <span class="num">285</span> אלף מנויים על רשת משלה. סלקום מספקת סיבים על התשתית של IBC ושל בזק, ונמצאת בהליך משפטי מול IBC.</span></div>
+      <div><b>חשמל</b><span>סלקום מדווחת מגזר חשמל, <span class="num">91</span> מיליון ש"ח לפי חלקה. פרטנר אינה מדווחת על הפעילות בנפרד.</span></div>
+      <div><b>לקוחות עסקיים</b><span>אף אחת מהשתיים אינה מדווחת מגזר עסקי או הכנסות עסקיות.</span></div>
+    </div>
+  </section>
+
+  <p class="src">מקורות: הדוחות הרבעוניים של פרטנר ושל סלקום לתקופה שהסתיימה ב-30.9.2026. ההשוואה היא מגזר מול מגזר: סלולר מול המגזר הנייד, נייח מול נייח, ומדדים פיננסיים ברמת הקבוצה המאוחדת. כל שיעור שאינו מופיע בדוחות חושב מהערכים המדווחים. סלקום מציינת בדוח שמדיניות ספירת המנויים אינה זהה בין המפעילים.</p>
+</div>
+</div>
+
+<!-- ======================= COMPARE ======================= -->
+<div class="view v-compare" id="compare" role="tabpanel" aria-labelledby="tab-compare">
+<div class="stack">
+  <div class="lede">
+    <span class="eyebrow">פרטנר מול בזק · רבעון שלישי 2026 · תחומים מקבילים בלבד</span>
+    <h1>פרטנר מנצחת בסלולר ובמאזן, בזק בתשתית וברווחיות</h1>
+    <p>בסלולר פרטנר עדיפה כמעט בכל מדד איכות: רווחיות כפולה, נטישה נמוכה יותר וצמיחה מהירה יותר. בזק גדולה פי <span class="num">2.6</span> בהכנסות, מחזיקה ברשת הסיבים שעליה נשענת גם פרטנר, ומייצרת יותר רווח ומזומן מכל שקל. פרטנר צומחת מהר יותר וכמעט ללא חוב.</p>
+  </div>
+
+  <p class="basis">ההשוואה בעמוד: <b>רבעון 3 של 2026</b> מול <b>רבעון 3 של 2025</b> (יולי עד ספטמבר). החברה העדיפה נקבעת לפי 2026, ומתחת לכל נתון מופיע הערך של הרבעון המקביל. <span class="ootag">*</span> כולל אירוע חד-פעמי ברבעון המקביל.</p>
+
+  <div class="legend">
+    <span><i style="background:var(--partner)"></i>פרטנר</span>
+    <span><i style="background:var(--bezeq)"></i>בזק</span>
+    <span><span class="tag">עדיפה</span> מדד איכות, נספר בלוח התוצאות</span>
+    <span><span class="tag">גדולה יותר</span> מדד היקף, לא נספר</span>
+  </div>
+
+  <section>
+    <h2>לוח התוצאות</h2>
+    <p class="sub">כמה מדדי איכות כל חברה מובילה בכל תחום. מדדי היקף אינם נספרים.</p>
+    <div class="score" id="score"></div>
+  </section>
+
+  <div id="domains" class="stack"></div>
+
+  <section>
+    <h2>הקשר בין השתיים</h2>
+    <p class="sub">פרטנר היא גם מתחרה של בזק וגם לקוחה שלה. זו לא שאלה של מי עדיפה, אלא של מי תלויה במי.</p>
+    <div class="link">
+      <div class="kpi"><span class="k">מנויי סיבים של פרטנר על תשתית צד ג'</span><span class="v"><span class="num">200</span><small>אלף</small></span><span class="c">עלייה של <span class="num">26</span> אלף בשנה. הדוח אינו מזהה את בעל התשתית בשם.</span></div>
+      <div class="kpi"><span class="k">קווים בהסכם ה-IRU של פרטנר עם בזק</span><span class="v"><span class="num">162</span><small>אלף</small></span><span class="c">יתרת קרן לתשלום: <span class="num">364</span> מיליון ש"ח. לאחר תאריך המאזן הופעלו <span class="num">6</span> אלף קווים נוספים.</span></div>
+      <div class="kpi"><span class="k">מנויי סיבים בסיטונות של בזק</span><span class="v"><span class="num">435</span><small>אלף</small></span><span class="c">עלייה של <span class="num">90</span> אלף בשנה, מול <span class="num">51</span> אלף בקמעונאות.</span></div>
+    </div>
+    <p class="sub" style="margin-top:12px">שני הדוחות מתארים את אותה עסקה משני צדדיה. אצל פרטנר היא מופיעה כהוצאות נדחות בגין זכות שימוש בתשתית הסיבים של בזק. אצל בזק היא מופיעה כהכנסות מראש בגין הסכם IRU ארוך טווח עם פרטנר. בנוסף, yes מדווחת על עלייה בהכנסות משיתוף פעולה לאספקת תוכן לפרטנר.</p>
+  </section>
+
+  <section>
+    <h2>מה לא השווינו, ולמה</h2>
+    <p class="sub">תחומים שבהם המספרים של שתי החברות אינם מודדים את אותו דבר.</p>
+    <div class="card nope">
+      <div><b>רווחיות המגזר הנייח</b><span>המגזר הנייח של פרטנר כולל אינטרנט, טלוויזיה, דאטה לעסקים ו-Hubbing. אצל בזק הפעילויות האלה מפוזרות בין בזק קווי, בזק בינלאומי ו-yes, ובזק קווי כולל גם סיטונות וטלפוניה. אין מגזר מקביל.</span></div>
+      <div><b>לקוחות עסקיים</b><span>אף אחת מהחברות אינה מדווחת מגזר עסקי נפרד.</span></div>
+      <div><b>טלפוניה קווית, סיטונות ושירותי ICT</b><span>פעילויות של בזק שאין להן מקבילה מדווחת אצל פרטנר.</span></div>
+      <div><b>ARPU ונטישה בטלוויזיה</b><span>yes מדווחת את שניהם. פרטנר מדווחת רק את מספר המנויים.</span></div>
+      <div><b>חשמל</b><span>לשתי החברות פעילות אספקת חשמל, ואף אחת אינה מדווחת עליה בנפרד בדוח הזה.</span></div>
+    </div>
+  </section>
+
+  <p class="src">מקורות: הדוחות הרבעוניים של פרטנר ושל בזק לתקופה שהסתיימה ב-30.9.2026. בסלולר ההשוואה היא בין מגזר הסלולר של פרטנר לבין פלאפון. באינטרנט, בין המנויים הקמעונאיים של פרטנר לבין הקמעונאות של בזק קווי. בטלוויזיה, בין Partner TV לבין yes. המדדים הפיננסיים הם ברמת הקבוצה המאוחדת. כל שיעור שאינו מופיע בדוחות חושב מהערכים המדווחים, והחוב נטו של בזק חושב מסעיפי המאזן.</p>
+</div>
+</div>
+
+<!-- ======================= BUSINESS ======================= -->
+<div class="view v-business" id="business" role="tabpanel" aria-labelledby="tab-business">
+<div class="stack">
+  <div class="lede">
+    <span class="eyebrow">הפעילות העסקית · רבעון שלישי 2026 · כל מה שיש בשני הדוחות</span>
+    <h1>אף אחת לא מדווחת חטיבה עסקית. זה מה שהדוחות כן מגלים</h1>
+    <p>פרטנר ובזק אינן מציגות מגזר עסקי, ואין בדוחות הכנסות, מספר לקוחות או רווח של החטיבה העסקית. העמוד הזה אוסף כל נתון וכל אזכור שנוגע ללקוחות עסקיים ולמגזר הציבורי. התמונה: בזק גדולה ושקופה יותר בתחום, ופרטנר נוגסת בה דרך מכרזי הממשלה.</p>
+  </div>
+
+  <p class="basis">ההשוואה בעמוד: <b>רבעון 3 של 2026</b> מול <b>רבעון 3 של 2025</b> (יולי עד ספטמבר). ליד כל נתון מופיע גם הערך של הרבעון המקביל.</p>
+
+  <section>
+    <h2>המפגש הישיר: מכרז הדאטה של החשב הכללי</h2>
+    <p class="sub">שירותי תקשורת נתונים למשרדי הממשלה, יחידות הסמך וגופים נלווים. זה המקום היחיד שבו שני הדוחות מתארים את אותה עסקה.</p>
+    <div class="card" style="display:flex;flex-direction:column;gap:12px">
+      <div class="split" role="img" aria-label="בזק 70 אחוז, פרטנר כ-30 אחוז"><span class="b">בזק <span class="num">&nbsp;70%</span></span><span class="p">פרטנר <span class="num">&nbsp;30%~</span></span></div>
+      <p style="font-size:.92rem;color:var(--ink-2)">במכרז הקודם בזק הייתה ספק עיקרי יחיד, עם <span class="num">100%</span>. במכרז החדש היא ספק עיקרי עם <span class="num">70%</span> מהשירותים בתכולה א׳. פרטנר נבחרה בתכולה ב׳, וחלקה מוערך בכ-<span class="num">30%</span> מקווי הנתונים בשני הסלים. החיבור בין שני המספרים הוא קריאה שלי: כל דוח מתאר רק את הצד שלו.</p>
+    </div>
+    <div class="meet" style="margin-top:12px">
+      <div class="kpi p"><span class="k">פרטנר · תכולה ב׳, סל 1 וסל 2</span><span class="v"><span class="num">3,000</span><small>קווים לפחות</small></span><span class="c">הודעות זכייה ב-28 וב-29.10.2026. סל 1: קווי תמסורת Ethernet Metro ו-SDH, שירותי WDM וקישור לאינטרנט על תשתית הסיבים של פרטנר. סל 2: קווי IPVPN. בנוסף ציוד קצה ותחזוקה.</span></div>
+      <div class="kpi b"><span class="k">בזק · תכולה א׳, סל 1 וסל 2</span><span class="v"><span class="num">70%</span><small>מהשירותים</small></span><span class="c">הודעת זכייה ב-29.10.2026. קווים עסקיים, תמסורות, קווי IPVPN, ציוד ופתרונות רשת. תחילת ביצוע ברבעון הרביעי של 2026. בזק אינה צופה השפעה מהותית על תוצאותיה.</span></div>
+    </div>
+    <p class="sub" style="margin-top:12px">אצל שתיהן: תקופה בסיסית של <span class="num">48</span> חודשים, עם אופציה למדינה להאריך עד <span class="num">72</span> חודשים נוספים.</p>
+  </section>
+
+  <section>
+    <h2 class="cohead"><i style="background:var(--partner)"></i>פרטנר: מה הדוח מגלה</h2>
+    <p class="sub">המספר העסקי היחיד שמדווח הוא מכירות ציוד נייח לעסקים. כל השאר הוא הסברים מילוליים ועקבות במאזן.</p>
+    <div class="facts" id="x-p"></div>
+    <div class="charts" style="margin-top:12px">
+      <div class="card chart"><h3>הכנסות ממכירת ציוד ואחר במגזר הנייח</h3><p class="cs">מיליוני ש"ח. פרטנר מייחסת את הירידה לציוד נייח ללקוחות עסקיים.</p><div class="box"><canvas id="cX1"></canvas></div><p class="take">ירידה רצופה מ-<span class="num">14</span> ל-<span class="num">6</span> בתוך שנה. שירותי הדאטה לעסקים צומחים, מכירות הציוד מתכווצות.</p></div>
+      <div class="card chart"><h3>מלאי</h3><p class="cs">מיליוני ש"ח, 30 בספטמבר</p><div class="box"><canvas id="cX2"></canvas></div><p class="take">המלאי עלה ב-<span class="num">38%</span>, בין היתר בגלל מכשירים שנרכשו למכרז החשב הכללי. זו העלות המיידית של הזכייה.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="cohead"><i style="background:var(--bezeq)"></i>בזק: מה הדוח מגלה</h2>
+    <p class="sub">בזק מפרטת שורות הכנסה שרובן עסקיות, אבל הן מפוזרות בין בזק קווי לבזק בינלאומי. מיליוני ש"ח. המספר הגדול הוא רבעון 3 של 2026, ומתחתיו הרבעון המקביל והשינוי.</p>
+    <div class="kpis" id="x-bk"></div>
+    <div class="note" style="margin-top:12px">
+      <h3>איך נבנה האומדן של 735 מיליון ש"ח</h3>
+      <p>זה חיבור שלי של שלוש שורות מדווחות: תמסורת, תקשורת נתונים ואחרים בבזק קווי (<span class="num">414</span>), ענן ודיגיטל בבזק קווי (<span class="num">94</span>), והכנסות בזק בינלאומי שאינן מלקוחות פרטיים (<span class="num">227</span>). זה אינו נתון של החברה. הוא לא כולל את החלק העסקי באינטרנט, בטלפוניה, בפלאפון וב-yes, ומנגד כולל עסקאות בין חברות הקבוצה ואת המדריך B144. מתאים לקריאת כיוון, לא לקביעת גודל.</p>
+    </div>
+    <div class="charts" style="margin-top:12px">
+      <div class="card chart"><h3>בזק בינלאומי: עסקי מול פרטי</h3><p class="cs">מיליוני ש"ח. העסקי מחושב: סך ההכנסות פחות לקוחות פרטיים.</p><div class="box"><canvas id="cX3"></canvas></div><p class="take">הפרטי נשחק בהתמדה, מ-<span class="num">34</span> ל-<span class="num">23</span>. העסקי תנודתי בגלל מכירות ציוד, רישוי וחוזי שירות. לקוחות זעירים (SOHO) נספרים כפרטיים.</p></div>
+      <div class="card chart"><h3>שלוש שורות ההכנסה העסקיות</h3><p class="cs">מיליוני ש"ח, רבעון שלישי 2025 מול 2026</p><div class="box"><canvas id="cX4"></canvas></div><p class="take">התמסורת והענן צומחים, בזק בינלאומי יורד, והסכום כמעט ללא שינוי: <span class="num">734</span> מול <span class="num">735</span>.</p></div>
+    </div>
+    <div class="facts" id="x-b" style="margin-top:12px"></div>
+  </section>
+
+  <section>
+    <h2>זו מול זו בעסקי</h2>
+    <p class="sub">מה כל דוח אומר על אותו נושא. היכן שכתוב "לא מדווח", אין נתון בדוח.</p>
+    <div class="card mx" id="x-mx"></div>
+  </section>
+
+  <section>
+    <h2>השורה התחתונה</h2>
+    <p class="sub">הפרשנות היא שלי.</p>
+    <div class="two">
+      <div class="card list good" id="x-good"><h3><i></i>מה אפשר לקבוע</h3></div>
+      <div class="card list bad" id="x-bad"><h3><i></i>מה חסר כדי לדעת יותר</h3></div>
+    </div>
+  </section>
+
+  <p class="src">מקורות: הדוחות הרבעוניים של פרטנר ושל בזק לתקופה שהסתיימה ב-30.9.2026. אף אחת מהחברות אינה מדווחת מגזר עסקי. הנתונים בעמוד לקוחים מדוח הדירקטוריון, מעדכון תיאור עסקי התאגיד ומהביאורים. הכנסות בזק בינלאומי מלקוחות שאינם פרטיים, והאומדן המצרפי של השורות העסקיות, חושבו מהערכים המדווחים ואינם נתונים של החברה.</p>
+</div>
+</div>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
 (function(){
 'use strict';
-/* each value: [Q3 2026, Q3 2025]; order: Partner, Bezeq, Cellcom; null = not reported.
-   t: 'm' money (change in %), 'k' thousands (change in units), 'r' rate in % (change in points), 'a' shekels (change in shekels).
-   inv: a rise is bad. flat: no good/bad colour. s: companies whose 2025 value includes a one-off. */
-var P = {rev:[829,784], op:[148,132], ebitda:[350,331], net:[101,90]};
-var B = {rev:[2171,2145], op:[510,616], ebitda:[1014,1041], net:[348,446]};
-var C = {rev:[1028,1033], op:[164,127], ebitda:[399,369], net:[103,76]};
-function pct(a, b){ return [a[0] / b[0] * 100, a[1] / b[1] * 100]; }
+var $ = function(id){ return document.getElementById(id); };
+var n = function(s){
+  s = String(s);
+  /* mixed Hebrew and digits: isolate only the numeric tokens, so the sentence keeps its right-to-left order */
+  if(/[\u0590-\u05FF]/.test(s)) return s.replace(/[+\u2212]?\d[\d,.]*[%K]?/g, function(m){ return '<span class="num">' + m + '</span>'; });
+  return '<span class="num">' + s + '</span>';
+};
+/* green for a rise, red for a fall, nothing for no change */
+function dir(s){ s = String(s); return s.charAt(0) === '+' ? 'up' : (s.charAt(0) === '\u2212' && /\d/.test(s)) ? 'down' : ''; }
+function el(tag, cls, html){ var e = document.createElement(tag); if(cls) e.className = cls; if(html != null) e.innerHTML = html; return e; }
 
-var SECTIONS = [
- {h:'הכנסות ורווח', rows:[
-  {l:'הכנסות', t:'m', v:[P.rev, B.rev, C.rev], total:true},
-  {l:'הוצאות תפעוליות', t:'m', inv:true, v:[[681,652],[1661,1529],[864,906]], s:[0,1]},
-  {l:'רווח תפעולי', t:'m', v:[P.op, B.op, C.op], s:[0,1], total:true},
-  {l:'EBITDA מתואם', t:'m', v:[P.ebitda, B.ebitda, C.ebitda], s:[0,1]},
-  {l:'הוצאות מימון, נטו', t:'m', inv:true, v:[[14,8],[62,82],[24,29]]},
-  {l:'מסים', t:'m', flat:true, v:[[33,34],[93,72],[37,24]]},
-  {l:'רווח נקי', t:'m', v:[P.net, B.net, C.net], s:[0,1], total:true}
- ]},
- {h:'שיעורי רווחיות', note:'מתוך ההכנסות.', rows:[
-  {l:'רווח תפעולי', t:'r', v:[pct(P.op,P.rev), pct(B.op,B.rev), pct(C.op,C.rev)], s:[0,1]},
-  {l:'EBITDA מתואם', t:'r', v:[pct(P.ebitda,P.rev), pct(B.ebitda,B.rev), pct(C.ebitda,C.rev)], s:[0,1]},
-  {l:'רווח נקי', t:'r', v:[pct(P.net,P.rev), pct(B.net,B.rev), pct(C.net,C.rev)], s:[0,1]}
- ]},
- {h:'פירוט ההוצאות', note:'בזק מציגה את ההוצאות לפי סוג, ופרטנר וסלקום לפי תפקיד.', rows:[
-  {l:'עלות ההכנסות', t:'m', inv:true, v:[[568,562], null, [612,652]]},
-  {l:'רווח גולמי', t:'m', v:[[261,222], null, [416,381]]},
-  {l:'מכירה ושיווק', t:'m', inv:true, v:[[85,92], null, [192,188]]},
-  {l:'הנהלה וכלליות', t:'m', inv:true, v:[[35,3], null, [74,75]], s:[0]},
-  {l:'הפעלה וכלליות', t:'m', inv:true, v:[null, [704,661], null], s:[1]},
-  {l:'שכר', t:'m', inv:true, v:[null, [457,449], null]},
-  {l:'פחת והפחתות', t:'m', inv:true, v:[[199,197],[468,380],[228,239]], s:[1]}
- ]},
- {h:'מזומנים וחוב', rows:[
-  {l:'תזרים חופשי', t:'m', v:[[43,125],[249,331],[140,111]]},
-  {l:'השקעות', t:'m', flat:true, v:[[122,119],[410,418],[115,145]]},
-  {l:'חוב פיננסי נטו', t:'m', inv:true, v:[[327,160],[5544,4648],[970,1464]]}
- ]},
- {h:'סלולר', note:'בזק: פלאפון. מנויים באלפים.', rows:[
-  {l:'הכנסות', t:'m', v:[[509,473],[525,517],[714,685]]},
-  {l:'מנויים', t:'k', v:[[2739,2667],[2601,2583],[3715,3645]]},
-  {l:'ARPU (₪)', t:'a', v:[[46,44],[49,49],[40.9,40.5]]},
-  {l:'נטישה', t:'r', inv:true, v:[[5.6,4.9],[7.1,6.3],[7.8,8.0]]}
- ]},
- {h:'אינטרנט וטלוויזיה', note:'בזק: אינטרנט בקמעונאות של בזק קווי, טלוויזיה ב-yes. מנויים באלפים.', rows:[
-  {l:'מנויי אינטרנט', t:'k', v:[[503,484],[942,990],[395,386]]},
-  {l:'מנויי סיבים', t:'k', v:[[485,457],[660,609],[368,348]]},
-  {l:'ARPU אינטרנט (₪)', t:'a', v:[[97,95],[142,136],[97.3,100.3]]},
-  {l:'מנויי טלוויזיה', t:'k', v:[[214,196],[562,565],[277,275]]}
- ]}
+/* ---------------- KPI tiles ---------------- */
+/* v: Q3 2026, p: Q3 2025, d: change between them */
+function kpis(target, list){
+  list.forEach(function(k){
+    var d = el('div','kpi');
+    d.innerHTML = '<span class="k">' + k.k + '</span>' +
+      '<span class="v">' + n(k.v) + (k.u ? '<small>' + k.u + '</small>' : '') + '</span>' +
+      '<span class="yy"><span>ברבעון המקביל <b>' + n(k.p) + '</b></span><span class="chip ' + dir(k.d) + '">' + n(k.d) + '</span></span>' +
+      '<span class="c">' + k.c + '</span>' +
+      (k.oo ? '<span class="oo">* ' + k.oo + '</span>' : '');
+    $(target).appendChild(d);
+  });
+}
+kpis('p-kpis', [
+  {k:'סך הכנסות', v:'829', p:'784', d:'+6%', t:'', c:'הכנסות משירותים ' + n('695') + ' מול ' + n('650') + '. ציוד ' + n('134') + ' בשני הרבעונים.'},
+  {k:'EBITDA מתואם', v:'350', p:'331', d:'+6%', t:'', c:'שיעור ' + n('42%') + ' מההכנסות בשני הרבעונים.', oo:'בלי החד-פעמי (נטפליקס): ' + n('293') + ', עלייה של ' + n('19%')},
+  {k:'רווח תפעולי', v:'148', p:'132', d:'+12%', t:'', c:'שיעור מההכנסות: ' + n('17.9%') + ' מול ' + n('16.8%') + '.', oo:'בלי החד-פעמי (נטפליקס): ' + n('94') + ', עלייה של ' + n('57%')},
+  {k:'רווח נקי', v:'101', p:'90', d:'+12%', t:'', c:'שיעור מההכנסות: ' + n('12.2%') + ' מול ' + n('11.5%') + '.', oo:'כולל השפעה חד-פעמית (נטפליקס)'},
+  {k:'תזרים חופשי מתואם', v:'43', p:'125', d:'−66%', t:'bad', c:'הצטיידות במלאי מכשירים ותשלומים לספקים.'},
+  {k:'חוב פיננסי נטו', v:'327', p:'160', d:'+167', t:'', c:'יחס חוב נטו ל-EBITDA: ' + n('0.3') + ' מול ' + n('0.1') + '. מזומנים: ' + n('119') + ' מול ' + n('630') + '.'}
+]);
+kpis('b-kpis', [
+  {k:'סך הכנסות', v:'2,171', p:'2,145', d:'+1.2%', t:'', c:'הכנסות ליבה ' + n('2,040') + ' מול ' + n('1,995') + ', ' + n('+2.3%') + '.'},
+  {k:'EBITDA השוואתי', v:'1,014', p:'939', d:'+8.0%', t:'', c:'ה-EBITDA המתואם: ' + n('1,014') + ' מול ' + n('1,041') + ', שכללו ביטול ירידת ערך.'},
+  {k:'רווח נקי מדווח', v:'348', p:'446', d:'−22.0%', t:'bad', c:'הרבעון המקביל כלל ביטול ירידת ערך ב-yes.', oo:'בלי החד-פעמי (yes): ' + n('258')},
+  {k:'רווח נקי השוואתי', v:'372', p:'258', d:'+44.2%', t:'', c:'בנטרול ירידות ערך. זו המגמה העסקית.'},
+  {k:'תזרים חופשי', v:'249', p:'331', d:'−24.8%', t:'bad', c:'מלאי מכשירים בפלאפון ותשלומי הטבות עובדים.'},
+  {k:'חוב פיננסי נטו (מחושב)', v:'5,544', p:'4,648', d:'+896', t:'', c:'כ-' + n('1.4') + ' פעמים ה-EBITDA המתואם של ארבעה רבעונים.'}
+]);
+
+/* ---------------- segment cards ---------------- */
+/* row: [label, Q3 2026, Q3 2025, change, tone] */
+function segs(target, list){
+  list.forEach(function(s){
+    var c = el('div','card seg');
+    var h = '<header><h3>' + s.name + '</h3><span>' + s.meta + '</span></header>';
+    if(s.share != null) h += '<div class="share" role="img" aria-label="' + s.share + '% מהכנסות הקבוצה"><i style="width:' + s.share + '%"></i></div>';
+    h += '<div class="rows"><div class="row hd"><span>מדד</span><span>רבעון 3<br>2026</span><span>רבעון 3<br>2025</span><span>שינוי</span></div>';
+    s.rows.forEach(function(r){
+      h += '<div class="row"><span class="rl">' + r[0] + '</span><span class="rv">' + n(r[1]) + '</span><span class="rp">' + n(r[2]) + '</span>' +
+           '<span class="chip ' + dir(r[3]) + '">' + n(r[3]) + '</span></div>';
+    });
+    h += '</div><p class="take">' + s.take + '</p>';
+    c.innerHTML = h;
+    $(target).appendChild(c);
+  });
+}
+segs('p-segs', [
+  {name:'סלולר', meta:'61% מההכנסות', share:61, rows:[
+    ['סך הכנסות','509','473','+8%',''],
+    ['הכנסות משירותים','381','353','+8%',''],
+    ['רווח תפעולי','124','80','+55%',''],
+    ['EBITDA מתואם','222','178','+25%',''],
+    ['שיעור EBITDA','43.6%','37.6%','+6.0 נק׳',''],
+    ['מנויים (אלפים)','2,739','2,667','+72',''],
+    ['מזה פוסטפייד','2,578','2,501','+77',''],
+    ['מנויי דור 5 משלמים','1,185','766','+419',''],
+    ['ARPU (ש"ח)','46','44','+2',''],
+    ['שיעור נטישה','5.6%','4.9%','+0.7 נק׳','bad']
+  ], take:'הצמיחה באה מחבילות סלולר, מנדידה ומירידה בהוצאות השכר והשיווק. הנטישה עלתה בעיקר בגלל מנויי דאטה של לקוח אחד מהמגזר הציבורי.'},
+  {name:'נייח', meta:'41% מההכנסות, לפני התאמות בין מגזרים', share:41, rows:[
+    ['סך הכנסות','341','331','+3%',''],
+    ['הכנסות משירותים','335','317','+6%',''],
+    ['רווח תפעולי','24','52','−54%','bad'],
+    ['EBITDA מתואם','128','153','−16%','bad'],
+    ['שיעור EBITDA','37.5%','46.2%','−8.7 נק׳','bad'],
+    ['מנויי אינטרנט (אלפים)','503','484','+19',''],
+    ['מנויי סיבים','485','457','+28',''],
+    ['מזה על תשתית פרטנר','285','283','+2',''],
+    ['מזה על תשתית צד ג׳','200','174','+26',''],
+    ['מנויי טלוויזיה','214','196','+18',''],
+    ['ARPU אינטרנט (ש"ח)','97','95','+2','']
+  ], take:'הירידה ברווח נובעת כמעט כולה מההשפעה החיובית החד-פעמית של ' + n('38') + ' מיליון ש"ח ברבעון המקביל, מביטול הפרשה למע"מ. בנטרול, ה-EBITDA עלה מ-' + n('115') + ' ל-' + n('128') + '. האינטרנט והדאטה לעסקים צומחים, וה-Hubbing יורד.'}
+]);
+segs('b-segs', [
+  {name:'בזק קווי', meta:'51% מההכנסות', share:51, rows:[
+    ['סך הכנסות','1,113','1,111','+0.2%',''],
+    ['הכנסות אינטרנט','497','508','−2.2%','bad'],
+    ['תמסורת ותקשורת נתונים','414','391','+5.9%',''],
+    ['טלפוניה קווית','108','120','−10.0%','bad'],
+    ['ענן ודיגיטל','94','92','+2.2%',''],
+    ['רווח תפעולי','408','328','+24.4%',''],
+    ['EBITDA','649','597','+8.7%',''],
+    ['קווי אינטרנט בקמעונאות (אלפים)','942','990','−48','bad'],
+    ['קווי אינטרנט בסיטונות','537','483','+54',''],
+    ['ARPU אינטרנט בקמעונאות (ש"ח)','142','136','+6',''],
+    ['קווי טלפוניה','1,275','1,339','−64','bad']
+  ], take:'ההכנסות שטוחות והרווח קפץ, בעיקר מירידה בהוצאות: ציוד וקבלני משנה, ביטול הוצאות בגין קופת התמרוץ לפריסת סיבים, והתאמה חד-פעמית בפחת. הכנסות האינטרנט ירדו בגלל הורדת תעריפי השוק הסיטונאי מ-1.4.2026.'},
+  {name:'פלאפון', meta:'24% מההכנסות', share:24, rows:[
+    ['סך הכנסות','525','517','+1.5%',''],
+    ['הכנסות משירותים','384','381','+0.8%',''],
+    ['מכירת ציוד קצה','141','136','+3.7%',''],
+    ['רווח תפעולי','64','56','+14.3%',''],
+    ['EBITDA','212','203','+4.4%',''],
+    ['מנויים (אלפים)','2,601','2,583','+18',''],
+    ['מזה פוסטפייד','2,281','2,217','+64',''],
+    ['מזה פריפייד','320','366','−46','bad'],
+    ['מנויים בחבילות דור 5','1,484','1,329','+155',''],
+    ['ARPU (ש"ח)','49','49','0',''],
+    ['שיעור נטישה','7.1%','6.3%','+0.8 נק׳','bad'],
+    ['תזרים חופשי','−17','64','−81','bad']
+  ], take:'הכנסות השירותים כמעט לא זזו והנטישה היא הגבוהה בשבעה רבעונים. מול הרבעון הקודם (רבעון 2 של 2026) המצבת ירדה ב-' + n('6') + ' אלף. שימו לב: פלאפון שינתה את שיטת ספירת מנויי הדאטה, גרעה כ-' + n('101') + ' אלף מנויים ועדכנה גם את נתוני 2025.'},
+  {name:'yes', meta:'17% מההכנסות', share:17, rows:[
+    ['הכנסות','370','321','+15.3%',''],
+    ['רווח תפעולי (2025 פרופורמה)','27','1','+26',''],
+    ['EBITDA','83','160','לא בר השוואה',''],
+    ['מנויי טלוויזיה (אלפים)','562','565','−3',''],
+    ['מזה מנויי IP','508','486','+22',''],
+    ['ARPU טלוויזיה (ש"ח)','162','168','−6','bad'],
+    ['שיעור נטישה','4.4%','3.7%','+0.7 נק׳','bad'],
+    ['מנויי סיבים','156','106','+50','']
+  ], take:'הצמיחה בהכנסות נובעת בעיקר משיתוף הפעולה לאספקת תוכן לפרטנר, ממכירת תכנים לגופים חיצוניים ומחבילות טלוויזיה וסיבים. ה-EBITDA של הרבעון המקביל כלל ביטול הפסד מירידת ערך, ולכן אינו בסיס להשוואה. ההכנסה ממנוי טלוויזיה ממשיכה לרדת.'},
+  {name:'בזק בינלאומי', meta:'12% מההכנסות', share:12, rows:[
+    ['הכנסות','250','281','−11.0%','bad'],
+    ['מזה לקוחות פרטיים','23','30','−7','bad'],
+    ['רווח תפעולי','19','17','+11.8%',''],
+    ['EBITDA','39','40','−1','']
+  ], take:'ירידה בטלפוניה בינלאומית ובאינטרנט לפרטיים, וברבעון גם במכירת ציוד, רישוי וחוזי שירות. שירותי הענן והאינטרנט לעסקים צומחים, והרווח נשמר.'}
+]);
+
+/* ---------------- insights ---------------- */
+function items(target, list){
+  list.forEach(function(i){ $(target).appendChild(el('div','item','<b>' + i[0] + '</b><span>' + i[1] + '</span>')); });
+}
+items('p-good', [
+  ['הסלולר קפץ מדרגה', 'רווח תפעולי של ' + n('124') + ' מיליון ש"ח מול ' + n('80') + ', ושיעור EBITDA של ' + n('44%') + '. ה-ARPU עלה ל-' + n('46') + ' ש"ח, הגבוה בחמישה רבעונים, בעיקר בזכות נדידה.'],
+  ['דור 5 ממשיך להתרחב', n('1,185') + ' אלף מנויים משלמים, תוספת של ' + n('173') + ' אלף ברבעון אחד. הפעם העלייה מלווה גם בעלייה ב-ARPU.'],
+  ['כל קווי המנויים בנייח גדלים', 'אינטרנט ' + n('+19') + ' אלף, סיבים ' + n('+28') + ' אלף, טלוויזיה ' + n('+18') + ' אלף. ARPU האינטרנט עלה ל-' + n('97') + ' ש"ח.'],
+  ['זכיות במכרזים', 'פרטנר זכתה במכרז הסיבים השלישי של המדינה, ובמכרז החשב הכללי לתקשורת נתונים בתכולה ב׳ של שני הסלים.'],
+  ['הרווח הגולמי עלה ' + n('18%'), n('261') + ' מיליון ש"ח, ושיעור של ' + n('31%') + ' מההכנסות מול ' + n('28%') + '.'],
+  ['ודאות רגולטורית ארוכה יותר', 'הרישיון האחוד של הפעילות הנייחת הוארך עד 31.1.2037, רישיון החשמל עד סוף 2031, והסכם נטפליקס עד 31.3.2028.']
+]);
+items('p-bad', [
+  ['המזומן ירד ב-' + n('81%') + ' בשנה', 'מ-' + n('630') + ' ל-' + n('119') + ' מיליון ש"ח, בגלל הדיבידנד ופירעון אגרות החוב. הגירעון בהון החוזר: ' + n('439') + ' מיליון ש"ח. הדירקטוריון קבע שאין בכך בעיית נזילות.'],
+  ['החלוקה הבאה ממומנת בחוב חדש', 'חלוקת ' + n('500') + ' מיליון ש"ח אושרה בכפוף להשלמת הנפקת סדרה ט׳. הרווחים שנצברו בשמונת הרבעונים האחרונים, אחרי דיבידנדים, שליליים בכ-' + n('72') + ' מיליון ש"ח. זו קריאה שלי: החוב נטו צפוי לעלות משמעותית מהרמה הנוכחית.'],
+  ['התשתית העצמית בסיבים לא גדלה', n('285') + ' אלף מנויים, כמו לפני שנה. לצד בזק נחתמה ב-22.10.2026 תוספת להסכם עם IBC במנגנון Take or Pay.'],
+  ['2027 עמוסה בתשלומי IRU', n('124') + ' מיליון ש"ח, שהם ' + n('34%') + ' מיתרת הקרן, נופלים בשנה אחת.'],
+  ['הנטישה קפצה ל-' + n('5.6%'), 'מול ' + n('4.6%') + ' ברבעון הקודם. פרטנר מייחסת זאת ללקוח ציבורי אחד. הרבעון הבא יראה אם זה אירוע בודד.'],
+  ['מחלוקת מס של ' + n('185') + ' מיליון ש"ח', 'שומות לשנים 2020 עד 2023. שולמו ' + n('45') + ' מיליון ש"ח על החשבון, וההשגה בשלב מקדמי.'],
+  ['תאריכים קרובים', 'הסכם אפל בתוקף עד 30.11.2026 ונמצא במשא ומתן. הקצאת תדרי 1800MHz הוארכה רק עד 31.12.2026, ומשרד התקשורת נערך להליך תחרותי.']
+]);
+items('b-good', [
+  ['הרווח ההשוואתי בשיא התקופה', 'רווח נקי השוואתי של ' + n('372') + ' מיליון ש"ח ו-EBITDA השוואתי של ' + n('1,014') + '. שניהם הגבוהים בשבעת הרבעונים המדווחים.'],
+  ['התחזית לשנה הועלתה', 'ב-21.8.2026: רווח נקי השוואתי של ' + n('1.15–1.2') + ' מיליארד ש"ח ו-EBITDA השוואתי של ' + n('3.8–3.85') + ' מיליארד ש"ח. ההשקעות נשארו כ-' + n('1.6') + ' מיליארד ש"ח.'],
+  ['רשת הסיבים ממשיכה להתמלא', n('1,095') + ' אלף מנויים, ' + n('+141') + ' אלף בשנה. הקצב הממוצע למנוי קמעונאי עלה ל-' + n('877') + ' מגה מול ' + n('673') + '.'],
+  ['ARPU האינטרנט עולה', n('142') + ' ש"ח מול ' + n('136') + ', בזכות מעבר מנויים לסיבים.'],
+  ['תמסורת ונתונים צומחים', n('414') + ' מיליון ש"ח, ' + n('+5.9%') + '. בזק זכתה כספק עיקרי במכרז החשב הכללי, עם ' + n('70%') + ' מהשירותים במקום ' + n('100%') + ' במכרז הקודם.'],
+  ['הוצאות המימון ירדו', n('62') + ' מיליון ש"ח מול ' + n('82') + '. הדירוג אושרר: ilAA במעלות ו-Aa2.il במידרוג.']
+]);
+items('b-bad', [
+  ['הקמעונאות מאבדת קווים', n('942') + ' אלף קווי אינטרנט, ירידה של ' + n('48') + ' אלף בשנה. הצמיחה עוברת לסיטונות, שם התעריפים ירדו מ-1.4.2026.'],
+  ['פלאפון דורכת במקום', 'הכנסות שירותים ' + n('+0.8%') + ', נטישה של ' + n('7.1%') + ' ותזרים חופשי שלילי של ' + n('17') + ' מיליון ש"ח. בתשעת החודשים הרווח התפעולי ירד ב-' + n('60%') + ' בגלל עלות חידוש ההסכם הקיבוצי.'],
+  ['חלק מהשיפור בקווי אינו חוזר', 'הרווח התפעולי נהנה מביטול הוצאות קופת התמרוץ, ומירידה של ' + n('28') + ' מיליון ש"ח בפחת שבזק מייחסת להתאמה חד-פעמית.'],
+  ['הקופה התרוקנה בחצי', 'מזומנים והשקעות שוטפות ירדו מ-' + n('2,886') + ' ל-' + n('1,446') + ' מיליון ש"ח. ב-2026 חולקו ' + n('964') + ' מיליון ש"ח בדיבידנדים ונרכשו מניות ב-' + n('250') + ' מיליון ש"ח.'],
+  ['הטלפוניה ממשיכה לדעוך', 'הכנסות ' + n('−10%') + ', ' + n('1,275') + ' אלף קווים והכנסה של ' + n('28') + ' ש"ח לקו.'],
+  ['yes: יותר הכנסות, פחות מכל מנוי', 'ARPU הטלוויזיה ירד ל-' + n('162') + ' ש"ח והנטישה עלתה ל-' + n('4.4%') + '.'],
+  ['רגישות לאינפלציה', 'חוב צמוד מדד של ' + n('2,149') + ' מיליון ש"ח. כל ' + n('1%') + ' במדד מוסיף כ-' + n('21') + ' מיליון ש"ח להוצאות המימון, או כ-' + n('13') + ' אחרי גידור.']
+]);
+
+/* ---------------- timelines ---------------- */
+function tl(target, list){
+  list.forEach(function(e){ $(target).appendChild(el('div','ev','<time class="num">' + e[0] + '</time><span>' + e[1] + '</span>')); });
+}
+tl('p-tl', [
+  ['29.3.2026', '<b>דיבידנד של ' + n('465') + ' מיליון ש"ח</b> חולק לבעלי המניות.'],
+  ['20.7.2026', 'הדירקטוריון הגיש לבית המשפט בקשה לפי סעיף 303 לחלק <b>' + n('500') + ' מיליון ש"ח</b> שלא מתוך רווחים.'],
+  ['14.9.2026', 'פדיון מוקדם מלא של <b>סדרה ח׳</b>, כ-' + n('140') + ' מיליון ש"ח.'],
+  ['12.10.2026', 'פדיון מוקדם מלא של <b>סדרה ז׳</b>, כ-' + n('344') + ' מיליון ש"ח. מאז אין לפרטנר אגרות חוב במחזור.'],
+  ['21.10.2026', '<b>בית המשפט אישר</b> את החלוקה, בתנאי שתבוצע בתוך ארבעה חודשים. באותו יום פרטנר הודיעה שהיא בוחנת הנפקת <b>סדרה ט׳</b>, ומעלות קבעה לה דירוג ilAA- בהיקף של עד ' + n('750') + ' מיליון ש"ח.'],
+  ['9.11.2026', 'הדירקטוריון <b>אישר את החלוקה</b>, בכפוף להשלמת הנפקת סדרה ט׳.']
+]);
+tl('b-tl', [
+  ['14.5.2026', 'דיבידנד של <b>' + n('549') + ' מיליון ש"ח</b>. עד 9.6 הושלמה רכישה עצמית של ' + n('150') + ' מיליון ש"ח.'],
+  ['30.6.2026', 'מתווה עקרוני ל<b>רכישות עצמיות עד ' + n('800') + ' מיליון ש"ח</b>, בתוקף עד סוף 2029, לצד מדיניות דיבידנד של ' + n('80%') + ' מהרווח החצי-שנתי.'],
+  ['21.8.2026', '<b>העלאת תחזית</b> הרווח וה-EBITDA לשנת 2026.'],
+  ['24.9.2026', 'דיבידנד של <b>' + n('415') + ' מיליון ש"ח</b>. עד 15.9 הושלמה רכישה עצמית נוספת של ' + n('100') + ' מיליון ש"ח.'],
+  ['5.11.2026', 'מזכר הבנות לא מחייב עם אדגר להקמת <b>דאטה סנטר</b> של ' + n('16MW') + ' לפחות בפתח תקווה. השקעה מוערכת של ' + n('200–250') + ' מיליון ש"ח לכל צד.'],
+  ['9.11.2026', 'פלאפון חתמה על הסכם מחייב ל<b>רכישת וויקום</b> תמורת עד ' + n('265') + ' מיליון ש"ח, בכפוף לאישורים רגולטוריים.'],
+  ['בתהליך', 'משא ומתן מתקדם עם Telecom Italia Sparkle על <b>כבל תת-ימי</b>. השקעה צפויה של כ-' + n('250') + ' מיליון ש"ח על פני שלוש שנים.']
+]);
+
+/* IRU schedule */
+[['יתרת 2026','4','1%'],['2027','124','34%'],['2028','55','15%'],['2029 ואילך','181','50%'],['סך הכל','364','100%']].forEach(function(r){
+  $('p-iru').appendChild(el('div','row','<span class="rl">' + r[0] + '</span><span class="rv">' + n(r[1]) + '</span><span class="chip">' + n(r[2]) + '</span>'));
+});
+
+/* ---------------- Cellcom page ---------------- */
+kpis('c-kpis', [
+  {k:'סך הכנסות', v:'1,028', p:'1,033', d:'−0.5%', c:'שירותים ' + n('753') + ' מול ' + n('749') + '. ציוד קצה ' + n('275') + ' מול ' + n('284') + '.'},
+  {k:'Adjusted EBITDA', v:'399', p:'369', d:'+8.1%', c:'שיעור מההכנסות: ' + n('38.8%') + ' מול ' + n('35.7%') + '.'},
+  {k:'רווח תפעולי', v:'164', p:'127', d:'+29.1%', c:'שיעור מההכנסות: ' + n('16.0%') + ' מול ' + n('12.3%') + '.'},
+  {k:'רווח נקי', v:'103', p:'76', d:'+35.5%', c:'שיעור מההכנסות: ' + n('10.0%') + ' מול ' + n('7.4%') + '.'},
+  {k:'תזרים מזומנים פנוי', v:'140', p:'111', d:'+26.1%', c:'השקעות תזרימיות ירדו ל-' + n('115') + ' מ-' + n('145') + '.'},
+  {k:'חוב פיננסי נטו', v:'970', p:'1,464', d:'−494', c:'יחס חוב נטו ל-EBITDA: ' + n('0.67') + '. מזומנים: ' + n('195') + ' מול ' + n('149') + '.'}
+]);
+segs('c-segs', [
+  {name:'נייד (סלולר)', meta:'69% מההכנסות', share:69, rows:[
+    ['סך הכנסות','714','685','+4.2%',''],
+    ['הכנסות משירותים','454','444','+2.3%',''],
+    ['הכנסות מציוד קצה','260','241','+7.9%',''],
+    ['רווח תפעולי','135','102','+32.4%',''],
+    ['Adjusted EBITDA','272','248','+9.7%',''],
+    ['שיעור EBITDA','38.1%','36.2%','+1.9 נק׳',''],
+    ['מנויים (אלפים)','3,715','3,645','+70',''],
+    ['ARPU (ש"ח)','40.9','40.5','+0.4',''],
+    ['שיעור נטישה','7.8%','8.0%','−0.2 נק׳','']
+  ], take:'העלייה בהכנסות באה מחבילות הסלולר ומנדידה. הרווח עלה גם בגלל ירידה בהוצאות על אגרות תדרים. המגזר כולל גם שירותי אירוח ושיתוף רשתות.'},
+  {name:'נייח', meta:'34% מההכנסות, לפני התאמות בין מגזרים', share:34, rows:[
+    ['סך הכנסות','350','382','−8.4%',''],
+    ['הכנסות משירותים','335','339','−1.2%',''],
+    ['הכנסות מציוד קצה','15','43','−65.1%',''],
+    ['רווח תפעולי','29','25','+16.0%',''],
+    ['Adjusted EBITDA','127','121','+5.0%',''],
+    ['שיעור EBITDA','36.3%','31.7%','+4.6 נק׳',''],
+    ['מנויי אינטרנט (אלפים)','395','386','+9',''],
+    ['מזה מנויי סיבים','368','348','+20',''],
+    ['מנויי טלוויזיה','277','275','+2',''],
+    ['ARPU אינטרנט (ש"ח)','97.3','100.3','−3.0','']
+  ], take:'ההכנסות משירותים ירדו בגלל טלפוניה פנים-ארצית, Hubbing, אינטרנט וטלוויזיה. הרווח עלה בזכות ירידה במחירי השוק הסיטונאי, בקיזוז עלייה בעלויות תוכן. מהרבעון הראשון של 2026 ספירת מנויי הטלוויזיה כוללת גם משתמשים בתשלום.'},
+  {name:'חשמל (סלקום אנרג׳י)', meta:'מוצג לפי חלקה של סלקום, 50%', rows:[
+    ['הכנסות','91','77','+18.2%',''],
+    ['רווח תפעולי','1','2','−1',''],
+    ['Adjusted EBITDA','1','2','−1','']
+  ], take:'פעילות צומחת בהכנסות וכמעט ללא רווח. מטופלת בשיטת השווי המאזני, ולכן אינה חלק מההכנסות המאוחדות. הרישיון הוארך עד 31.12.2031.'}
+]);
+items('c-good', [
+  ['הרווח צמח בלי צמיחה בהכנסות', 'שיעור הרווח הגולמי עלה ל-' + n('40.5%') + ' מ-' + n('36.9%') + '. עלות ההכנסות ירדה ל-' + n('612') + ' מיליון ש"ח מ-' + n('652') + ': שוק סיטונאי, אגרות תדרים ופחת.'],
+  ['הסלולר הוא המנוע', 'רווח תפעולי של ' + n('135') + ' מיליון ש"ח מול ' + n('102') + '. המצבת גדלה ב-' + n('70') + ' אלף מנויים ל-' + n('3,715') + ' אלף, והנטישה ירדה ל-' + n('7.8%') + '.'],
+  ['החוב יורד מהר', 'החוב נטו ירד ב-' + n('494') + ' מיליון ש"ח בשנה. הוצאות המימון ירדו ל-' + n('24') + ' מיליון ש"ח מ-' + n('29') + '. סדרות י׳ ו-י"א נפרעו בפדיון סופי ביולי 2026.'],
+  ['תזרים פנוי בשיא', n('140') + ' מיליון ש"ח ברבעון ו-' + n('391') + ' בתשעת החודשים, מול ' + n('308') + ' בתקופה המקבילה.'],
+  ['המעבר לסיבים כמעט הושלם', n('368') + ' אלף מנויי סיבים, ' + n('+20') + ' אלף בשנה. הם ' + n('93%') + ' ממנויי האינטרנט.'],
+  ['דירוג ודיבידנד', 'מעלות אישררה באוגוסט 2026 דירוג ilAA- באופק יציב. ב-2026 חולק דיבידנד של ' + n('200') + ' מיליון ש"ח.']
+]);
+items('c-bad', [
+  ['המגזר הנייח מתכווץ', 'ההכנסות ירדו ב-' + n('8.4%') + '. ציוד הקצה הנייח ירד ל-' + n('15') + ' מיליון ש"ח מ-' + n('43') + ', וההכנסות משירותים ירדו ב-' + n('1.2%') + '.'],
+  ['ARPU האינטרנט יורד', n('97.3') + ' ש"ח מול ' + n('100.3') + ' ברבעון המקביל. זו ירידה שלישית ברצף מאז השיא של ' + n('101.5') + ' ברבעון הרביעי של 2025.'],
+  ['הסכסוך עם IBC', 'IBC הגישה תביעה שכנגד, ומעריכה באומדן גס ולא מחייב הפרה צפויה של כ-' + n('895') + ' מיליון ש"ח עד תום הסכם ה-IRU. סלקום מציינת שאינה יכולה להעריך את תוצאות ההליך. הסדר דיוני מסדיר את התשלומים השוטפים עד לפסק דין.'],
+  ['חוב קצר ומסגרות אשראי מצומצמות', 'גירעון בהון החוזר של ' + n('484') + ' מיליון ש"ח, לאחר העברת חוב מזמן ארוך לקצר. מסגרות האשראי יצומצמו מ-' + n('600') + ' מיליון ש"ח לא מנוצלים לעד ' + n('100') + '. הדירקטוריון קבע שאין בעיית נזילות, ובוחן הנפקת סדרה י"ד.'],
+  ['תלות במכירות ציוד', 'ציוד הקצה הוא ' + n('27%') + ' מההכנסות, והרווח הגולמי ממנו ירד ל-' + n('52') + ' מיליון ש"ח מ-' + n('57') + '.'],
+  ['השותפה לרשת משנה בעלים', 'סלקום מפעילה רשת רדיו משותפת עם וויקום. לפי הדוח של בזק, פלאפון חתמה ב-9.11.2026 על הסכם לרכישת וויקום, בכפוף לאישורים. הדוח של סלקום אינו מתייחס לכך.'],
+  ['מהלכים פתוחים', 'מגעים מוקדמים לרכישת אייקון גרופ, ללא הסכם מחייב. בקשה לבית המשפט למיזוג שותפות התקשורת הקווית לתוך החברה. תדרי 800 מה"ץ הוקצו זמנית עד 31.3.2027.']
+]);
+tl('c-tl', [
+  ['23.3.2026', 'בית המשפט נתן תוקף ל<b>הסדר דיוני עם IBC</b>, שמסדיר את המחלוקות עד לפסק דין חלוט. סלקום תשלים ערבויות בהיקף של עד ' + n('50') + ' מיליון ש"ח.'],
+  ['אפריל 2026', 'IBC הגישה <b>תביעה שכנגד מתוקנת</b>, עם סעד כספי של כ-' + n('16.5') + ' מיליון ש"ח וסעדים הצהרתיים.'],
+  ['יולי 2026', '<b>פדיון סופי</b> של אגרות החוב מסדרות י׳ ו-י"א. רישיון החשמל של סלקום אנרג׳י הוארך עד 31.12.2031.'],
+  ['אוגוסט 2026', 'מעלות <b>אישררה את הדירוג</b> ilAA- באופק יציב.'],
+  ['5.10.2026', 'משרד התקשורת הקצה לסלקום זמנית, לשם ניסוי, <b>תדרים בתחום 800 מה"ץ</b> עד 31.3.2027.'],
+  ['26.10.2026', 'סלקום עדכנה שהמגעים ל<b>רכישת אייקון גרופ</b> בשלבים מוקדמים, ללא ודאות שיבשילו לעסקה.'],
+  ['17.11.2026', 'הדירקטוריון אישר פנייה לבית המשפט ל<b>מיזוג שותפות סלקום תקשורת קווית</b> לתוך החברה, ובחינת הנפקה של <b>אגרות חוב סדרה י"ד</b>.']
+]);
+
+/* ---------------- business page ---------------- */
+function facts(target, list){
+  list.forEach(function(f){
+    $(target).appendChild(el('div','fact','<div class="ft"><b>' + f[0] + '</b>' + (f[1] ? '<span class="fv">' + n(f[1]) + '</span>' : '') + '</div><p>' + f[2] + '</p>'));
+  });
+}
+facts('x-p', [
+  ['דאטה לעסקים: מנוע צמיחה', '', 'פרטנר מציינת את הדאטה לעסקים כגורם לעלייה בהכנסות משירותים, ברווח התפעולי וב-EBITDA, גם ברבעון וגם בתשעת החודשים. היא אינה מפרסמת את הסכום.'],
+  ['ציוד נייח לעסקים', '6', 'מיליון ש"ח ברבעון 3 של 2026, מול ' + n('14') + ' ברבעון המקביל. ירידה של ' + n('57%') + '. בתשעת החודשים: ' + n('23') + ' מול ' + n('30') + '. זו השורה כולה של ציוד ואחר במגזר הנייח.'],
+  ['עבודות תמורת תשלום (עת"ת)', '', 'פעילות פרויקטלית שצומחת ברבעון ובתקופה. ההכנסות הנדחות עלו ל-' + n('160') + ' מיליון ש"ח, בעיקר מתקבולים מראש בגינה. גם ההוצאות בגינה עלו.'],
+  ['מכרז החשב הכללי: מכשירים', '48', 'מיליון ש"ח של מכשירים סווגו ברבעון ממלאי לרכוש קבוע, כציוד בליסינג תפעולי. בתשעת החודשים: ' + n('73') + '. הפחת עלה בהתאם, והתזרים החופשי ירד ל-' + n('43') + ' מיליון ש"ח.'],
+  ['לקוח ציבורי אחד הזיז את הנטישה', '5.6%', 'שיעור הנטישה בסלולר, מול ' + n('4.9%') + ' ברבעון המקביל ו-' + n('4.6%') + ' ברבעון הקודם. העלייה נובעת בעיקר מנטישת מנויי דאטה פוסטפייד של לקוח מהמגזר הציבורי. לקוחות גדולים נכנסים ויוצאים בבת אחת.'],
+  ['Hubbing', '', 'תיווך תעבורה בינלאומית למפעילים. ההכנסות ממנו יורדות ומקזזות חלק מהצמיחה במגזר הנייח. גם העלויות שלו יורדות.'],
+  ['מבנה ההנהלה', '', 'בהנהלת פרטנר שני תפקידים עסקיים נפרדים: סמנכ"ל מכירות עסקי וסמנכ"ל עסקים גלובאליים, לצד סמנכ"ל לקוחות פרטיים.'],
+  ['רגולציה שנוגעת לעסקים', '', 'פורסמו תקנות לרשתות סלולריות פרטיות. רשת דור 2 ממשיכה לשרת M2M. רישיון אספקת החשמל הוארך עד 31.12.2031.']
+]);
+kpis('x-bk', [
+  {k:'תמסורת, תקשורת נתונים ואחרים', v:'414', p:'391', d:'+5.9%', t:'', c:'בזק קווי. צמיחה בתמסורת מטרו ובעת"ת, בקיזוז ירידה במכירות ציוד. מלקוחות חיצוניים: ' + n('288') + ' מול ' + n('274') + '.'},
+  {k:'ענן ודיגיטל', v:'94', p:'92', d:'+2.2%', t:'', c:'בזק קווי. צמיחה בענן ובמרכזיות וירטואליות, בקיזוז ירידה במדריך העסקי B144.'},
+  {k:'בזק בינלאומי, ללא פרטיים (מחושב)', v:'227', p:'251', d:'−9.6%', t:'bad', c:'סך ההכנסות פחות לקוחות פרטיים: ' + n('250−23') + ' מול ' + n('281−30') + '.'},
+  {k:'שלוש השורות יחד (אומדן שלי)', v:'735', p:'734', d:'+0.1%', t:'', c:'כשליש מהכנסות הקבוצה. בתשעת החודשים: ' + n('2,230') + ' מול ' + n('2,143') + ', ' + n('+4.1%') + '.'}
+]);
+facts('x-b', [
+  ['בזק בינלאומי: ענן ואינטרנט לעסקים צומחים', '', 'הירידה ברבעון באה ממכירת ציוד, רישוי וחוזי שירות ומירידת שער הדולר. הרווח התפעולי עלה ל-' + n('19') + ' מיליון ש"ח. נרשמה ירידת ערך של ' + n('11') + ' מיליון ש"ח ברבעון ו-' + n('46') + ' בתשעת החודשים. שווי הפעילות נותר שלילי, כ-' + n('93') + ' מיליון ש"ח.'],
+  ['פלאפון והחשב הכללי', '31.12.2026', 'ההסכם של פלאפון עם החשב הכללי הוארך עד למועד הזה, במקביל למימוש הדרגתי של המכרז החדש. פרטנר מדווחת באותה תקופה על הצטיידות במכשירים למכרז החשב הכללי.'],
+  ['דאטה סנטר בפתח תקווה', '16MW', 'מזכר הבנות לא מחייב עם אדגר מ-5.11.2026. השקעה של ' + n('200–250') + ' מיליון ש"ח לכל צד, הפעלה מסחרית צפויה ב-2028. בזק מעריכה הכנסות של ' + n('50–80') + ' מיליון ש"ח ו-EBITDA של ' + n('25–40') + ' בשנה.'],
+  ['כבל תת-ימי', '250', 'מיליון ש"ח, ההשקעה הצפויה על פני שלוש שנים, במיזם עם Telecom Italia Sparkle. רוב הסיבים מיועדים ללקוחות בשוק התקשורת הבינלאומי. בזק מעריכה תשואה פנימית של יותר מ-' + n('20%') + '.'],
+  ['מבנה ההנהלה', '', 'בבזק פועלת חטיבת לקוחות עסקיים עם סמנכ"ל משלה, לצד חטיבת לקוחות פרטיים.'],
+  ['ספירת מנויי הדאטה בפלאפון', '101K', 'מנויי דאטה נגרעו ממצבת הפוסטפייד בעקבות שינוי שיטת הספירה, ונתוני העבר עודכנו. המצבת כוללת גם מנויים כמו דאטה למערכות רכב, שההכנסה מהם נמוכה משמעותית.']
+]);
+[
+  ['נושא','<span class="hp">פרטנר</span>','<span class="hb">בזק</span>'],
+  ['<b>הכנסות עסקיות</b>','<span>לא מדווח</span>','<span>שורות חלקיות. אומדן שלי: ' + n('735') + ' מיליון ש"ח</span>'],
+  ['<b>תקשורת נתונים</b>','<span>צומחת, ללא מספר</span>','<span>' + n('414') + ' מיליון ש"ח, ' + n('+5.9%') + '</span>'],
+  ['<b>מכרז הדאטה הממשלתי</b>','<span>כ-' + n('30%') + ' מהקווים, תכולה ב׳</span>','<span>' + n('70%') + ', ספק עיקרי. ירידה מ-' + n('100%') + '</span>'],
+  ['<b>סלולר לממשלה</b>','<span>מצטיידת במכשירים למכרז החשב הכללי</span>','<span>הסכם פלאפון הוארך עד 31.12.2026</span>'],
+  ['<b>מכירות ציוד לעסקים</b>','<span>' + n('6') + ' מול ' + n('14') + ', ירידה</span>','<span>ירידה בבזק קווי ובבזק בינלאומי, ללא מספר</span>'],
+  ['<b>עבודות תמורת תשלום</b>','<span>צומחות</span>','<span>צומחות</span>'],
+  ['<b>ענן</b>','<span>לא מוזכר</span>','<span>' + n('94') + ' מיליון ש"ח בבזק קווי, וצמיחה בבזק בינלאומי</span>'],
+  ['<b>דאטה סנטר</b>','<span>לא מוזכר</span>','<span>מזכר הבנות, ' + n('16MW') + '</span>'],
+  ['<b>מספר לקוחות עסקיים</b>','<span>לא מדווח</span>','<span>לא מדווח</span>'],
+  ['<b>רווחיות העסקי</b>','<span>לא מדווח</span>','<span>לא מדווח</span>']
+].forEach(function(r){ $('x-mx').appendChild(el('div','mxr','<div>' + r[0] + '</div><div>' + r[1] + '</div><div>' + r[2] + '</div>')); });
+items('x-good', [
+  ['בזק גדולה בהרבה בעסקי', 'שורת התמסורת והנתונים של בזק קווי לבדה, ' + n('414') + ' מיליון ש"ח, גדולה מכל המגזר הנייח של פרטנר, ' + n('341') + ' מיליון ש"ח, שכולל גם אינטרנט וטלוויזיה לבתים.'],
+  ['פרטנר נכנסת למגרש הממשלתי', 'כ-' + n('30%') + ' מקווי הנתונים במכרז שבו בזק החזיקה ' + n('100%') + ', ואספקת מכשירים סלולריים במסגרת מכרז החשב הכללי.'],
+  ['אצל שתיהן השירותים עולים והציוד יורד', 'דאטה, תמסורת, ענן ועת"ת צומחים. מכירות הציוד לעסקים יורדות אצל פרטנר, בבזק קווי ובבזק בינלאומי.'],
+  ['לזכייה יש מחיר מיידי', 'אצל פרטנר המלאי עלה ב-' + n('38%') + ' והתזרים החופשי ירד ב-' + n('66%') + '. ההכנסה ממכשירים בליסינג תגיע לאורך תקופת ההסכם.'],
+  ['בזק משקיעה בתשתית עסקית חדשה', 'דאטה סנטר וכבל תת-ימי. אצל פרטנר אין בדוח מהלך מקביל.']
+]);
+items('x-bad', [
+  ['הכנסות החטיבה העסקית', 'אף אחת מהחברות אינה מפרסמת אותן. אצל פרטנר אין אפילו שורה חלקית של שירותים.'],
+  ['מספר הלקוחות וההכנסה ללקוח', 'אין נתון על לקוחות עסקיים, קווי נתונים או ARPU עסקי, פרט ל-' + n('3,000') + ' הקווים במכרז.'],
+  ['רווחיות', 'אי אפשר לדעת אם הזכיות במכרזים הושגו במחיר שמשאיר רווח. בזק מציינת שאינה צופה השפעה מהותית, ופרטנר אינה מתייחסת לכך.'],
+  ['החלק העסקי בסלולר', 'פרטנר ופלאפון אינן מפצלות מנויים או הכנסות בין פרטי לעסקי.'],
+  ['היקף כספי של המכרזים', 'שני הדוחות נותנים נתחים וקווים, לא שקלים.']
+]);
+
+/* ---------------- compare ---------------- */
+/* w: 'p' | 'b' | null.  kind: 'q' quality (counted), 's' size (not counted), 'x' definitions differ (not counted).
+   bars: draw proportional bars from the two magnitudes. */
+var DOMAINS = [
+ {id:'cell', name:'סלולר', sub:'מגזר הסלולר של פרטנר מול פלאפון. מיליוני ש"ח ואלפי מנויים.',
+  verdict:'פרטנר עדיפה בבירור. שתי החברות כמעט זהות בגודל, אבל פרטנר מרוויחה פי שניים מאותן הכנסות, מאבדת פחות מנויים וצומחת מהר יותר.',
+  rows:[
+   {l:'הכנסות המגזר', pp:'473', bp:'517', p:'509', b:'525', pv:509, bv:525, w:'b', kind:'s'},
+   {l:'הכנסות משירותים', pp:'353', bp:'381', p:'381', b:'384', pv:381, bv:384, w:'b', kind:'s'},
+   {l:'צמיחת הכנסות השירותים מול הרבעון המקביל', pp:'מ-353 ל-381', bp:'מ-381 ל-384', p:'+7.9%', b:'+0.8%', pv:7.9, bv:0.8, w:'p', kind:'q'},
+   {l:'רווח תפעולי', pp:'80', bp:'56', p:'124', b:'64', pv:124, bv:64, w:'p', kind:'s'},
+   {l:'שיעור רווח תפעולי', pp:'16.9%', bp:'10.8%', p:'24.4%', b:'12.2%', pv:24.4, bv:12.2, w:'p', kind:'q'},
+   {l:'EBITDA', pp:'178', bp:'203', p:'222', b:'212', pv:222, bv:212, w:'p', kind:'s', fn:'אצל פרטנר EBITDA מתואם, בנטרול תגמול הוני ורווחי הון. אצל פלאפון EBITDA ללא התאמות.'},
+   {l:'שיעור EBITDA', pp:'37.6%', bp:'39.3%', p:'43.6%', b:'40.4%', pv:43.6, bv:40.4, w:'p', kind:'q'},
+   {l:'מצבת מנויים', pp:'2,667K', bp:'2,583K', p:'2,739K', b:'2,601K', pv:2739, bv:2601, w:'p', kind:'s', fn:'שתיהן ללא מנויי M2M או IoT. פלאפון שינתה ברבעון את שיטת ספירת מנויי הדאטה.'},
+   {l:'תוספת מנויים מול הרבעון המקביל', pp:'מ-2,667K ל-2,739K', bp:'מ-2,583K ל-2,601K', p:'+72K', b:'+18K', pv:72, bv:18, w:'p', kind:'q'},
+   {l:'שיעור נטישה', pp:'4.9%', bp:'6.3%', p:'5.6%', b:'7.1%', pv:5.6, bv:7.1, w:'p', kind:'q', fn:'נמוך יותר עדיף. אצל שתיהן הנטישה עלתה מול הרבעון המקביל.'},
+   {l:'ARPU', pp:'44 ₪', bp:'49 ₪', p:'46 ₪', b:'49 ₪', pv:46, bv:49, w:'b', kind:'q', fn:'ה-ARPU של פלאפון כולל גם הכנסות ממפעילים שמתארחים ברשת, שירות תיקונים ואחריות מורחבת.'},
+   {l:'מנויי דור 5', pp:'766K', bp:'1,329K', p:'1,185K', b:'1,484K', pv:1185, bv:1484, w:null, kind:'x', fn:'הגדרות שונות: פרטנר סופרת מנויי דור 5 משלמים, פלאפון סופרת מנויים בחבילות דור 5. אפשר להשוות את הקצב, לא את הרמה.'}
+  ]},
+ {id:'net', name:'אינטרנט וסיבים בקמעונאות', sub:'המנויים הקמעונאיים של פרטנר מול הקמעונאות של בזק קווי. אלפי מנויים.',
+  verdict:'בזק עדיפה מעט, עם חלוקת תפקידים ברורה. בזק גדולה כמעט פי שניים, גובה יותר מכל מנוי ומחזיקה בתשתית. פרטנר מגדילה את בסיס הלקוחות הקמעונאי, ובזק מאבדת קמעונאות ומפצה בסיטונות, כך שסך הקווים שלה לא יורד.',
+  rows:[
+   {l:'מנויי אינטרנט קמעונאיים', pp:'484K', bp:'990K', p:'503K', b:'942K', pv:503, bv:942, w:'b', kind:'s'},
+   {l:'שינוי במנויים מול הרבעון המקביל', pp:'מ-484K ל-503K', bp:'מ-990K ל-942K', p:'+19K', b:'−48K', w:'p', kind:'q', fn:'אצל בזק: קמעונאות בלבד.'},
+   {l:'כל קווי האינטרנט של בזק, כולל סיטונות', bp:'1,473K', p:'אין מקבילה', b:'1,479K', w:null, kind:'x', fn:'קמעונאות וסיטונות יחד.'},
+   {l:'מנויי סיבים קמעונאיים', pp:'457K', bp:'609K', p:'485K', b:'660K', pv:485, bv:660, w:'b', kind:'s'},
+   {l:'תוספת מנויי סיבים מול הרבעון המקביל', pp:'מ-457K ל-485K', bp:'מ-609K ל-660K', p:'+28K', b:'+51K', pv:28, bv:51, w:'b', kind:'q'},
+   {l:'שיעור הסיבים מבסיס האינטרנט', pp:'94.4%', bp:'61.5%', p:'96.4%', b:'70.1%', pv:96.4, bv:70.1, w:null, kind:'x', fn:'200K ממנויי פרטנר על תשתית של צד ג\'.'},
+   {l:'ARPU אינטרנט', pp:'95 ₪', bp:'136 ₪', p:'97 ₪', b:'142 ₪', pv:97, bv:142, w:'b', kind:'q', fn:'שתיהן מחשבות הכנסות אינטרנט קמעונאיות חלקי מנויים קמעונאיים. אצל פרטנר המדד כולל ייחוס של רכיב האינטרנט בחבילות משולבות, ולכן ההשוואה אינה מדויקת לשקל.'},
+   {l:'מנויי סיבים על תשתית עצמית', pp:'283K', bp:'954K', p:'285K', b:'1,095K', pv:285, bv:1095, w:'b', kind:'s', fn:'אצל בזק המספר כולל גם מנויים של ספקים אחרים שמחוברים לרשת שלה בסיטונות.'}
+  ]},
+ {id:'tv', name:'טלוויזיה', sub:'Partner TV מול yes. אלפי מנויים.',
+  verdict:'yes גדולה פי 2.6, פרטנר היא זו שצומחת. זו ההשוואה המצומצמת ביותר: פרטנר מדווחת רק את מספר המנויים.',
+  rows:[
+   {l:'מנויי טלוויזיה', pp:'196K', bp:'565K', p:'214K', b:'562K', pv:214, bv:562, w:'b', kind:'s', fn:'המצבת של פרטנר כוללת גם מנויים בתקופת ניסיון ללא תשלום.'},
+   {l:'שינוי במנויים מול הרבעון המקביל', pp:'מ-196K ל-214K', bp:'מ-565K ל-562K', p:'+18K', b:'−3K', w:'p', kind:'q'}
+  ]},
+ {id:'fin', name:'חוסן פיננסי ורווחיות', sub:'הקבוצה המאוחדת של כל חברה. מיליוני ש"ח.',
+  verdict:'בזק מרוויחה יותר מכל שקל הכנסה ומייצרת יותר מזומן. פרטנר צומחת מהר יותר ונושאת חוב נמוך בהרבה. הפער במינוף צפוי להצטמצם אם פרטנר תשלים את החלוקה ואת גיוס החוב.',
+  rows:[
+   {l:'סך הכנסות', pp:'784', bp:'2,145', p:'829', b:'2,171', pv:829, bv:2171, w:'b', kind:'s'},
+   {l:'צמיחת ההכנסות מול הרבעון המקביל', pp:'מ-784 ל-829', bp:'מ-2,145 ל-2,171', p:'+5.7%', b:'+1.2%', pv:5.7, bv:1.2, w:'p', kind:'q'},
+   {l:'שיעור EBITDA מתואם', pp:'42.2%', bp:'48.5%', p:'42.2%', b:'46.7%', pv:42.2, bv:46.7, w:'b', kind:'q', oo:'בלי החד-פעמי — פרטנר: 37.4% · בזק: 43.8%', fn:'הגדרות ההתאמה שונות מעט בין החברות.'},
+   {l:'שיעור רווח תפעולי', pp:'16.8%', bp:'28.7%', p:'17.9%', b:'23.5%', pv:17.9, bv:23.5, w:'b', kind:'q', oo:'בלי החד-פעמי — פרטנר: 12.0% · בזק: נמוך משמעותית מ-28.7%'},
+   {l:'שיעור רווח נקי', pp:'11.5%', bp:'20.8%', p:'12.2%', b:'16.0%', pv:12.2, bv:16.0, w:'b', kind:'q', oo:'בלי החד-פעמי — בזק: 12.0% (רווח נקי השוואתי) · פרטנר: לא מדווח אחרי מס'},
+   {l:'תזרים חופשי מתוך ההכנסות', pp:'15.9%', bp:'15.4%', p:'5.2%', b:'11.5%', pv:5.2, bv:11.5, w:'b', kind:'q', fn:'בשקלים: פרטנר 43 מול 125 מיליון, בזק 249 מול 331 מיליון. שתי החברות מנכות מהתזרים השוטף השקעות ותשלומי חכירות, ואצל שתיהן התזרים ירד בגלל הצטיידות במלאי מכשירים.'},
+   {l:'חוב פיננסי נטו ל-EBITDA', pp:'0.1', bp:'חוב נטו 4,648', p:'0.3', b:'1.4', pv:0.3, bv:1.4, w:'p', kind:'q', fn:'נמוך יותר עדיף. חוב נטו ברבעון 3 של 2026: פרטנר 327, בזק 5,544 מיליון ש"ח. אצל פרטנר היחס מדווח. אצל בזק הוא חושב מהמאזן מול EBITDA מתואם של ארבעה רבעונים, ואין בדוח נתונים לחישוב היחס של הרבעון המקביל.'},
+   {l:'הון עצמי מתוך המאזן', pp:'48.6%', bp:'17.2%', p:'51.5%', b:'17.6%', pv:51.5, bv:17.6, w:'p', kind:'q'},
+   {l:'דירוג מעלות', pp:'ilAA-', bp:'ilAA', p:'ilAA-', b:'ilAA', w:'b', kind:'q', fn:'שתיהן באופק יציב. הדירוג של בזק גבוה בדרגה אחת.'},
+   {l:'השקעות מתוך ההכנסות', pp:'15.2%', bp:'19.5%', p:'14.7%', b:'18.9%', pv:14.7, bv:18.9, w:null, kind:'x', fn:'בשקלים: פרטנר 122 מול 119 מיליון, בזק 410 מול 418 מיליון. מדד של עוצמת השקעה ולא של איכות. בזק פורסת ומתחזקת רשת סיבים ארצית.'},
+   {l:'חלוקה לבעלי המניות ב-2026', p:'465', b:'1,214', pv:465, bv:1214, w:null, kind:'x', fn:'מצטבר מתחילת 2026, לא נתון רבעוני. פרטנר: דיבידנד, ועוד 500 מיליון ש"ח שאושרו וטרם חולקו. בזק: 964 בדיבידנדים ו-250 ברכישה עצמית.'}
+  ]}
 ];
 
-var MINUS = '−';
-function fmt(x, dec){
-  var s = Math.abs(x).toLocaleString('en-US', {minimumFractionDigits:dec, maximumFractionDigits:dec});
-  return (x < 0 && s.replace(/[0.,]/g, '') !== '' ? MINUS : '') + s;
+function tagFor(r, other){
+  if(!r.w && r.kind === 's') return '<span class="tag">שוויון</span>';
+  if(r.kind === 'x' || !r.w) return '<span class="tag">לא נספר</span>';
+  var who = r.w === 'p' ? 'פרטנר' : other;
+  return '<span class="tag ' + r.w + '">' + who + ' ' + (r.kind === 's' ? 'גדולה יותר' : 'עדיפה') + '</span>';
 }
-function cell(r, i){
-  var pair = r.v[i];
-  if(!pair) return '<td class="na">—</td>';
-  var a = pair[0], b = pair[1];
-  var d = r.t === 'r' ? 1 : (a % 1 !== 0 || b % 1 !== 0 ? 1 : 0);
-  var unit = r.t === 'r' ? '%' : '';
-  var diff, txt;
-  if(r.t === 'm'){ diff = Math.round((a / b - 1) * 1000) / 10;
-    txt = Math.abs(diff) >= 1000 ? '×' + fmt(a / b, 1) : fmt(diff, Math.abs(diff) >= 100 ? 0 : 1) + '%'; }
-  else { diff = Math.round((a - b) * 10) / 10; txt = fmt(diff, r.t === 'r' ? 1 : d) + (r.t === 'r' ? ' נק׳' : ''); }
-  if(diff > 0 && txt.charAt(0) !== '×') txt = '+' + txt;
-  var cls = (diff === 0 || r.flat) ? '' : ((diff > 0) !== !!r.inv ? 'good' : 'bad');
-  var star = r.s && r.s.indexOf(i) >= 0 ? '*' : '';
-  return '<td><span class="v" dir="ltr">' + fmt(a, d) + unit + '</span><span class="p" dir="ltr">' + fmt(b, d) + unit + star + '</span><span class="d ' + cls + '" dir="ltr">' + txt + '</span></td>';
+function side(cls, who, val, mag, max, delta, oo){
+  var h = '<div class="side ' + cls + '"><span class="who">' + who + '</span><span class="val ' + dir(val) + '">' + n(val) + '</span>';
+  if(mag != null && max) h += '<div class="tr"><i style="width:' + Math.max(3, Math.round(mag / max * 100)) + '%"></i></div>';
+  if(delta) h += '<span class="d">' + (/^מ-|^חוב/.test(delta) ? '' : 'ברבעון המקביל: ') + '<b>' + n(delta) + '</b>' + (oo ? '*' : '') + '</span>';
+  return h + '</div>';
 }
-var html = '';
-SECTIONS.forEach(function(s){
-  html += '<section><h2>' + s.h + '</h2><table><colgroup><col class="m"><col class="c"><col class="c"><col class="c"></colgroup>' +
-    '<thead><tr><td></td><th scope="col">פרטנר</th><th scope="col">בזק</th><th scope="col">סלקום</th></tr></thead><tbody>';
-  s.rows.forEach(function(r){
-    html += '<tr' + (r.total ? ' class="total"' : '') + '><th scope="row">' + r.l + '</th>' + cell(r,0) + cell(r,1) + cell(r,2) + '</tr>';
+function renderCompare(list, other, scoreId, domainsId){
+list.forEach(function(d){
+  var pw = 0, bw = 0;
+  var sec = el('section');
+  sec.id = domainsId + '-' + d.id;
+  sec.innerHTML = '<h2>' + d.name + '</h2><p class="sub">' + d.sub + '</p>';
+  var box = el('div','duels');
+  d.rows.forEach(function(r){
+    if(r.kind === 'q' && r.w === 'p') pw++;
+    if(r.kind === 'q' && r.w === 'b') bw++;
+    var hasBars = r.pv != null && r.bv != null;
+    var max = hasBars ? Math.max(r.pv, r.bv) : 0;
+    var row = el('div','duel' + (r.w && r.kind !== 'x' ? ' w' + r.w : '') + (r.oo ? ' has-oo' : ''));
+    row.innerHTML = '<div class="h"><b>' + r.l + '' + '</b>' + tagFor(r, other) + '</div>' +
+      '<div class="g">' + side('p','פרטנר', r.p, hasBars ? r.pv : null, max, r.pp, r.oo && /פרטנר:/.test(r.oo)) + side('b', other, r.b, hasBars ? r.bv : null, max, r.bp, r.oo && /בזק:/.test(r.oo)) + '</div>' +
+      (r.oo ? '<p class="oo">* ' + r.oo + '</p>' : '') +
+      (r.fn ? '<p class="fn">' + r.fn + '</p>' : '');
+    box.appendChild(row);
   });
-  html += '</tbody></table>' + (s.note ? '<p class="n">' + s.note + '</p>' : '') + '</section>';
+  sec.appendChild(box);
+  $(domainsId).appendChild(sec);
+
+  var tot = pw + bw;
+  var c = el('div','card sc');
+  c.innerHTML = '<div class="t"><b>' + d.name + '</b><span>' + tot + ' מדדי איכות</span></div>' +
+    '<div class="bar" role="img" aria-label="פרטנר ' + pw + ', ' + other + ' ' + bw + '">' +
+      (pw ? '<i class="p" style="width:' + (pw / tot * 100) + '%"></i>' : '') +
+      (bw ? '<i class="b" style="width:' + (bw / tot * 100) + '%"></i>' : '') + '</div>' +
+    '<div class="n"><span class="p">פרטנר ' + n(pw) + '</span><span class="b">' + other + ' ' + n(bw) + '</span></div>' +
+    '<p>' + d.verdict + '</p>';
+  $(scoreId).appendChild(c);
 });
-document.getElementById('app').innerHTML = html;
+}
+renderCompare(DOMAINS, 'בזק', 'score', 'domains');
+
+/* Partner vs Cellcom. Keys p = Partner, b = the other company (Cellcom here). */
+var DOMAINS_C = [
+ {id:'cell', name:'סלולר', sub:'מגזר הסלולר של פרטנר מול המגזר הנייד של סלקום. מיליוני ש"ח ואלפי מנויים.',
+  verdict:'סלקום גדולה בכ-40% ומרוויחה יותר בשקלים. פרטנר מרוויחה יותר מכל שקל הכנסה וגובה יותר מכל מנוי, והנטישה שלה נמוכה בהרבה.',
+  rows:[
+   {l:'הכנסות המגזר', pp:'473', bp:'685', p:'509', b:'714', pv:509, bv:714, w:'b', kind:'s', fn:'אצל סלקום 260 מיליון ש"ח מתוכן הם ציוד קצה. אצל פרטנר 128.'},
+   {l:'הכנסות משירותים', pp:'353', bp:'444', p:'381', b:'454', pv:381, bv:454, w:'b', kind:'s', fn:'הערך של סלקום ברבעון המקביל לקוח מטבלת המגזרים. בסיכום ההנהלה סלקום משווה ל-442 בנטרול הקש"ג, צמיחה של 2.7%. אצל סלקום כולל שירותי אירוח ושיתוף רשתות ושירותי תיקון.'},
+   {l:'צמיחת הכנסות השירותים מול הרבעון המקביל', pp:'מ-353 ל-381', bp:'מ-444 ל-454', p:'+7.9%', b:'+2.3%', pv:7.9, bv:2.3, w:'p', kind:'q', fn:'לפי סלקום, בנטרול הקש"ג: 2.7%. פרטנר עדיפה בשתי הדרכים.'},
+   {l:'רווח תפעולי', pp:'80', bp:'102', p:'124', b:'135', pv:124, bv:135, w:'b', kind:'s'},
+   {l:'שיעור רווח תפעולי', pp:'16.9%', bp:'14.9%', p:'24.4%', b:'18.9%', pv:24.4, bv:18.9, w:'p', kind:'q'},
+   {l:'EBITDA מתואם', pp:'178', bp:'248', p:'222', b:'272', pv:222, bv:272, w:'b', kind:'s'},
+   {l:'שיעור EBITDA', pp:'37.6%', bp:'36.2%', p:'43.6%', b:'38.1%', pv:43.6, bv:38.1, w:'p', kind:'q', fn:'משקל הציוד הגבוה אצל סלקום מוריד את השיעור. ביחס להכנסות משירותים בלבד: פרטנר 58.3%, סלקום 59.9%.'},
+   {l:'מצבת מנויים', pp:'2,667K', bp:'3,645K', p:'2,739K', b:'3,715K', pv:2739, bv:3715, w:'b', kind:'s', fn:'שתיהן סופרות מנוי כלא פעיל אחרי שישה חודשים. סלקום מציינת שמדיניות הספירה אינה זהה בין המפעילים.'},
+   {l:'תוספת מנויים מול הרבעון המקביל', pp:'מ-2,667K ל-2,739K', bp:'מ-3,645K ל-3,715K', p:'+72K', b:'+70K', pv:72, bv:70, w:'p', kind:'q', fn:'כמעט שוויון במספרים. באחוזים: פרטנר 2.7%, סלקום 1.9%.'},
+   {l:'שיעור נטישה', pp:'4.9%', bp:'8.0%', p:'5.6%', b:'7.8%', pv:5.6, bv:7.8, w:'p', kind:'q', fn:'נמוך יותר עדיף. הכיוון הפוך: אצל פרטנר הנטישה עלתה, אצל סלקום ירדה.'},
+   {l:'ARPU', pp:'44 ₪', bp:'40.5 ₪', p:'46 ₪', b:'40.9 ₪', pv:46, bv:40.9, w:'p', kind:'q', fn:'ה-ARPU של סלקום כולל גם הכנסות מאירוח ושיתוף רשתות ומשירותי תיקון, כך שהפער בפועל גדול מעט יותר.'}
+  ]},
+ {id:'fixed', name:'נייח: אינטרנט, סיבים וטלוויזיה', sub:'המגזר הנייח של פרטנר מול המגזר הנייח של סלקום. שני המגזרים כוללים אינטרנט, טלוויזיה, תמסורת לעסקים וטלפוניה, ולכן אפשר להשוות גם את התוצאות הכספיות.',
+  verdict:'שני מגזרים כמעט זהים בגודל שנעים בכיוונים הפוכים. אצל פרטנר השירותים, האינטרנט, הסיבים והטלוויזיה צומחים. אצל סלקום ההכנסות יורדות והרווח התפעולי עולה.',
+  rows:[
+   {l:'הכנסות המגזר', pp:'331', bp:'382', p:'341', b:'350', pv:341, bv:350, w:'b', kind:'s'},
+   {l:'הכנסות משירותים', pp:'317', bp:'339', p:'335', b:'335', pv:335, bv:335, w:null, kind:'s', fn:'לפני שנה סלקום הובילה ב-22 מיליון ש"ח. הפער נסגר.'},
+   {l:'צמיחת הכנסות השירותים מול הרבעון המקביל', pp:'מ-317 ל-335', bp:'מ-339 ל-335', p:'+5.7%', b:'−1.2%', w:'p', kind:'q'},
+   {l:'רווח תפעולי', pp:'52', bp:'25', p:'24', b:'29', pv:24, bv:29, w:'b', kind:'s', oo:'בלי החד-פעמי — פרטנר: 14'},
+   {l:'EBITDA מתואם', pp:'153', bp:'121', p:'128', b:'127', pv:128, bv:127, w:'p', kind:'s', oo:'בלי החד-פעמי — פרטנר: 115', fn:'כמעט שוויון.'},
+   {l:'שיעור EBITDA', pp:'46.2%', bp:'31.7%', p:'37.5%', b:'36.3%', pv:37.5, bv:36.3, w:'p', kind:'q', oo:'בלי החד-פעמי — פרטנר: 34.7%'},
+   {l:'מנויי אינטרנט', pp:'484K', bp:'386K', p:'503K', b:'395K', pv:503, bv:395, w:'p', kind:'s'},
+   {l:'תוספת מנויי אינטרנט מול הרבעון המקביל', pp:'מ-484K ל-503K', bp:'מ-386K ל-395K', p:'+19K', b:'+9K', pv:19, bv:9, w:'p', kind:'q'},
+   {l:'מנויי סיבים', pp:'457K', bp:'348K', p:'485K', b:'368K', pv:485, bv:368, w:'p', kind:'s'},
+   {l:'תוספת מנויי סיבים מול הרבעון המקביל', pp:'מ-457K ל-485K', bp:'מ-348K ל-368K', p:'+28K', b:'+20K', pv:28, bv:20, w:'p', kind:'q'},
+   {l:'שיעור הסיבים מבסיס האינטרנט', pp:'94.4%', bp:'90.2%', p:'96.4%', b:'93.2%', pv:96.4, bv:93.2, w:'p', kind:'q'},
+   {l:'ARPU אינטרנט', pp:'95 ₪', bp:'100.3 ₪', p:'97 ₪', b:'97.3 ₪', pv:97, bv:97.3, w:null, kind:'x', fn:'שוויון בפועל: פרטנר מדווחת במספרים שלמים, והפער קטן מהעיגול. הכיוון הפוך: אצל פרטנר עלייה של 2 ₪, אצל סלקום ירידה של 3 ₪.'},
+   {l:'מנויי טלוויזיה', pp:'196K', bp:'275K', p:'214K', b:'277K', pv:214, bv:277, w:'b', kind:'s', fn:'אצל פרטנר כולל מנויים בתקופת ניסיון ללא תשלום. אצל סלקום, מתחילת 2026 הספירה כוללת גם משתמשים בתשלום.'},
+   {l:'תוספת מנויי טלוויזיה מול הרבעון המקביל', pp:'מ-196K ל-214K', bp:'מ-275K ל-277K', p:'+18K', b:'+2K', pv:18, bv:2, w:'p', kind:'q'}
+  ]},
+ {id:'fin', name:'חוסן פיננסי ורווחיות', sub:'הקבוצה המאוחדת של כל חברה. מיליוני ש"ח.',
+  verdict:'פרטנר רווחית יותר בכל שיעור וממונפת פחות. סלקום משתפרת מהר יותר ומייצרת יותר מזומן מכל שקל הכנסה.',
+  rows:[
+   {l:'סך הכנסות', pp:'784', bp:'1,033', p:'829', b:'1,028', pv:829, bv:1028, w:'b', kind:'s'},
+   {l:'צמיחת ההכנסות מול הרבעון המקביל', pp:'מ-784 ל-829', bp:'מ-1,033 ל-1,028', p:'+5.7%', b:'−0.5%', w:'p', kind:'q'},
+   {l:'שיעור EBITDA מתואם', pp:'42.2%', bp:'35.7%', p:'42.2%', b:'38.8%', pv:42.2, bv:38.8, w:'p', kind:'q', oo:'בלי החד-פעמי — פרטנר: 37.4%', fn:'הגדרות ההתאמה שונות מעט בין החברות.'},
+   {l:'שיעור רווח תפעולי', pp:'16.8%', bp:'12.3%', p:'17.9%', b:'16.0%', pv:17.9, bv:16.0, w:'p', kind:'q', oo:'בלי החד-פעמי — פרטנר: 12.0%'},
+   {l:'שיעור רווח נקי', pp:'11.5%', bp:'7.4%', p:'12.2%', b:'10.0%', pv:12.2, bv:10.0, w:'p', kind:'q', oo:'בלי החד-פעמי — פרטנר: לא מדווח אחרי מס'},
+   {l:'צמיחת הרווח הנקי מול הרבעון המקביל', pp:'מ-90 ל-101', bp:'מ-76 ל-103', p:'+12.2%', b:'+35.5%', pv:12.2, bv:35.5, w:'b', kind:'q', oo:'בלי החד-פעמי — פרטנר: צמיחה גבוהה מ-12.2%'},
+   {l:'תזרים חופשי מתוך ההכנסות', pp:'15.9%', bp:'10.7%', p:'5.2%', b:'13.6%', pv:5.2, bv:13.6, w:'b', kind:'q', fn:'בשקלים: פרטנר 43 מול 125 מיליון, סלקום 140 מול 111 מיליון. שתיהן מנכות מהתזרים השוטף השקעות ותשלומי חכירות.'},
+   {l:'חוב פיננסי נטו ל-EBITDA', pp:'0.1', bp:'חוב נטו 1,464', p:'0.3', b:'0.67', pv:0.3, bv:0.67, w:'p', kind:'q', fn:'נמוך יותר עדיף. חוב נטו ברבעון 3 של 2026: פרטנר 327, סלקום 970 מיליון ש"ח. שני היחסים מדווחים. הדוח של סלקום אינו מציג את היחס של הרבעון המקביל.'},
+   {l:'הון עצמי מתוך המאזן', pp:'48.6%', bp:'43.2%', p:'51.5%', b:'47.8%', pv:51.5, bv:47.8, w:'p', kind:'q'},
+   {l:'דירוג מעלות', pp:'ilAA-', bp:'ilAA-', p:'ilAA-', b:'ilAA-', w:null, kind:'s', fn:'אותו דירוג ואותו אופק, יציב.'},
+   {l:'השקעות מתוך ההכנסות', pp:'15.2%', bp:'14.0%', p:'14.7%', b:'11.2%', pv:14.7, bv:11.2, w:null, kind:'x', fn:'בשקלים: פרטנר 122 מול 119 מיליון, סלקום 115 מול 145 מיליון. מדד של עוצמת השקעה ולא של איכות.'},
+   {l:'חלוקה לבעלי המניות ב-2026', p:'465', b:'200', pv:465, bv:200, w:null, kind:'x', fn:'מצטבר מתחילת 2026, לא נתון רבעוני. אצל פרטנר אושרו 500 מיליון ש"ח נוספים שטרם חולקו.'}
+  ]}
+];
+renderCompare(DOMAINS_C, 'סלקום', 'score-c', 'domains-c');
+
+/* ---------------- charts ---------------- */
+var css = getComputedStyle(document.documentElement);
+var tok = function(name){ return css.getPropertyValue(name).trim(); };
+var C = {p:tok('--partner'), b:tok('--partner'), nm:tok('--bezeq'), ink2:tok('--ink-2'), ink3:tok('--ink-3'), line:tok('--line'), surf:tok('--surface')};
+var QP = ["Q3'25","Q4'25","Q1'26","Q2'26","Q3'26"];
+var QB = ["Q1'25","Q2'25","Q3'25","Q4'25","Q1'26","Q2'26","Q3'26"];
+var CP = [0,4], CB = [2,6];   /* indexes of Q3'25 and Q3'26 in each label set */
+var CHARTS = [
+  {id:'cP1', cmp:CP, type:'bar', labels:QP, sets:[{label:'הכנסות', data:[784,804,770,790,829], color:C.p},{label:'EBITDA מתואם', data:[331,304,306,314,350], color:C.nm}]},
+  {id:'cP2', cmp:CP, type:'bar', stacked:true, labels:QP, sets:[{label:'תשתית פרטנר', data:[283,284,286,285,285], color:C.p},{label:"תשתית צד ג'", data:[174,184,189,195,200], color:C.nm}]},
+  {id:'cP3', cmp:CP, type:'bar', labels:QP, sets:[{label:'תזרים חופשי מתואם', data:[125,23,134,106,43], color:C.p}]},
+  {id:'cP4', cmp:CP, type:'bar', labels:QP, sets:[{label:'חוב פיננסי נטו', data:[160,128,453,369,327], color:C.p}]},
+  {id:'cB1', cmp:CB, type:'bar', labels:QB, sets:[{label:'הכנסות', data:[2235,2136,2145,2186,2169,2165,2171], color:C.b},{label:'EBITDA השוואתי', data:[917,921,939,963,928,978,1014], color:C.nm}]},
+  {id:'cB2', cmp:CB, type:'bar', labels:QB, sets:[{label:'רווח נקי השוואתי', data:[288,229,258,311,300,315,372], color:C.b}]},
+  {id:'cB3', cmp:CB, type:'line', labels:QB, sets:[{label:'קמעונאות', data:[1003,999,990,980,968,956,942], color:C.b},{label:'סיטונות', data:[474,477,483,493,504,516,537], color:C.nm}]},
+  {id:'cB4', cmp:CB, type:'bar', stacked:true, labels:QB, sets:[{label:'קמעונאות', data:[554,583,609,628,643,655,660], color:C.b},{label:'סיטונות', data:[309,324,345,365,386,406,435], color:C.nm}]},
+  {id:'cC1', cmp:CP, type:'bar', labels:QP, sets:[{label:'הכנסות', data:[1033,1052,1013,1065,1028], color:C.p},{label:'Adjusted EBITDA', data:[369,336,345,380,399], color:C.nm}]},
+  {id:'cC2', cmp:CP, type:'bar', labels:QP, sets:[{label:'תזרים מזומנים פנוי', data:[111,42,115,136,140], color:C.p}]},
+  {id:'cC3', cmp:CP, type:'bar', labels:QP, sets:[{label:'חוב פיננסי נטו', data:[1464,1119,1018,1096,970], color:C.p}]},
+  {id:'cC4', cmp:CP, type:'bar', stacked:true, labels:QP, sets:[{label:'סיבים', data:[348,351,357,363,368], color:C.p},{label:'אחר', data:[38,35,32,29,27], color:C.nm}]},
+  {id:'cX1', cmp:CP, type:'bar', labels:QP, sets:[{label:'ציוד ואחר, מגזר נייח', data:[14,9,9,8,6], color:C.p}]},
+  {id:'cX2', cmp:[0,1], type:'bar', labels:["30.9.2025","30.9.2026"], sets:[{label:'מלאי', data:[94,130], color:C.p}]},
+  {id:'cX3', cmp:CB, type:'bar', stacked:true, labels:QB, sets:[{label:'עסקי (מחושב)', data:[239,231,251,237,263,252,227], color:C.b},{label:'פרטי', data:[34,32,30,26,26,24,23], color:C.nm}]},
+  {id:'cX4', cmp:[0,1,2], type:'bar', labels:['תמסורת','ענן','בינלאומי'], sets:[{label:"Q3'25", data:[391,92,251], color:C.nm},{label:"Q3'26", data:[414,94,227], color:C.b}]}
+];
+function fallback(cfg){
+  var box = $(cfg.id).parentNode;
+  var h = '<table class="fallback"><tr><th></th>' + cfg.labels.map(function(l){ return '<th class="num">' + l + '</th>'; }).join('') + '</tr>';
+  cfg.sets.forEach(function(s){ h += '<tr><th>' + s.label + '</th>' + s.data.map(function(v){ return '<td class="num">' + v.toLocaleString('en-US') + '</td>'; }).join('') + '</tr>'; });
+  box.style.height = 'auto'; box.innerHTML = h + '</table>';
+}
+if(typeof Chart === 'undefined'){
+  CHARTS.forEach(fallback);
+} else {
+  Chart.defaults.font.family = "'Heebo', system-ui, sans-serif";
+  Chart.defaults.font.size = 12;
+  Chart.defaults.color = C.ink2;
+  /* every mark carries its value: above a bar or point, inside each stacked segment, with the total on top.
+     A surface-coloured halo keeps a label readable where it crosses a neighbouring bar. */
+  var valueLabels = {id:'valueLabels', afterDatasetsDraw:function(chart){
+    var ctx = chart.ctx, stacked = chart.options.scales.y.stacked, cmp = chart.config._cmp;
+    var narrow = chart.width < 420 && chart.data.labels.length > 5;
+    var put = function(txt, x, y, strong){
+      ctx.font = (strong ? '700 ' : '500 ') + (narrow ? 9 : 11) + "px 'Heebo', sans-serif";
+      ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.strokeStyle = tok('--surface'); ctx.strokeText(txt, x, y);
+      ctx.fillStyle = tok('--ink'); ctx.fillText(txt, x, y);
+    };
+    ctx.save(); ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+    chart.data.labels.forEach(function(_, k){
+      var strong = !cmp || cmp.indexOf(k) >= 0, sum = 0, top = null;
+      chart.data.datasets.forEach(function(ds, i){
+        var pt = chart.getDatasetMeta(i).data[k], v = ds.data[k];
+        if(!pt) return;
+        if(stacked){
+          sum += v; top = pt;
+          if(Math.abs(pt.base - pt.y) > 14) put(v.toLocaleString('en-US'), pt.x, (pt.y + pt.base) / 2 + 4, strong);
+        } else {
+          put(v.toLocaleString('en-US'), pt.x, pt.y - 6, strong);
+        }
+      });
+      if(stacked && top) put(sum.toLocaleString('en-US'), top.x, top.y - 6, strong);
+    });
+    ctx.restore();
+  }};
+  var fade = function(hex, on){ if(on) return hex; var h = hex.replace('#',''); return 'rgba(' + parseInt(h.substr(0,2),16) + ',' + parseInt(h.substr(2,2),16) + ',' + parseInt(h.substr(4,2),16) + ',0.55)'; };
+  CHARTS.forEach(function(cfg){
+    var line = cfg.type === 'line';
+    var on = function(i){ return !cfg.cmp || cfg.cmp.indexOf(i) >= 0; };
+    var ch = new Chart($(cfg.id), {
+      type: cfg.type,
+      data: {labels: cfg.labels, datasets: cfg.sets.map(function(s){
+        return line
+          ? {label:s.label, data:s.data, borderColor:s.color, backgroundColor:s.color, borderWidth:2, pointRadius:s.data.map(function(_, i){ return on(i) ? 5 : 2; }), pointHoverRadius:6, pointBorderColor:C.surf, pointBorderWidth:2, tension:0.25}
+          : {label:s.label, data:s.data, backgroundColor:s.data.map(function(_, i){ return fade(s.color, on(i)); }), borderRadius:4, borderSkipped:'bottom', borderColor:C.surf, borderWidth:cfg.stacked ? 1 : 0, maxBarThickness:26, categoryPercentage:0.72, barPercentage:0.9};
+      })},
+      options: {
+        responsive:true, maintainAspectRatio:false, animation:false,
+        layout:{padding:{top:22}},
+        interaction:{mode:'index', intersect:false},
+        plugins:{
+          legend:{display:cfg.sets.length > 1, position:'bottom', rtl:true, textDirection:'rtl', labels:{boxWidth:10, boxHeight:10, usePointStyle:false, padding:14, generateLabels:function(chart){ return chart.data.datasets.map(function(ds, i){ var c = cfg.sets[i].color; return {text:ds.label, fillStyle:c, strokeStyle:c, lineWidth:0, datasetIndex:i, fontColor:C.ink2}; }); }}},
+          tooltip:{rtl:true, textDirection:'rtl', callbacks:{label:function(c){ return c.dataset.label + ': ' + c.parsed.y.toLocaleString('en-US'); }}}
+        },
+        scales:{
+          x:{stacked:!!cfg.stacked, grid:{display:false}, border:{color:C.line}, ticks:{color:C.ink3}},
+          y:{stacked:!!cfg.stacked, beginAtZero:!line, grid:{color:C.line}, border:{display:false}, ticks:{color:C.ink3, maxTicksLimit:5, callback:function(v){ return v.toLocaleString('en-US'); }}}
+        }
+      },
+      plugins:[valueLabels]
+    });
+    ch.config._cmp = cfg.cmp; ch.update('none');
+  });
+}
+
+/* ---------------- tabs + hash routing ---------------- */
+var VIEWS = ['partner','bezeq','cellcom','compare','compare-cellcom','business'];
+function show(v, push){
+  if(VIEWS.indexOf(v) < 0) v = 'partner';
+  VIEWS.forEach(function(x){
+    $(x).classList.toggle('on', x === v);
+    $('tab-' + x).setAttribute('aria-selected', x === v ? 'true' : 'false');
+  });
+  if(push){ try{ history.replaceState(null, '', '#' + v); }catch(e){ location.hash = v; } window.scrollTo(0, 0); }
+  window.dispatchEvent(new Event('resize'));
+}
+VIEWS.forEach(function(x){ $('tab-' + x).addEventListener('click', function(){ show(x, true); }); });
+window.addEventListener('hashchange', function(){ show(location.hash.slice(1), false); });
+show(location.hash.slice(1), false);
 })();
 </script>
 </body>
