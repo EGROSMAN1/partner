@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>פרטנר מול בזק Q3 2026</title>
-<meta name="description" content="ניתוח דוחות הרבעון השלישי של 2026: פרטנר, בזק, והשוואה ראש בראש בתחומים המקבילים בלבד.">
+<title>פרטנר, בזק וסלקום Q3 2026</title>
+<meta name="description" content="ניתוח דוחות הרבעון השלישי של 2026: פרטנר, בזק וסלקום, והשוואה של פרטנר מול כל אחת מהן בתחומים המקבילים בלבד.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -59,8 +59,9 @@ button{font:inherit;color:inherit}
 .mast{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
 .mast b{font-family:var(--display);font-weight:700;font-size:1.15rem}
 .mast span{font-size:.8rem;color:var(--ink-3)}
-.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:var(--sunken);padding:4px;border-radius:12px}
-.tab{border:0;background:transparent;padding:9px 6px;border-radius:9px;font-weight:600;font-size:.88rem;color:var(--ink-2);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;min-height:42px;white-space:nowrap}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:var(--sunken);padding:4px;border-radius:12px}
+.tab{border:0;background:transparent;padding:9px 6px;border-radius:9px;font-weight:600;font-size:.88rem;color:var(--ink-2);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;min-height:38px;white-space:nowrap}
+@media(min-width:860px){.tabs{grid-template-columns:repeat(6,1fr)}}
 @media(min-width:520px){.tab{font-size:.95rem}}
 .tab i{display:none}
 .tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
@@ -75,7 +76,7 @@ button{font:inherit;color:inherit}
 .lede p{color:var(--ink-2);max-width:65ch}
 .v-partner{--co:var(--ink)}
 .v-bezeq{--co:var(--ink)}
-.v-compare{--co:var(--ink)}
+.v-compare,.v-cellcom{--co:var(--ink)}
 .v-business{--co:var(--ink)}
 section>h2{font-family:var(--display);font-weight:700;font-size:1.3rem;margin-bottom:4px}
 section>.sub{color:var(--ink-3);font-size:.9rem;margin-bottom:12px}
@@ -236,7 +237,9 @@ details dd{font-size:.9rem;color:var(--ink-2)}
     <div class="tabs" role="tablist" aria-label="בחירת תצוגה">
       <button class="tab" role="tab" id="tab-partner" data-v="partner" aria-controls="partner" aria-selected="true"><i></i>פרטנר</button>
       <button class="tab" role="tab" id="tab-bezeq" data-v="bezeq" aria-controls="bezeq" aria-selected="false"><i></i>בזק</button>
-      <button class="tab" role="tab" id="tab-compare" data-v="compare" aria-controls="compare" aria-selected="false"><i></i>ראש בראש</button>
+      <button class="tab" role="tab" id="tab-cellcom" data-v="cellcom" aria-controls="cellcom" aria-selected="false"><i></i>סלקום</button>
+      <button class="tab" role="tab" id="tab-compare" data-v="compare" aria-controls="compare" aria-selected="false"><i></i>פרטנר מול בזק</button>
+      <button class="tab" role="tab" id="tab-compare-cellcom" data-v="compare-cellcom" aria-controls="compare-cellcom" aria-selected="false"><i></i>פרטנר מול סלקום</button>
       <button class="tab" role="tab" id="tab-business" data-v="business" aria-controls="business" aria-selected="false"><i></i>עסקי</button>
     </div>
   </div>
@@ -386,6 +389,126 @@ details dd{font-size:.9rem;color:var(--ink-2)}
   </details>
 
   <p class="src">מקור: דוח רבעוני של בזק החברה הישראלית לתקשורת בע"מ לתקופה שהסתיימה ב-30.9.2026, נחתם ב-10.11.2026. החוב הפיננסי נטו ויחס החוב ל-EBITDA אינם מדווחים בדוח וחושבו מסעיפי המאזן: אגרות חוב והלוואות, פחות מזומנים והשקעות שוטפות. שיעורי שינוי שאינם מופיעים בדוח חושבו מהערכים המדווחים.</p>
+</div>
+</div>
+
+<!-- ======================= CELLCOM ======================= -->
+<div class="view v-cellcom" id="cellcom" role="tabpanel" aria-labelledby="tab-cellcom">
+<div class="stack">
+  <div class="lede">
+    <span class="eyebrow">סלקום ישראל · יולי עד ספטמבר 2026 מול התקופה המקבילה ב-2025</span>
+    <h1>ההכנסות לא זזו, הרווח קפץ בשליש</h1>
+    <p>ההכנסות ירדו ב-<span class="num">0.5%</span> ל-<span class="num">1,028</span> מיליון ש"ח, אבל הרווח הנקי עלה ב-<span class="num">35.5%</span> ל-<span class="num">103</span> מיליון ש"ח. הסלולר נושא את השיפור, והמגזר הנייח מתכווץ בהכנסות. במקביל סלקום הורידה את החוב נטו בכמעט <span class="num">500</span> מיליון ש"ח בתוך שנה.</p>
+  </div>
+
+  <p class="basis">ההשוואה בעמוד: <b>רבעון 3 של 2026</b> מול <b>רבעון 3 של 2025</b> (יולי עד ספטמבר). ליד כל נתון מופיע גם הערך של הרבעון המקביל.</p>
+
+  <section>
+    <h2>המספרים המרכזיים</h2>
+    <p class="sub">מיליוני ש"ח. המספר הגדול הוא רבעון 3 של 2026, ומתחתיו הרבעון המקביל והשינוי.</p>
+    <div class="kpis" id="c-kpis"></div>
+  </section>
+
+  <div class="note">
+    <h3>שני דברים שצריך לדעת לפני שקוראים</h3>
+    <p><b>ציוד קצה הוא רבע מההכנסות.</b> סלקום מוכרת מכשירים ב-<span class="num">275</span> מיליון ש"ח ברבעון, בעיקר דרך דינמיקה. זה מנפח את ההכנסות ומוריד את שיעורי הרווחיות ביחס לחברה שמוכרת פחות ציוד. <b>הקש"ג סווג מחדש.</b> מהרבעון השלישי של 2025 שיחות בינלאומיות נכנסות נרשמות בהכנסות משירותי המגזר הנייד, ומהרבעון השני של 2026 גם הקש"ג על הודעות SMS. לכן הנתון המגזרי, <span class="num">454</span> מול <span class="num">444</span>, הוא הבסיס הנכון להשוואה.</p>
+  </div>
+
+  <section>
+    <h2>מגמה לאורך חמישה רבעונים</h2>
+    <p class="sub">על כל עמודה מופיע הערך שלה. שני הרבעונים שמשווים מודגשים, והרבעונים שביניהם בהירים יותר.</p>
+    <div class="charts">
+      <div class="card chart"><h3>הכנסות ו-EBITDA מתואם</h3><p class="cs">מיליוני ש"ח</p><div class="box"><canvas id="cC1"></canvas></div><p class="take">ההכנסות נעות סביב אותה רמה, וה-EBITDA עולה שלושה רבעונים ברצף עד <span class="num">399</span>.</p></div>
+      <div class="card chart"><h3>תזרים מזומנים פנוי</h3><p class="cs">מיליוני ש"ח</p><div class="box"><canvas id="cC2"></canvas></div><p class="take"><span class="num">140</span> מיליון ש"ח, הגבוה בתשעת הרבעונים שבדוח. השיפור בא מהתזרים השוטף ומירידה בהשקעות.</p></div>
+      <div class="card chart"><h3>חוב פיננסי נטו</h3><p class="cs">מיליוני ש"ח בסוף רבעון</p><div class="box"><canvas id="cC3"></canvas></div><p class="take">ירידה של <span class="num">494</span> מיליון ש"ח בשנה, מפירעון אגרות חוב ומהתזרים הפנוי. היחס ל-EBITDA: <span class="num">0.67</span>.</p></div>
+      <div class="card chart"><h3>מנויי אינטרנט: סיבים ואחר</h3><p class="cs">אלפי מנויים בסוף רבעון</p><div class="box"><canvas id="cC4"></canvas></div><p class="take"><span class="num">93%</span> ממנויי האינטרנט כבר על סיבים. המנויים שאינם על סיבים ירדו מ-<span class="num">38</span> ל-<span class="num">27</span> אלף.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>שלושת המגזרים</h2>
+    <p class="sub">מיליוני ש"ח ואלפי מנויים. בכל שורה: רבעון 3 של 2026, רבעון 3 של 2025, והשינוי ביניהם.</p>
+    <div class="segs" id="c-segs"></div>
+  </section>
+
+  <section>
+    <h2>מה עבד ומה דורש מעקב</h2>
+    <p class="sub">הפרשנות היא שלי. העובדות והמספרים מהדוח.</p>
+    <div class="two">
+      <div class="card list good" id="c-good"><h3><i></i>מה עבד</h3></div>
+      <div class="card list bad" id="c-bad"><h3><i></i>מה דורש מעקב</h3></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>אירועים מרכזיים</h2>
+    <p class="sub">ב-2026 ועד פרסום הדוח.</p>
+    <div class="card tl" id="c-tl"></div>
+  </section>
+
+  <details>
+    <summary>מילון קצר</summary>
+    <dl>
+      <div><dt>Adjusted EBITDA</dt><dd>רווח נקי לפני מימון, מסים, פחת והפחתות, הוצאות אחרות שאינן מהפעילות השוטפת, רווחי חברות כלולות ותשלום מבוסס מניות. ההגדרה שונה מעט מחברה לחברה.</dd></div>
+      <div><dt>תזרים מזומנים פנוי</dt><dd>תזרים מפעילות שוטפת, פחות השקעות ברכוש קבוע ואחר, ופחות תשלומי חכירות.</dd></div>
+      <div><dt>מגזר החשמל</dt><dd>סלקום אנרג'י, שותפות שסלקום מחזיקה בה <span class="num">50%</span>. מוצגת לפי חלקה של סלקום ומטופלת בשיטת השווי המאזני, ולכן אינה נכללת בהכנסות המאוחדות.</dd></div>
+      <div><dt>IRU</dt><dd>זכות שימוש בלתי הדירה בתשתית. סלקום מספקת אינטרנט על הסיבים של IBC ועל התשתית של בזק בשוק הסיטונאי.</dd></div>
+    </dl>
+  </details>
+
+  <p class="src">מקור: דוח רבעוני של סלקום ישראל בע"מ לתקופה שהסתיימה ב-30.9.2026, נחתם ב-17.11.2026. שיעורי רווחיות ושיעורי שינוי שאינם מופיעים בדוח חושבו מהערכים המדווחים. קטעי "מה עבד ומה דורש מעקב" הם פרשנות ואינם גילוי של החברה.</p>
+</div>
+</div>
+
+<!-- ======================= PARTNER vs CELLCOM ======================= -->
+<div class="view v-compare" id="compare-cellcom" role="tabpanel" aria-labelledby="tab-compare-cellcom">
+<div class="stack">
+  <div class="lede">
+    <span class="eyebrow">פרטנר מול סלקום · רבעון 3 של 2026 · שירות מול שירות</span>
+    <h1>סלקום גדולה ומשתפרת מהר, פרטנר רווחית וצומחת יותר</h1>
+    <p>סלקום גדולה מפרטנר בהכנסות, במנויי הסלולר וברווח בשקלים, והרווח הנקי שלה עלה ב-<span class="num">35.5%</span>. פרטנר מובילה ברוב מדדי האיכות: שיעורי רווחיות גבוהים יותר, נטישה נמוכה יותר, ARPU גבוה יותר וצמיחה בשני המגזרים. בנייח שתי החברות כמעט זהות בגודל, ורק פרטנר צומחת.</p>
+  </div>
+
+  <p class="basis">ההשוואה בעמוד: <b>רבעון 3 של 2026</b> מול <b>רבעון 3 של 2025</b> (יולי עד ספטמבר). החברה העדיפה נקבעת לפי 2026, ומתחת לכל נתון מופיע הערך של הרבעון המקביל.</p>
+
+  <div class="legend">
+    <span><i style="background:var(--partner)"></i>פרטנר</span>
+    <span><i style="background:var(--bezeq)"></i>סלקום</span>
+    <span><span class="tag">עדיפה</span> מדד איכות, נספר בלוח התוצאות</span>
+    <span><span class="tag">גדולה יותר</span> מדד היקף, לא נספר</span>
+  </div>
+
+  <section>
+    <h2>לוח התוצאות</h2>
+    <p class="sub">כמה מדדי איכות כל חברה מובילה בכל תחום. מדדי היקף אינם נספרים.</p>
+    <div class="score" id="score-c"></div>
+  </section>
+
+  <div id="domains-c" class="stack"></div>
+
+  <section>
+    <h2>מה שלא נכנס ללוח התוצאות</h2>
+    <p class="sub">שלוש נקודות שמשלימות את התמונה לטובת סלקום. הפרשנות היא שלי.</p>
+    <div class="card nope">
+      <div><b>הכיוון של סלקום חד יותר</b><span>הרווח הנקי עלה ב-<span class="num">35.5%</span> מול <span class="num">12%</span> בפרטנר, התזרים הפנוי עלה ב-<span class="num">26%</span> בזמן שבפרטנר ירד ב-<span class="num">66%</span>, והנטישה בסלולר ירדה בזמן שבפרטנר עלתה.</span></div>
+      <div><b>המאזנים נעים בכיוונים הפוכים</b><span>סלקום הורידה את החוב נטו מ-<span class="num">1,464</span> ל-<span class="num">970</span> מיליון ש"ח. אצל פרטנר הוא עלה מ-<span class="num">160</span> ל-<span class="num">327</span>, לפני חלוקה של <span class="num">500</span> מיליון ש"ח שאושרה.</span></div>
+      <div><b>משקל הציוד מטה את שיעורי הרווחיות</b><span>ציוד קצה הוא <span class="num">27%</span> מהכנסות סלקום ו-<span class="num">16%</span> מהכנסות פרטנר. ביחס להכנסות משירותים בלבד, ה-EBITDA בסלולר הוא <span class="num">59.9%</span> בסלקום ו-<span class="num">58.3%</span> בפרטנר.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>מה לא השווינו, ולמה</h2>
+    <p class="sub">תחומים שבהם אחת החברות אינה מדווחת, או שהמספרים אינם מודדים את אותו דבר.</p>
+    <div class="card nope">
+      <div><b>מנויי דור 5</b><span>פרטנר מדווחת <span class="num">1,185</span> אלף מנויים משלמים. סלקום אינה מדווחת.</span></div>
+      <div><b>פוסטפייד ופריפייד</b><span>פרטנר מפצלת את המצבת. סלקום מדווחת מספר אחד.</span></div>
+      <div><b>תשתית סיבים עצמית</b><span>לפרטנר <span class="num">285</span> אלף מנויים על רשת משלה. סלקום מספקת סיבים על התשתית של IBC ושל בזק, ונמצאת בהליך משפטי מול IBC.</span></div>
+      <div><b>חשמל</b><span>סלקום מדווחת מגזר חשמל, <span class="num">91</span> מיליון ש"ח לפי חלקה. פרטנר אינה מדווחת על הפעילות בנפרד.</span></div>
+      <div><b>לקוחות עסקיים</b><span>אף אחת מהשתיים אינה מדווחת מגזר עסקי או הכנסות עסקיות.</span></div>
+    </div>
+  </section>
+
+  <p class="src">מקורות: הדוחות הרבעוניים של פרטנר ושל סלקום לתקופה שהסתיימה ב-30.9.2026. ההשוואה היא מגזר מול מגזר: סלולר מול המגזר הנייד, נייח מול נייח, ומדדים פיננסיים ברמת הקבוצה המאוחדת. כל שיעור שאינו מופיע בדוחות חושב מהערכים המדווחים. סלקום מציינת בדוח שמדיניות ספירת המנויים אינה זהה בין המפעילים.</p>
 </div>
 </div>
 
@@ -713,6 +836,72 @@ tl('b-tl', [
   $('p-iru').appendChild(el('div','row','<span class="rl">' + r[0] + '</span><span class="rv">' + n(r[1]) + '</span><span class="chip">' + n(r[2]) + '</span>'));
 });
 
+/* ---------------- Cellcom page ---------------- */
+kpis('c-kpis', [
+  {k:'סך הכנסות', v:'1,028', p:'1,033', d:'−0.5%', c:'שירותים ' + n('753') + ' מול ' + n('749') + '. ציוד קצה ' + n('275') + ' מול ' + n('284') + '.'},
+  {k:'Adjusted EBITDA', v:'399', p:'369', d:'+8.1%', c:'שיעור מההכנסות: ' + n('38.8%') + ' מול ' + n('35.7%') + '.'},
+  {k:'רווח תפעולי', v:'164', p:'127', d:'+29.1%', c:'שיעור מההכנסות: ' + n('16.0%') + ' מול ' + n('12.3%') + '.'},
+  {k:'רווח נקי', v:'103', p:'76', d:'+35.5%', c:'שיעור מההכנסות: ' + n('10.0%') + ' מול ' + n('7.4%') + '.'},
+  {k:'תזרים מזומנים פנוי', v:'140', p:'111', d:'+26.1%', c:'השקעות תזרימיות ירדו ל-' + n('115') + ' מ-' + n('145') + '.'},
+  {k:'חוב פיננסי נטו', v:'970', p:'1,464', d:'−494', c:'יחס חוב נטו ל-EBITDA: ' + n('0.67') + '. מזומנים: ' + n('195') + ' מול ' + n('149') + '.'}
+]);
+segs('c-segs', [
+  {name:'נייד (סלולר)', meta:'69% מההכנסות', share:69, rows:[
+    ['סך הכנסות','714','685','+4.2%',''],
+    ['הכנסות משירותים','454','444','+2.3%',''],
+    ['הכנסות מציוד קצה','260','241','+7.9%',''],
+    ['רווח תפעולי','135','102','+32.4%',''],
+    ['Adjusted EBITDA','272','248','+9.7%',''],
+    ['שיעור EBITDA','38.1%','36.2%','+1.9 נק׳',''],
+    ['מנויים (אלפים)','3,715','3,645','+70',''],
+    ['ARPU (ש"ח)','40.9','40.5','+0.4',''],
+    ['שיעור נטישה','7.8%','8.0%','−0.2 נק׳','']
+  ], take:'העלייה בהכנסות באה מחבילות הסלולר ומנדידה. הרווח עלה גם בגלל ירידה בהוצאות על אגרות תדרים. המגזר כולל גם שירותי אירוח ושיתוף רשתות.'},
+  {name:'נייח', meta:'34% מההכנסות, לפני התאמות בין מגזרים', share:34, rows:[
+    ['סך הכנסות','350','382','−8.4%',''],
+    ['הכנסות משירותים','335','339','−1.2%',''],
+    ['הכנסות מציוד קצה','15','43','−65.1%',''],
+    ['רווח תפעולי','29','25','+16.0%',''],
+    ['Adjusted EBITDA','127','121','+5.0%',''],
+    ['שיעור EBITDA','36.3%','31.7%','+4.6 נק׳',''],
+    ['מנויי אינטרנט (אלפים)','395','386','+9',''],
+    ['מזה מנויי סיבים','368','348','+20',''],
+    ['מנויי טלוויזיה','277','275','+2',''],
+    ['ARPU אינטרנט (ש"ח)','97.3','100.3','−3.0','']
+  ], take:'ההכנסות משירותים ירדו בגלל טלפוניה פנים-ארצית, Hubbing, אינטרנט וטלוויזיה. הרווח עלה בזכות ירידה במחירי השוק הסיטונאי, בקיזוז עלייה בעלויות תוכן. מהרבעון הראשון של 2026 ספירת מנויי הטלוויזיה כוללת גם משתמשים בתשלום.'},
+  {name:'חשמל (סלקום אנרג׳י)', meta:'מוצג לפי חלקה של סלקום, 50%', rows:[
+    ['הכנסות','91','77','+18.2%',''],
+    ['רווח תפעולי','1','2','−1',''],
+    ['Adjusted EBITDA','1','2','−1','']
+  ], take:'פעילות צומחת בהכנסות וכמעט ללא רווח. מטופלת בשיטת השווי המאזני, ולכן אינה חלק מההכנסות המאוחדות. הרישיון הוארך עד 31.12.2031.'}
+]);
+items('c-good', [
+  ['הרווח צמח בלי צמיחה בהכנסות', 'שיעור הרווח הגולמי עלה ל-' + n('40.5%') + ' מ-' + n('36.9%') + '. עלות ההכנסות ירדה ל-' + n('612') + ' מיליון ש"ח מ-' + n('652') + ': שוק סיטונאי, אגרות תדרים ופחת.'],
+  ['הסלולר הוא המנוע', 'רווח תפעולי של ' + n('135') + ' מיליון ש"ח מול ' + n('102') + '. המצבת גדלה ב-' + n('70') + ' אלף מנויים ל-' + n('3,715') + ' אלף, והנטישה ירדה ל-' + n('7.8%') + '.'],
+  ['החוב יורד מהר', 'החוב נטו ירד ב-' + n('494') + ' מיליון ש"ח בשנה. הוצאות המימון ירדו ל-' + n('24') + ' מיליון ש"ח מ-' + n('29') + '. סדרות י׳ ו-י"א נפרעו בפדיון סופי ביולי 2026.'],
+  ['תזרים פנוי בשיא', n('140') + ' מיליון ש"ח ברבעון ו-' + n('391') + ' בתשעת החודשים, מול ' + n('308') + ' בתקופה המקבילה.'],
+  ['המעבר לסיבים כמעט הושלם', n('368') + ' אלף מנויי סיבים, ' + n('+20') + ' אלף בשנה. הם ' + n('93%') + ' ממנויי האינטרנט.'],
+  ['דירוג ודיבידנד', 'מעלות אישררה באוגוסט 2026 דירוג ilAA- באופק יציב. ב-2026 חולק דיבידנד של ' + n('200') + ' מיליון ש"ח.']
+]);
+items('c-bad', [
+  ['המגזר הנייח מתכווץ', 'ההכנסות ירדו ב-' + n('8.4%') + '. ציוד הקצה הנייח ירד ל-' + n('15') + ' מיליון ש"ח מ-' + n('43') + ', וההכנסות משירותים ירדו ב-' + n('1.2%') + '.'],
+  ['ARPU האינטרנט יורד', n('97.3') + ' ש"ח מול ' + n('100.3') + ' ברבעון המקביל. זו ירידה שלישית ברצף מאז השיא של ' + n('101.5') + ' ברבעון הרביעי של 2025.'],
+  ['הסכסוך עם IBC', 'IBC הגישה תביעה שכנגד, ומעריכה באומדן גס ולא מחייב הפרה צפויה של כ-' + n('895') + ' מיליון ש"ח עד תום הסכם ה-IRU. סלקום מציינת שאינה יכולה להעריך את תוצאות ההליך. הסדר דיוני מסדיר את התשלומים השוטפים עד לפסק דין.'],
+  ['חוב קצר ומסגרות אשראי מצומצמות', 'גירעון בהון החוזר של ' + n('484') + ' מיליון ש"ח, לאחר העברת חוב מזמן ארוך לקצר. מסגרות האשראי יצומצמו מ-' + n('600') + ' מיליון ש"ח לא מנוצלים לעד ' + n('100') + '. הדירקטוריון קבע שאין בעיית נזילות, ובוחן הנפקת סדרה י"ד.'],
+  ['תלות במכירות ציוד', 'ציוד הקצה הוא ' + n('27%') + ' מההכנסות, והרווח הגולמי ממנו ירד ל-' + n('52') + ' מיליון ש"ח מ-' + n('57') + '.'],
+  ['השותפה לרשת משנה בעלים', 'סלקום מפעילה רשת רדיו משותפת עם וויקום. לפי הדוח של בזק, פלאפון חתמה ב-9.11.2026 על הסכם לרכישת וויקום, בכפוף לאישורים. הדוח של סלקום אינו מתייחס לכך.'],
+  ['מהלכים פתוחים', 'מגעים מוקדמים לרכישת אייקון גרופ, ללא הסכם מחייב. בקשה לבית המשפט למיזוג שותפות התקשורת הקווית לתוך החברה. תדרי 800 מה"ץ הוקצו זמנית עד 31.3.2027.']
+]);
+tl('c-tl', [
+  ['23.3.2026', 'בית המשפט נתן תוקף ל<b>הסדר דיוני עם IBC</b>, שמסדיר את המחלוקות עד לפסק דין חלוט. סלקום תשלים ערבויות בהיקף של עד ' + n('50') + ' מיליון ש"ח.'],
+  ['אפריל 2026', 'IBC הגישה <b>תביעה שכנגד מתוקנת</b>, עם סעד כספי של כ-' + n('16.5') + ' מיליון ש"ח וסעדים הצהרתיים.'],
+  ['יולי 2026', '<b>פדיון סופי</b> של אגרות החוב מסדרות י׳ ו-י"א. רישיון החשמל של סלקום אנרג׳י הוארך עד 31.12.2031.'],
+  ['אוגוסט 2026', 'מעלות <b>אישררה את הדירוג</b> ilAA- באופק יציב.'],
+  ['5.10.2026', 'משרד התקשורת הקצה לסלקום זמנית, לשם ניסוי, <b>תדרים בתחום 800 מה"ץ</b> עד 31.3.2027.'],
+  ['26.10.2026', 'סלקום עדכנה שהמגעים ל<b>רכישת אייקון גרופ</b> בשלבים מוקדמים, ללא ודאות שיבשילו לעסקה.'],
+  ['17.11.2026', 'הדירקטוריון אישר פנייה לבית המשפט ל<b>מיזוג שותפות סלקום תקשורת קווית</b> לתוך החברה, ובחינת הנפקה של <b>אגרות חוב סדרה י"ד</b>.']
+]);
+
 /* ---------------- business page ---------------- */
 function facts(target, list){
   list.forEach(function(f){
@@ -825,9 +1014,10 @@ var DOMAINS = [
   ]}
 ];
 
-function tagFor(r){
+function tagFor(r, other){
+  if(!r.w && r.kind === 's') return '<span class="tag">שוויון</span>';
   if(r.kind === 'x' || !r.w) return '<span class="tag">לא נספר</span>';
-  var who = r.w === 'p' ? 'פרטנר' : 'בזק';
+  var who = r.w === 'p' ? 'פרטנר' : other;
   return '<span class="tag ' + r.w + '">' + who + ' ' + (r.kind === 's' ? 'גדולה יותר' : 'עדיפה') + '</span>';
 }
 function side(cls, who, val, mag, max, delta){
@@ -836,10 +1026,11 @@ function side(cls, who, val, mag, max, delta){
   if(delta) h += '<span class="d">' + (/^מ-|^חוב/.test(delta) ? '' : 'ברבעון המקביל: ') + '<b>' + n(delta) + '</b></span>';
   return h + '</div>';
 }
-DOMAINS.forEach(function(d){
+function renderCompare(list, other, scoreId, domainsId){
+list.forEach(function(d){
   var pw = 0, bw = 0;
   var sec = el('section');
-  sec.id = 'd-' + d.id;
+  sec.id = domainsId + '-' + d.id;
   sec.innerHTML = '<h2>' + d.name + '</h2><p class="sub">' + d.sub + '</p>';
   var box = el('div','duels');
   d.rows.forEach(function(r){
@@ -848,24 +1039,80 @@ DOMAINS.forEach(function(d){
     var hasBars = r.pv != null && r.bv != null;
     var max = hasBars ? Math.max(r.pv, r.bv) : 0;
     var row = el('div','duel' + (r.w && r.kind !== 'x' ? ' w' + r.w : ''));
-    row.innerHTML = '<div class="h"><b>' + r.l + '</b>' + tagFor(r) + '</div>' +
-      '<div class="g">' + side('p','פרטנר', r.p, hasBars ? r.pv : null, max, r.pp) + side('b','בזק', r.b, hasBars ? r.bv : null, max, r.bp) + '</div>' +
+    row.innerHTML = '<div class="h"><b>' + r.l + '</b>' + tagFor(r, other) + '</div>' +
+      '<div class="g">' + side('p','פרטנר', r.p, hasBars ? r.pv : null, max, r.pp) + side('b', other, r.b, hasBars ? r.bv : null, max, r.bp) + '</div>' +
       (r.fn ? '<p class="fn">' + r.fn + '</p>' : '');
     box.appendChild(row);
   });
   sec.appendChild(box);
-  $('domains').appendChild(sec);
+  $(domainsId).appendChild(sec);
 
   var tot = pw + bw;
   var c = el('div','card sc');
   c.innerHTML = '<div class="t"><b>' + d.name + '</b><span>' + tot + ' מדדי איכות</span></div>' +
-    '<div class="bar" role="img" aria-label="פרטנר ' + pw + ', בזק ' + bw + '">' +
+    '<div class="bar" role="img" aria-label="פרטנר ' + pw + ', ' + other + ' ' + bw + '">' +
       (pw ? '<i class="p" style="width:' + (pw / tot * 100) + '%"></i>' : '') +
       (bw ? '<i class="b" style="width:' + (bw / tot * 100) + '%"></i>' : '') + '</div>' +
-    '<div class="n"><span class="p">פרטנר ' + n(pw) + '</span><span class="b">בזק ' + n(bw) + '</span></div>' +
+    '<div class="n"><span class="p">פרטנר ' + n(pw) + '</span><span class="b">' + other + ' ' + n(bw) + '</span></div>' +
     '<p>' + d.verdict + '</p>';
-  $('score').appendChild(c);
+  $(scoreId).appendChild(c);
 });
+}
+renderCompare(DOMAINS, 'בזק', 'score', 'domains');
+
+/* Partner vs Cellcom. Keys p = Partner, b = the other company (Cellcom here). */
+var DOMAINS_C = [
+ {id:'cell', name:'סלולר', sub:'מגזר הסלולר של פרטנר מול המגזר הנייד של סלקום. מיליוני ש"ח ואלפי מנויים.',
+  verdict:'סלקום גדולה בכשליש ומרוויחה יותר בשקלים. פרטנר מרוויחה יותר מכל שקל הכנסה וגובה יותר מכל מנוי, והנטישה שלה נמוכה בהרבה.',
+  rows:[
+   {l:'הכנסות המגזר', pp:'473', bp:'685', p:'509', b:'714', pv:509, bv:714, w:'b', kind:'s', fn:'אצל סלקום 260 מיליון ש"ח מתוכן הם ציוד קצה. אצל פרטנר 128.'},
+   {l:'הכנסות משירותים', pp:'353', bp:'444', p:'381', b:'454', pv:381, bv:454, w:'b', kind:'s', fn:'אצל סלקום כולל שירותי אירוח ושיתוף רשתות ושירותי תיקון.'},
+   {l:'צמיחת הכנסות השירותים מול הרבעון המקביל', pp:'מ-353 ל-381', bp:'מ-444 ל-454', p:'+7.9%', b:'+2.3%', pv:7.9, bv:2.3, w:'p', kind:'q'},
+   {l:'רווח תפעולי', pp:'80', bp:'102', p:'124', b:'135', pv:124, bv:135, w:'b', kind:'q'},
+   {l:'שיעור רווח תפעולי', pp:'16.9%', bp:'14.9%', p:'24.4%', b:'18.9%', pv:24.4, bv:18.9, w:'p', kind:'q'},
+   {l:'EBITDA מתואם', pp:'178', bp:'248', p:'222', b:'272', pv:222, bv:272, w:'b', kind:'q'},
+   {l:'שיעור EBITDA', pp:'37.6%', bp:'36.2%', p:'43.6%', b:'38.1%', pv:43.6, bv:38.1, w:'p', kind:'q', fn:'משקל הציוד הגבוה אצל סלקום מוריד את השיעור. ביחס להכנסות משירותים בלבד: פרטנר 58.3%, סלקום 59.9%.'},
+   {l:'מצבת מנויים', pp:'2,667K', bp:'3,645K', p:'2,739K', b:'3,715K', pv:2739, bv:3715, w:'b', kind:'s', fn:'שתיהן סופרות מנוי כלא פעיל אחרי שישה חודשים. סלקום מציינת שמדיניות הספירה אינה זהה בין המפעילים.'},
+   {l:'תוספת מנויים מול הרבעון המקביל', pp:'מ-2,667K ל-2,739K', bp:'מ-3,645K ל-3,715K', p:'+72K', b:'+70K', pv:72, bv:70, w:'p', kind:'q', fn:'כמעט שוויון במספרים. באחוזים: פרטנר 2.7%, סלקום 1.9%.'},
+   {l:'שיעור נטישה', pp:'4.9%', bp:'8.0%', p:'5.6%', b:'7.8%', pv:5.6, bv:7.8, w:'p', kind:'q', fn:'נמוך יותר עדיף. הכיוון הפוך: אצל פרטנר הנטישה עלתה, אצל סלקום ירדה.'},
+   {l:'ARPU', pp:'44 ₪', bp:'40.5 ₪', p:'46 ₪', b:'40.9 ₪', pv:46, bv:40.9, w:'p', kind:'q', fn:'ה-ARPU של סלקום כולל גם הכנסות מאירוח ושיתוף רשתות ומשירותי תיקון, כך שהפער בפועל גדול מעט יותר.'}
+  ]},
+ {id:'fixed', name:'נייח: אינטרנט, סיבים וטלוויזיה', sub:'המגזר הנייח של פרטנר מול המגזר הנייח של סלקום. שני המגזרים כוללים אינטרנט, טלוויזיה, תמסורת לעסקים וטלפוניה, ולכן אפשר להשוות גם את התוצאות הכספיות.',
+  verdict:'שני מגזרים כמעט זהים בגודל שנעים בכיוונים הפוכים. אצל פרטנר השירותים, האינטרנט, הסיבים והטלוויזיה צומחים. אצל סלקום ההכנסות יורדות והרווח התפעולי עולה.',
+  rows:[
+   {l:'הכנסות המגזר', pp:'331', bp:'382', p:'341', b:'350', pv:341, bv:350, w:'b', kind:'s'},
+   {l:'הכנסות משירותים', pp:'317', bp:'339', p:'335', b:'335', pv:335, bv:335, w:null, kind:'s', fn:'לפני שנה סלקום הובילה ב-22 מיליון ש"ח. הפער נסגר.'},
+   {l:'צמיחת הכנסות השירותים מול הרבעון המקביל', pp:'מ-317 ל-335', bp:'מ-339 ל-335', p:'+5.7%', b:'−1.2%', w:'p', kind:'q'},
+   {l:'רווח תפעולי', pp:'52', bp:'25', p:'24', b:'29', pv:24, bv:29, w:'b', kind:'q', fn:'הרבעון המקביל של פרטנר כלל הכנסה חד-פעמית של כ-38 מיליון ש"ח.'},
+   {l:'EBITDA מתואם', pp:'153', bp:'121', p:'128', b:'127', pv:128, bv:127, w:'p', kind:'q', fn:'כמעט שוויון. בנטרול החד-פעמי, ה-EBITDA של פרטנר ברבעון המקביל היה 115.'},
+   {l:'שיעור EBITDA', pp:'46.2%', bp:'31.7%', p:'37.5%', b:'36.3%', pv:37.5, bv:36.3, w:'p', kind:'q'},
+   {l:'מנויי אינטרנט', pp:'484K', bp:'386K', p:'503K', b:'395K', pv:503, bv:395, w:'p', kind:'s'},
+   {l:'תוספת מנויי אינטרנט מול הרבעון המקביל', pp:'מ-484K ל-503K', bp:'מ-386K ל-395K', p:'+19K', b:'+9K', pv:19, bv:9, w:'p', kind:'q'},
+   {l:'מנויי סיבים', pp:'457K', bp:'348K', p:'485K', b:'368K', pv:485, bv:368, w:'p', kind:'s'},
+   {l:'תוספת מנויי סיבים מול הרבעון המקביל', pp:'מ-457K ל-485K', bp:'מ-348K ל-368K', p:'+28K', b:'+20K', pv:28, bv:20, w:'p', kind:'q'},
+   {l:'שיעור הסיבים מבסיס האינטרנט', pp:'94.4%', bp:'90.2%', p:'96.4%', b:'93.2%', pv:96.4, bv:93.2, w:'p', kind:'q'},
+   {l:'ARPU אינטרנט', pp:'95 ₪', bp:'100.3 ₪', p:'97 ₪', b:'97.3 ₪', pv:97, bv:97.3, w:null, kind:'x', fn:'שוויון בפועל: פרטנר מדווחת במספרים שלמים, והפער קטן מהעיגול. הכיוון הפוך: אצל פרטנר עלייה של 2 ₪, אצל סלקום ירידה של 3 ₪.'},
+   {l:'מנויי טלוויזיה', pp:'196K', bp:'275K', p:'214K', b:'277K', pv:214, bv:277, w:'b', kind:'s', fn:'אצל פרטנר כולל מנויים בתקופת ניסיון ללא תשלום. אצל סלקום, מתחילת 2026 הספירה כוללת גם משתמשים בתשלום.'},
+   {l:'תוספת מנויי טלוויזיה מול הרבעון המקביל', pp:'מ-196K ל-214K', bp:'מ-275K ל-277K', p:'+18K', b:'+2K', pv:18, bv:2, w:'p', kind:'q'}
+  ]},
+ {id:'fin', name:'חוסן פיננסי ורווחיות', sub:'הקבוצה המאוחדת של כל חברה. מיליוני ש"ח.',
+  verdict:'פרטנר רווחית יותר בכל שיעור וממונפת פחות. סלקום משתפרת מהר יותר ומייצרת יותר מזומן מכל שקל הכנסה.',
+  rows:[
+   {l:'סך הכנסות', pp:'784', bp:'1,033', p:'829', b:'1,028', pv:829, bv:1028, w:'b', kind:'s'},
+   {l:'צמיחת ההכנסות מול הרבעון המקביל', pp:'מ-784 ל-829', bp:'מ-1,033 ל-1,028', p:'+5.7%', b:'−0.5%', w:'p', kind:'q'},
+   {l:'שיעור EBITDA מתואם', pp:'42.2%', bp:'35.7%', p:'42.2%', b:'38.8%', pv:42.2, bv:38.8, w:'p', kind:'q', fn:'הגדרות ההתאמה שונות מעט בין החברות.'},
+   {l:'שיעור רווח תפעולי', pp:'16.8%', bp:'12.3%', p:'17.9%', b:'16.0%', pv:17.9, bv:16.0, w:'p', kind:'q'},
+   {l:'שיעור רווח נקי', pp:'11.5%', bp:'7.4%', p:'12.2%', b:'10.0%', pv:12.2, bv:10.0, w:'p', kind:'q'},
+   {l:'צמיחת הרווח הנקי מול הרבעון המקביל', pp:'מ-90 ל-101', bp:'מ-76 ל-103', p:'+12.2%', b:'+35.5%', pv:12.2, bv:35.5, w:'b', kind:'q'},
+   {l:'תזרים חופשי מתוך ההכנסות', pp:'15.9%', bp:'10.7%', p:'5.2%', b:'13.6%', pv:5.2, bv:13.6, w:'b', kind:'q', fn:'בשקלים: פרטנר 43 מול 125 מיליון, סלקום 140 מול 111 מיליון. שתיהן מנכות מהתזרים השוטף השקעות ותשלומי חכירות.'},
+   {l:'חוב פיננסי נטו ל-EBITDA', pp:'0.1', bp:'חוב נטו 1,464', p:'0.3', b:'0.67', pv:0.3, bv:0.67, w:'p', kind:'q', fn:'נמוך יותר עדיף. חוב נטו ברבעון 3 של 2026: פרטנר 327, סלקום 970 מיליון ש"ח. שני היחסים מדווחים. הדוח של סלקום אינו מציג את היחס של הרבעון המקביל.'},
+   {l:'הון עצמי מתוך המאזן', pp:'48.6%', bp:'43.2%', p:'51.5%', b:'47.8%', pv:51.5, bv:47.8, w:'p', kind:'q'},
+   {l:'דירוג מעלות', pp:'ilAA-', bp:'ilAA-', p:'ilAA-', b:'ilAA-', w:null, kind:'s', fn:'אותו דירוג ואותו אופק, יציב.'},
+   {l:'השקעות מתוך ההכנסות', pp:'15.2%', bp:'14.0%', p:'14.7%', b:'11.2%', pv:14.7, bv:11.2, w:null, kind:'x', fn:'בשקלים: פרטנר 122 מול 119 מיליון, סלקום 115 מול 145 מיליון. מדד של עוצמת השקעה ולא של איכות.'},
+   {l:'חלוקה לבעלי המניות ב-2026', p:'465', b:'200', pv:465, bv:200, w:null, kind:'x', fn:'מצטבר מתחילת 2026, לא נתון רבעוני. אצל פרטנר אושרו 500 מיליון ש"ח נוספים שטרם חולקו.'}
+  ]}
+];
+renderCompare(DOMAINS_C, 'סלקום', 'score-c', 'domains-c');
 
 /* ---------------- charts ---------------- */
 var css = getComputedStyle(document.documentElement);
@@ -883,6 +1130,10 @@ var CHARTS = [
   {id:'cB2', cmp:CB, type:'bar', labels:QB, sets:[{label:'רווח נקי השוואתי', data:[288,229,258,311,300,315,372], color:C.b}]},
   {id:'cB3', cmp:CB, type:'line', labels:QB, sets:[{label:'קמעונאות', data:[1003,999,990,980,968,956,942], color:C.b},{label:'סיטונות', data:[474,477,483,493,504,516,537], color:C.nm}]},
   {id:'cB4', cmp:CB, type:'bar', stacked:true, labels:QB, sets:[{label:'קמעונאות', data:[554,583,609,628,643,655,660], color:C.b},{label:'סיטונות', data:[309,324,345,365,386,406,435], color:C.nm}]},
+  {id:'cC1', cmp:CP, type:'bar', labels:QP, sets:[{label:'הכנסות', data:[1033,1052,1013,1065,1028], color:C.p},{label:'Adjusted EBITDA', data:[369,336,345,380,399], color:C.nm}]},
+  {id:'cC2', cmp:CP, type:'bar', labels:QP, sets:[{label:'תזרים מזומנים פנוי', data:[111,42,115,136,140], color:C.p}]},
+  {id:'cC3', cmp:CP, type:'bar', labels:QP, sets:[{label:'חוב פיננסי נטו', data:[1464,1119,1018,1096,970], color:C.p}]},
+  {id:'cC4', cmp:CP, type:'bar', stacked:true, labels:QP, sets:[{label:'סיבים', data:[348,351,357,363,368], color:C.p},{label:'אחר', data:[38,35,32,29,27], color:C.nm}]},
   {id:'cX1', cmp:CP, type:'bar', labels:QP, sets:[{label:'ציוד ואחר, מגזר נייח', data:[14,9,9,8,6], color:C.p}]},
   {id:'cX2', cmp:[0,1], type:'bar', labels:["30.9.2025","30.9.2026"], sets:[{label:'מלאי', data:[94,130], color:C.p}]},
   {id:'cX3', cmp:CB, type:'bar', stacked:true, labels:QB, sets:[{label:'עסקי (מחושב)', data:[239,231,251,237,263,252,227], color:C.b},{label:'פרטי', data:[34,32,30,26,26,24,23], color:C.nm}]},
@@ -958,7 +1209,7 @@ if(typeof Chart === 'undefined'){
 }
 
 /* ---------------- tabs + hash routing ---------------- */
-var VIEWS = ['partner','bezeq','compare','business'];
+var VIEWS = ['partner','bezeq','cellcom','compare','compare-cellcom','business'];
 function show(v, push){
   if(VIEWS.indexOf(v) < 0) v = 'partner';
   VIEWS.forEach(function(x){
