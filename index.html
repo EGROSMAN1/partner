@@ -19,7 +19,6 @@
   --bezeq:#B6C0C7;
   --up:#16794A;
   --bad:#B93227;
-  --warn:#8A5A00; --warn-bg:#FFF4D6; --warn-line:#E0A100;
   --display:'Frank Ruhl Libre','Times New Roman',serif;
   --body:'Heebo',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
   --radius:14px;
@@ -33,7 +32,6 @@
     --bezeq:#5C6A73;
     --up:#4CC38A;
     --bad:#F0796D;
-    --warn:#F2C35B; --warn-bg:#2B230F; --warn-line:#B98A1E;
     color-scheme:dark;
   }
 }
@@ -44,7 +42,6 @@
   --bezeq:#5C6A73;
   --up:#4CC38A;
   --bad:#F0796D;
-  --warn:#F2C35B; --warn-bg:#2B230F; --warn-line:#B98A1E;
   color-scheme:dark;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -229,14 +226,14 @@ details dd{font-size:.9rem;color:var(--ink-2)}
 .mxr b{font-weight:600}
 .mxr span{color:var(--ink-2)}
 .mxr .hp,.mxr .hb{color:var(--ink)}
-.oobox{background:var(--warn-bg);border:1px solid var(--warn-line);border-inline-start:5px solid var(--warn-line);border-radius:var(--radius);padding:14px 16px;display:flex;flex-direction:column;gap:8px}
-.oobox h2{font-family:var(--body);font-size:1.05rem;font-weight:700;color:var(--warn)}
-.oobox p,.oobox li{font-size:.92rem;color:var(--ink)}
+.oobox{background:var(--surface);border:1px solid var(--line);border-inline-start:3px solid var(--ink);border-radius:var(--radius);padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.oobox h2{font-family:var(--display);font-size:1.15rem;font-weight:700}
+.oobox p,.oobox li{font-size:.92rem;color:var(--ink-2)}
+.oobox li b{color:var(--ink)}
 .oobox ul{padding-inline-start:18px;display:flex;flex-direction:column;gap:6px}
-.ootag{font-size:.74rem;font-weight:700;color:var(--warn);background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:99px;padding:1px 8px;white-space:nowrap}
-.duel.has-oo{box-shadow:inset 0 0 0 1px var(--warn-line)}
-p.oo,span.oo{font-size:.84rem;color:var(--ink);background:var(--warn-bg);border-inline-start:3px solid var(--warn-line);border-radius:6px;padding:6px 10px;line-height:1.5}
-p.oo b,span.oo b{color:var(--warn)}
+.ootag{font-size:.74rem;font-weight:600;color:var(--ink-2);border:1px solid var(--line);border-radius:99px;padding:0 7px;white-space:nowrap;font-family:var(--body)}
+p.oo,span.oo{font-size:.84rem;color:var(--ink-2);border-inline-start:2px solid var(--ink-3);padding-inline-start:10px;line-height:1.5}
+p.oo b,span.oo b{color:var(--ink);font-weight:600}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -483,8 +480,8 @@ p.oo b,span.oo b{color:var(--warn)}
   <p class="basis">ההשוואה בעמוד: <b>רבעון 3 של 2026</b> מול <b>רבעון 3 של 2025</b> (יולי עד ספטמבר). החברה העדיפה נקבעת לפי 2026, ומתחת לכל נתון מופיע הערך של הרבעון המקביל.</p>
 
   <div class="oobox" role="note">
-    <h2>⚠ שימו לב: ברבעון המקביל של פרטנר יש אירוע חד-פעמי</h2>
-    <p>הנתונים בעמוד הם כפי שדווחו, בלי נטרול. ברבעון 3 של 2025 פרטנר רשמה השפעה חיובית חד-פעמית של כ-<span class="num">38</span> מיליון ש"ח מביטול הפרשה למע"מ בגין לקוחות נטפליקס, כולה במגזר הנייח. היא מנפחת את הרווח של פרטנר באותו רבעון, ולכן השיפור של פרטנר נראה קטן מהמציאות. בדוח של סלקום לא מופיע אירוע דומה. כל שורה מושפעת מסומנת <span class="ootag">⚠ חד-פעמי</span>, ולידה מופיע הערך בלעדיו.</p>
+    <h2>שימו לב: ברבעון המקביל של פרטנר יש אירוע חד-פעמי</h2>
+    <p>הנתונים בעמוד הם כפי שדווחו, בלי נטרול. ברבעון 3 של 2025 פרטנר רשמה השפעה חיובית חד-פעמית של כ-<span class="num">38</span> מיליון ש"ח מביטול הפרשה למע"מ בגין לקוחות נטפליקס, כולה במגזר הנייח. היא מנפחת את הרווח של פרטנר באותו רבעון, ולכן השיפור של פרטנר נראה קטן מהמציאות. בדוח של סלקום לא מופיע אירוע דומה. כל שורה מושפעת מסומנת <span class="ootag">חד-פעמי</span>, ולידה מופיע הערך בלעדיו.</p>
     <p>הבולט ביותר בנייח: בלי האירוע, ה-EBITDA של פרטנר עלה מ-<span class="num">115</span> ל-<span class="num">128</span>, ולא ירד מ-<span class="num">153</span>. החברה העדיפה בכל שורה נקבעת לפי 2026, ולכן התוצאות בלוח לא משתנות.</p>
   </div>
 
@@ -541,8 +538,8 @@ p.oo b,span.oo b{color:var(--warn)}
   <p class="basis">ההשוואה בעמוד: <b>רבעון 3 של 2026</b> מול <b>רבעון 3 של 2025</b> (יולי עד ספטמבר). החברה העדיפה נקבעת לפי 2026, ומתחת לכל נתון מופיע הערך של הרבעון המקביל.</p>
 
   <div class="oobox" role="note">
-    <h2>⚠ שימו לב: ברבעון המקביל יש אירועים חד-פעמיים</h2>
-    <p>הנתונים בעמוד הם כפי שדווחו, בלי נטרול. ברבעון 3 של 2025 שתי החברות רשמו אירוע חד-פעמי שמנפח את הרווח של אותו רבעון, ולכן ההשוואה ל-2026 נראית חלשה מהמציאות. כל שורה מושפעת מסומנת <span class="ootag">⚠ חד-פעמי</span>, ולידה מופיע הערך בלעדיו.</p>
+    <h2>שימו לב: ברבעון המקביל יש אירועים חד-פעמיים</h2>
+    <p>הנתונים בעמוד הם כפי שדווחו, בלי נטרול. ברבעון 3 של 2025 שתי החברות רשמו אירוע חד-פעמי שמנפח את הרווח של אותו רבעון, ולכן ההשוואה ל-2026 נראית חלשה מהמציאות. כל שורה מושפעת מסומנת <span class="ootag">חד-פעמי</span>, ולידה מופיע הערך בלעדיו.</p>
     <ul>
       <li><b>בזק:</b> ביטול הפסד מירידת ערך ב-yes. הוסיף כ-<span class="num">102</span> מיליון ש"ח ל-EBITDA וכ-<span class="num">215</span> מיליון ש"ח לרווח הנקי. בגללו שיעורי הרווחיות של בזק נראים כאילו ירדו, כשבפועל הם עלו: שיעור ה-EBITDA ההשוואתי עלה מ-<span class="num">43.8%</span> ל-<span class="num">46.7%</span>, ושיעור הרווח הנקי ההשוואתי מ-<span class="num">12.0%</span> ל-<span class="num">17.1%</span>.</li>
       <li><b>פרטנר:</b> ביטול הפרשה למע"מ בגין לקוחות נטפליקס, השפעה חיובית של כ-<span class="num">38</span> מיליון ש"ח על ה-EBITDA ועל הרווח התפעולי. בלעדיו, שיעור ה-EBITDA של פרטנר עלה מ-<span class="num">37.4%</span> ל-<span class="num">42.2%</span>.</li>
@@ -687,7 +684,7 @@ function kpis(target, list){
       '<span class="v">' + n(k.v) + (k.u ? '<small>' + k.u + '</small>' : '') + '</span>' +
       '<span class="yy"><span>ברבעון המקביל <b>' + n(k.p) + '</b></span><span class="chip ' + dir(k.d) + '">' + n(k.d) + '</span></span>' +
       '<span class="c">' + k.c + '</span>' +
-      (k.oo ? '<span class="oo"><b>⚠ חד-פעמי ברבעון המקביל:</b> ' + k.oo + '</span>' : '');
+      (k.oo ? '<span class="oo"><b>חד-פעמי ברבעון המקביל:</b> ' + k.oo + '</span>' : '');
     $(target).appendChild(d);
   });
 }
@@ -1052,7 +1049,7 @@ function tagFor(r, other){
 function side(cls, who, val, mag, max, delta, oo){
   var h = '<div class="side ' + cls + '"><span class="who">' + who + '</span><span class="val ' + dir(val) + '">' + n(val) + '</span>';
   if(mag != null && max) h += '<div class="tr"><i style="width:' + Math.max(3, Math.round(mag / max * 100)) + '%"></i></div>';
-  if(delta) h += '<span class="d">' + (/^מ-|^חוב/.test(delta) ? '' : 'ברבעון המקביל: ') + '<b>' + n(delta) + '</b>' + (oo ? ' <span class="ootag" title="כולל אירוע חד-פעמי">⚠</span>' : '') + '</span>';
+  if(delta) h += '<span class="d">' + (/^מ-|^חוב/.test(delta) ? '' : 'ברבעון המקביל: ') + '<b>' + n(delta) + '</b>' + (oo ? ' <span class="ootag" title="כולל אירוע חד-פעמי">*</span>' : '') + '</span>';
   return h + '</div>';
 }
 function renderCompare(list, other, scoreId, domainsId){
@@ -1068,9 +1065,9 @@ list.forEach(function(d){
     var hasBars = r.pv != null && r.bv != null;
     var max = hasBars ? Math.max(r.pv, r.bv) : 0;
     var row = el('div','duel' + (r.w && r.kind !== 'x' ? ' w' + r.w : '') + (r.oo ? ' has-oo' : ''));
-    row.innerHTML = '<div class="h"><b>' + r.l + (r.oo ? ' <span class="ootag">⚠ חד-פעמי</span>' : '') + '</b>' + tagFor(r, other) + '</div>' +
+    row.innerHTML = '<div class="h"><b>' + r.l + (r.oo ? ' <span class="ootag">חד-פעמי</span>' : '') + '</b>' + tagFor(r, other) + '</div>' +
       '<div class="g">' + side('p','פרטנר', r.p, hasBars ? r.pv : null, max, r.pp, r.oo && /פרטנר:/.test(r.oo)) + side('b', other, r.b, hasBars ? r.bv : null, max, r.bp, r.oo && /בזק:/.test(r.oo)) + '</div>' +
-      (r.oo ? '<p class="oo"><b>⚠ הערך של הרבעון המקביל כולל אירוע חד-פעמי.</b> ' + r.oo + '</p>' : '') +
+      (r.oo ? '<p class="oo"><b>הערך של הרבעון המקביל כולל אירוע חד-פעמי.</b> ' + r.oo + '</p>' : '') +
       (r.fn ? '<p class="fn">' + r.fn + '</p>' : '');
     box.appendChild(row);
   });
